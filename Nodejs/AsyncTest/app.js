@@ -1,41 +1,35 @@
-var func1 = function(req,res,callback){
-  setTimeout(function(){
-    console.log('in func1');
-    callback(req,res,1);  
-  }, 5000);
-}
+var async = require('async')
+  , request = require('request')
+  , util = require('util')
+  , moment = require('moment');
 
-var func2 = function(req,res,callback){ 
-  setTimeout(function(){
-    console.log('in func2');
-    callback(req,res,2);
-  }, 3000);
-}
-
-var func3 = function(req,res,callback){
-  setTimeout(function(){
-    console.log('in func3');
-    callback(req,res,3);   
-  }, 1000);
-}
-
-var req = null;
-var res = null;
-
-var callback = function(){};
-var async = require('async');
-
-async.series(
-  [
-    function(callback){
-      func1(req, res, callback);
-    },  
-    function(callback){
-      func2(req, res, callback);
+async.parallel([
+    function(callback) {
+      request("http://google.jp", function(err, response, body) {
+        if(err) { console.log(err); callback(true); return; }
+        console.log("\nfunction: 1")
+        // console.log("response = ", util.inspect(response));
+        console.log("google.jp ~ body = ", util.inspect(body));
+        callback(false);
+      });
     },
-    function(callback){
-      func3(req, res, callback);  
-    } 
-  ]
-);
+
+    function(callback) {
+      request("http://google.com", function(err, response, body) {
+        if(err) { console.log(err); callback(true); return; }
+        console.log("\nfunction: 2")
+        console.log("google.com ~ body = ", util.inspect(body));
+        callback(false);
+      });
+    },
+
+    function() {
+      var now = moment();
+      console.log('\nnow = ', now);
+      // process.stdout.write(moment().format('ss.SSS')+'> ');
+      process.stdout.write(now.format('ss.SSS')+'> ');
+    }
+]);
+
+
 
