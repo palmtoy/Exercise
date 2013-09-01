@@ -1,16 +1,3 @@
-/*
-function foo() {
-  console.log('foo');
-}
-
-// process.nextTick(foo);
-
-setTimeout(foo, 0);
-
-console.log('bar'); 
-*/
-
-
 var cnt4Func1 = 0;
 var forFunc1 = function() {
   cnt4Func1++;
