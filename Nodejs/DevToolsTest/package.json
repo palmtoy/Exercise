@@ -1,0 +1,22 @@
+{
+  "name": "DevToolsTest",
+  "description": "",
+  "keywords": [
+    "agent",
+    "webkit",
+    "profiler",
+    "remote",
+    "v8"
+  ],
+  "homepage": "http://github.com/palmtoy",
+  "version": "0.1.0",
+  "author": "palmtoy",
+  "repository": "git://github.com/palmtoy",
+  "engines": {
+    "node": "0.6 || 0.7 || 0.8"
+  },
+  "dependencies": {
+    "webkit-devtools-agent": "0.1.2",
+    "express": "3.3.5"
+  },
+}
