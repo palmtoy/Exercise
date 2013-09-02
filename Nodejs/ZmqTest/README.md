@@ -1,3 +1,5 @@
+zeromq.node(zmq) in ubuntu:
+
 First, install ZMQ ... (http://zeromq.org/area:download)
 
 wget http://download.zeromq.org/zeromq-3.2.3.tar.gz
