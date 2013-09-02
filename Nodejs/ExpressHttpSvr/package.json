@@ -1,0 +1,13 @@
+{
+    "name": "ExpressHttpSvr",
+    "version": "0.0.1",
+    "description": "A express http server",
+    "author": "<palmtoy@gmail.com>",
+		"dependencies": {
+			"socket.io-client": "0.9.16"
+			,"socket.io": "0.9.16"
+			,"express": "3.3.1"
+      ,"heapdump": "0.1.0"
+      ,"webkit-devtools-agent": "0.1.2"
+		}
+}

@@ -1,0 +1,9 @@
+{
+    "name": "HttpFileServer",
+    "version": "0.0.1",
+    "description": "A http file server",
+    "author": "<palmtoy@gmail.com>",
+		"dependencies": {
+			"express": "3.3.1"
+		}
+}
