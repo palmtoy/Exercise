@@ -1,5 +1,5 @@
 var should = require('should');
-var bt = require('../../');
+var bt = require('pomelo-bt');
 var Select = bt.Select;
 
 var SNode = function(bb) {
@@ -87,7 +87,7 @@ describe('Select Test', function() {
     bb.wcount.should.equal(0);
   });
 
-  it('should success if and child success', function() {
+  it('should success if any child success', function() {
     var bb = {
       scount: 0, 
       fcount: 0, 

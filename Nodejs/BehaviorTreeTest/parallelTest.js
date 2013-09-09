@@ -103,12 +103,11 @@ describe('Parallel Test', function() {
     bb.fcount.should.equal(3);
     bb.wcount.should.equal(0);
 
-    bb.fcount = 0;
     pl.addChild(new SNode(bb));
     res = pl.doAction();
     res.should.equal(bt.RES_SUCCESS);
     bb.scount.should.equal(1);
-    bb.fcount.should.equal(3);
+    bb.fcount.should.equal(6);
     bb.wcount.should.equal(0);
   });
 

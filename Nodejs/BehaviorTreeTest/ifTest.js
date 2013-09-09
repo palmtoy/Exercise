@@ -1,5 +1,5 @@
 var should = require('should');
-var bt = require('../../');
+var bt = require('pomelo-bt');
 var If = bt.If;
 
 var SNode = function(bb) {
@@ -133,5 +133,12 @@ describe('If Test', function() {
     bb.fcount.should.equal(0);
     bb.wcount.should.equal(2);
     condCount.should.equal(1);
+
+    res = i.doAction();
+    res.should.equal(bt.RES_SUCCESS);
+    bb.scount.should.equal(2);
+    bb.fcount.should.equal(0);
+    bb.wcount.should.equal(2);
+    condCount.should.equal(2);
   });
 });

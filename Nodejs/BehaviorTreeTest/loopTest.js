@@ -1,5 +1,5 @@
 var should = require('should');
-var bt = require('../../');
+var bt = require('pomelo-bt');
 var Loop = bt.Loop;
 
 var SNode = function(bb) {
