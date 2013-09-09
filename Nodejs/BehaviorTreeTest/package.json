@@ -1,0 +1,8 @@
+{
+  "name": "BehaviorTreeTest",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "pomelo-bt": "0.0.1"
+  }
+}
