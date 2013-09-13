@@ -1,33 +1,11 @@
-var spawn = require('child_process').spawn,
-    ps    = spawn('ps', ['ax']),
-    // grep  = spawn('grep', ['ssh']);
-    grep  = spawn('grep', ['bash']);
+var exec = require('child_process').exec;
 
-ps.stdout.on('data', function (data) {
-  grep.stdin.write(data);
+exec('ls -la',
+  function (error, _, _) {
+    if (error !== null) {
+      console.log('Exec error: ' + error + '!');
+    } else {
+      console.log('OK ~');
+    }
 });
 
-ps.stderr.on('data', function (data) {
-  console.log('ps stderr: ' + data);
-});
-
-ps.on('close', function (code) {
-  if (code !== 0) {
-    console.log('ps process exited with code ' + code);
-  }
-  grep.stdin.end();
-});
-
-grep.stdout.on('data', function (data) {
-  console.log('' + data);
-});
-
-grep.stderr.on('data', function (data) {
-  console.log('grep stderr: ' + data);
-});
-
-grep.on('close', function (code) {
-  if (code !== 0) {
-    console.log('grep process exited with code ' + code);
-  }
-});
