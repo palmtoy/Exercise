@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
   struct sockaddr_in sin;
   memset(&sin, 0, sizeof(sockaddr_in));
   sin.sin_family = AF_INET;
-  sin.sin_addr.s_addr = 0;
+  // sin.sin_addr.s_addr = 0;
+  sin.sin_addr.s_addr = htonl(INADDR_ANY);
   sin.sin_port = htons(LISTEN_PORT);
 
   if (bind(listener, (struct sockaddr *)&sin, sizeof(sin)) < 0) {
