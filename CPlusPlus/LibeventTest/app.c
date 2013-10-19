@@ -33,12 +33,12 @@ int main(int argc, char *argv[])
   sin.sin_port = htons(LISTEN_PORT);
 
   if (bind(listener, (struct sockaddr *)&sin, sizeof(sin)) < 0) {
-    perror("bind");
+    perror("bind error!\n");
     return 1;
   }
 
   if (listen(listener, LISTEN_BACKLOG) < 0) {
-    perror("listen");
+    perror("listen error!\n");
     return 1;
   }
 
@@ -65,7 +65,7 @@ void do_accept(evutil_socket_t listener, short event, void *arg)
   socklen_t slen;
   fd = accept(listener, (struct sockaddr *)&sin, &slen);
   if (fd < 0) {
-    perror("accept");
+    perror("accept error!\n");
     return;
   }
   if (fd > FD_SETSIZE) {
