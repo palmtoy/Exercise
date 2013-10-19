@@ -1,50 +1,113 @@
 // g++ app.c -o app.exe -I /usr/local/include -L /usr/local/lib -levent
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <assert.h>
 #include <string.h>
-#include <event.h>
 
-//定义服务端口
-#define PORT 6969
-//定义监听连接请求的最大队列数
-#define BACKLOG 5
+#include <event2/event.h>
+#include <event2/bufferevent.h>
 
-//当有连接请求时会触发该函数
-void on_accept(int sock, short event, void *arg)
+#define LISTEN_PORT 6969
+#define LISTEN_BACKLOG 32
+
+void do_accept(evutil_socket_t listener, short event, void *arg);
+void read_cb(struct bufferevent *bev, void *arg);
+void error_cb(struct bufferevent *bev, short event, void *arg);
+void write_cb(struct bufferevent *bev, void *arg);
+
+int main(int argc, char *argv[])
 {
-  printf("Hello, Welcome to use libevent...\n");
-}
+  int ret;
+  evutil_socket_t listener;
+  listener = socket(AF_INET, SOCK_STREAM, 0);
+  assert(listener > 0);
+  evutil_make_listen_socket_reuseable(listener);
 
-int main(int argc, char *argv[]){
-  //创建套接字
-  int sock = socket(AF_INET, SOCK_STREAM, 0);
-  //设置套接字属性 端口复用
-  int optval = 1;
-  setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int));
+  struct sockaddr_in sin;
+  memset(&sin, 0, sizeof(sockaddr_in));
+  sin.sin_family = AF_INET;
+  sin.sin_addr.s_addr = 0;
+  sin.sin_port = htons(LISTEN_PORT);
 
-  struct sockaddr_in addr;
-  memset(&addr, 0, sizeof(sockaddr_in));
-  addr.sin_family = AF_INET;
-  addr.sin_port = htons(PORT);
-  addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  if (bind(listener, (struct sockaddr *)&sin, sizeof(sin)) < 0) {
+    perror("bind");
+    return 1;
+  }
 
-  //绑定
-  bind(sock, (struct sockaddr*)&addr, sizeof(sockaddr_in));
-  //监听
-  listen(sock, BACKLOG);
+  if (listen(listener, LISTEN_BACKLOG) < 0) {
+    perror("listen");
+    return 1;
+  }
 
-  //获取一个event_base指针
+  printf ("Listening...\n");
+
+  evutil_make_socket_nonblocking(listener);
+
   struct event_base *base = event_base_new();
-  //获取一个event指针
-  struct event *listen_event = event_new(base, sock, EV_READ|EV_PERSIST, on_accept, NULL);
-  event_base_set(base, listen_event);
-  //添加事件
+  assert(base != NULL);
+  struct event *listen_event;
+  listen_event = event_new(base, listener, EV_READ|EV_PERSIST, do_accept, (void*)base);
   event_add(listen_event, NULL);
-  //事件分发、运行
   event_base_dispatch(base);
 
+  printf("The End.");
   return 0;
 }
 
+void do_accept(evutil_socket_t listener, short event, void *arg)
+{
+  struct event_base *base = (struct event_base *)arg;
+  evutil_socket_t fd;
+  struct sockaddr_in sin;
+  socklen_t slen;
+  fd = accept(listener, (struct sockaddr *)&sin, &slen);
+  if (fd < 0) {
+    perror("accept");
+    return;
+  }
+  if (fd > FD_SETSIZE) {
+    perror("fd > FD_SETSIZE\n");
+    return;
+  }
+
+  printf("ACCEPT: fd = %u\n", fd);
+
+  struct bufferevent *bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
+  bufferevent_setcb(bev, read_cb, NULL, error_cb, arg);
+  bufferevent_enable(bev, EV_READ|EV_WRITE|EV_PERSIST);
+}
+
+void read_cb(struct bufferevent *bev, void *arg)
+{
+#define MAX_LINE    256
+  char line[MAX_LINE+1];
+  int n;
+  evutil_socket_t fd = bufferevent_getfd(bev);
+
+  while (n = bufferevent_read(bev, line, MAX_LINE), n > 0) {
+    line[n] = '\0';
+    printf("fd=%u, read line: %s\n", fd, line);
+
+    bufferevent_write(bev, line, n);
+  }
+}
+
+void write_cb(struct bufferevent *bev, void *arg) {}
+
+void error_cb(struct bufferevent *bev, short event, void *arg)
+{
+  evutil_socket_t fd = bufferevent_getfd(bev);
+  printf("fd = %u, ", fd);
+  if (event & BEV_EVENT_TIMEOUT) {
+    printf("Timed out\n"); //if bufferevent_set_timeouts() called
+  }
+  else if (event & BEV_EVENT_EOF) {
+    printf("connection closed\n");
+  }
+  else if (event & BEV_EVENT_ERROR) {
+    printf("some other error\n");
+  }
+  bufferevent_free(bev);
+}
