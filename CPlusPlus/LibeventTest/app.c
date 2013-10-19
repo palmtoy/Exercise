@@ -12,7 +12,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define SERVER_PORT 8080
+#define SERVER_PORT 6969
 int debug = 0;
 
 struct client {
@@ -39,8 +39,10 @@ void buf_read_callback(struct bufferevent *incoming,
   if (req == NULL)
     return;
 
+  printf ("From cli: %s\n", req);
+
   evreturn = evbuffer_new();
-  evbuffer_add_printf(evreturn,"You said %s\n",req);
+  evbuffer_add_printf(evreturn,"You said: %s\n",req);
   bufferevent_write_buffer(incoming,evreturn);
   evbuffer_free(evreturn);
   free(req);
@@ -132,6 +134,8 @@ int main(int argc,
       fprintf(stderr,"Failed to listen to socket");
       return 1;
     }
+
+  printf ("Listening on port %d ...\n", SERVER_PORT);
 
   setsockopt(socketlisten,
              SOL_SOCKET,
