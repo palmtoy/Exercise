@@ -1,115 +1,158 @@
-// g++ app.c -o app.exe -I /usr/local/include -L /usr/local/lib -levent
+// gcc app.c -o app.exe -I /usr/local/include -L /usr/local/lib -levent
 // telnet localhost 6969
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <assert.h>
+#include <event.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
 
-#include <event2/event.h>
-#include <event2/bufferevent.h>
+#define SERVER_PORT 8080
+int debug = 0;
 
-#define LISTEN_PORT 6969
-#define LISTEN_BACKLOG 32
+struct client {
+  int fd;
+  struct bufferevent *buf_ev;
+};
 
-void do_accept(evutil_socket_t listener, short event, void *arg);
-void read_cb(struct bufferevent *bev, void *arg);
-void error_cb(struct bufferevent *bev, short event, void *arg);
-void write_cb(struct bufferevent *bev, void *arg);
-
-int main(int argc, char *argv[])
+int setnonblock(int fd)
 {
-  int ret;
-  evutil_socket_t listener;
-  listener = socket(AF_INET, SOCK_STREAM, 0);
-  assert(listener > 0);
-  evutil_make_listen_socket_reuseable(listener);
+  int flags;
 
-  struct sockaddr_in sin;
-  memset(&sin, 0, sizeof(sockaddr_in));
-  sin.sin_family = AF_INET;
-  // sin.sin_addr.s_addr = 0;
-  sin.sin_addr.s_addr = htonl(INADDR_ANY);
-  sin.sin_port = htons(LISTEN_PORT);
+  flags = fcntl(fd, F_GETFL);
+  flags |= O_NONBLOCK;
+  fcntl(fd, F_SETFL, flags);
+}
 
-  if (bind(listener, (struct sockaddr *)&sin, sizeof(sin)) < 0) {
-    perror("bind error!\n");
-    return 1;
-  }
+void buf_read_callback(struct bufferevent *incoming,
+                       void *arg)
+{
+  struct evbuffer *evreturn;
+  char *req;
 
-  if (listen(listener, LISTEN_BACKLOG) < 0) {
-    perror("listen error!\n");
-    return 1;
-  }
+  req = evbuffer_readline(incoming->input);
+  if (req == NULL)
+    return;
 
-  printf ("Listening...\n");
+  evreturn = evbuffer_new();
+  evbuffer_add_printf(evreturn,"You said %s\n",req);
+  bufferevent_write_buffer(incoming,evreturn);
+  evbuffer_free(evreturn);
+  free(req);
+}
 
-  evutil_make_socket_nonblocking(listener);
+void buf_write_callback(struct bufferevent *bev,
+                        void *arg)
+{
+}
 
-  struct event_base *base = event_base_new();
-  assert(base != NULL);
-  struct event *listen_event;
-  listen_event = event_new(base, listener, EV_READ|EV_PERSIST, do_accept, (void*)base);
-  event_add(listen_event, NULL);
-  event_base_dispatch(base);
+void buf_error_callback(struct bufferevent *bev,
+                        short what,
+                        void *arg)
+{
+  struct client *client = (struct client *)arg;
+  bufferevent_free(client->buf_ev);
+  close(client->fd);
+  free(client);
+}
 
-  printf("The End.");
+void accept_callback(int fd,
+                     short ev,
+                     void *arg)
+{
+  int client_fd;
+  struct sockaddr_in client_addr;
+  socklen_t client_len = sizeof(client_addr);
+  struct client *client;
+
+  client_fd = accept(fd,
+                     (struct sockaddr *)&client_addr,
+                     &client_len);
+  if (client_fd < 0)
+    {
+      warn("Client: accept() failed");
+      return;
+    }
+
+  setnonblock(client_fd);
+
+  client = calloc(1, sizeof(*client));
+  if (client == NULL)
+    err(1, "malloc failed");
+  client->fd = client_fd;
+
+  client->buf_ev = bufferevent_new(client_fd,
+                                   buf_read_callback,
+                                   buf_write_callback,
+                                   buf_error_callback,
+                                   client);
+
+  bufferevent_enable(client->buf_ev, EV_READ);
+}
+
+int main(int argc,
+         char **argv)
+{
+  int socketlisten;
+  struct sockaddr_in addresslisten;
+  struct event accept_event;
+  int reuse = 1;
+
+  event_init();
+
+  socketlisten = socket(AF_INET, SOCK_STREAM, 0);
+
+  if (socketlisten < 0)
+    {
+      fprintf(stderr,"Failed to create listen socket");
+      return 1;
+    }
+
+  memset(&addresslisten, 0, sizeof(addresslisten));
+
+  addresslisten.sin_family = AF_INET;
+  addresslisten.sin_addr.s_addr = INADDR_ANY;
+  addresslisten.sin_port = htons(SERVER_PORT);
+
+  if (bind(socketlisten,
+           (struct sockaddr *)&addresslisten,
+           sizeof(addresslisten)) < 0)
+    {
+      fprintf(stderr,"Failed to bind");
+      return 1;
+    }
+
+  if (listen(socketlisten, 5) < 0)
+    {
+      fprintf(stderr,"Failed to listen to socket");
+      return 1;
+    }
+
+  setsockopt(socketlisten,
+             SOL_SOCKET,
+             SO_REUSEADDR,
+             &reuse,
+             sizeof(reuse));
+
+  setnonblock(socketlisten);
+
+  event_set(&accept_event,
+            socketlisten,
+            EV_READ|EV_PERSIST,
+            accept_callback,
+            NULL);
+
+  event_add(&accept_event,
+            NULL);
+
+  event_dispatch();
+
+  close(socketlisten);
+
   return 0;
-}
-
-void do_accept(evutil_socket_t listener, short event, void *arg)
-{
-  struct event_base *base = (struct event_base *)arg;
-  evutil_socket_t fd;
-  struct sockaddr_in sin;
-  socklen_t slen;
-  fd = accept(listener, (struct sockaddr *)&sin, &slen);
-  if (fd < 0) {
-    perror("accept error!\n");
-    return;
-  }
-  if (fd > FD_SETSIZE) {
-    perror("fd > FD_SETSIZE\n");
-    return;
-  }
-
-  printf("ACCEPT: fd = %u\n", fd);
-
-  struct bufferevent *bev = bufferevent_socket_new(base, fd, BEV_OPT_CLOSE_ON_FREE);
-  bufferevent_setcb(bev, read_cb, NULL, error_cb, arg);
-  bufferevent_enable(bev, EV_READ|EV_WRITE|EV_PERSIST);
-}
-
-void read_cb(struct bufferevent *bev, void *arg)
-{
-#define MAX_LINE    256
-  char line[MAX_LINE+1];
-  int n;
-  evutil_socket_t fd = bufferevent_getfd(bev);
-
-  while (n = bufferevent_read(bev, line, MAX_LINE), n > 0) {
-    line[n] = '\0';
-    printf("fd=%u, read line: %s\n", fd, line);
-
-    bufferevent_write(bev, line, n);
-  }
-}
-
-void write_cb(struct bufferevent *bev, void *arg) {}
-
-void error_cb(struct bufferevent *bev, short event, void *arg)
-{
-  evutil_socket_t fd = bufferevent_getfd(bev);
-  printf("fd = %u, ", fd);
-  if (event & BEV_EVENT_TIMEOUT) {
-    printf("Timed out\n"); //if bufferevent_set_timeouts() called
-  }
-  else if (event & BEV_EVENT_EOF) {
-    printf("connection closed\n");
-  }
-  else if (event & BEV_EVENT_ERROR) {
-    printf("some other error\n");
-  }
-  bufferevent_free(bev);
 }
