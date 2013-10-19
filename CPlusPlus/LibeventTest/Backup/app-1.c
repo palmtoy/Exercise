@@ -1,4 +1,5 @@
 // g++ app.c -o app.exe -I /usr/local/include -L /usr/local/lib -levent
+// telnet 127.0.0.1 6969
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

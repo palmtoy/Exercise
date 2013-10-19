@@ -1,4 +1,5 @@
 // g++ app.c -o app.exe -I /usr/local/include -L /usr/local/lib -levent
+// telnet localhost 6969
 
 #include <stdio.h>
 #include <stdlib.h>
