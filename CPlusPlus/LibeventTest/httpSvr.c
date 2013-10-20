@@ -18,6 +18,7 @@ time_t lasttime = 0;
 char filename[80];
 int counter = 0;
 
+
 void read_file()
 {
   int size = 0;
@@ -55,7 +56,7 @@ void read_file()
   }
 }
 
-void load_file()
+void load_file(int _,  short __,  void * ___)
 {
   struct event *loadfile_event;
   struct timeval tv;
@@ -102,12 +103,12 @@ int main(int argc, char *argv[])
 
   event_init();
 
-  load_file();
+  load_file(0, 0, NULL);
 
   http_server = evhttp_start(http_addr, http_port);
   evhttp_set_gencb(http_server, generic_request_handler, NULL);
 
-  fprintf(stderr, "Server started on port %d\n", http_port);
+  fprintf(stderr, "Http server started on port %d\n", http_port);
   event_dispatch();
 }
 
