@@ -1,4 +1,4 @@
-// gcc -o httpSvr.exe httpSvr.c -levent
+// g++ -o httpSvr.exe httpSvr.c -levent
 // http server
 
 #include <sys/types.h>
@@ -56,6 +56,7 @@ void read_file()
   }
 }
 
+void load_file(int _=0,  short __=0,  void * ___=NULL);
 void load_file(int _,  short __,  void * ___)
 {
   struct event *loadfile_event;
@@ -66,7 +67,7 @@ void load_file(int _,  short __,  void * ___)
   tv.tv_sec = RELOAD_TIMEOUT;
   tv.tv_usec = 0;
 
-  loadfile_event = malloc(sizeof(struct event));
+  loadfile_event = (event *)malloc(sizeof(struct event));
 
   evtimer_set(loadfile_event,
       load_file,
@@ -88,7 +89,7 @@ void generic_request_handler(struct evhttp_request *req, void *arg)
 int main(int argc, char *argv[])
 {
   short          http_port = 6969;
-  char          *http_addr = "127.0.0.1";
+  const char     *http_addr = "127.0.0.1";
   struct evhttp *http_server = NULL;
 
   if (argc > 1)
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
 
   event_init();
 
-  load_file(0, 0, NULL);
+  load_file();
 
   http_server = evhttp_start(http_addr, http_port);
   evhttp_set_gencb(http_server, generic_request_handler, NULL);
