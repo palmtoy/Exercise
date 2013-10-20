@@ -41,14 +41,14 @@ int main()
   } 
 
   /* 使用bind进行绑定端口 */
-  if(-1 == bind(sfd,(struct sockaddr *)(&s_add), sizeof(struct sockaddr)))
+  if(-1 == bind(sfd, (struct sockaddr *)(&s_add), sizeof(struct sockaddr)))
   {
     printf("bind fail !\r\n");
     return -1;
   }
   printf("bind ok !\r\n");
   /* 开始监听相应的端口 */
-  if(-1 == listen(sfd,5))
+  if(-1 == listen(sfd, 5))
   {
     printf("listen fail !\r\n");
     return -1;
@@ -65,7 +65,7 @@ int main()
       printf("accept fail !\r\n");
       return -1;
     }
-    printf("accept ok!\r\nServer start get connect from %#x : %#x\r\n",ntohl(c_add.sin_addr.s_addr),ntohs(c_add.sin_port));
+    printf("accept ok!\r\nServer start get connect from %#x : %#x\r\n", ntohl(c_add.sin_addr.s_addr), ntohs(c_add.sin_port));
 
     /* 这里使用write向客户端发送信息*/
     char echoStr[] = "Hello baby, welcome to my server!\r\n";
