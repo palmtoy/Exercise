@@ -1,0 +1,3 @@
+LUADIR = /home/lzg/trunk/3rd/lua/lua-5.1.4_coco-1.1.5/src
+LUALIB = lua
+LUALIBFILE = liblua.a
