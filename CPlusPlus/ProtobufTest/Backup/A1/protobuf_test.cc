@@ -1,3 +1,4 @@
+// g++ protobuf_test.cc msg.pb.cc -lprotobuf
 #include "msg.pb.h"
 #include <iostream>
 #include <string>

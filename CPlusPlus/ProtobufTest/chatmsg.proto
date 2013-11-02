@@ -1,0 +1,8 @@
+package chatmsg;
+
+message Msg
+{
+    required int32 MsgId = 1;
+    required string MsgInfo = 2;
+    required string MsgFrom = 3;
+}
