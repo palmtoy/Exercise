@@ -1,7 +1,8 @@
-#include<iostream>
+//main.c
+#include <stdio.h>
 
 int main()
 {
-    std::cout << "Hello Word!" << std::endl;
+    printf("Hello World!\n");
     return 0;
 }

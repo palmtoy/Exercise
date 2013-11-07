@@ -1,5 +1,3 @@
-PROJECT(main)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-AUX_SOURCE_DIRECTORY(. DIR_SRCS)
-# ADD_EXECUTABLE(main ${DIR_SRCS})
-ADD_EXECUTABLE(a.out ${DIR_SRCS})
+project(HELLO)
+set(SRC_LIST main.cpp)
+add_executable(hello ${SRC_LIST})
