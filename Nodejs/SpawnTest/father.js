@@ -1,18 +1,16 @@
-var spawn = require('child_process').spawn;
+var fs = require('fs'),
+spawn = require('child_process').spawn,
+out = fs.openSync('./out.log', 'a'),
+err = fs.openSync('./out.log', 'a');
+
 var child = spawn('node', ['child.js'], {
-  detached: true
-  });
+  detached: true,
+  stdio: [ 'ignore', out, err ]
+});
 
 child.unref();
 
-child.stdout.on('data', function (data) {
-  console.log('stdout: ' + data);
-});
+setInterval(function(){
+  console.log(Date(), 'Father ~ Hi baby ...');
+}, 2000);
 
-child.stderr.on('data', function (data) {
-  console.log('stderr: ' + data);
-});
-
-child.on('close', function (code) {
-  console.log('child process exited with code ' + code);
-});
