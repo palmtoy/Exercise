@@ -1,11 +1,9 @@
 var fs = require('fs'),
-spawn = require('child_process').spawn,
-out = fs.openSync('./out.log', 'a'),
-err = fs.openSync('./out.log', 'a');
+    spawn = require('child_process').spawn,
 
 var child = spawn('node', ['child.js'], {
   detached: true,
-  stdio: [ 'ignore', out, err ]
+  stdio: 'inherit'
 });
 
 child.unref();
