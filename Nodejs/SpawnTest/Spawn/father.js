@@ -1,5 +1,4 @@
-var fs = require('fs'),
-    spawn = require('child_process').spawn;
+var spawn = require('child_process').spawn;
 
 var child = spawn('node', ['child.js'], {
   detached: true,
