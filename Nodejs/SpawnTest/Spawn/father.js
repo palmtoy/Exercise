@@ -1,13 +1,13 @@
 var spawn = require('child_process').spawn;
-
-var child = spawn('node', ['child.js'], {
-  detached: true,
-  stdio: 'inherit'
-});
-
-child.unref();
+var child = spawn('node', ['child.js'], {detached: true, stdio:'inherit'}); 
 
 setInterval(function(){
-  console.log(Date(), 'Father ~ Hi baby ...');
+  child.kill('SIGINT');
 }, 2000);
+
+child.on('exit', function(code, signal){
+  console.log('process exit ' + code + ' ' + signal);
+});
+
+// child.stdout.pipe(process.stdout);
 
