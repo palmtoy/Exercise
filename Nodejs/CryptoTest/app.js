@@ -1,9 +1,11 @@
-console.log(new Buffer("Hello World").toString('base64')); // SGVsbG8gV29ybGQ=
+var crypto = require('crypto');
+var content = 'password'
+var md5 = crypto.createHash('md5');
+md5.update(content);
+var d = md5.digest('hex');  //MD5值是5f4dcc3b5aa765d61d8327deb882cf99
+console.log(' md5(%j) = ', content, d);
 
-console.log(new Buffer("SGVsbG8gV29ybGQ=", 'base64').toString('ascii')); // Hello World
-
-var str = 'Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.';
-var str4base64 = new Buffer(str).toString('base64');
-console.log('\nstr4base64 = ' + str4base64);
-var str4origin = new Buffer(str4base64, 'base64').toString('ascii');
-console.log('\nstr4origin = ' + str4origin);
+var shasum = crypto.createHash('sha1');
+shasum.update(content);
+var d = shasum.digest('hex');
+console.log('sha1(%j) = ', content, d);
