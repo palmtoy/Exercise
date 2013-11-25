@@ -1,17 +1,15 @@
-var EventEmitter = require('events').EventEmitter
-, util = require('util');
+// Define the original function with four parameters.
+var displayArgs = function (val1, val2, val3, val4) {
+  console.log(val1 + " " + val2 + " " + val3 + " " + val4);
+}
 
-// Here is the Ticker constructor:
-var Ticker = function(time) {
-  var self = this;
-  this.time = time;
-  setInterval(function() {
-    self.emit('tick');
-  }, self.time);
-};
+var emptyObject = {};
 
-util.inherits(Ticker, EventEmitter);
+// Create a new function that uses the 12 and "a" parameters
+// as the first and second parameters.
+var displayArgs2 = displayArgs.bind(emptyObject, 12, "a");
 
-var ticker = new Ticker(1000);
-
-ticker.on('tick', function() { console.log(Date(), "TICK"); });
+// Call the new function. The "b" and "c" parameters are used
+// as the third and fourth parameters.
+displayArgs2("b", "c");
+// Output: 12 a b c 
