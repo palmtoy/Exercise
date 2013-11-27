@@ -1,25 +1,17 @@
-str = '\u00bd + \u00bc = \u00be';
+var buf1 = new Buffer(26);
 
-console.log(str + ": " + str.length + " characters, " +
-            Buffer.byteLength(str, 'utf8') + " bytes");
+for (var i = 0 ; i < 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+}
 
-// ½ + ¼ = ¾: 9 characters, 12 bytes
+console.log('\n(a)buf1 = ' + buf1.toString('ascii', 0, buf1.length));
 
+var buf2 = buf1.slice(0, 3);
+console.log('\n(a)buf2 = ' + buf2.toString('ascii', 0, buf2.length));
 
-var frosty = new Buffer(24);
-var snowman = new Buffer("☃", "utf-8");
-frosty.write("Happy birthday! ", "utf-8");
-
-snowman.copy(frosty, 16);
-
-console.log(frosty.toString("utf-8", 0, 19));
-// 'Happy birthday! ☃'
-
-
-var puddle = frosty.slice(16, 19);
-puddle.toString();
-puddle.write("___");
-
-console.log('\n' + frosty.toString("utf-8", 0, 19));
-// 'Happy birthday! ___'
+buf1[0] = 65; // 65 is ASCII A
+console.log('\n(A)buf2 = ' + buf2.toString('ascii', 0, buf2.length));
+console.log('\n(A)buf1 = ' + buf1.toString('ascii', 0, buf1.length));
+// abc
+// !bc
 
