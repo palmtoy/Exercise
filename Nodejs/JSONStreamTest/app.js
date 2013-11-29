@@ -13,14 +13,10 @@ fsStream.pipe(jStream);
 
 jStream.on('data', function(data) {
   console.log('jStream.on:data is running ...');
-  // console.log('received:', data);
-  stringify.write([ data.doc ]);
-  console.log('\n');
-  /*
-  if (data._typeGroup === 'entities') {
-    stringify.write([ data.name, data.relevance ]);
+  if (data.doc.hello === 2) {
+    stringify.write([ data.doc._id, data.doc._rev ]);
   }
-  */
+  console.log('\n');
 });
 
 jStream.on('root', function(root, count) {
@@ -29,7 +25,7 @@ jStream.on('root', function(root, count) {
     console.log('no matches found:', root);
   } else {
     // console.log('root = ', root); // whatever you will do with each JSON object
-    console.log('count = ', count, '\n');
+    console.log('count = ', count);
   }
 });
 
