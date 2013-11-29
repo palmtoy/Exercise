@@ -1,6 +1,6 @@
 var request = require('request')
   , JSONStream = require('JSONStream')
-  , es = require('event-stream')
+  , es = require('event-stream');
 
 
 /*
