@@ -1,25 +1,29 @@
-var request = require('request')
+var fs = require('fs')
   , JSONStream = require('JSONStream')
-  , es = require('event-stream')
+  , es = require('event-stream');
 
 
-/*
-request('http://pomelo3.server.163.org:8080/data.json')
-.pipe(JSONStream.parse('rows.*'))
-.pipe(es.mapSync(function (data) {
-  console.log(data)
-  return data
-}))
-*/
-
-
-var parser = JSONStream.parse(['rows', true])
-  , req = request({url: 'http://pomelo3.server.163.org:8080/data.json'})
+var stream = JSONStream.parse(['rows', true, 'doc']) //rows, ANYTHING, doc
   , logger = es.mapSync(function (data) {
-      console.error(data)
+      console.log(data)
       return data
     });
 
-req
-.pipe(parser)
-.pipe(logger);
+
+stream.on('data', function(data) {
+  console.log('received:', data);
+  logger(data);
+});
+
+stream.on('root', function(root, count) {
+  if (!count) {
+    console.log('no matches found:', root);
+  }
+});
+
+
+fs.readFile('./data.json', function (err, data) {
+  if (err) throw err;
+  stream.emit('data', data);
+});
+
