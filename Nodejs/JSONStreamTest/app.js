@@ -12,7 +12,7 @@ var stream = JSONStream.parse(['rows', true, 'doc']) //rows, ANYTHING, doc
 
 stream.on('data', function(data) {
   console.log('received:', data);
-  logger(data);
+  console.log('data = ', data.toString());
 });
 
 stream.on('root', function(root, count) {
