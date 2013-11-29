@@ -1,29 +1,11 @@
 var fs = require('fs')
-  , JSONStream = require('JSONStream')
-  , es = require('event-stream');
+  , JSONStream = require('JSONStream');
 
+var stream = fs.createReadStream('data.json', {encoding: 'utf8'});
+parser = JSONStream.parse();
 
-var stream = JSONStream.parse(['rows', true, 'doc']) //rows, ANYTHING, doc
-  , logger = es.mapSync(function (data) {
-      console.log(data)
-      return data
-    });
+stream.pipe(parser);
 
-
-stream.on('data', function(data) {
-  console.log('received:', data);
-  console.log('data = ', data.toString());
+parser.on('root', function (obj) {
+  console.log(obj); // whatever you will do with each JSON object
 });
-
-stream.on('root', function(root, count) {
-  if (!count) {
-    console.log('no matches found:', root);
-  }
-});
-
-
-fs.readFile('./data.json', function (err, data) {
-  if (err) throw err;
-  stream.emit('data', data);
-});
-
