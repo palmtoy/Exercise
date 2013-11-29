@@ -15,7 +15,8 @@ request('http://pomelo3.server.163.org:8080/data.json')
 */
 
 
-var parser = JSONStream.parse(['rows', true])
+// var parser = JSONStream.parse(['rows', true])
+var parser = JSONStream.parse(['rows', true, 'doc'])
   , req = request({url: 'http://pomelo3.server.163.org:8080/data.json'})
   , logger = es.mapSync(function (data) {
       console.log(data)
