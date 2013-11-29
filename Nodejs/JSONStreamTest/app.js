@@ -5,7 +5,8 @@ var fsStream = fs.createReadStream('./data.json', {encoding: 'utf8'});
 // var jStream = JSONStream.parse(['rows', true, 'doc'])
 var jStream = JSONStream.parse(['rows', true])
 
-var stringify = JSONStream.stringify();
+// var stringify = JSONStream.stringify();
+var stringify = JSONStream.stringify(false);
 stringify.pipe(process.stdout);
 
 
@@ -16,7 +17,6 @@ jStream.on('data', function(data) {
   if (data.doc.hello !== 1) {
     stringify.write([ data.doc._id, data.doc._rev ]);
   }
-  // console.log('\n');
 });
 
 jStream.on('root', function(root, count) {
@@ -24,12 +24,13 @@ jStream.on('root', function(root, count) {
   if (!count) {
     console.log('no matches found:', root);
   } else {
-    // console.log('root = ', root); // whatever you will do with each JSON object
+    // console.log('root = ', root);
     // console.log('count = ', count);
   }
 });
 
 jStream.on('end', function () {
   stringify.end();
+  console.log('\n');
 });
 
