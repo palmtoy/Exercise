@@ -8,13 +8,15 @@ stringify.pipe(process.stdout);
 var parser = JSONStream.parse([ true ]);
 
 parser.on('data', function (row) {
+  console.log([ row.name, row.relevance ]);
   if (row._typeGroup === 'entities') {
-    stringify.write([ row.name, row.relevance ]);
+    // stringify.write([ row.name, row.relevance ]);
+    console.log([ row.name, row.relevance ]);
   }
 });
 
 parser.on('end', function () {
-  stringify.end();
+  // stringify.end();
 });
 
 s.pipe(parser);

@@ -1,7 +1,9 @@
 {
-  {
-    _typeGroup: 'entities',
-    name: 'palmtoy',
-    relevance: 'burse'
-  }
+  'rows': [
+    {
+      '_typeGroup': 'entities',
+      'name': 'palmtoy',
+      'relevance': 'burse'
+    }
+  ]
 }
