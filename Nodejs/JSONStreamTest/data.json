@@ -4,7 +4,7 @@
   "titles": ["id", "name", "npcword", "myword"],
   "rows": [
     ["1", "牛皮", "Do you want to go back to the desert?", "Yes"],
-    ["2", "马二姐", "Thunderbird is the most evil creatrue in jiangnanyewai, belive me.", "I will be careful."]
+    ["2", "马二姐", "Thunderbird is the most evil creatrue in jiangnanyewai.", "I will be careful."]
   ]
 }
 

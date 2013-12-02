@@ -2,8 +2,8 @@ var fs = require('fs')
   , JSONStream = require('JSONStream');
 
 var fsStream = fs.createReadStream('./data.json', {encoding: 'utf8'});
-// var jStream = JSONStream.parse(['rows', true])
-var jStream = JSONStream.parse(['titles', true])
+var jStream = JSONStream.parse(['rows', true])
+// var jStream = JSONStream.parse(['titles', true])
 
 
 fsStream.pipe(jStream);
