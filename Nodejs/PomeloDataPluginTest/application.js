@@ -5,6 +5,7 @@ var Application = module.exports = {};
 
 Application.init = function() {
   this.loaded = []; // loaded component list
+  this.settings = {}; // collection keep set/get
 };
 
 Application.use = function(plugin, opts) {
@@ -27,6 +28,7 @@ Application.use = function(plugin, opts) {
     }
     var name = path.basename(filename, '.js');
     var param = opts[name] || {};
+    console.log('param = ', JSON.stringify(param));
     var absolutePath = path.join(dir, 'components', filename);
     if(!fs.existsSync(absolutePath)) {
       console.error('component %s not exist at %s', name, absolutePath);
@@ -40,7 +42,8 @@ Application.use = function(plugin, opts) {
 
 
 Application.set = function(name, obj) {
-  // ...
+  this.settings[name] = obj;
+  return this;
 };
 
 Application.start = function() {
