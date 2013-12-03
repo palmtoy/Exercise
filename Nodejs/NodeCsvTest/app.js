@@ -6,11 +6,9 @@ var csv = require('csv');
 console.log('__dirname = ', __dirname, '\n');
 
 csv()
-.from.path(__dirname + '/sample.in', { delimiter: ',', escape: '"' })
+.from.path(__dirname + '/sample.in', {comment: '#'})
 .to.stream(fs.createWriteStream(__dirname+'/sample.out'))
 .on('record', function(row, index){
-  console.log('typeof row = ', typeof row);
-  console.log('row.length = ', row.length);
   console.log('#' + index + ' ' + JSON.stringify(row));
 })
 .on('close', function(count){
