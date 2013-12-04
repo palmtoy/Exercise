@@ -38,7 +38,7 @@ var cb = function() {
   getConf();
   printConf();
 
-  setTimeout(getConf, 5000);
+  setInterval(getConf, 5000);
   setInterval(printConf, 5000);
 };
 
