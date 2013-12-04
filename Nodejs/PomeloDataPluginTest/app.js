@@ -38,8 +38,9 @@ var cb = function() {
   getConf();
   printConf();
 
-  setInterval(getConf, 5000);
-  setInterval(printConf, 5000);
+  setInterval(function() {
+    getConf();
+    printConf(); }, 5000);
 };
 
 //start
