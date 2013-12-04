@@ -1,0 +1,13 @@
+{
+  "total_rows":6,
+  "offset":0,
+  "rows":[
+    {"id":"","key":"","value":{"rev":"1-6e36a93ad72045c526b919518ea16dd0"}},
+    {"id":"0","key":"0","value":{"rev":"1-53de0786dbec9eed82f9671ec89094c4"}},
+    {"id":"007","key":"007","value":{"rev":"7-b8b5f921e0afb37f6f95d94a53f5fa7d"}},
+    {"id":"06_byvoidmodule","key":"06_byvoidmodule","value":{"rev":"3-0f6cf5d2ededfb58081a4b2f689f5444"}},
+    {"id":"0815","key":"0815","value":{"rev":"19-130f5cb06581f81de3cf8fc44ab6083c"}},
+    {"id":"ø","key":"ø","value":{"rev":"1-134132f3d70b53b2b0e74b94052ac617"}}
+  ]
+}
+
