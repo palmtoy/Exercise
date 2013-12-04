@@ -1,3 +1,4 @@
+var util = require('util');
 var application = require('./application');
 var dataPlugin = require('pomelo-data-plugin');
 
@@ -21,7 +22,21 @@ app.use(dataPlugin, {
 //start
 app.start();
 
+
+var printConf = function() {
+  var npcTalkConf = app.get('dataService').get('npc_talk');
+  console.warn('\n', (new Date()).getTime(), ': npcTalkConf = ', util.inspect(npcTalkConf, {showHidden: true, depth: null}))
+  var teamConf = app.get('dataService').get('team');
+  console.warn('\n', (new Date()).getTime(), ': teamConf = ', util.inspect(teamConf, {showHidden: true, depth: null}))
+  console.warn('==============================================');
+};
+
+printConf();
+
+setInterval(printConf, 5000);
+
 // Uncaught exception handler
 process.on('uncaughtException', function(err) {
   console.error(' Caught exception: ' + err.stack);
 });
+

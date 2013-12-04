@@ -46,6 +46,10 @@ Application.set = function(name, obj) {
   return this;
 };
 
+Application.get = function (name) {
+  return this.settings[name];
+};
+
 Application.start = function() {
   this.loaded.forEach(function(com) {
     com.start();
