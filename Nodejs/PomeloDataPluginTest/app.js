@@ -13,7 +13,7 @@ var app = createApp();
 app.use(dataPlugin, {
   watcher: {
     dir: __dirname + '/config/data',
-    parseParams: {titles: 'titles', rows: 'rows'},
+    idx: 'id',
     interval: 3000
   }
 });
