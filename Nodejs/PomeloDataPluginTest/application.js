@@ -50,9 +50,9 @@ Application.get = function (name) {
   return this.settings[name];
 };
 
-Application.start = function() {
+Application.start = function(cb) {
   this.loaded.forEach(function(com) {
-    com.start();
+    com.start(cb);
   });
   // ...
 };

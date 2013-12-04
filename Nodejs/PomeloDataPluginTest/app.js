@@ -19,21 +19,31 @@ app.use(dataPlugin, {
   }
 });
 
-//start
-app.start();
 
+var cb = function() {
+  var npcTalkConf = null
+    , teamConf = null;
 
-var printConf = function() {
-  var npcTalkConf = app.get('dataService').get('npc_talk');
-  console.warn('\n', (new Date()).getTime(), ': npcTalkConf = ', util.inspect(npcTalkConf, {showHidden: true, depth: null}))
-  var teamConf = app.get('dataService').get('team');
-  console.warn('\n', (new Date()).getTime(), ': teamConf = ', util.inspect(teamConf, {showHidden: true, depth: null}))
-  console.warn('==============================================');
+  var getConf = function() {
+    npcTalkConf = app.get('dataService').get('npc_talk');
+    teamConf = app.get('dataService').get('team');
+  };
+
+  var printConf = function() {
+    console.warn('\n', (new Date()).getTime(), ': npcTalkConf = ', util.inspect(npcTalkConf, {showHidden: true, depth: null}))
+    console.warn('\n', (new Date()).getTime(), ': teamConf = ', util.inspect(teamConf, {showHidden: true, depth: null}))
+    console.warn('==============================================');
+  };
+
+  getConf();
+  printConf();
+
+  setTimeout(getConf, 5000);
+  setInterval(printConf, 5000);
 };
 
-printConf();
-
-setInterval(printConf, 5000);
+//start
+app.start(cb);
 
 // Uncaught exception handler
 process.on('uncaughtException', function(err) {
