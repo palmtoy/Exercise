@@ -11,7 +11,7 @@ var context = {
 
 // server info list
 var servers = [
-  {id: 'test-server-1', serverType: 'test', host: '127.0.0.1', port: 8080}
+  {id: 'test-server-1', serverType: 'test', host: '127.0.0.1', port: 8086}
 ];
 
 // route parameter passed to route function
