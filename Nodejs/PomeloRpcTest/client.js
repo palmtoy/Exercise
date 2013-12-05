@@ -28,7 +28,7 @@ var routeFunc = function(routeParam, msg, routeContext, cb) {
 var client = Client.create({routeContext: routeContext, router: routeFunc, context: context});
 
 client.start(function(err) {
-  console.log('rpc client start ok.');
+  console.log('RPC client start ok.');
 
   client.addProxies(records);
   client.addServers(servers);
@@ -42,3 +42,4 @@ client.start(function(err) {
     console.log(resp);
   });
 });
+
