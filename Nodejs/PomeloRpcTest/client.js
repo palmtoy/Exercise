@@ -11,7 +11,7 @@ var context = {
 
 // server info list
 var servers = [
-  {id: 'test-server-1', serverType: 'test', host: '127.0.0.1', port: 3333}
+  {id: 'test-server-1', serverType: 'test', host: '127.0.0.1', port: 8080}
 ];
 
 // route parameter passed to route function
@@ -33,8 +33,8 @@ client.start(function(err) {
   client.addProxies(records);
   client.addServers(servers);
 
-  var msgFromClient = 'hello';
-  console.log('msgFromClient = ', msgFromClient);
+  var msgFromClient = 'Hello world!';
+  console.log('Send msg(`%s`) to server.', msgFromClient);
   client.proxies.user.test.service.echo(routeParam, msgFromClient, function(err, resp) {
     if(err) {
       console.error(err.stack);

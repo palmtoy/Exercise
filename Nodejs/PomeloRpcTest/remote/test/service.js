@@ -3,8 +3,8 @@
 module.exports = function(context) {
   return {
     echo: function(msg, cb) {
-      console.log('receive msg from client = ', msg);
-      cb(null, 'echo from server: ' + msg);
+      console.log('Receive msg(`%s`) from client.', msg);
+      cb(null, 'Echo from server: ' + msg);
     }
   };
 };
