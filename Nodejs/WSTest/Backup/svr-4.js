@@ -6,7 +6,6 @@ var WebSocketServer = require('ws').Server
 
 var msgId = 0;
 wss.on('connection', function(ws) {
-  var self = this;
   var headLen = 4
     , itemLen = 4;
 
@@ -31,10 +30,7 @@ wss.on('connection', function(ws) {
     console.log('sum = ', sum);
 
     try {
-      // broadcast
-      for(var i in self.clients) {
-        self.clients[i].send(msgId + ' ~ ' + sum.toString());
-      }
+      ws.send(msgId + ' ~ ' + sum.toString());
     } catch(err) {
       throw err;
     }
