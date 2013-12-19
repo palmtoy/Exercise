@@ -31,7 +31,7 @@ ws.on('open', function() {
     }
 
     try {
-      ws.send(buf, {binary: true, mask: false});
+      ws.send(buf, {binary: true, mask: true});
     } catch(err) {
       throw err;
     }

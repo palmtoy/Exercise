@@ -33,7 +33,7 @@ wss.on('connection', function(ws) {
     try {
       // broadcast
       for(var i in self.clients) {
-        self.clients[i].send(msgId + ' ~ ' + sum.toString());
+        self.clients[i].send(msgId + ' ~ ' + sum.toString(), {mask: true});
       }
     } catch(err) {
       throw err;
