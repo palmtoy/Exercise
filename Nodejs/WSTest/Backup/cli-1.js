@@ -8,23 +8,22 @@ var intervalId = null;
 ws.on('open', function() {
   console.log('Connected to server.');
 
-  function sendArray() {
-    var array = new Float32Array(3);
-    for (var i = 0; i < array.length; ++i) array[i] = Math.round(Math.random() * 0xFF) / 9;
+  function sendNumber() {
+    var number = Math.round(Math.random() * 0xFFFFFF);
+    number = number.toString();
     try {
-      ws.send(array, {binary: true, mask: false});
+      ws.send(number);
     } catch(err) {
       throw err;
     }
-    console.log('Send %j to svr ...', array);
+    console.log('Send %d to svr ...', number);
   }
 
-  intervalId = setInterval(sendArray, 1500);
+  intervalId = setInterval(sendNumber, 1500);
 });
 
 ws.on('message', function(message) {
-  console.log('\nEcho from svr: %j', message);
-  console.log('====================================\n');
+  console.log('Echo from svr: %s', message);
 });
 
 ws.on('close', function() {
