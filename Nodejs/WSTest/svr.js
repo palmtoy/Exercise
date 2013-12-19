@@ -29,7 +29,11 @@ wss.on('connection', function(ws) {
     }
     console.log('sum = ', sum);
 
-    ws.send(msgId + ' ~ ' + sum.toString());
+    try {
+      ws.send(msgId + ' ~ ' + sum.toString());
+    } catch(err) {
+      throw err;
+    }
   });
 });
 
