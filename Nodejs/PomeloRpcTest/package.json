@@ -1,0 +1,8 @@
+{
+  "name": "PomeloRpcTest",
+  "version": "0.1.0",
+  "private": false,
+  "dependencies": {
+    "pomelo-rpc": "0.2.4"
+  }
+}
