@@ -2,7 +2,18 @@ var fs = require('fs');
 var io = require('socket.io').listen(9995);
 
 var uidsList = fs.readFileSync('./uids').toString().split('\n');
-console.log('uidsList = %j', uidsList);
+// console.log('uidsList = %j', uidsList);
+
+io.configure(function (){
+  io.set('authorization', function (handshakeData, callback) {
+    var ip = handshakeData.address.address;
+    if(ip === '127.0.0.1') {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  });
+});
 
 io.sockets.on('connection', function(socket) {
   socket.on('message', function(idx) {
