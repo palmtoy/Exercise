@@ -1,17 +1,17 @@
-var buf1 = new Buffer(26);
+buf1 = new Buffer(26);
+buf2 = new Buffer(26);
 
 for (var i = 0 ; i < 26 ; i++) {
   buf1[i] = i + 97; // 97 is ASCII a
+  buf2[i] = 33; // ASCII !
 }
 
-console.log('\n(a)buf1 = ' + buf1.toString('ascii', 0, buf1.length));
+try {
+  buf1.copy(null, 3, 6, 6);
+} catch(err) {
+  console.log('err = ', err);
+}
 
-var buf2 = buf1.slice(0, 3);
-console.log('\n(a)buf2 = ' + buf2.toString('ascii', 0, buf2.length));
+console.log(buf2.toString('ascii', 0, 25));
 
-buf1[0] = 65; // 65 is ASCII A
-console.log('\n(A)buf2 = ' + buf2.toString('ascii', 0, buf2.length));
-console.log('\n(A)buf1 = ' + buf1.toString('ascii', 0, buf1.length));
-// abc
-// !bc
-
+// !!!!!!!!qrst!!!!!!!!!!!!!
