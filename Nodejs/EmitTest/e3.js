@@ -44,3 +44,12 @@ frontDoor.removeListener('open', ring);
 
 frontDoor.open();
 
+/*
+output:
+
+[ '0', '1' ]
+[ [Function], [Function] ]
+ring~
+hi
+hi
+*/

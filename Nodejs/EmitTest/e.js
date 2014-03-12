@@ -22,3 +22,11 @@ stream.on("data_wow", function(data) {
 
 stream.write("It works!!!"); // I received data: "It works!"
 
+/*
+output:
+
+true
+true
+I received data: "It works!!!"
+*/
+

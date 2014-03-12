@@ -24,3 +24,10 @@ eventEmitter.emit('doorOpen', 'ringeling');
 
 // eventEmitter.emit('doorOpen');
 
+/*
+output:
+
+ring ring ring
+Hi~
+ringeling
+*/
