@@ -1,3 +1,5 @@
+//useage: $ node png_extract.js image.vpk
+
 var fs = require('fs');
 var file = process.argv[2];
 
