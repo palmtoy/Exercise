@@ -12,3 +12,9 @@ var ll_2 = [1, 2, 3, 4, 5, 6];
 var evens = us.filter(ll_2, function(num){ return num % 2 == 0; });
 console.log('evens = ', evens);
 
+var uL = us.uniq([1, 2, 1, 3, 1, 4, 2, 2, 2]);
+console.log('uL = ', uL);
+
+uL = us.uniq(['green', 'red', 'purple', 'red', 'red', 'green', 'green', 'purple']);
+console.log('uL = ', uL);
+
