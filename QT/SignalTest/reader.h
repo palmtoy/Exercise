@@ -13,3 +13,4 @@ class Reader: public QObject
         qDebug() << "I receive a newspaper: " << name;
       }
 };
+

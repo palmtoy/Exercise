@@ -11,7 +11,6 @@ class Newspaper: public QObject
 
     void send() const
     {
-
       emit deliverPaper(m_name);
     }
 
@@ -21,3 +20,4 @@ class Newspaper: public QObject
   private:
     QString m_name;
 };
+
