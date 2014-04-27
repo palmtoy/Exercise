@@ -1,7 +1,7 @@
 #include <QObject>
 #include <QDebug>
 
-class Reader : public QObject
+class Reader: public QObject
 {
   Q_OBJECT
   public:
@@ -10,6 +10,6 @@ class Reader : public QObject
     public slots:
       void receiveNewspaper(const QString & name) const
       {
-        qDebug() << "Receives Newspaper: " << name;
+        qDebug() << "I receive a newspaper: " << name;
       }
 };

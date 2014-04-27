@@ -1,16 +1,17 @@
-#include <QCoreApplication>
+#include <QApplication>
 
 #include "newspaper.h"
 #include "reader.h"
 
 int main(int argc, char *argv[])
 {
-  QCoreApplication app(argc, argv);
+  QApplication app(argc, argv);
 
-  Newspaper newspaper("Newspaper A");
+  Newspaper newspaper("Newspaper: China Daily");
   Reader reader;
-  QObject::connect(&newspaper, SIGNAL(newPaper(QString)),
-      &reader,    SLOT(receiveNewspaper(QString)));
+
+  QObject::connect(&newspaper, SIGNAL(deliverPaper(QString)), &reader, SLOT(receiveNewspaper(QString)));
+
   newspaper.send();
 
   return app.exec();
