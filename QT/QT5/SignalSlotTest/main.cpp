@@ -1,7 +1,8 @@
 // !!! Qt 5
 
 /*
-add this to the head of *.pro
+add this to the head of *.pro:
+
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 */
@@ -19,3 +20,4 @@ int main(int argc, char *argv[])
 
   return app.exec();
 }
+
