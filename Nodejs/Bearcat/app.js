@@ -3,7 +3,6 @@ node app.js --env=dev (default)
 node app.js --env=prod
 */
 
-
 var logger = require('pomelo-logger').getLogger('bearcat', 'app');
 var Bearcat = require('bearcat');
 
@@ -13,8 +12,7 @@ var bearcat = Bearcat.createApp([contextPath]);
 
 bearcat.start(function() {
   var car = bearcat.getBean('car'); // get bean
-  car.run(); // call the method
-  console.log('car.$Vnum = ', car.$Vnum);
+  car.runBefore(function(){}); // call the method
 });
 
 // Uncaught exception handler

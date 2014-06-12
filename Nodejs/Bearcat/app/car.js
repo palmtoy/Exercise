@@ -1,16 +1,49 @@
-var Car = function($engine) {
-	this.$id = "car";
-	this.$scope = "prototype";
-	this.$engine = $engine;
-	this.$wheel = null;
-	this.$Vnum = "${car.num}";
+var Car = function() {
+
 }
 
-Car.prototype.run = function() {
-	this.$engine.run();
-	var res = this.$wheel.run();
-	console.log('run car...');
-	return 'car ' + res;
+Car.prototype.runBeforeSync = function() {
+	console.log('runBeforeSync car...');
+	return 'runBeforeSync';
+}
+
+Car.prototype.runBefore = function(cb) {
+	console.log('runBefore car...');
+	cb(null, 'car');
+}
+
+Car.prototype.runBeforeError = function(cb) {
+	console.log('runBeforeError car...');
+	cb(null, 'car');
+}
+
+Car.prototype.runTimeBefore = function(num, cb) {
+	cb(null, 'car' + num);
+}
+
+Car.prototype.runAfter = function(num, cb) {
+	cb(null, 'car' + num);
+}
+
+Car.prototype.runAround = function(cb) {
+	cb(null, 'car');
+}
+
+Car.prototype.runTimeAround = function(num, cb) {
+	cb(null, 'car' + num);
+}
+
+Car.prototype.doRun = function(num) {
+	console.log('doRun ' + num);
+}
+
+Car.prototype.doRunObj = function(obj) {
+	obj['a'] = 1;
+}
+
+Car.prototype.doRunAfterSync = function() {
+	console.log('runAfterSync car...');
+	return 'runAfterSync';
 }
 
 module.exports = Car;
