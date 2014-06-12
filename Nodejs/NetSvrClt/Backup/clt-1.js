@@ -1,12 +1,13 @@
 var net = require('net');
 
-var sockPath = {path: '/tmp/echo.sock'};
+var HOST = '127.0.0.1';
+var PORT = 6969;
 
 var client = new net.Socket();
-client.connect(sockPath, function() {
-    console.log('CONNECTED TO: ' + sockPath.path);
+client.connect(PORT, HOST, function() {
+    console.log('CONNECTED TO: ' + HOST + ':' + PORT);
     // 建立连接后立即向服务器发送数据，服务器将收到这些数据 
-    client.write('I am palmtoy!');
+    client.write('I am Chuck Norris!');
 });
 
 // 为客户端添加“data”事件处理函数

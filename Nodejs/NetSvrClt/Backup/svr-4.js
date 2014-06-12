@@ -3,17 +3,8 @@ nc -U /tmp/echo.sock
 */
 
 var net = require('net');
-var exec = require('child_process').exec;
 
 var NamedSock = '/tmp/echo.sock';
-var tmpCmd = 'rm ' + NamedSock;
-
-exec(tmpCmd,
-     function (error, stdout, stderr) {
-       if (error !== null) {
-         console.error('exec error: ' + error);
-       }
-     });
 
 var server = net.createServer();
 server.listen(NamedSock);
@@ -37,7 +28,3 @@ server.on('connection', function(sock) {
 
 console.log('Server listening on ' + ':'+ NamedSock);
 
-// Uncaught exception handler
-process.on('uncaughtException', function(e) {
-  console.error('Caught exception: ' + e.stack);
-});

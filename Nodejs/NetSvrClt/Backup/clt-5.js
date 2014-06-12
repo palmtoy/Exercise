@@ -1,10 +1,10 @@
 var net = require('net');
 
-var sockPath = {path: '/tmp/echo.sock'};
+var PORT = 6969;
 
 var client = new net.Socket();
-client.connect(sockPath, function() {
-    console.log('CONNECTED TO: ' + sockPath.path);
+client.connect({port: PORT}, function() {
+    console.log('CONNECTED TO: ' + PORT);
     // 建立连接后立即向服务器发送数据，服务器将收到这些数据 
     client.write('I am palmtoy!');
 });
