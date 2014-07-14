@@ -18,14 +18,28 @@ app.get('/user', function(req, res){
 app.listen(port);
 console.log('Express http server is running on', port, '...');
 
-request(app)
-.get('/user')
-.expect('Content-Type', /json/)
-.expect('Content-Length', '18')
-.expect(200)
-.end(function(err, res){
-  if (err) throw err;
-  // console.log('res = ', res);
-  console.log('res.body = ', res.body); // res.body =  { name: 'palmtoy' }
-});
+describe('GET /users', function(){
+
+  it('respond with json ~ 1', function(done){
+    request(app)
+    .get('/user')
+    .set('Accept', 'application/json')
+    .expect('Content-Type', /json/)
+    .expect('{"name":"palmtoy"}') // body
+    .expect(200, done);
+  });
+
+  it('respond with json ~ 2', function(done){
+    request(app)
+    .get('/user')
+    .set('Accept', 'application/json')
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      console.log('res.body = ', res.body);
+      done()
+    });
+  });
+
+})
 
