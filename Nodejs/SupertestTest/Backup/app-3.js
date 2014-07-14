@@ -2,6 +2,10 @@
 
 chrome ~ http://localhost:8081/user
 
+or
+
+mocha app.js
+
 */
 
 var request = require('supertest')
@@ -14,11 +18,6 @@ var app = express();
 app.get('/user', function(req, res){
   res.send(200, { name: 'palmtoy' });
 });
-
-app.post('/user', function(req, res){
-  res.send(200, { name: 'palmtoy' });
-});
-
 
 app.listen(port);
 console.log('Express http server is running on', port, '...');
@@ -36,13 +35,13 @@ describe('GET /users', function(){
 
   it('respond with json ~ 2', function(done){
     request(app)
-    .post('/user')
-    // .send({ name: 'Manny', species: 'cat' })
+    .get('/user')
     .set('Accept', 'application/json')
     .expect(200)
     .end(function(err, res){
       if (err) return done(err);
-      console.log('\nAAA ~ res.body = ', res.body);
+      console.log('res.body = ', res.body);
+      console.log('res.text = ', res.text);
       done()
     });
   });
