@@ -1,6 +1,7 @@
 /*
 GET  ~ curl -v http://127.0.0.1:3000
-POST ~ curl -v -d 'user=zgli' http://localhost:3000
+GET  ~ curl -v http://127.0.0.1:3000/hi
+POST ~ curl -v -d 'user=zgli' http://localhost:3000/wow
 */
 
 var http = require('http');
@@ -11,6 +12,8 @@ var port = 3000;
 
 var app = connect.createServer(
   connect.logger(),
+
+  connect.bodyParser(),
 
   connectables.router(function(router) {
     router.get('/', function(req, res, next) {
@@ -28,7 +31,6 @@ var app = connect.createServer(
   })
 );
 
-app.use(connect.bodyParser());
 
 var server = http.createServer(app);
 server.listen(port);
