@@ -1,8 +1,31 @@
 /*
+
+Readme:
+
+This is the simplest sparx http sever prototype.
+
+================================================
+
+connect, connectables, qs are 3 open source projects:
+
+connect      : https://github.com/senchalabs/connect
+connectables : https://github.com/DamonOehlman/connectables
+qs           : https://github.com/visionmedia/node-querystring
+
+================================================
+
+Please save this file as "app.js".
+Use this cmd to run it: "node app.js".
+
+================================================
+
+In another cmd window, run these test cases:
+
 GET  ~~  curl -v http://127.0.0.1:3000
 GET  ~~  curl -v http://127.0.0.1:3000/hi
 POST ~~  curl -v -d 'user=will' http://localhost:3000/wow
 POST ~~  curl -v -d 'user[name][first]=will&user[email]=zgli@kabaminc.com' http://localhost:3000/qs
+
 */
 
 var http = require('http');
@@ -44,5 +67,5 @@ var app = connect.createServer(
 var server = http.createServer(app);
 server.listen(port);
 
-console.log('Server running at http://127.0.0.1:' + port);
+console.log('Http server running at http://127.0.0.1:' + port);
 
