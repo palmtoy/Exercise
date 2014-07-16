@@ -1,8 +1,8 @@
 /*
-GET  ~ curl -v http://127.0.0.1:3000
-GET  ~ curl -v http://127.0.0.1:3000/hi
-POST ~ curl -v -d 'user=zgli' http://localhost:3000/wow
-POST ~ curl -v -d 'user[name][first]=will&user[email]=will@learnboost.com' http://localhost:3000/qs
+GET  ~~  curl -v http://127.0.0.1:3000
+GET  ~~  curl -v http://127.0.0.1:3000/hi
+POST ~~  curl -v -d 'user=will' http://localhost:3000/wow
+POST ~~  curl -v -d 'user[name][first]=will&user[email]=zgli@kabaminc.com' http://localhost:3000/qs
 */
 
 var http = require('http');
