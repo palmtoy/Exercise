@@ -38,9 +38,11 @@ var port = 3000;
 var app = connect.createServer(
   connect.logger(),
 
+  // used to parse the POST request string to json obj
   connect.bodyParser(),
 
   connectables.router(function(router) {
+    // GET
     router.get('/', function(req, res, next) {
       res.end('Hello world!');
     });
@@ -49,6 +51,7 @@ var app = connect.createServer(
       res.end('Hi baby ~');
     });
 
+    // POST
     router.post('/wow', function(req, res, next) {
       console.log('wow ~ req.body = ', req.body);
       res.end('Oh yes, WOW!');
@@ -56,6 +59,7 @@ var app = connect.createServer(
 
     router.post('/qs', function(req, res, next) {
       console.log('qs ~ req.body = ', req.body);
+      // qs.stringify convert json obj to POST request string
       var ret = 'QueryString: ' + JSON.stringify(req.body) + '\t\t' +
         'OriginString: ' + qs.stringify(req.body);
       res.end(ret);
