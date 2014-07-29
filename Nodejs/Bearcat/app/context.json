@@ -1,0 +1,15 @@
+{
+	"name": "simple",
+	"beans": [{
+		"id": "car",
+		"func": "car"
+	}, {
+		"id": "wheel",
+		"func": "wheel"
+	}, {
+		"id": "base",
+		"func": "base",
+		"proxy": false
+	}],
+  "scan": ""
+}
