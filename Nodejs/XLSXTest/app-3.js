@@ -1,4 +1,4 @@
-var buffer = require('fs').readFileSync('./TestTableReference-saveas.xlsx');
+var buffer = require('fs').readFileSync('./GearConfig.xlsx');
 
 var content = require('xlsx').read(buffer).Sheets;
 console.log('content = ', JSON.stringify(content));
@@ -48,9 +48,7 @@ for(var sheetName in content) {
   }
 
   var keysList = Object.keys(content[sheetName]);
-  console.log('Before ~ keysList = ', keysList);
   keysList.sort(compareFunc);
-  console.log('After ~ keysList = ', keysList);
 
   for(var i = 0; i < keysList.length; i++) {
     var key = keysList[i];
@@ -65,5 +63,4 @@ for(var sheetName in content) {
   ret.worksheets.push(obj);
 }
 
-console.log('ret.worksheets = ', JSON.stringify(ret.worksheets));
 
