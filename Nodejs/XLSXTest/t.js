@@ -30,7 +30,7 @@ function toNumberBase10(s){
 
   var n = 0;
   for(var i = s.length - 1, j = 1; i >= 0; i--, j *= 26){
-    var c = s.charCodeAt(i)
+    var c = s.charCodeAt(i);
     if (c < 'A'.charCodeAt(0) || c > 'Z'.charCodeAt(0)) {
       return 0;
     }
