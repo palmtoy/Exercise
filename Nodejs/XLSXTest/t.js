@@ -1,29 +1,10 @@
-/// <summary>
-/// 将指定的自然数转换为26进制表示。映射关系：[1-26] -> [A-Z]。
-/// </summary>
-/// <param name="n">自然数（如果无效，则返回空字符串）。</param>
-/// <returns>26进制表示。</returns>
-function toNumberBase26(n){
-  var s = '';
-  while(n > 0) {
-    var m = n % 26;
-    if(m === 0) {
-      m = 26;
-    }
-    s = String.fromCharCode(m + 64) + s;
-    n = Math.floor((n - m) / 26);
-  }
-  return s;
-} 
+var buffer = require('fs').readFileSync('./GearConfig.xlsx');
+var content = require('xlsx').read(buffer).Sheets;
+var ret = {worksheets: []};
 
-/// <summary>
-/// 将指定的26进制表示转换为自然数。映射关系：[A-Z] -> [1-26]。
-/// </summary>
-/// <param name="s">26进制表示（如果无效，则返回0）。</param>
-/// <returns>自然数。</returns>
-function toNumberBase10(s){
+var toNumberBase10 = function(s) {
   if(s.length === 0) {
-    return 0; 
+    return 0;
   }
 
   s = s.toUpperCase();
@@ -37,20 +18,80 @@ function toNumberBase10(s){
     n += (c - 64) * j;
   }
   return n;
+};
+
+var toNumberBase26 = function(n) {
+  var s = '';
+  while(n > 0) {
+    var m = n % 26;
+    if(m === 0) {
+      m = 26;
+    }
+    s = String.fromCharCode(m + 64) + s;
+    n = Math.floor((n - m) / 26);
+  }
+  return s;
+};
+
+var generateAllColumnName = function(rList, obj) {
+  var pos = rList[0].search(/\d+/);
+  var cBegin = rList[0].slice(0, pos);
+  cBegin = toNumberBase10(cBegin);
+  console.log('cBegin = ', cBegin);
+  var rBegin = parseInt(rList[0].slice(pos));
+
+  pos = rList[1].search(/\d+/);
+  var cEnd = rList[1].slice(0, pos);
+  cEnd = toNumberBase10(cEnd);
+  console.log('cEnd = ', cEnd);
+  var rEnd = parseInt(rList[1].slice(pos));
+
+  for(var i = rBegin; i <= rEnd; i++) {
+    obj.data.push([]);
+  }
+
+  var cNameList = [];
+  for(var j = cBegin; j <= cEnd; j++) {
+    var cName = toNumberBase26(j);
+    cNameList.push(cName);
+  }
+  console.log('cNameList = ', JSON.stringify(cNameList));
+
+  var allColumnName = [];
+  for(var k = rBegin; k <= rEnd; k++) {
+    cNameList.forEach(function(cName) {
+      allColumnName.push(cName + k);
+    });
+  }
+
+  return allColumnName;
+};
+
+for(var sheetName in content) {
+  var obj = {name: sheetName, data: []};
+  var refStr = '!ref';
+  var rStr = content[sheetName][refStr];
+  console.log('rStr = ', rStr);
+  var rList = rStr.split(':');
+  delete content[sheetName][refStr];
+
+  var keysList = generateAllColumnName(rList, obj);
+
+  for(var i = 0; i < keysList.length; i++) {
+    var key = keysList[i];
+    var pos = key.search(/\d+/);
+    var row = parseInt(key.slice(pos));
+
+    var v = NaN;
+    if(!!content[sheetName][key]) {
+      v = content[sheetName][key].v;
+    }
+    var o = {'value': v, 'formatCode': 'General'};
+    obj.data[row-1].push(o);
+  }
+
+  ret.worksheets.push(obj);
 }
 
-
-var numbersL = [ 1, 10, 26, 27, 256, 702, 703 ];
-numbersL.forEach(function(n) {
-  var s = toNumberBase26(n);
-  console.log(n + "\t" + s + "\t" + toNumberBase10(s));
-})
-
-console.log('\n\n');
-
-numbersL = [ 'A', 'Z', 'AA', 'AZ', 'BA', 'AAA', 'AAZ' ];
-numbersL.forEach(function(c) {
-  var n = toNumberBase10(c);
-  console.log(c + "\t" + n + "\t" + toNumberBase26(n));
-})
+// console.log('ret.worksheets = ', JSON.stringify(ret.worksheets));
 
