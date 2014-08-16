@@ -1,20 +1,17 @@
-var ASSASSIN = 1
-  , QUEEN = 9;
-
-var getDiscardRoleIdList = function() {
-  var retList = [];
-  var rnd = Math.floor(Math.random() * QUEEN + 1);
-  for(var i = ASSASSIN; i <= QUEEN; i++) {
-    if(i !== rnd) {
-      retList.push(i);
-    }
+var getRndData = function(sampleL, n, retList) {
+  if(sampleL.length < n) {
+    return;
   }
-
-  rnd = Math.floor(Math.random() * retList.length);
-  retList.splice(rnd, 1);
-
-  return retList;
+  for(var i = 0; i < n; i++) {
+    var rnd = Math.floor(Math.random() * sampleL.length);
+    retList.push(sampleL[rnd]);
+    sampleL.splice(rnd, 1);
+  }
 };
 
-var tmpList = getDiscardRoleIdList();
-console.log('tmpList = ', tmpList);
+var sampleL = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+var retList = [];
+
+getRndData(sampleL, 5, retList);
+
+console.log('retList = ', retList);
