@@ -18,3 +18,11 @@ console.log('uL = ', uL);
 uL = us.uniq(['green', 'red', 'purple', 'red', 'red', 'green', 'green', 'purple']);
 console.log('uL = ', uL);
 
+
+var srcObj = {id: 1, name: 'Will_Source'},
+  targetObj = {name: 'Will_Target', gender: 1, tel: {homeTel: "156...", officeTel: "01067890"}}; 
+
+us.extend(targetObj, srcObj);
+
+console.log('targetObj = ', targetObj);
+
