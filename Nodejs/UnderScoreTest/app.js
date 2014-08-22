@@ -1,28 +1,29 @@
 var us = require('underscore');
 
-var ll = [1, 2, 1, 0, 3, 1, 4];
-var tmpL = [0, 1];
-var retL = us.without(ll, 0, 1);
+var srcObj = {sock: {economyId: 1001}};
+var targetObj = {inventory: [
+        {"1001": {
+          inventoryId: 1001, 
+          uid: 20002,
+          economyId: "M_WPN_LG_40"
+        }}, 
 
-console.log('ll = ', ll);
-console.log('tmpL = ', tmpL);
-console.log('retL = ', retL);
+        {"1002": {
+          inventoryId: 1002, 
+          uid: 20002,
+          economyId: "M_WPN_LG_50"
+        }} 
+      ]
+    }; 
 
-var ll_2 = [1, 2, 3, 4, 5, 6];
-var evens = us.filter(ll_2, function(num){ return num % 2 == 0; });
-console.log('evens = ', evens);
+for(var i in targetObj) {
+  var l = targetObj[i];
+  l.forEach(function(o) {
+    for(var j in o) {
+      us.extend(o[j], srcObj);
+    }
+  });
+}
 
-var uL = us.uniq([1, 2, 1, 3, 1, 4, 2, 2, 2]);
-console.log('uL = ', uL);
-
-uL = us.uniq(['green', 'red', 'purple', 'red', 'red', 'green', 'green', 'purple']);
-console.log('uL = ', uL);
-
-
-var srcObj = {id: 1, name: 'Will_Source'},
-  targetObj = {name: 'Will_Target', gender: 1, tel: {homeTel: "156...", officeTel: "01067890"}}; 
-
-us.extend(targetObj, srcObj);
-
-console.log('targetObj = ', targetObj);
+console.log('targetObj = ', JSON.stringify(targetObj));
 
