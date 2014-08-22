@@ -19,8 +19,8 @@ uL = us.uniq(['green', 'red', 'purple', 'red', 'red', 'green', 'green', 'purple'
 console.log('uL = ', uL);
 
 
-var srcObj = {id: 1, name: 'Will_Source'},
-  targetObj = {name: 'Will_Target', gender: 1, tel: {homeTel: "156...", officeTel: "01067890"}}; 
+var srcObj = {id: 1, name: 'Will_Source', tel: {comp: '1609706'}},
+  targetObj = {name: 'Will_Target', gender: 1, tel: {homeTel: "1569809", officeTel: "01067890"}}; 
 
 us.extend(targetObj, srcObj);
 
