@@ -1,26 +1,16 @@
-// tail recursive v1
-var fiboFunc = function(a, b, curCnt, tmpCnt) {
-  if(curCnt >= tmpCnt) {
-    return;
+// tail_recursion.js
+function tailFact(n, p){
+  p = p || 1;
+  if(n==0){
+    console.log('tail fact: ');
+    console.dir(process.memoryUsage() );
+    return p;
+  }else{
+    return tailFact(n-1, p*n);
   }
-
-  ++curCnt;
-  console.log(curCnt + '\t~\t' + a);
-
-  return fiboFunc(b, a+b, curCnt, tmpCnt);
-};
-
-var doFibonacci = function(tmpCnt) {
-  var a = 0
-    , b = 1
-    , curCnt = 0;
-
-  ++curCnt;
-  console.log(curCnt + '\t~\t' + a);
-  
-  return fiboFunc(b, a+b, curCnt, tmpCnt);
-};
+}
 
 var cnt = parseInt(process.argv[2]);
+var ret = tailFact(cnt);
+console.log('ret = ', ret);
 
-doFibonacci(cnt);
