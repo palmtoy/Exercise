@@ -1,24 +1,24 @@
-// tail recursive v2
-var fiboFunc = function(a, b, curCnt, tmpCnt, resList) {
-  if(curCnt > tmpCnt) {
-    return resList;
+// tail recursive v1
+var fiboFunc = function(a, b, curCnt, tmpCnt) {
+  if(curCnt >= tmpCnt) {
+    return;
   }
 
-  resList.push(b);
+  ++curCnt;
+  console.log(curCnt + '\t~\t' + a);
 
-  return fiboFunc(b, a+b, ++curCnt, tmpCnt, resList);
+  return fiboFunc(b, a+b, curCnt, tmpCnt);
 };
 
 var doFibonacci = function(tmpCnt) {
   var a = 0
     , b = 1
-    , originList = [a, b]
-    , curCnt = originList.length;
+    , curCnt = 0;
 
-  var resList = fiboFunc(b, a+b, ++curCnt, tmpCnt, originList);
-
-  console.log('\nLen = ', resList.length);
-  console.log('\nresList = ', resList, '\n');
+  ++curCnt;
+  console.log(curCnt + '\t~\t' + a);
+  
+  return fiboFunc(b, a+b, curCnt, tmpCnt);
 };
 
 var cnt = parseInt(process.argv[2]);

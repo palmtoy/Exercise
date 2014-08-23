@@ -5,9 +5,9 @@ var fiboFunc = function(a, b, curCnt, tmpCnt) {
   }
 
   ++curCnt;
-  console.log(curCnt + '\t~\t' + a);
+  console.log(curCnt + '\t:\t' + a);
 
-  return fiboFunc(b, a+b, curCnt, tmpCnt);
+  fiboFunc(b, a+b, curCnt, tmpCnt);
 };
 
 var doFibonacci = function(tmpCnt) {
@@ -16,9 +16,9 @@ var doFibonacci = function(tmpCnt) {
     , curCnt = 0;
 
   ++curCnt;
-  console.log(curCnt + '\t~\t' + a);
+  console.log(curCnt + '\t:\t' + a);
   
-  return fiboFunc(b, a+b, curCnt, tmpCnt);
+  fiboFunc(b, a+b, curCnt, tmpCnt);
 };
 
 var cnt = parseInt(process.argv[2]);
