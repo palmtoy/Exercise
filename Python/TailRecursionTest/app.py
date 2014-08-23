@@ -1,7 +1,7 @@
-def foo(n):
-  print n
-  return foo(n+1)
+#recursion.py
+# no tail_call_optimized
+def fact(n):
+  return 1 if n==0 else n * fact(n-1)
 
 if __name__ == "__main__":
-  foo(0)
-
+  print fact(999)
