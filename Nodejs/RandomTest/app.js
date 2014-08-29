@@ -28,10 +28,11 @@ var getRndData = function(sampleL, n, retList) {
   }
 };
 
-var sampleL = [{v: 'A', w: 10}, {v: 'B', w: 10}, {v: 'C', w: 10}, {v: 'D', w: 10}, {v: 'E', w: 10}, {v: 'F', w: 10}, {v: 'G', w: 10}, {v: 'H', w: 10}, {v: 'I', w: 10}, {v: 'J', w: 10}];
+var sampleL = [{v: 'A', w: 10}, {v: 'B', w: 20}, {v: 'C', w: 30}, {v: 'D', w: 10}, {v: 'E', w: 10}, {v: 'F', w: 10}, {v: 'G', w: 10}];
+
 var retList = [];
 
-getRndData(sampleL, 5, retList);
+getRndData(sampleL, 3, retList);
 
 console.log('retList = ', retList);
 
