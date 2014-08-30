@@ -1,18 +1,22 @@
-function foo() {
-  console.log('1: u = ', u);
+// foo(); // TypeError "foo is not a function" 
+bar(); // valid 
+// baz(); // TypeError "baz is not a function" 
+// spam(); // ReferenceError "spam is not defined" 
 
-  if(true) {
-    var u = 9;
+var foo = function () {}; // anonymous function expression ('foo' gets hoisted) 
+function bar() {}; // function declaration ('bar' and the function body get hoisted) 
+var baz = function spam() {
+  console.log('I am spam & baz.');
+}; // named function expression (only 'baz' gets hoisted) 
 
-    console.log('2: v = ', v);
-  }
-
-  console.log('3: u = ', u);
-
-  var v = 99;
-
-  // console.log('4: w = ', w);
-}
+foo(); // valid 
+bar(); // valid 
+baz(); // valid 
+// spam(); // ReferenceError "spam is not defined" 
 
 
-foo();
+/*
+Output:
+
+*/
+
