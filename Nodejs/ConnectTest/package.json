@@ -1,0 +1,17 @@
+{
+  "name": "ConnectTest",
+  "version": "0.0.1",
+  "description": "ConnectTest",
+  "main": "app.js",
+  "dependencies": {
+    "qs": "~0.6.6",
+    "request": "^2.40.0",
+    "crc": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Will Lee",
+  "license": "MIT"
+}
