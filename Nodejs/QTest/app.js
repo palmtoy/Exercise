@@ -4,12 +4,11 @@ var FS = require('fs'),
 
 function getResults(pathToFile) {   
     return Q.nfcall(FS.readFile, pathToFile, "utf-8")
-    .then(function(content) {
-        console.log('content = ', content);
+    .then(function(tmpPrefix) {
+        console.log('tmpPrefix = ', tmpPrefix);
         var options = { headers: {'User-Agent': 'MyAgent'} }; // github requires user agent string
-        return [Q.nfcall(request, 'http://'+content+'.sina.com', options),
-                // Q.nfcall(request, 'http://'+content+'.baidu.com', options)];
-                Q.nfcall(request, 'http://www.sina.com', options)];
+        return [Q.nfcall(request, 'http://www.google.com', options),
+                Q.nfcall(request, 'http://www.baidu.com', options)];
     })
     .spread(function(collaboratorsRes, commitsRes) {        
         return [collaboratorsRes[1], commitsRes[1]];  // return the response body
@@ -21,8 +20,12 @@ function getResults(pathToFile) {
 }
 
 // actual call
-// www.txt: www
-getResults('www.txt').then(function(responses) {
+// w.txt: www
+getResults('w.txt').then(function(responses) {
     // do something with the responses
-  console.log('responses = ', responses);
+  console.log('responses[0] = ', responses[0]);
+  console.log('\n ************************************************* ');
+  console.log(' ************************************************* ');
+  console.log(' ************************************************* \n');
+  console.log('responses[1] = ', responses[1]);
 });
