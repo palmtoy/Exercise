@@ -8,7 +8,7 @@ function rand(number){
   var seed = today.getTime();
   var delta = Math.floor(Math.random() * seed);
   var sign = Math.floor(Math.random() * 2);
-  if(!!sign) {
+  if(sign) {
     seed += delta;
   } else {
     seed -= delta;
