@@ -1,6 +1,6 @@
 var fs= require('fs');
 
-function getRandomBytes(cnt) {
+function getRandomArr(cnt) {
   // var maxCnt = Math.floor(1024 * 1024 * 1024 / 3 / 4);
   var maxCnt = 10;
   var retArr = [];
@@ -36,7 +36,7 @@ var tmpCnt = times;
 var retArr = [];
 for(var j = 0; j < times; j++) {
   if(retArr.length <= 0) {
-    retArr = getRandomBytes(tmpCnt);
+    retArr = getRandomArr(tmpCnt);
     tmpCnt -= retArr.length;
     console.log('\ntmpCnt = %j', tmpCnt);
   }

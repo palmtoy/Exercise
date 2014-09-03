@@ -38,10 +38,10 @@ var getRndData = function(sampleL, n) {
       totalW += e.w;
     });
 
-    // console.log('Before shullfe: sampleL = ', sampleL);
+    console.log('Before shullfe: sampleL = ', sampleL);
     sampleL = shuffleFunc(sampleL);
-    // console.log('After shullfe: sampleL = ', sampleL);
-    // console.log('===============================================');
+    console.log('After shullfe: sampleL = ', sampleL);
+    console.log('===============================================');
 
     var rnd = getRandomNum(totalW + 1);
 
