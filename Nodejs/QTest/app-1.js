@@ -1,13 +1,27 @@
-// readFileUsingPromises.js
-var fs = require('fs'),
-    q = require('q');
+var Q = require('q');
 
-q.nfcall(fs.readFile, "file.txt", "utf-8")
-.then(function(data) {      
-  console.log('File has been read:', data);
+function foo() {
+  return Q.fcall(function () {
+    return 10;
+  });
+}
+
+
+foo()
+.then(function(v) {
+  console.log('1: v = ', v);
+  return [v];
+})
+.spread(function(tmpArr) {
+  console.log('typeof tmpArr = ', typeof tmpArr);
+  return tmpArr;
+})
+.then(function(v) {
+  console.log('typeof v = ', typeof v);
+  console.log('2: v = ', v);
 })
 .fail(function(err) {
-  console.error('Error received:', err);
-})
-.done();
+  console.error(err)
+  return err;
+});
 
