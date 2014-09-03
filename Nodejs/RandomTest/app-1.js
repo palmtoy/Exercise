@@ -1,25 +1,20 @@
-function getRandomNum(number){
-  var today = new Date(); 
-  var seed = today.getTime();
-  var delta = Math.floor(Math.random() * seed);
-  var sign = Math.floor(Math.random() * 2);
-  if(!!sign) {
-    seed += delta;
-  } else {
-    seed -= delta;
+var ASSASSIN = 1
+  , QUEEN = 9;
+
+var getDiscardRoleIdList = function() {
+  var retList = [];
+  var rnd = Math.floor(Math.random() * QUEEN + 1);
+  for(var i = ASSASSIN; i <= QUEEN; i++) {
+    if(i !== rnd) {
+      retList.push(i);
+    }
   }
 
-  seed = (seed * 9301 + 49297) % 233280;
-  return Math.floor(seed / 233280.0 * number);
+  rnd = Math.floor(Math.random() * retList.length);
+  retList.splice(rnd, 1);
+
+  return retList;
 };
 
-var cnt = process.argv[2];
-
-var retArr = [];
-
-for(var i = 0; i < cnt; i++) {
-  var v = getRandomNum(cnt);
-  retArr.push(v);
-}
-
-console.log('retArr = ', JSON.stringify(retArr));
+var tmpList = getDiscardRoleIdList();
+console.log('tmpList = ', tmpList);

@@ -1,29 +1,20 @@
-function getRandomNum(number){
-  var today = new Date(); 
-  var seed = today.getTime();
-  var delta = Math.floor(Math.random() * seed);
-  var sign = Math.floor(Math.random() * 2);
-  if(!!sign) {
-    seed += delta;
-  } else {
-    seed -= delta;
-  }
-
-  seed = (seed * 9301 + 49297) % 233280;
-  return Math.floor(seed / 233280.0 * number);
-};
-
 var shuffleFunc = function(tmpL) {
   // change the position 'i' with position x
   var len = tmpL.length;
   for(var i = 0; i < len; i++) {
-    var rnd = getRandomNum(len);
+    var rnd = Math.floor(Math.random() * len);
     var tmp = tmpL[rnd];
     tmpL[rnd] = tmpL[i];
     tmpL[i] = tmp;
   }
   return tmpL;
 };
+
+/*
+var shuffleFunc = function() { 
+  return 0.5 - Math.random();
+};
+*/
 
 var getRndData = function(sampleL, n) {
   n = n || 1;
@@ -38,13 +29,13 @@ var getRndData = function(sampleL, n) {
       totalW += e.w;
     });
 
-    console.log('Before shullfe: sampleL = ', sampleL);
+    // console.log('Before shullfe: sampleL = ', sampleL);
+    // sampleL.sort(shuffleFunc);
     sampleL = shuffleFunc(sampleL);
-    console.log('After shullfe: sampleL = ', sampleL);
-    console.log('===============================================');
+    // console.log('After shullfe: sampleL = ', sampleL);
+    // console.log('===============================================');
 
-    var rnd = getRandomNum(totalW + 1);
-
+    var rnd = Math.floor(Math.random() * totalW + 1);
     for(var k = 0; k < sampleL.length; k++) {
       var e = sampleL[k];
       rnd -= e.w;
@@ -116,21 +107,4 @@ console.log('*******************************************************************
 
 console.log('totalCnt = ', totalCnt, '\n');
 console.log('statisticArr = ', JSON.stringify(statisticArr));
-
-/*
-Output:
-
-node app.js 100000000                                                                                      [14:39:32]
-
-totalW =  280
-
-staticL =  [{"v":"A","w":10,"percent":"3.571%"},{"v":"B","w":20,"percent":"7.143%"},{"v":"C","w":30,"percent":"10.714%"},{"v":"D","w":40,"percent":"14.286%"},{"v":"E","w":50,"percent":"17.857%"},{"v":"F","w":60,"percent":"21.429%"},{"v":"G","w":70,"percent":"25.000%"}]
-
-******************************************************************************************
-******************************************************************************************
-
-totalCnt =  300000000
-
-statisticArr =  [{"v":"A","cnt":13196038,"percent":"4.399%"},{"v":"B","cnt":25121369,"percent":"8.374%"},{"v":"C","cnt":35888955,"percent":"11.963%"},{"v":"D","cnt":45413465,"percent":"15.138%"},{"v":"E","cnt":53622403,"percent":"17.874%"},{"v":"F","cnt":60512305,"percent":"20.171%"},{"v":"G","cnt":66245465,"percent":"22.082%"}]
-*/
 

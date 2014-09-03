@@ -1,21 +1,17 @@
-function getRandomNum(number) {
-  rnd.today = new Date();
+var getRndData = function(sampleL, n, retList) {
+  if(sampleL.length < n) {
+    return;
+  }
+  for(var i = 0; i < n; i++) {
+    var rnd = Math.floor(Math.random() * sampleL.length);
+    retList.push(sampleL[rnd]);
+    sampleL.splice(rnd, 1);
+  }
+};
 
-  rnd.seed = rnd.today.getTime();
+var sampleL = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+var retList = [];
 
-  function rnd() {
-    rnd.seed = (rnd.seed * 9301 + 49297) % 233280;
-    return rnd.seed / (233280.0);
-  };
+getRndData(sampleL, 5, retList);
 
-  function rand(num) {
-    return Math.floor(rnd() * num);
-  };
-
-  return rand(number);
-}
-
-var v = getRandomNum(10);
-console.log('v = ', v);
-
-
+console.log('retList = ', retList);
