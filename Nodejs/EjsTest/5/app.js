@@ -6,9 +6,10 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.get('/', function(req, res){
+  var now = new Date();
   res.render('index', {
     title: "EJS Test",
-    message: "Hello World"
+    message: now + " ~ Hello World! by: Will Lee"
   });
 });
 
