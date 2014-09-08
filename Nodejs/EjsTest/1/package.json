@@ -1,0 +1,9 @@
+{
+  "name": "ejs-example-1",
+  "description": "example #1 for ejs",
+  "version": "0.1.0",
+  "main": "./server.js",
+  "dependencies": {
+    "ejs": "~1.0.0"
+  }
+}
