@@ -29,7 +29,7 @@ app.get('/api/posts', function(req, res){
   res.json(res.locals.posts);
 });
 
-var port = 8090;
+var port = 8081;
 app.listen(port);
-console.log('app is listening at localhost: %d', port);
+console.log('Http svr is listening at localhost: %d ...', port);
 
