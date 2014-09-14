@@ -10,6 +10,12 @@ var shuffleFunc = function(tmpL) {
   return tmpL;
 };
 
+/*
+var shuffleFunc = function() { 
+  return 0.5 - Math.random();
+};
+*/
+
 var getRndData = function(sampleL, n) {
   n = n || 1;
   if(sampleL.length < n) {
@@ -24,6 +30,7 @@ var getRndData = function(sampleL, n) {
     });
 
     // console.log('Before shullfe: sampleL = ', sampleL);
+    // sampleL.sort(shuffleFunc);
     sampleL = shuffleFunc(sampleL);
     // console.log('After shullfe: sampleL = ', sampleL);
     // console.log('===============================================');

@@ -1,13 +1,7 @@
-var shuffleFunc = function(tmpL) {
-  // change the position 'i' with position x
-  var len = tmpL.length;
-  for(var i = 0; i < len; i++) {
-    var rnd = Math.floor(Math.random() * len);
-    var tmp = tmpL[rnd];
-    tmpL[rnd] = tmpL[i];
-    tmpL[i] = tmp;
-  }
-  return tmpL;
+var underscore = require('underscore');
+
+var shuffleFunc = function() { 
+  return 0.5 - Math.random();
 };
 
 var getRndData = function(sampleL, n) {
@@ -23,10 +17,8 @@ var getRndData = function(sampleL, n) {
       totalW += e.w;
     });
 
-    // console.log('Before shullfe: sampleL = ', sampleL);
-    sampleL = shuffleFunc(sampleL);
-    // console.log('After shullfe: sampleL = ', sampleL);
-    // console.log('===============================================');
+    // sampleL.sort(shuffleFunc);
+    sampleL = underscore.shuffle(sampleL);
 
     var rnd = Math.floor(Math.random() * totalW + 1);
     for(var k = 0; k < sampleL.length; k++) {
@@ -55,10 +47,8 @@ staticL.forEach(function(e) {
 });
 console.log('totalW = ', totalW, '\n');
 
-var fixedNum = 3;
-
 staticL.forEach(function(e) {
-  e.percent = (e.w / totalW * 100.0).toFixed(fixedNum) + '%';
+  e.percent = (e.w / totalW * 100.0).toFixed(3) + '%';
 });
 
 
@@ -80,7 +70,7 @@ for(var j in statisticDict) {
 
 for(var k in statisticDict) {
   var e = statisticDict[k];
-  e.percent = (e.cnt / totalCnt * 100.0).toFixed(fixedNum) + '%';
+  e.percent = (e.cnt / totalCnt * 100.0).toFixed(3) + '%';
 }
 
 var statisticArr = [];
