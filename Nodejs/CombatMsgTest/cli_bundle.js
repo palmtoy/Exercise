@@ -38,7 +38,7 @@ for(var i = 0; i < cnt; i++) {
         end = new Date().getTime();
 
         console.log('\n\n' + 'start = ', start);
-        console.log('end   = ', end);
+        console.log('end   = ', end, '\n');
         console.error((end - start) / 1000 + " sec \n\n");
 
         // process.exit(0);

@@ -35,11 +35,11 @@ for(var i = 0; i < cnt; i++) {
       if (!error && response.statusCode == 200) {
         ++n;
         // console.log('%d: %s', n, body);
-        if(n === cnt) {
+        if(n === cnt * evtArr.length) {
           end = new Date().getTime();
 
           console.log('\n\n' + 'start = ', start);
-          console.log('end   = ', end);
+          console.log('end   = ', end, '\n');
           console.error((end - start) / 1000 + " sec \n\n");
 
           // process.exit(0);
