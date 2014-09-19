@@ -14,7 +14,7 @@ var app = connect.createServer(
   connectables.router(function(router) {
     // POST
     router.post('/combatmsg', function(req, res, next) {
-      console.log('req.body = ', req.body);
+      // console.log('req.body = ', req.body);
       res.end('200');
     });
   })
