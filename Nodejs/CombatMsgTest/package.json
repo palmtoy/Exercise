@@ -1,0 +1,15 @@
+{
+  "name": "CombatMsgTest",
+  "version": "0.0.1",
+  "description": "CombatMsgTest",
+  "main": "svr.js, cli.js",
+  "dependencies": {
+    "qs": "~0.6.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Will Lee",
+  "license": "MIT"
+}
