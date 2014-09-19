@@ -15,7 +15,7 @@ var evtArr = [
 ];
 
 
-var cnt = parseInt(process.argv[2]);
+var cnt = parseInt(process.argv[2]) || 1;
 var n = 0;
 
 
