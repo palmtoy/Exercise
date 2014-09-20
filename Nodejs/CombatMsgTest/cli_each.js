@@ -33,16 +33,18 @@ function bar() {
   ];
 
   evtArr.forEach(function(e) {
-    var port = 3000;
-    var tmpBody = 'msg=' + JSON.stringify(e);
-    request.post({
-      headers: {'Content-type': 'application/x-www-form-urlencoded', charset: 'utf-8'},
-      url: 'http://localhost:' + port + '/combatmsg',
-      body: tmpBody
-    }, function(error, response, body){
-      if (!error && response.statusCode === 200) {
-        calcCnt(evtArr.length);
-      }
+    process.nextTick(function() {
+      var port = 3000;
+      var tmpBody = 'msg=' + JSON.stringify(e);
+      request.post({
+        headers: {'Content-type': 'application/x-www-form-urlencoded', charset: 'utf-8'},
+        url: 'http://localhost:' + port + '/combatmsg',
+        body: tmpBody
+      }, function(error, response, body){
+        if (!error && response.statusCode === 200) {
+          calcCnt(evtArr.length);
+        }
+      });
     });
   });
 }
