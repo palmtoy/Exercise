@@ -1,4 +1,3 @@
-var events = require('events');
 var request = require('request');
 
 var n = 0;
@@ -20,9 +19,9 @@ function calcCnt() {
 }
 
 
-function bar(tmpStr) {
+function bar(strEvtArr) {
   var port = 3000;
-  var tmpBody = 'msg=' + tmpStr;
+  var tmpBody = 'msg=' + strEvtArr;
   request.post({
     headers: {'Content-type': 'application/x-www-form-urlencoded', charset: 'utf-8'},
     url: 'http://localhost:' + port + '/combatmsg',
@@ -49,4 +48,5 @@ var evtArr = [
 var strEvtArr = JSON.stringify(evtArr);
 
 setInterval(bar, 0, strEvtArr);
+
 
