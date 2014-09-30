@@ -1,21 +1,19 @@
 "use strict";
 
-var testObj = Object.defineProperties({}, {
-  prop1: {
-    value: 10,
-    writable: false // by default
-  },
-  prop2: {
-    get: function () {
-      return 20;
-    }
-  }
-});
 
-console.log('testObj = ', JSON.stringify(testObj));
-console.log('testObj.prop1 = ', testObj.prop1);
-console.log('testObj.prop2 = ', testObj.prop2);
+var doConvert = function(k, v) {
+  var tmp = {};
+  tmp[k] = {
+    value: v
+  };
+  return Object.defineProperties({}, tmp);
+};
 
-testObj.prop1 = 80; 
-testObj.prop2 = 90;
+
+var constsObj = doConvert('MAX_RAGE', 200);
+console.log('constsObj = ', JSON.stringify(constsObj));
+
+console.log('AAA ~ constsObj.MAX_RAGE = ', JSON.stringify(constsObj.MAX_RAGE));
+constsObj.MAX_RAGE = 999;
+console.log('BBB ~ constsObj.MAX_RAGE = ', JSON.stringify(constsObj.MAX_RAGE));
 
