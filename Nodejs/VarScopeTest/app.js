@@ -1,22 +1,44 @@
-// foo(); // TypeError "foo is not a function" 
-bar(); // valid 
-// baz(); // TypeError "baz is not a function" 
-// spam(); // ReferenceError "spam is not defined" 
+/*
 
-var foo = function () {}; // anonymous function expression ('foo' gets hoisted) 
-function bar() {}; // function declaration ('bar' and the function body get hoisted) 
-var baz = function spam() {
-  console.log('I am spam & baz.');
-}; // named function expression (only 'baz' gets hoisted) 
+var a = [];
 
-foo(); // valid 
-bar(); // valid 
-baz(); // valid 
-// spam(); // ReferenceError "spam is not defined" 
+for (var i = 0; i < 10; i++) {
+  var c = i;
+  a[i] = function () {
+    console.log(c);
+  };
+}
+
+a[6](); // 9
+
+*/
 
 
 /*
-Output:
+
+var a = [];
+
+for (var i = 0; i < 10; i++) {
+  a[i] = function () {
+    console.log(i);
+  };
+}
+
+a[6](); // 10
 
 */
+
+
+var a = [];
+
+for (var i = 0; i < 10; i++) {
+  a[i] = (function (k) {
+      return function() {
+        console.log(k);
+      }
+    })(i);
+}
+
+a[6](); // 6
+a[9](); // 9
 
