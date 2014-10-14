@@ -10,21 +10,30 @@ var targetObj = {
   equipment: {
     '11477': 
       { 
-        economy_id: 'M_WPN_EP_40',
-        inventory_id: 11477
-      }
+      economy_id: 'M_WPN_EP_40',
+      inventory_id: 11477
+    }
   },
 
   gemList: [
-    {blue: [{id: 101, PATK: 9}, {id: 102, PATK: 8}]},
+    {blue: [{id: 101, PATK: 6}, {id: 102, PATK: 8}]},
     {red: [{id: 201, PATK: 7}, {id: 202, PATK: 5}]}
   ]
 
 };
 
 
-function deepClone(obj) {
-  var o, i, j, k;
+function deepExtend(obj) {
+  var doExtend = function(k) {
+    if(typeof(obj[k]) === "object" && obj[k] !== null) {
+      o[k] = deepExtend(obj[k]);
+    } else {
+      o[k] = obj[k];
+    }
+  };
+
+  var o, i, j;
+
   if(typeof(obj) !== "object" || obj === null) {
     return obj;
   }
@@ -33,20 +42,12 @@ function deepClone(obj) {
     i = 0;
     j = obj.length;
     for(; i < j; i++) {
-      if(typeof(obj[i]) === "object" && obj[i] !== null) {
-        o[i] = deepClone(obj[i]);
-      } else {
-        o[i] = obj[i];
-      }
+      doExtend(i);
     }
   } else {
     o = {};
     for(i in obj) {
-      if(typeof(obj[i]) === "object" && obj[i] !== null) {
-        o[i] = deepClone(obj[i]);
-      } else {
-        o[i] = obj[i];
-      }
+      doExtend(i);
     }
   }
 
@@ -54,11 +55,11 @@ function deepClone(obj) {
 }
 
 
-tmpObj = deepClone(targetObj);
-tmpObj.inventory['11476'].inventory_id = 10000;
-tmpObj.gemList[0].blue[0].PATK = 999;
+var tmpObj = deepExtend(targetObj);
+tmpObj.inventory['11476'].inventory_id = 20000;
+tmpObj.gemList[0].blue[0].PATK = 8;
 
-console.log('   tmpObj = ', JSON.stringify(tmpObj));
-console.log('\n\n');
 console.log('targetObj = ', JSON.stringify(targetObj));
+console.log('\n\n');
+console.log('   tmpObj = ', JSON.stringify(tmpObj));
 
