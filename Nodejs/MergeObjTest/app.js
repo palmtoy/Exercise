@@ -23,41 +23,46 @@ var targetObj = {
 };
 
 
-function deepExtend(obj) {
+function deepExtend(desObj, srcObj) {
   var doExtend = function(k) {
-    if(typeof(obj[k]) === "object" && obj[k] !== null) {
-      o[k] = deepExtend(obj[k]);
+    // Property in destination object set; update its value.
+    if(typeof srcObj[k] === "object" && srcObj[k] !== null) {
+      desObj[k] = deepExtend(desObj[k], srcObj[k]);
     } else {
-      o[k] = obj[k];
+      desObj[k] = srcObj[k];
     }
   };
 
-  var o, i, j;
-
-  if(typeof(obj) !== "object" || obj === null) {
-    return obj;
+  if(typeof srcObj !== "object" || srcObj === null) {
+    return desObj;
   }
-  if(obj instanceof(Array)) {
-    o = [];
-    i = 0;
-    j = obj.length;
-    for(; i < j; i++) {
-      doExtend(i);
+
+  if(srcObj instanceof Array) {
+    desObj = desObj || [];
+    if(desObj instanceof Array) {
+      for(var i = 0; i < srcObj.length; i++) {
+        doExtend(i);
+      }
     }
   } else {
-    o = {};
-    for(i in obj) {
-      doExtend(i);
+    desObj = desObj || {};
+    if(desObj instanceof Object) {
+      for (var p in srcObj) {
+        if (srcObj.hasOwnProperty(p)) {
+          doExtend(p);
+        }
+      }
     }
   }
 
-  return o;
-}
+  return desObj;
+};
 
 
-var tmpObj = deepExtend(targetObj);
+var tmpObj = {};
+tmpObj = deepExtend(tmpObj, targetObj);
 tmpObj.inventory['11476'].inventory_id = 20000;
-tmpObj.gemList[0].blue[0].PATK = 8;
+tmpObj.gemList[0].blue[0].PATK = 9;
 
 console.log('targetObj = ', JSON.stringify(targetObj));
 console.log('\n\n');
