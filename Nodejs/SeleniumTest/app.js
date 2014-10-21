@@ -11,17 +11,5 @@ var driver = new webdriver.Builder().
   withCapabilities(chromeObj).
   build();
 
-var searchText = '五道口';
-
-driver.get('https://www.google.com');
-driver.findElement(webdriver.By.name('q')).sendKeys(searchText);
-driver.findElement(webdriver.By.name('btnG')).click();
-driver.wait(function() {
-  return driver.getTitle().then(function(title) {
-    console.log('title = ', title);
-    return title === searchText + ' - Google Search';
-  });
-}, 1000);
-
-// driver.quit();
+driver.get('http://127.0.0.1:8080/debug?port=5858');
 
