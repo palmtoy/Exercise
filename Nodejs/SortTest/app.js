@@ -1,27 +1,13 @@
-var o1 = { x: 'a6', y: 'b1' };
-var o2 = { x: 'a3', y: 'b2' };
-var o3 = { x: 'a6', y: 'b0' };
+var dict = { 'WARRIOR_LEVEL_58_MAX': 0, 'WARRIOR_LEVEL_81_DEMO': 1, 'WARRIOR_LEVEL_1': 2 };
 
-var ll = [o1, o2, o3];
-console.log(ll);
+var ll = Object.keys(dict);
+console.log('1 ~ ll = ', ll);
 
-var tmpLL = ll.sort(function(a, b) {
-  if(a.x !== b.x) {
-    if(a.x > b.x) {
-      return 1;
-    } else {
-      return 0;
-    }
-  } else {
-    return a.y > b.y;
-    if(a.y > b.y) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-});
+ll.sort();
 
-console.log('\n');
-console.log(tmpLL);
+console.log('\n2 ~ ll = ', ll);
+
+ll[0] = 'WARRIOR_LEVEL_0';
+
+console.log('\n3 ~ ll = ', ll);
 
