@@ -20,8 +20,6 @@ Demo = function() {
 
   var fsm = StateMachine.create({
 
-    initial: 'none',
-
     events: [
       { name: 'start', from: 'none',   to: 'green'  },
       { name: 'warn',  from: 'green',  to: 'yellow' },
