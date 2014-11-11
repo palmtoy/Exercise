@@ -1,0 +1,9 @@
+{
+    "name": "StateMachineTest",
+    "version": "0.0.1",
+    "description": "A state machine demo",
+    "author": "<palmtoy@gmail.com>",
+		"dependencies": {
+			"javascript-state-machine": "2.3.2"
+		}
+}
