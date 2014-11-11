@@ -1,57 +1,40 @@
 var JSM = require("javascript-state-machine");
 
-
-var myFSM = function() {
-  this.counter = 21;
-  this.startup();
+var Foo = function() {
+  this.counter = 7;
+  this.initFSM();
 };
 
-myFSM.prototype = {
-  onwarn: function() { this.counter++; }
-};
+Foo.prototype.onenterready   = function() { this.counter++; };
+Foo.prototype.onenterrunning = function() { this.counter++; };
 
 JSM.StateMachine.create({
-  target: myFSM.prototype,
-  events: [
-    { name: 'startup', from: 'none',   to: 'green'  },
-    { name: 'warn',    from: 'green',  to: 'yellow' },
-    { name: 'panic',   from: 'yellow', to: 'red'    },
-    { name: 'clear',   from: 'yellow', to: 'green'  }
-  ]
+  target : Foo.prototype,
+  initial: { state: 'ready', event: 'initFSM', defer: true }, // unfortunately, trying to apply an IMMEDIATE initial state wont work on prototype based FSM, it MUST be deferred and called in the constructor for each instance
+  events : [{name: 'execute', from: 'ready',   to: 'running'},
+    {name: 'abort',   from: 'running', to: 'ready'}]
 });
 
-var a = new myFSM();
-var b = new myFSM();
+var foo = new Foo();
+var bar = new Foo();
 
-console.log('a.current:', a.current, 'green', 'start with correct state');
-console.log('b.current:', b.current, 'green', 'start with correct state');
+console.log('foo.current:', foo.current, 'ready', 'start with correct state');
+console.log('bar.current:', bar.current, 'ready', 'start with correct state');
 console.log('\n');
 
-console.log('a.counter:', a.counter, 21, 'start with correct counter');
-console.log('b.counter:', b.counter, 21, 'start with correct counter');
+console.log('foo.counter:', foo.counter, 8, 'start with correct counter 7 (from constructor) + 1 (from onenterready)');
+console.log('bar.counter:', bar.counter, 8, 'start with correct counter 7 (from constructor) + 1 (from onenterready)');
 console.log('\n');
 
-a.warn();
+foo.execute(); // transition foo, but NOT bar
+console.log('foo.current:', foo.current, 'running', 'changed state');
 
-console.log('a.current:', a.current, 'yellow', 'maintain independent current state');
-console.log('b.current:', b.current, 'green',  'maintain independent current state');
+foo.abort(); // transition foo, but NOT bar
+console.log('foo.current:', foo.current, 'ready', 'changed state');
+console.log('bar.current:', bar.current, 'ready',   'state remains the same');
 console.log('\n');
 
-console.log('a.counter:', a.counter, 22, 'counter for (a) should have incremented');
-console.log('b.counter:', b.counter, 21, 'counter for (b) should remain untouched');
+console.log('foo.counter:', foo.counter, 10, 'incremented counter during onenterrunning');
+console.log('bar.counter:', bar.counter, 8, 'counter remains the same');
 console.log('\n');
-
-console.log('a.hasOwnProperty(current):', a.hasOwnProperty('current'), "each instance should have its own current state");
-console.log('b.hasOwnProperty(current):', b.hasOwnProperty('current'), "each instance should have its own current state");
-console.log('\n');
-
-console.log('!a.hasOwnProperty(warn):', !a.hasOwnProperty('warn'), "each instance should NOT have its own event methods");
-console.log('!b.hasOwnProperty(warn):', !b.hasOwnProperty('warn'), "each instance should NOT have its own event methods");
-console.log('\n');
-
-console.log('a.warn === b.warn:', a.warn === b.warn, "each instance should share event methods");
-console.log('\n');
-
-console.log('a.warn === a.__proto__.warn:', a.warn === a.__proto__.warn, "each instance event methods come from its shared prototype");
-console.log('b.warn === b.__proto__.warn:', b.warn === b.__proto__.warn, "each instance event methods come from its shared prototype");
 
