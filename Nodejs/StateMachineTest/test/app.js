@@ -7,11 +7,11 @@ runner.run({
   code: "./state-machine.js",
 
   tests: [
-    "./test_basics.js",
-    "./test_advanced.js",
-    "./test_classes.js",
-    "./test_async.js",
-    "./test_initialize.js"
+    "src/test_basics.js",
+    "src/test_advanced.js",
+    "src/test_classes.js",
+    "src/test_async.js",
+    "src/test_initialize.js"
   ]
 
 });

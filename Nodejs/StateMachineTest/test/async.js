@@ -7,7 +7,7 @@ runner.run({
   code: "./state-machine.js",
 
   tests: [
-    "./test_async.js"
+    "src/test_async.js"
   ]
 
 });
