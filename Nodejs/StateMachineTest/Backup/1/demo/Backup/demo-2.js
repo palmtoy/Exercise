@@ -19,9 +19,11 @@ Demo = function() {
   };
 
   var fsm = StateMachine.create({
-    initial: { state: 'yellow', event: 'init', defer: true },
+
+    initial: 'none',
 
     events: [
+      { name: 'start', from: 'none',   to: 'green'  },
       { name: 'warn',  from: 'green',  to: 'yellow' },
       { name: 'panic', from: 'green',  to: 'red'    },
       { name: 'panic', from: 'yellow', to: 'red'    },
@@ -71,7 +73,7 @@ Demo = function() {
 
   var pending = function(to, n) { log("PENDING STATE: " + to + " in ..." + n); };
 
-  fsm.init();
+  fsm.start();
   return fsm;
 
 }();
