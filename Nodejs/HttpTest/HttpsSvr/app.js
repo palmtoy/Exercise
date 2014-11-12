@@ -1,28 +1,14 @@
 var https = require('https');
-var fs = require('fs');
 
-var options = {
-  hostname: 'encrypted.google.com',
-  port: 443,
-  path: '/',
-  method: 'GET',
-  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
-  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem')
-};
-options.agent = new https.Agent(options);
-
-var req = https.request(options, function(res) {
+https.get('https://encrypted.google.com/', function(res) {
   // console.log("statusCode: ", res.statusCode);
   // console.log("headers: ", res.headers);
 
   res.on('data', function(d) {
-      process.stdout.write(d);
-    });
-});
+    process.stdout.write(d);
+  });
 
-req.end();
-
-req.on('error', function(e) {
+}).on('error', function(e) {
   console.error(e);
 });
 
