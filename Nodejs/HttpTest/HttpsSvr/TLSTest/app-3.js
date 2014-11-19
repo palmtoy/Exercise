@@ -1,4 +1,4 @@
-// openssl s_client -connect 127.0.0.1:8000 -cert ../test/fixtures/keys/client-cert.pem -key ../test/fixtures/keys/client-key.pem
+// openssl s_client -connect 127.0.0.1:8000
 
 var tls = require('tls');
 var fs = require('fs');
@@ -16,7 +16,7 @@ var options = {
   rejectUnauthorized: true
 };
 
-// console.log('options.ca = ', options.ca.toString());
+console.log('options.ca = ', options.ca.toString());
 
 var server = tls.createServer(options, function(cleartextStream) {
   console.log('cleartextStream = ', cleartextStream);
