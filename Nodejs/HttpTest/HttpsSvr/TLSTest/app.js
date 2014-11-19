@@ -19,7 +19,7 @@ var options = {
 // console.log('options.ca = ', options.ca.toString());
 
 var server = tls.createServer(options, function(cleartextStream) {
-  console.log('cleartextStream = ', cleartextStream);
+  // console.log('cleartextStream = ', cleartextStream);
 
   console.log('server connected',
               cleartextStream.authorized ? 'authorized' : 'unauthorized');
