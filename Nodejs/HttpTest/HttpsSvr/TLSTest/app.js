@@ -22,9 +22,15 @@ var server = tls.createServer(options, function(cleartextStream) {
   // console.log('cleartextStream = ', cleartextStream);
 
   console.log('server connected',
-              cleartextStream.authorized ? 'authorized' : 'unauthorized');
+              cleartextStream.authorized ? 'authorized' : 'unauthorized', '\n');
 
-  console.log('peerCertificate: ', cleartextStream.getPeerCertificate());
+  console.log('peerCertificate: ', cleartextStream.getPeerCertificate(), '\n');
+
+  console.log('cipher: ', cleartextStream.getCipher(), '\n');
+
+  console.log('address: ', cleartextStream.address(), '\n');
+
+  console.log('remoteAddress, remotePort: ', cleartextStream.remoteAddress, cleartextStream.remotePort, '\n');
 
   cleartextStream.write("\nWelcome!\n");
   cleartextStream.setEncoding('utf8');
