@@ -23,9 +23,19 @@ var targetObj = {
 };
 
 
-var lodash = require('lodash');
+var utils = require('./utils');
 
-var tmpObj = lodash.cloneDeep(targetObj);
+var tmpObj = {
+  equipment: {
+    '30000':
+      {
+        economy_id: 'M_WPN_EP_30',
+        inventory_id: 30000
+      }
+  }
+};
+
+tmpObj = utils.deepExtend(tmpObj, targetObj);
 tmpObj.inventory['11476'].inventory_id = 20000;
 tmpObj.gemList[0].blue[0].PATK = 9;
 
