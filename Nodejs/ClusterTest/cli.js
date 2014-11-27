@@ -1,5 +1,6 @@
 /*
 node cli.js 
+or
 node cli.js localhost 8000
 */
 
@@ -14,13 +15,16 @@ var options = {
   method: 'GET'
 };
 
-var req = http.request(options, function(res) {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
-  res.setEncoding('utf8');
-  res.on('data', function(chunk) {
-    console.log(chunk);
+for(var i = 0; i < 10; i++) {
+  var req = http.request(options, function(res) {
+    console.log('STATUS: ' + res.statusCode);
+    console.log('HEADERS: ' + JSON.stringify(res.headers));
+    res.setEncoding('utf8');
+    res.on('data', function(chunk) {
+      console.log(chunk);
+    });
   });
-});
 
-req.end();
+  req.end();
+}
+

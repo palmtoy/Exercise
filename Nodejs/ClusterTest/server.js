@@ -4,6 +4,8 @@ var cluster = require('cluster');
 var http = require('http');
 var numCPUs = require('os').cpus().length;
 
+// console.log('\n' + process.pid + ', process.env.NODE_UNIQUE_ID = ' + process.env.NODE_UNIQUE_ID + '\n');
+
 if (cluster.isMaster) {
   // Fork workers.
   for (var i = 0; i < numCPUs; i++) {
