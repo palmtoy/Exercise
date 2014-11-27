@@ -25,17 +25,7 @@ var targetObj = {
 
 var lodash = require('lodash');
 
-var tmpObj = {
-  equipment: {
-    '30000':
-      {
-        economy_id: 'M_WPN_EP_30',
-        inventory_id: 30000
-      }
-  }
-};
-
-tmpObj = lodash.merge(tmpObj, targetObj);
+var tmpObj = lodash.cloneDeep(targetObj);
 tmpObj.inventory['11476'].inventory_id = 20000;
 tmpObj.gemList[0].blue[0].PATK = 9;
 
