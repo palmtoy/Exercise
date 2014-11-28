@@ -1,0 +1,5 @@
+*.sln
+*.userprefs
+AssemblyInfo.cs
+*.csproj
+bin
