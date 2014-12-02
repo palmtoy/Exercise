@@ -24,10 +24,10 @@ if (cluster.isMaster) {
   });
   cluster.on('listening', function(worker, address) {
     clearTimeout(timeouts[worker.id]);
-    console.log(worker.id + " is listening and now connected to " + address.address + ":" + address.port);
+    console.error(worker.id + " is listening.");
   });
   cluster.on('online', function(worker) {
-    console.log(worker.id + ": Yay, the worker responded(online) after it was forked.");
+    console.log(worker.id + ": Yay, the worker responded after it was forked.");
   });
   cluster.on('exit', function(worker, code, signal) {
     clearTimeout(timeouts[worker.id]);
