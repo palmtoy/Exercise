@@ -26,9 +26,6 @@ if (cluster.isMaster) {
     clearTimeout(timeouts[worker.id]);
     console.error(worker.id + " is listening.");
   });
-  cluster.on('online', function(worker) {
-    console.log(worker.id + ": Yay, the worker responded after it was forked.");
-  });
   cluster.on('exit', function(worker, code, signal) {
     clearTimeout(timeouts[worker.id]);
     errorMsg();
