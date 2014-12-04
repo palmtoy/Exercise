@@ -29,16 +29,6 @@ if (cluster.isMaster) {
   cluster.on('online', function(worker) {
     console.log(worker.id + ": Yay, the worker responded(online) after it was forked.");
   });
-
-  cluster.on('disconnect', function(worker) {
-    console.log('The worker #' + worker.id + ' has disconnected');
-  });
-
-  cluster.on('exit', function(worker, code, signal) {
-    console.log('worker %d died (%s). restarting...', worker.process.pid, signal || code);
-    cluster.fork();
-  });
-
   cluster.on('exit', function(worker, code, signal) {
     clearTimeout(timeouts[worker.id]);
     errorMsg();
