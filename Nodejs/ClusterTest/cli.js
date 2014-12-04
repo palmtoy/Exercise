@@ -15,7 +15,7 @@ var options = {
   method: 'GET'
 };
 
-for(var i = 0; i < 10; i++) {
+for(var i = 0; i < 3; i++) {
   var req = http.request(options, function(res) {
     console.log('STATUS: ' + res.statusCode);
     console.log('HEADERS: ' + JSON.stringify(res.headers));

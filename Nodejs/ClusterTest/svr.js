@@ -5,7 +5,8 @@ var cluster = require("cluster");
 cluster.setupMaster({
   exec : "worker.js",
   args : ["--use", "https"],
-  silent : true
+  // silent : false
+  silent : false
 });
 
 cluster.fork();
