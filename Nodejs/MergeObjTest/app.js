@@ -1,45 +1,18 @@
-var targetObj = {
-
-  inventory: {
-    '11476': 
-      { economy_id: 'W_WPN_EP_20',
-        inventory_id: 11476
-      } 
-  },
-
-  equipment: {
-    '11477': 
-      { 
-        economy_id: 'M_WPN_EP_40',
-        inventory_id: 11477
-      }
-  },
-
-  gemList: [
-    {blue: [{id: 101, PATK: 6}, {id: 102, PATK: 8}]},
-    {red: [{id: 201, PATK: 7}, {id: 202, PATK: 5}]}
-  ]
-
-};
-
-
 var lodash = require('lodash');
 
-var tmpObj = {
-  equipment: {
-    '30000':
-      {
-        economy_id: 'M_WPN_EP_30',
-        inventory_id: 30000
-      }
-  }
-};
+var srcObj = {"items":[{"type":"gaminventory","data":"GEM_PDEF_2","quantity":1,"result":{"uid":1001440,"economy_id":"GEM_PDEF_2","system":"Gem","inventory_id":17452,"num":1,"location":"bag_items","cell":1,"_ts":1417749506,"_id":"54812402292ca90000667b92"}},{"type":"gaminventory","data":"ITM_ENCHANT_LuckStone_2","quantity":1,"result":{"uid":1001440,"economy_id":"ITM_ENCHANT_LuckStone_2","system":"LuckStone","inventory_id":17453,"num":1,"location":"bag_items","cell":1,"_ts":1417749506,"_id":"54812402292ca90000667b94"}},{"type":"gaminventory","data":"GEM_PATK_1","quantity":1,"result":{"uid":1001440,"economy_id":"GEM_PATK_1","system":"Gem","inventory_id":17454,"num":1,"location":"bag_items","cell":1,"_ts":1417749506,"_id":"54812402292ca90000667b95"}}]}; 
 
-tmpObj = lodash.merge(tmpObj, targetObj);
-tmpObj.inventory['11476'].inventory_id = 20000;
-tmpObj.gemList[0].blue[0].PATK = 9;
-
-console.log('targetObj = ', JSON.stringify(targetObj));
+console.log('srcObj = ', JSON.stringify(srcObj));
 console.log('\n\n');
-console.log('   tmpObj = ', JSON.stringify(tmpObj));
+
+var targetObj = {"items":[{"type":"gaminventory","data":"ITM_ENCHANT_LuckStone_3","quantity":1,"result":{"uid":1001440,"economy_id":"ITM_ENCHANT_LuckStone_3","system":"LuckStone","inventory_id":17451,"num":1,"location":"bag_items","cell":1,"_ts":1417749506,"_id":"54812402292ca90000667b91"}}]};
+
+console.log('   targetObj = ', JSON.stringify(targetObj));
+console.log('\n\n');
+
+
+var newObj = lodash.merge(targetObj, srcObj);
+
+// console.log('   newObj = ', JSON.stringify(newObj));
+console.log('   targetObj = ', JSON.stringify(targetObj));
 
