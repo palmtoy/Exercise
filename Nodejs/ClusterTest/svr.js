@@ -7,6 +7,6 @@ if (cluster.isMaster) {
   cluster.fork();
   cluster.fork();
 } else if (cluster.isWorker) {
-  console.log('I am worker #' + cluster.worker.id + '.');
+  console.log('I am worker #' + cluster.worker.id + ', pid:' + cluster.worker.process.pid + '.');
 }
 
