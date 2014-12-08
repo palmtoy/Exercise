@@ -1,13 +1,12 @@
 // NODE_DEBUG=cluster node svr.js
 
-var cluster = require("cluster");
+var cluster = require('cluster');
 
-cluster.setupMaster({
-  exec : "worker.js",
-  args : ["--use", "https"],
-  // silent : false
-  silent : false
-});
-
-cluster.fork();
+if (cluster.isMaster) {
+  console.log('I am master.');
+  cluster.fork();
+  cluster.fork();
+} else if (cluster.isWorker) {
+  console.log('I am worker #' + cluster.worker.id + '.');
+}
 
