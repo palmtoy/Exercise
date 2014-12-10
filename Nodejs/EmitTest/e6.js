@@ -8,8 +8,7 @@ function MyStream() {
 util.inherits(MyStream, events.EventEmitter);
 
 MyStream.prototype.write = function(data) {
-  // this.emit('100', data);
-  MyStream.super_.prototype.emit.call(this, '100', data);
+  this.emit('100', data);
   console.log('New data: ' + JSON.stringify(data));
 }
 
