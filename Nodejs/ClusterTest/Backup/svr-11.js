@@ -8,11 +8,7 @@ if (cluster.isMaster) {
 
   // Fork workers.
   for (var i = 0; i < 3; i++) {
-    cluster.fork();
-  }
-
-  for (var id in cluster.workers) {
-    var worker = cluster.workers[id];
+    var worker = cluster.fork();
     worker.on('message', function(msg) {
       // we only want to intercept messages that have a chat property
       if (msg.chat) {
