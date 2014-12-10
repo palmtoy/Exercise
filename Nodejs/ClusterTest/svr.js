@@ -1,43 +1,65 @@
 // NODE_DEBUG=cluster node svr.js
+// telnet localhost 8000
 
 var cluster = require('cluster');
-var http = require('http');
 
+function getTime() {
+  var d = new Date();
+  return d + ':' + d.getMilliseconds() + '(ms) ~ ';
+}
 
 if (cluster.isMaster) {
 
-  // Fork workers.
-  for (var i = 0; i < 3; i++) {
-    cluster.fork();
-  }
+  var worker = cluster.fork();
+  var timeout;
 
-  for (var id in cluster.workers) {
-    var worker = cluster.workers[id];
-    worker.on('message', function(msg) {
-      // we only want to intercept messages that have a chat property
-      if (msg.chat) {
-        console.log('\n', 'I am master, pid:' + process.pid, '~ Worker to master: ', msg.chat);
-        console.log('Worker to master: ', msg.chat);
-        worker.send({ chat: 'Ok worker, Master got the message! Over and out!' });
-      }
-    });
-  }
+  worker.on('listening', function(addr) {
+    var t = getTime();
+    console.log('\n', t + ' I am master, pid:' + process.pid + ', address: ' + JSON.stringify(addr));
+    worker.send('The worker is listening ...');
+  });
+
+  worker.on('message', function(msg) {
+    var t = getTime();
+    console.log('\n', t + ' I am master, pid:' + process.pid + ', I received msg ' + msg);
+    worker.send('shutdown');
+    worker.disconnect();
+    timeout = setTimeout(function() {
+      t = getTime();
+      console.log('\n', t + ' I am master, pid:' + process.pid + ', kill is running ...');
+      worker.kill();
+    }, 3000);
+  });
+
+  worker.on('disconnect', function() {
+    var t = getTime();
+    console.log('\n', t + ' I am master, pid:' + process.pid + ', I was disconnected.');
+    clearTimeout(timeout);
+  });
 
 } else if (cluster.isWorker) {
 
+  var net = require('net');
+  var server = net.createServer(function(socket) {
+    // connections never end
+    socket.on('data', function(msg) {
+      var t = getTime();
+      console.log('\n', t + ' I am worker, pid:' + process.pid + ', #' + cluster.worker.id + ', Received telnet data: ' + msg);
+      process.send('-> The worker got msg: ' + msg);
+    });
+  });
+
+  server.listen(8000);
+
   process.on('message', function(msg) {
-    // we only want to intercept messages that have a chat property
-    if (msg.chat) {
-      console.log('\n', 'I am worker, pid:' + process.pid, ', #' + cluster.worker.id + ' Master to worker: ', msg.chat);
+    var t = getTime();
+    console.log('\n', t + ' I am worker, pid:' + process.pid + ', #' + cluster.worker.id + ', Received msg -> ' + msg);
+    if(msg === 'shutdown') {
+      // initiate graceful close of any connections to server
+      console.log('\n', t + ' I am worker, pid:' + process.pid + ', #' + cluster.worker.id + ', Bye.');
+      process.exit();
     }
   });
 
-  // Worker processes have a http server.
-  http.Server(function(req, res) {
-    res.writeHead(200);
-    res.end("hello world\n");
-    // Send message to master process
-    process.send({ chat: '#' + cluster.worker.id + ' Hey master, I got a new request!' });
-  }).listen(8000);
-
 }
+
