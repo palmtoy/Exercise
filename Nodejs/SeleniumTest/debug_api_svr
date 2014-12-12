@@ -65,7 +65,7 @@ function debugApiSvr(tmpStdout) {
   }
   // console.log('pid = ', pid);
 
-  var tmpCmdC = 'cat ~/.ssh/.password | sudo -S kill -usr1 ' + pid;
+  var tmpCmdC = 'cat ~/MyConfigFiles/.password | sudo -S kill -usr1 ' + pid;
   exec(tmpCmdC, function(errorC, stdoutC, stderrC) {
     if(errorC !== null) {
       console.log(strErr);
