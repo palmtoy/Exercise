@@ -1,0 +1,8 @@
+{
+  "name": "debug-api-svr",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "selenium-webdriver": "2.42.1"
+  }
+}

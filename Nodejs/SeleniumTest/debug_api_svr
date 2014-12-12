@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+var exec = require('child_process').exec;
+
+var strErr = 'Tips: api svr is not running.';
+var strApi2 = 'run.js api2';
+
+
+var tmpCmdA = 'ps aux | grep "node-inspector" | grep -v "grep"';
+
+exec(tmpCmdA,
+  function(errorA, stdoutA, stderrA) {
+    if(errorA !== null || !stdoutA || stdoutA.length <= 0) {
+      console.log('Launch node-inspector, done.');
+      require('./lib/prepare_node-inspector.js');
+    }
+
+    var tmpCmdB = 'ps aux | grep node -w | grep "' + strApi2 + '"' +  ' | grep -v "grep"';
+    exec(tmpCmdB,
+      function(errorB, stdoutB, stderrB) {
+        if(errorB !== null) {
+          console.log(strErr);
+          return;
+        } else {
+          if(!stdoutB || stdoutB.length <= 0) {
+            console.log(strErr);
+            return;
+          }
+          debugApiSvr(stdoutB);
+        }
+      });
+  });
+
+
+function debugApiSvr(tmpStdout) {
+  var strList = tmpStdout.split('\n');
+  var aimStr = '';
+  for(var i in strList) {
+    var s = strList[i];
+    if(s.indexOf(strApi2) > -1) {
+      aimStr = s;
+      break;
+    }
+  }
+
+  if(!aimStr) {
+    console.log(strErr);
+    return;
+  }
+
+  var pid = '';
+  strList = aimStr.split(' ');
+  var reg = new RegExp('^\\d+$'); // var reg = /^\d+$/;
+  for(var i = 0; i < strList.length; i++) {
+    var tmpStr = strList[i];
+    if(tmpStr.search(reg) > -1) {
+      pid = tmpStr;
+      break;
+    }
+  }
+
+  if(!pid) {
+    console.log(strErr);
+    return;
+  }
+  // console.log('pid = ', pid);
+
+  var tmpCmdC = 'cat ~/.ssh/.password | sudo -S kill -usr1 ' + pid;
+  exec(tmpCmdC, function(errorC, stdoutC, stderrC) {
+    if(errorC !== null) {
+      console.log(strErr);
+      return;
+    }
+
+    var webdriver = require('selenium-webdriver');
+    var chromeObj = webdriver.Capabilities.chrome();
+
+    chromeObj.set(
+      'chromeOptions', {
+        args: ['test-type'] // --ignore-certificate-errors
+      });
+
+    var driver = new webdriver.Builder().
+      withCapabilities(chromeObj).
+      build();
+
+    driver.get('http://127.0.0.1:8080/debug?port=5858');
+    console.log('Launch chrome, done.\nPlease switch to the chrome and enjoy debugging ...');
+  });
+}
+
