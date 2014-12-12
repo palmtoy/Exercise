@@ -1,0 +1,72 @@
+#!/usr/bin/env node
+
+var exec = require('child_process').exec;
+var fork = require('child_process').fork;
+
+var strApi2 = 'run.js api2';
+
+
+var tmpCmdA = 'ps aux | grep "node-inspector" | grep -v "grep"';
+
+exec(tmpCmdA,
+  function(errorA, stdoutA, stderrA) {
+    if(errorA !== null || !stdoutA || stdoutA.length <= 0) {
+      console.log('Launch node-inspector, done.');
+      require('./lib/prepare_node-inspector.js');
+    }
+
+    var tmpCmdB = 'ps aux | grep node -w | grep "' + strApi2 + '"' +  ' | grep -v "grep"';
+    exec(tmpCmdB,
+      function(errorB, stdoutB, stderrB) {
+        if(errorB !== null) {
+          return apiSvrNotHere();
+        } else {
+          if(!stdoutB || stdoutB.length <= 0) {
+            return apiSvrNotHere();
+          }
+          debugApiSvr(stdoutB);
+        }
+      });
+  });
+
+
+function apiSvrNotHere() {
+  console.log('Tips: api svr is not running.');
+  process.exit();
+}
+
+function debugApiSvr(tmpStdout) {
+  var aimStr = '';
+  if(tmpStdout.indexOf(strApi2) > -1) {
+    aimStr = tmpStdout;
+  }
+  if(!aimStr) {
+    return apiSvrNotHere();
+  }
+
+  var pid = '';
+  var strList = aimStr.split(' ');
+  var reg = new RegExp('^\\d+$'); // var reg = /^\d+$/;
+  for(var i = 0; i < strList.length; i++) {
+    var tmpStr = strList[i];
+    if(tmpStr.search(reg) > -1) {
+      pid = tmpStr;
+      break;
+    }
+  }
+
+  if(!pid) {
+    return apiSvrNotHere();
+  }
+
+  var tmpCmdC = 'cat ~/MyConfigFiles/.password | sudo -S kill -usr1 ' + pid;
+  exec(tmpCmdC, function(errorC, stdoutC, stderrC) {
+    if(errorC !== null) {
+      return apiSvrNotHere();
+    }
+
+    fork('./lib/launch_chrome.js');
+    process.exit();
+  });
+}
+
