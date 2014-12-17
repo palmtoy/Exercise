@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 var exec = require('child_process').exec;
-var fs = require('fs');
 
+var strErr = 'Tips: api svr is not running.';
 var strApi2 = 'run.js api2';
 
 
@@ -19,10 +19,12 @@ exec(tmpCmdA,
     exec(tmpCmdB,
       function(errorB, stdoutB, stderrB) {
         if(errorB !== null) {
-          return apiSvrNotHere();
+          console.log(strErr);
+          return;
         } else {
           if(!stdoutB || stdoutB.length <= 0) {
-            return apiSvrNotHere();
+            console.log(strErr);
+            return;
           }
           debugApiSvr(stdoutB);
         }
@@ -30,22 +32,24 @@ exec(tmpCmdA,
   });
 
 
-function apiSvrNotHere() {
-  console.log('Tips: api svr is not running.');
-  process.exit();
-}
-
 function debugApiSvr(tmpStdout) {
+  var strList = tmpStdout.split('\n');
   var aimStr = '';
-  if(tmpStdout.indexOf(strApi2) > -1) {
-    aimStr = tmpStdout;
+  for(var i in strList) {
+    var s = strList[i];
+    if(s.indexOf(strApi2) > -1) {
+      aimStr = s;
+      break;
+    }
   }
+
   if(!aimStr) {
-    return apiSvrNotHere();
+    console.log(strErr);
+    return;
   }
 
   var pid = '';
-  var strList = aimStr.split(' ');
+  strList = aimStr.split(' ');
   var reg = new RegExp('^\\d+$'); // var reg = /^\d+$/;
   for(var i = 0; i < strList.length; i++) {
     var tmpStr = strList[i];
@@ -56,19 +60,16 @@ function debugApiSvr(tmpStdout) {
   }
 
   if(!pid) {
-    return apiSvrNotHere();
+    console.log(strErr);
+    return;
   }
+  // console.log('pid = ', pid);
 
-  var tmpPath = process.env.HOME + '/.ssh/.password_test';
-  var pwd4base64 = fs.readFileSync(tmpPath);
-  var pwd4origin = new Buffer(pwd4base64.toString(), 'base64').toString('ascii');
-  pwd4origin = '"' + pwd4origin + '"';
-
-  var tmpCmdC = 'echo ' + pwd4origin + ' | sudo -S kill -usr1 ' + pid;
-
+  var tmpCmdC = 'cat ~/MyConfigFiles/.password | sudo -S kill -usr1 ' + pid;
   exec(tmpCmdC, function(errorC, stdoutC, stderrC) {
     if(errorC !== null) {
-      return apiSvrNotHere();
+      console.log(strErr);
+      return;
     }
 
     var webdriver = require('selenium-webdriver');

@@ -1,15 +1,11 @@
-var webdriver = require('selenium-webdriver');
+var fs = require('fs');
 
-var chromeObj = webdriver.Capabilities.chrome();
+var tmpPath = './pwd.txt';
+var pwd4base64 = fs.readFileSync(tmpPath);
+var pwd4origin = new Buffer(pwd4base64.toString(), 'base64').toString('ascii');
+pwd4origin = '"' + pwd4origin + '"';
 
-chromeObj.set(
-  'chromeOptions', {
-    args: ['test-type'] // --ignore-certificate-errors
-  });
+var tmpCmdC = 'echo ' + pwd4origin + ' | sudo -S kill -usr1 ' + '2537296';
+console.log('tmpCmdC = ', tmpCmdC);
 
-var driver = new webdriver.Builder().
-  withCapabilities(chromeObj).
-  build();
-
-driver.get('http://127.0.0.1:8080/debug?port=5858');
 

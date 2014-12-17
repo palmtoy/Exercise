@@ -30,8 +30,13 @@ function hidden(query, callback) {
 }
 
 hidden("pwd: ", function(pwd) {
-  // console.log("Your pwd: " + pwd);
+  var tmpPath = './pwd.txt';
+
   var pwd4base64 = new Buffer(pwd).toString('base64');
-  fs.writeFileSync('./pwd.txt', pwd4base64);
+  fs.writeFileSync(tmpPath, pwd4base64);
+
+  pwd4base64 = fs.readFileSync(tmpPath);
+  var pwd4origin = new Buffer(pwd4base64.toString(), 'base64').toString('ascii');
+  console.log("Your pwd: " + pwd4origin);
 });
 
