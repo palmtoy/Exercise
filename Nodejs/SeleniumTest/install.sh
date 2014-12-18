@@ -1,9 +1,8 @@
 #!/bin/sh
 
-npm install
+# npm install
 
-sudo cp ./chromedriver /usr/local/bin/
+# sudo cp ./chromedriver /usr/local/bin/
 
-touch ~/.ssh/.password
-vim ~/.ssh/.password
-
+node ./lib/read_pwd.js
+chmod 400 ./pwd.txt
