@@ -59,7 +59,7 @@ function debugApiSvr(tmpStdout) {
     return apiSvrNotHere();
   }
 
-  var tmpPath = process.env.HOME + '/.ssh/.password';
+  var tmpPath = process.env.HOME + '/.ssh/.password_test';
   var pwd4base64 = fs.readFileSync(tmpPath);
   var pwd4origin = new Buffer(pwd4base64.toString(), 'base64').toString('ascii');
   pwd4origin = '"' + pwd4origin + '"';

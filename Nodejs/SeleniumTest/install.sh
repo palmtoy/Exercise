@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# npm install
+npm install node-inspector@0.7.4 -g
 
-# sudo cp ./chromedriver /usr/local/bin/
+sudo cp ./chromedriver /usr/local/bin/
 
 node ./lib/read_pwd.js
-chmod 400 ./pwd.txt
+
