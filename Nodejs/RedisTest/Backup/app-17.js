@@ -8,12 +8,12 @@ client.select(1, function(err, rep) {
 
   // start a separate multi command queue
   multi = client.multi([
-    ["del", "global_msg_num", redis.print],
-    ["set", "global_msg_num", 0],
-    ["get", "global_msg_num", redis.print],
+    ["mget", "global_msg_num", 0, redis.print],
+    ["incr", "global_msg_num"],
     ["incr", "global_msg_num"],
     ["incr", "global_msg_num"]
   ]);
+
 
   multi.incr("global_msg_num", redis.print);
 
