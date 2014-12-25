@@ -22,6 +22,11 @@ client.select(1, function(err, rep) {
     console.log(replies);
   });
 
+  // you can re-run the same transaction if you like
+  multi.exec(function (err, replies) {
+    console.log(replies);
+  });
+
   setTimeout(function() {
     client.end();
   }, 1000);
