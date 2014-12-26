@@ -1,18 +1,16 @@
 var redis = require("redis"),
-client = redis.createClient(), set_size = 3;
+client = redis.createClient(), set_size = 20;
 
 client.select(1, function(err, rep) {
   if(err) {
     return console.log('err = ', err);
   }
 
-  client.del("bigset");
-
-  client.sadd("bigset", "item_A");
-  client.sadd("bigset", "item_B");
+  client.sadd("bigset", "a member");
+  client.sadd("bigset", "another member");
 
   while (set_size > 0) {
-    client.sadd("bigset", "member_" + set_size);
+    client.sadd("bigset", "member " + set_size);
     set_size -= 1;
   }
 
@@ -28,11 +26,10 @@ client.select(1, function(err, rep) {
   })
   .dbsize()
   .exec(function (err, replies) {
-    console.log("\nMULTI got " + replies.length + " replies\n");
+    console.log("MULTI got " + replies.length + " replies");
     replies.forEach(function (reply, index) {
       console.log("Exec ~ Reply " + index + ": " + reply.toString());
     });
-    console.log("\n");
   });
 
   setTimeout(function() {
