@@ -4,7 +4,7 @@ client = redis.createClient();
 var uidPrefix = 'push_msg_key:uid:';
 var msgIdx = 'msg_index';
 
-var uid = 10000300;
+var uid = 1000300;
 
 var tmpMsg = JSON.parse('{"comp":"EventManager","msg":"initInfo","load":{"combat":{"rage":{"max":100,"current":0}}}}');
 tmpMsg.timeStamp = new Date().toLocaleString();
