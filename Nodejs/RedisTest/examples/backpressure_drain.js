@@ -3,7 +3,9 @@ var redis = require("redis"),
         command_queue_high_water: 5,
         command_queue_low_water: 1
     }),
-    remaining_ops = 100, paused = false;
+    remaining_ops = 0, paused = false;
+
+var MAX_NUM = 100;
 
 client.select(1, function(err, rep) {
   if(err) {
@@ -11,12 +13,12 @@ client.select(1, function(err, rep) {
   }
 
   function op() {
-      if (remaining_ops <= 0) {
+      if (remaining_ops >= MAX_NUM) {
           console.error("Finished.");
           process.exit(0);
       }
 
-      remaining_ops--;
+      remaining_ops ++;
       if (client.hset("test_hash", "val_" + remaining_ops, remaining_ops) === false) {
           console.log("Pausing at " + remaining_ops);
           paused = true;
