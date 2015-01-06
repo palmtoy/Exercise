@@ -18,6 +18,7 @@ client.select(1, function(err, rep) {
   client.set("object_20", "bar");
   client.set("object_30", "qux");
 
+  // client.sort("mylist", "by", "weight_*",  redis.print);
   // client.sort("mylist", "by", "weight_*", "get", "object_*", redis.print);
   client.sort("mylist", "by", "weight_*", "get", "object_*", "get", "#",  redis.print);
   // Prints ~ Reply: qux,foo,bar
