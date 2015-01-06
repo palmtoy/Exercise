@@ -1,8 +1,15 @@
 #!/bin/bash
 
-CUR_PATH="~/Workspace/Projects/gam/sparx_gam";
+RND_NUM=$RANDOM
 
-if [[ $CUR_PATH == *"Projects/gam"* ]]
-then
-  echo "I'm in the correct folder."
-fi #ifend
+TMP_NAME=./git_cleaner_$RND_NUM.sh
+
+awk -F'client_gam' '{print "rm \"client_gam"$2"\""}' "$1" > $TMP_NAME
+
+chmod +x $TMP_NAME
+
+mv $TMP_NAME "$1"
+
+sh "$1"
+
+rm "$1"
