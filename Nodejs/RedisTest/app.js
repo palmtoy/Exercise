@@ -1,7 +1,7 @@
 var redis = require("redis"),
 client = redis.createClient();
 
-var uidPrefix = 'push_msg_key:uid:';
+var msgPrefix = 'push_msg:';
 var msgIdx = 'msg_index';
 
 var uid = 1000300;
@@ -16,7 +16,7 @@ client.select(1, function(err, rep) {
     return console.log('err = ', err);
   }
 
-  client.incr(uidPrefix+uid + ':' + msgIdx, function(err, rep) {
+  client.incr(msgPrefix+uid + ':' + msgIdx, function(err, rep) {
     if(err) {
       console.log("svr error: incr~ err, uid =", err, uid); 
       return client.quit();
@@ -24,12 +24,13 @@ client.select(1, function(err, rep) {
     console.log("incr~ rep =", rep); 
 
     var tmpStr = JSON.stringify(tmpMsg);
-    client.set(uidPrefix+uid + ':' + rep, tmpStr, function(err, rep) {
+    client.set(msgPrefix+uid + ':' + rep, tmpStr, function(err, rep) {
       if(err) {
         console.log("svr error: hset~ err, rep =", err, rep); 
         return client.quit();
       }
-      client.end();
+      // client.end();
+      client.quit();
     });
   });
 
