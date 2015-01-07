@@ -5,7 +5,6 @@ function print_results(obj) {
 }
 
 // build a map of all keys and their types
-
 client.select(1, function(err, rep) {
   if(err) {
     return console.log('err = ', err);
