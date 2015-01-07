@@ -36,19 +36,3 @@ client.select(1, function(err, rep) {
 
 });
 
-
-/*
-
-method: POST
-route : /fetchpushmsg
-
-app.post('/', function (req, res, next) {
-  var uid = req.session.uid;
-  var msgIdx = req.param('msgIndex');
-
-  var result = {};
-  return res.writeJson(err, result);
-});
-
-*/
-
