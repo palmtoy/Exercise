@@ -17,7 +17,7 @@ Object.defineProperty(consts, 'COMBAT_TIME_DELTA', {
 
 var ThrowError = function(tmpName) {
   throw 'Error!!! Try to change CONST: ' + tmpName;
-}
+};
 
 module.exports = consts;
 

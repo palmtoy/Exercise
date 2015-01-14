@@ -13,7 +13,7 @@ Object.defineProperty(consts, 'HERO_STATS', {
 
 var ThrowError = function(tmpName) {
   throw 'Dangerous! Try to change CONST: ' + tmpName;
-}
+};
 
 module.exports = consts;
 
