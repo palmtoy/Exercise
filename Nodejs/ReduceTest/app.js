@@ -1,11 +1,8 @@
-var originArray = [[0, 1], [2, 3], [4, 5]];
+var tmpArray = [ , 68, ];
 
-var flattened = originArray.reduce(function(a, b) {
-  return a.concat(b);
-}, [88, 99]);
+var total = tmpArray.reduce(function(a, b) {
+  return a + b;
+}, 100);
 
-// flattened is [0, 1, 2, 3, 4, 5]
-
-console.log('originArray = ', originArray);
-console.log('flattened = ', flattened);
+console.log('total = ', total);
 
