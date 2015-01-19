@@ -8,11 +8,11 @@ var inc = Fiber(function(start) {
     var ret = Fiber.yield(total);
     console.log('BBB ~   ret =', ret);
     total += ret;
-    console.log('CCC ~ total =', total);
+    console.log('CCC ~ total =', total + '\n');
   }
 });
 
 for (var ii = inc.run(2); ii <= 10; ii = inc.run(3)) {
-  console.log('         ii =', ii + '\n');
+  console.log('         ii =', ii);
 }
 
