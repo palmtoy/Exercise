@@ -1,7 +1,6 @@
 var Fiber = require('fibers');
 
-// Generator function. Returns a function which returns incrementing
-// Fibonacci numbers with each call.
+// Generator function. Returns a function which returns incrementing Fibonacci numbers with each call.
 function Fibonacci() {
   // Create a new fiber which yields sequential Fibonacci numbers
   var fiber = Fiber(function() {
@@ -20,7 +19,9 @@ function Fibonacci() {
 
 // Initialize a new Fibonacci sequence and iterate up to 1597
 var seq = Fibonacci();
-for (var ii = seq(); ii <= 1597; ii = seq()) {
+console.log('typeof seq =', typeof seq, '\n');
+
+for (var ii = seq(); ii <= 55; ii = seq()) {
   console.log(ii);
 }
 
