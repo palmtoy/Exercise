@@ -24,9 +24,9 @@ var calcTimerDelta = function(ms) {
   return ((new Date) - start);
 }.future(); // <-- important!
 
-
-Future.task(function() {
-  var val = calcTimerDelta(2000).wait();
+// And futures also include node-friendly callbacks if you don't want to use
+// wait()
+calcTimerDelta(2000).resolve(function(err, val) {
   console.log('Set timer for 2000ms, waited ' + val + 'ms');
-}).detach();
+});
 
