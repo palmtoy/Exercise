@@ -8,8 +8,7 @@ var options = {
   method: 'GET',
   headers: {
     'x-powered-by': 'HTTPClient.js'
-  },
-  body: 'Hi~'
+  }
 };
 
 console.log('options', options);
