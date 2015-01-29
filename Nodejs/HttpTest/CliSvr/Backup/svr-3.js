@@ -10,11 +10,10 @@ http.createServer(function (req, res) {
 
   var queryData = url.parse(req.url, true).query;
   console.log('queryData =' , JSON.stringify(queryData));
-  var now = new Date() + ' ~ ';
   if (queryData.name) {
-    res.end(now + 'Hello ' + queryData.name + '\n');
+    res.end('Hello ' + queryData.name + '\n');
   } else {
-    res.end(now + 'Hello World\n');
+    res.end('Hello World\n');
   }
 }).listen(8080, '127.0.0.1');
 
