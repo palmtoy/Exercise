@@ -19,3 +19,4 @@ exports.app = function(request) {
 	};
 };
 
+console.log('HTTP svr is running on localhost ...');

@@ -12,3 +12,5 @@ exports.app = function(request) {
 		body: openRaw(module.filename)
 	};
 };
+
+console.log('HTTP svr is running on localhost ...');
