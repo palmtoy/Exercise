@@ -1,8 +1,11 @@
 var redis = require("redis")
   , client = redis.createClient()
   , perfixStr = 'performance:'
-  // , numberOfElements = 50000;
-  , numberOfElements = 5;
+  , dataStr = require("./data.json");
+
+var numberOfElements = parseInt(process.argv[2]) || 1;
+
+dataStr = JSON.stringify(dataStr);
 
 client.del({}, function(err, reply){
   redisWrite();
@@ -11,7 +14,7 @@ client.del({}, function(err, reply){
 function redisWrite () {
   console.time('redisWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    client.set(perfixStr + i, i + " ~ some fantastic value ", function(err, data){
+    client.set(perfixStr + i, i + " ~ " + dataStr, function(err, data){
       if (--i === 0) {
         console.timeEnd('redisWrite');
         redisRead();
@@ -27,6 +30,7 @@ function redisRead(){
     client.get(perfixStr + i, function (err, reply) {
       if (--i === 0) {
         console.timeEnd('redisRead');
+        process.exit();
       }
     });
   }

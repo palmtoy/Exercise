@@ -1,0 +1,4039 @@
+{
+    "_ts" : 1425017315,
+    "battle_data" : {
+        "uid" : 1000001,
+        "campaignId" : 1002377,
+        "bid" : 1006959,
+        "encounterGroup" : "CentaurPlainsDemo",
+        "locator" : "EnemySpawns_2",
+        "turnHistory" : [ 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 1,
+                        "turnNumForShow" : 12,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : false,
+                        "qteSuccessMsg" : "",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "1" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        11528, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        2600, 
+                                        2600, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                89
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Slasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 5,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        11237, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        2600, 
+                                        2600, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                291
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        2
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        11237, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        2600, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                875
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        10876, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        2600, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                361
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        10876, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                799
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        10490, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                386
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        10117, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                373
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9756, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4911, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                361
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:24 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }, 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 2,
+                        "turnNumForShow" : 11,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : false,
+                        "qteSuccessMsg" : "",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "2" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9756, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                66
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Slasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 5,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9379, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        2600
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                377
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        4
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9379, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                1262
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9029, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        1801, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                350
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        9029, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                901
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        8622, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                407
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        8369, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                253
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7977, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4845, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                392
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:36 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }, 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 3,
+                        "turnNumForShow" : 10,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : false,
+                        "qteSuccessMsg" : "",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "3" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7977, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4789, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                56
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Slasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 15,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7577, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        4789, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                400
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7577, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                1016
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7192, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        2600, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                385
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        3
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        7192, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                1287
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        6807, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                385
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        4600, 
+                                        6403, 
+                                        4600
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                404
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 6,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        0, 
+                                        1, 
+                                        2
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5963, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3773, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                826
+                                            ], 
+                                            [ 
+                                                440
+                                            ], 
+                                            [ 
+                                                810
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_M_RainOfFire",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 0,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:45 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }, 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 4,
+                        "turnNumForShow" : 9,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : false,
+                        "qteSuccessMsg" : "",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "4" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5963, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                92
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Slasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 15,
+                                    "rageAfterSkill" : 20,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5586, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        900, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                377
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5586, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                799
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5301, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        1725, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                285
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        2
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        5301, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                1211
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        4894, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                407
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 0,
+                                    "rageAfterSkill" : 2,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        4529, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                365
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        4160, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3681, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                369
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 6,
+                                    "rageAfterSkill" : 8,
+                                    "timeStamp" : "Fri Feb 27 2015 14:07:57 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }, 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 5,
+                        "turnNumForShow" : 8,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : true,
+                        "qteSuccessMsg" : "Damage Bonus!",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "5" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        4160, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                96
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_UltimateSlasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : true,
+                                    "qteSuccessMsg" : "Damage Bonus!",
+                                    "rageBeforeSkill" : 20,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        3768, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        514, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                392
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 8,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        2
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        3768, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        0, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                773
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 8,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        3353, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        0, 
+                                        1313, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                415
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 8,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        3
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        3353, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                926
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 8,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        2942, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                411
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 2,
+                                    "rageAfterSkill" : 4,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        2684, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3585, 
+                                        101, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                258
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 8,
+                                    "rageAfterSkill" : 10,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:12 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }, 
+            {
+                "component" : "CombatEventManager",
+                "message" : "attack_actions",
+                "payload" : {
+                    "combat" : {
+                        "current_turn" : 6,
+                        "turnNumForShow" : 7,
+                        "damageMultiplier" : 100,
+                        "isQTESuccess" : false,
+                        "qteSuccessMsg" : "",
+                        "buffData" : {
+                            "stoneGazeList" : {
+                                "0" : [],
+                                "1" : []
+                            }
+                        },
+                        "attack_actions" : {
+                            "6" : [ 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        0
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        2684, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        101, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                60
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Slasher",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 15,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 1,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        2272, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        101, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                412
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                true
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 12,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 2,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        2272, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        0, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                858
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 12,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 3,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        1864, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        0, 
+                                        0, 
+                                        387, 
+                                        1338
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                408
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 12,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 0,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        4
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        1864, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        0, 
+                                        0, 
+                                        387, 
+                                        429
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                909
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_A_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 1,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 12,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 4,
+                                    "targetList" : [ 
+                                        1
+                                    ],
+                                    "challengerHP" : [ 
+                                        3774, 
+                                        1483, 
+                                        3790
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        0, 
+                                        0, 
+                                        387, 
+                                        429
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                381
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_W_Default",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 10,
+                                    "rageAfterSkill" : 12,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }, 
+                                {
+                                    "attackerTeam" : 1,
+                                    "attackerId" : 0,
+                                    "targetList" : [ 
+                                        0, 
+                                        1, 
+                                        2
+                                    ],
+                                    "challengerHP" : [ 
+                                        3050, 
+                                        1051, 
+                                        3027
+                                    ],
+                                    "defenderHP" : [ 
+                                        3525, 
+                                        0, 
+                                        0, 
+                                        387, 
+                                        429
+                                    ],
+                                    "damageData" : {
+                                        "damageList" : [ 
+                                            [ 
+                                                724
+                                            ], 
+                                            [ 
+                                                432
+                                            ], 
+                                            [ 
+                                                763
+                                            ]
+                                        ],
+                                        "isCritList" : [ 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ]
+                                        ],
+                                        "isBlockList" : [ 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ], 
+                                            [ 
+                                                false
+                                            ]
+                                        ]
+                                    },
+                                    "healData" : {
+                                        "healingList" : [],
+                                        "healingDealt" : []
+                                    },
+                                    "skill" : "SKILL_M_RainOfFire",
+                                    "skillAttr" : null,
+                                    "targetTeam" : 0,
+                                    "isQTESuccess" : false,
+                                    "rageBeforeSkill" : 4,
+                                    "rageAfterSkill" : 0,
+                                    "timeStamp" : "Fri Feb 27 2015 14:08:25 GMT+0800 (CST)"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        ],
+        "teams" : [ 
+            {
+                "name" : "challenger",
+                "teamIndex" : 0,
+                "aliveCount" : 3,
+                "combatants" : [ 
+                    {
+                        "heroStats" : {
+                            "lv" : 50,
+                            "PATK" : 4650,
+                            "PDEF" : 3350,
+                            "MATK" : 50,
+                            "MDEF" : 2250,
+                            "MaxHP" : 4600,
+                            "Block" : 100,
+                            "Crit" : 800,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "hp" : 4600
+                        },
+                        "hp" : 3050,
+                        "uid" : 1000001,
+                        "name" : "challenger0",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : true,
+                        "isEnemy" : null,
+                        "enemyId" : null,
+                        "indexOnTeam" : 0,
+                        "teamIndex" : 0,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_A_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyRandom1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 12,
+                        "selectedSkillIndex" : 0
+                    }, 
+                    {
+                        "heroStats" : {
+                            "Armor" : 86,
+                            "Block" : 1500,
+                            "Charisma" : 610,
+                            "Crit" : 1026,
+                            "INT" : 33,
+                            "MATK" : 1166,
+                            "MDEF" : 3231,
+                            "MaxHP" : 11528,
+                            "PATK" : 569,
+                            "PDEF" : 4479,
+                            "STA" : 103,
+                            "STR" : 103,
+                            "TroopCount" : 610,
+                            "_ts" : 1425017168,
+                            "battleRating" : 20071,
+                            "hp" : 11528,
+                            "maxRage" : 100,
+                            "rage" : 0,
+                            "uid" : 1000001
+                        },
+                        "hp" : 1051,
+                        "uid" : 1000001,
+                        "name" : "challenger1",
+                        "isUser" : true,
+                        "userSession" : {
+                            "start_time" : 1425017163,
+                            "access_token" : "ZngyiKy_HnLrSPEhCI8_eDly7LxvVSIRIrRFS_1x80k.eyJ1aWQiOjcxOTAsImciOiJzYW5kYm94IiwiYSI6ImRldmljZSIsImFpZCI6IjU5NkVFMDQyLTVDNEQtNUZCMy1BMTVGLTRDMjc5RUFCRkRDOS1FRElUT1IiLCJ0cyI6MTQyNTAxNzE1OSwicyI6MTAzMjExMTM5NywiYWxnb3JpdGhtIjoic2hhMjU2In0",
+                            "geo" : "US",
+                            "uid" : 1000001,
+                            "naid" : 7190,
+                            "user" : {
+                                "_id" : "54ddc423a28dce856689ff7e",
+                                "_ts" : 1425017163,
+                                "cl" : 1,
+                                "cl_join" : 1,
+                                "classId" : "Warrior",
+                                "colorIndex" : {
+                                    "eyesColorIndex" : 1,
+                                    "hairColorIndex" : 1,
+                                    "skinColorIndex" : 1,
+                                    "equipmentColorIndex" : 0
+                                },
+                                "device" : {
+                                    "mac" : "596EE042-5C4D-5FB3-A15F-4C279EABFDC9",
+                                    "os" : "Mac OS X 10.9.5",
+                                    "gpu" : "editor",
+                                    "udid" : "596EE042-5C4D-5FB3-A15F-4C279EABFDC9-EDITOR",
+                                    "model" : "editor",
+                                    "device_id" : "BEI-zgli01-mac",
+                                    "caps" : "editor"
+                                },
+                                "geo" : "US",
+                                "info" : null,
+                                "installed" : true,
+                                "inventory" : {
+                                    "bag_items" : {
+                                        "current_use" : 11,
+                                        "max_size" : 96
+                                    }
+                                },
+                                "ip" : "127.0.0.1",
+                                "lang" : "en",
+                                "level" : 50,
+                                "levelrewards" : {
+                                    "xp" : {
+                                        "last_awarded_level" : 50,
+                                        "nextLevelXp" : 142747965,
+                                        "prevLevelXp" : 126824337
+                                    }
+                                },
+                                "locale" : "en_US",
+                                "logins" : 7,
+                                "naid" : 7190,
+                                "platform" : "android",
+                                "platforms" : {
+                                    "android" : {
+                                        "ts" : 1425017163,
+                                        "udid" : null
+                                    }
+                                },
+                                "ref" : "accounts",
+                                "res" : {
+                                    "gold" : {
+                                        "v" : 630000
+                                    },
+                                    "xp" : {
+                                        "v" : 126834337
+                                    }
+                                },
+                                "skillPoints" : 1,
+                                "templateName" : "WARRIOR_LEVEL_50_M4",
+                                "time_join" : 1423819811,
+                                "time_join_day" : 5522,
+                                "time_join_hr" : 132537,
+                                "time_last" : 1425017163,
+                                "time_last_day" : 5536,
+                                "time_last_hr" : 132870,
+                                "tz" : 28800,
+                                "udid" : null,
+                                "uid" : 1000001,
+                                "version" : "0.1.1",
+                                "exp" : {}
+                            },
+                            "v" : "0.1.1",
+                            "l" : "en_US",
+                            "lang" : "en",
+                            "p" : "android",
+                            "udid" : null,
+                            "co" : 1423819811,
+                            "level" : 50,
+                            "name" : "",
+                            "tz" : 28800,
+                            "cl" : 1,
+                            "iseditor" : false,
+                            "width" : -1,
+                            "height" : -1,
+                            "exp" : [],
+                            "expiry" : 1425020763
+                        },
+                        "isPlayerTroop" : null,
+                        "isEnemy" : null,
+                        "enemyId" : null,
+                        "indexOnTeam" : 1,
+                        "teamIndex" : 0,
+                        "row" : "front",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : true,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : false
+                            }, 
+                            {
+                                "name" : "SKILL_W_Slasher",
+                                "level" : 4,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 5,
+                                "cooldown" : 5,
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : 110,
+                                "B" : 95,
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 1,
+                                "qteActivated" : false,
+                                "isPATK" : true,
+                                "noCdFlag" : false
+                            }, 
+                            {
+                                "name" : "SKILL_W_UltimateSlasher",
+                                "level" : 4,
+                                "isDefaultFlag" : null,
+                                "type" : "Swipe",
+                                "qte_a" : "Down",
+                                "qte_b" : 34,
+                                "qte_c" : 6,
+                                "rage" : -10,
+                                "cooldown" : 5,
+                                "cooldown_turn_num" : 1,
+                                "target" : "EnemyMinHP",
+                                "A" : 135,
+                                "B" : 200,
+                                "C" : 25,
+                                "D" : 10,
+                                "E" : "Right",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "Damage Bonus!",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 1,
+                                "index" : 2,
+                                "qteActivated" : false,
+                                "isPATK" : true,
+                                "noCdFlag" : false,
+                                "qteSuccessMsg" : "Damage Bonus!"
+                            }, 
+                            {
+                                "name" : "SKILL_W_ApollosShield",
+                                "level" : 2,
+                                "isDefaultFlag" : null,
+                                "type" : "XCircle",
+                                "qte_a" : 34,
+                                "qte_b" : 6,
+                                "qte_c" : "",
+                                "rage" : -15,
+                                "cooldown" : 20,
+                                "cooldown_turn_num" : 4,
+                                "target" : "AllyAll",
+                                "A" : 30,
+                                "B" : 3,
+                                "C" : 1,
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "Shield Extended!",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 4,
+                                "index" : 3,
+                                "qteActivated" : false,
+                                "isPATK" : false,
+                                "noCdFlag" : false
+                            }, 
+                            {
+                                "name" : "SKILL_W_Whirlwind",
+                                "level" : 2,
+                                "isDefaultFlag" : null,
+                                "type" : "Swipe",
+                                "qte_a" : "Right",
+                                "qte_b" : 34,
+                                "qte_c" : 6,
+                                "rage" : -30,
+                                "cooldown" : 30,
+                                "cooldown_turn_num" : 6,
+                                "target" : "EnemyAll",
+                                "A" : 150,
+                                "B" : 25,
+                                "C" : 250,
+                                "D" : 25,
+                                "E" : 10,
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "Damage Bonus!",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 6,
+                                "index" : 4,
+                                "qteActivated" : false,
+                                "isPATK" : false,
+                                "noCdFlag" : false
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 15,
+                        "equipmentSkills" : [],
+                        "selectedSkillIndex" : 0,
+                        "targetListFromCli" : [ 
+                            {
+                                "teamIndex" : 1,
+                                "indexOnTeam" : 0
+                            }
+                        ]
+                    }, 
+                    {
+                        "heroStats" : {
+                            "lv" : 50,
+                            "PATK" : 4650,
+                            "PDEF" : 3350,
+                            "MATK" : 50,
+                            "MDEF" : 2250,
+                            "MaxHP" : 4600,
+                            "Block" : 100,
+                            "Crit" : 800,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "hp" : 4600
+                        },
+                        "hp" : 3027,
+                        "uid" : 1000001,
+                        "name" : "challenger2",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : true,
+                        "isEnemy" : null,
+                        "enemyId" : null,
+                        "indexOnTeam" : 2,
+                        "teamIndex" : 0,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_A_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyRandom1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 12,
+                        "selectedSkillIndex" : 0
+                    }
+                ],
+                "attackQueue" : [ 
+                    1, 
+                    2, 
+                    0
+                ],
+                "attackQueueIndex" : 3
+            }, 
+            {
+                "name" : "defender",
+                "teamIndex" : 1,
+                "aliveCount" : 3,
+                "combatants" : [ 
+                    {
+                        "heroStats" : {
+                            "id" : "EnemyCentaur_White_CentaurWilds_Axe",
+                            "lv" : 50,
+                            "PATK" : 4200,
+                            "PDEF" : 2650,
+                            "MATK" : 4200,
+                            "MDEF" : 2650,
+                            "MaxHP" : 5000,
+                            "Block" : 100,
+                            "Crit" : 200,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "skill1" : "SKILL_W_Default",
+                            "lv1" : 1,
+                            "skill2" : "SKILL_M_RainOfFire",
+                            "lv2" : 1,
+                            "skill3" : "None",
+                            "lv3" : 0,
+                            "skill4" : "None",
+                            "lv4" : 0,
+                            "skill5" : "None",
+                            "lv5" : 0,
+                            "hp" : 5000,
+                            "rage" : 0,
+                            "maxRage" : 100,
+                            "ragePerRound" : null
+                        },
+                        "hp" : 3525,
+                        "uid" : 1000001,
+                        "name" : "defender0",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : null,
+                        "isEnemy" : true,
+                        "enemyId" : "EnemyCentaur_White_CentaurWilds_Axe",
+                        "indexOnTeam" : 0,
+                        "teamIndex" : 1,
+                        "row" : "front",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true,
+                                "noCdFlag" : false
+                            }, 
+                            {
+                                "name" : "SKILL_M_RainOfFire",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : -4,
+                                "cooldown" : 10,
+                                "cooldown_turn_num" : 2,
+                                "target" : "EnemyAll",
+                                "A" : 85,
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 2,
+                                "cooldown_total" : 2,
+                                "index" : 1,
+                                "qteActivated" : false,
+                                "isPATK" : false,
+                                "noCdFlag" : false
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 0,
+                        "selectedSkillIndex" : 0
+                    }, 
+                    {
+                        "heroStats" : {
+                            "id" : "EnemyWarrior_CentaurWilds_Sword",
+                            "lv" : 45,
+                            "PATK" : 3850,
+                            "PDEF" : 2950,
+                            "MATK" : 50,
+                            "MDEF" : 50,
+                            "MaxHP" : 2600,
+                            "Block" : 10,
+                            "Crit" : 100,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "skill1" : "SKILL_W_Default",
+                            "lv1" : 1,
+                            "skill2" : "None",
+                            "lv2" : 0,
+                            "skill3" : "None",
+                            "lv3" : 0,
+                            "skill4" : "None",
+                            "lv4" : 0,
+                            "skill5" : "None",
+                            "lv5" : 0,
+                            "hp" : 2600,
+                            "rage" : 0,
+                            "maxRage" : 100,
+                            "ragePerRound" : null
+                        },
+                        "hp" : 0,
+                        "uid" : 1000001,
+                        "name" : "defender1",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : null,
+                        "isEnemy" : true,
+                        "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                        "indexOnTeam" : 1,
+                        "teamIndex" : 1,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 12,
+                        "selectedSkillIndex" : 0
+                    }, 
+                    {
+                        "heroStats" : {
+                            "id" : "EnemyWarrior_CentaurWilds_Sword",
+                            "lv" : 45,
+                            "PATK" : 3850,
+                            "PDEF" : 2950,
+                            "MATK" : 50,
+                            "MDEF" : 50,
+                            "MaxHP" : 2600,
+                            "Block" : 10,
+                            "Crit" : 100,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "skill1" : "SKILL_W_Default",
+                            "lv1" : 1,
+                            "skill2" : "None",
+                            "lv2" : 0,
+                            "skill3" : "None",
+                            "lv3" : 0,
+                            "skill4" : "None",
+                            "lv4" : 0,
+                            "skill5" : "None",
+                            "lv5" : 0,
+                            "hp" : 2600,
+                            "rage" : 0,
+                            "maxRage" : 100,
+                            "ragePerRound" : null
+                        },
+                        "hp" : 0,
+                        "uid" : 1000001,
+                        "name" : "defender2",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : null,
+                        "isEnemy" : true,
+                        "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                        "indexOnTeam" : 2,
+                        "teamIndex" : 1,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 8,
+                        "selectedSkillIndex" : 0
+                    }, 
+                    {
+                        "heroStats" : {
+                            "id" : "EnemyWarrior_CentaurWilds_Sword",
+                            "lv" : 45,
+                            "PATK" : 3850,
+                            "PDEF" : 2950,
+                            "MATK" : 50,
+                            "MDEF" : 50,
+                            "MaxHP" : 2600,
+                            "Block" : 10,
+                            "Crit" : 100,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "skill1" : "SKILL_W_Default",
+                            "lv1" : 1,
+                            "skill2" : "None",
+                            "lv2" : 0,
+                            "skill3" : "None",
+                            "lv3" : 0,
+                            "skill4" : "None",
+                            "lv4" : 0,
+                            "skill5" : "None",
+                            "lv5" : 0,
+                            "hp" : 2600,
+                            "rage" : 0,
+                            "maxRage" : 100,
+                            "ragePerRound" : null
+                        },
+                        "hp" : 387,
+                        "uid" : 1000001,
+                        "name" : "defender3",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : null,
+                        "isEnemy" : true,
+                        "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                        "indexOnTeam" : 3,
+                        "teamIndex" : 1,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 12,
+                        "selectedSkillIndex" : 0
+                    }, 
+                    {
+                        "heroStats" : {
+                            "id" : "EnemyWarrior_CentaurWilds_Sword",
+                            "lv" : 45,
+                            "PATK" : 3850,
+                            "PDEF" : 2950,
+                            "MATK" : 50,
+                            "MDEF" : 50,
+                            "MaxHP" : 2600,
+                            "Block" : 10,
+                            "Crit" : 100,
+                            "rage_initial" : 0,
+                            "rage_max" : 100,
+                            "skill1" : "SKILL_W_Default",
+                            "lv1" : 1,
+                            "skill2" : "None",
+                            "lv2" : 0,
+                            "skill3" : "None",
+                            "lv3" : 0,
+                            "skill4" : "None",
+                            "lv4" : 0,
+                            "skill5" : "None",
+                            "lv5" : 0,
+                            "hp" : 2600,
+                            "rage" : 0,
+                            "maxRage" : 100,
+                            "ragePerRound" : null
+                        },
+                        "hp" : 429,
+                        "uid" : 1000001,
+                        "name" : "defender4",
+                        "isUser" : false,
+                        "userSession" : null,
+                        "isPlayerTroop" : null,
+                        "isEnemy" : true,
+                        "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                        "indexOnTeam" : 4,
+                        "teamIndex" : 1,
+                        "row" : "back",
+                        "activeSkills" : [ 
+                            {
+                                "name" : "SKILL_W_Default",
+                                "level" : 1,
+                                "isDefaultFlag" : null,
+                                "type" : "Active",
+                                "qte_a" : "",
+                                "qte_b" : "",
+                                "qte_c" : "",
+                                "rage" : 2,
+                                "cooldown" : "",
+                                "cooldown_turn_num" : 0,
+                                "target" : "EnemyFront1",
+                                "A" : "",
+                                "B" : "",
+                                "C" : "",
+                                "D" : "",
+                                "E" : "",
+                                "F" : "",
+                                "G" : "",
+                                "H" : "",
+                                "I" : "",
+                                "J" : "",
+                                "K" : "",
+                                "L" : "",
+                                "M" : "",
+                                "qteSuccess" : "",
+                                "cooldown_left" : 0,
+                                "cooldown_total" : 0,
+                                "index" : 0,
+                                "qteActivated" : false,
+                                "isPATK" : true
+                            }
+                        ],
+                        "attributeHooks" : {
+                            "modify_crit" : {},
+                            "modify_total_damage" : {},
+                            "modify_healing" : {},
+                            "modify_disable" : {},
+                            "after_execute_skill" : {},
+                            "after_block" : {}
+                        },
+                        "combatAttributes" : {
+                            "crit_scale" : 1,
+                            "total_damage_scale" : 1,
+                            "heal_scale" : 1,
+                            "hp_boost" : 1,
+                            "crit_add" : 0,
+                            "rage_add" : 0,
+                            "total_damage_delta" : 0,
+                            "damage_reflected" : 0,
+                            "damage_self" : 0,
+                            "disable" : false
+                        },
+                        "maxRage" : 100,
+                        "myRage" : 12,
+                        "selectedSkillIndex" : 0
+                    }
+                ],
+                "attackQueue" : [ 
+                    3, 
+                    4, 
+                    0
+                ],
+                "attackQueueIndex" : 3
+            }
+        ],
+        "state" : "WaitForSkill",
+        "winner" : -1,
+        "teamCreationData" : [ 
+            [ 
+                {
+                    "slot" : 0,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isPlayerTroop" : true
+                }, 
+                {
+                    "slot" : 1,
+                    "uid" : 1000001,
+                    "isUser" : true,
+                    "userSession" : {
+                        "start_time" : 1425017163,
+                        "access_token" : "ZngyiKy_HnLrSPEhCI8_eDly7LxvVSIRIrRFS_1x80k.eyJ1aWQiOjcxOTAsImciOiJzYW5kYm94IiwiYSI6ImRldmljZSIsImFpZCI6IjU5NkVFMDQyLTVDNEQtNUZCMy1BMTVGLTRDMjc5RUFCRkRDOS1FRElUT1IiLCJ0cyI6MTQyNTAxNzE1OSwicyI6MTAzMjExMTM5NywiYWxnb3JpdGhtIjoic2hhMjU2In0",
+                        "geo" : "US",
+                        "uid" : 1000001,
+                        "naid" : 7190,
+                        "user" : {
+                            "_id" : "54ddc423a28dce856689ff7e",
+                            "_ts" : 1425017163,
+                            "cl" : 1,
+                            "cl_join" : 1,
+                            "classId" : "Warrior",
+                            "colorIndex" : {
+                                "eyesColorIndex" : 1,
+                                "hairColorIndex" : 1,
+                                "skinColorIndex" : 1,
+                                "equipmentColorIndex" : 0
+                            },
+                            "device" : {
+                                "mac" : "596EE042-5C4D-5FB3-A15F-4C279EABFDC9",
+                                "os" : "Mac OS X 10.9.5",
+                                "gpu" : "editor",
+                                "udid" : "596EE042-5C4D-5FB3-A15F-4C279EABFDC9-EDITOR",
+                                "model" : "editor",
+                                "device_id" : "BEI-zgli01-mac",
+                                "caps" : "editor"
+                            },
+                            "geo" : "US",
+                            "info" : null,
+                            "installed" : true,
+                            "inventory" : {
+                                "bag_items" : {
+                                    "current_use" : 11,
+                                    "max_size" : 96
+                                }
+                            },
+                            "ip" : "127.0.0.1",
+                            "lang" : "en",
+                            "level" : 50,
+                            "levelrewards" : {
+                                "xp" : {
+                                    "last_awarded_level" : 50,
+                                    "nextLevelXp" : 142747965,
+                                    "prevLevelXp" : 126824337
+                                }
+                            },
+                            "locale" : "en_US",
+                            "logins" : 7,
+                            "naid" : 7190,
+                            "platform" : "android",
+                            "platforms" : {
+                                "android" : {
+                                    "ts" : 1425017163,
+                                    "udid" : null
+                                }
+                            },
+                            "ref" : "accounts",
+                            "res" : {
+                                "gold" : {
+                                    "v" : 630000
+                                },
+                                "xp" : {
+                                    "v" : 126834337
+                                }
+                            },
+                            "skillPoints" : 1,
+                            "templateName" : "WARRIOR_LEVEL_50_M4",
+                            "time_join" : 1423819811,
+                            "time_join_day" : 5522,
+                            "time_join_hr" : 132537,
+                            "time_last" : 1425017163,
+                            "time_last_day" : 5536,
+                            "time_last_hr" : 132870,
+                            "tz" : 28800,
+                            "udid" : null,
+                            "uid" : 1000001,
+                            "version" : "0.1.1",
+                            "exp" : {}
+                        },
+                        "v" : "0.1.1",
+                        "l" : "en_US",
+                        "lang" : "en",
+                        "p" : "android",
+                        "udid" : null,
+                        "co" : 1423819811,
+                        "level" : 50,
+                        "name" : "",
+                        "tz" : 28800,
+                        "cl" : 1,
+                        "iseditor" : false,
+                        "width" : -1,
+                        "height" : -1,
+                        "exp" : [],
+                        "expiry" : 1425020763
+                    }
+                }, 
+                {
+                    "slot" : 2,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isPlayerTroop" : true
+                }
+            ], 
+            [ 
+                {
+                    "slot" : 0,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isEnemy" : true,
+                    "enemyId" : "EnemyCentaur_White_CentaurWilds_Axe",
+                    "row" : "front"
+                }, 
+                {
+                    "slot" : 1,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isEnemy" : true,
+                    "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                    "row" : "back"
+                }, 
+                {
+                    "slot" : 2,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isEnemy" : true,
+                    "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                    "row" : "back"
+                }, 
+                {
+                    "slot" : 3,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isEnemy" : true,
+                    "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                    "row" : "back"
+                }, 
+                {
+                    "slot" : 4,
+                    "uid" : 1000001,
+                    "isUser" : false,
+                    "isEnemy" : true,
+                    "enemyId" : "EnemyWarrior_CentaurWilds_Sword",
+                    "row" : "back"
+                }
+            ]
+        ],
+        "turnCount" : 6,
+        "skillTimeout" : 8.5,
+        "qteTimeout" : 2,
+        "roundsPerTurn" : 1,
+        "resurrection" : false,
+        "atkActNum" : 1,
+        "returnState" : "Campaign",
+        "isPaused" : false,
+        "heroObjIndex" : {
+            "team" : 0,
+            "combatant" : 1
+        },
+        "attackingTeam" : 1,
+        "skillTargets" : {
+            "0" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        1
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 5
+                }
+            ],
+            "1" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 5
+                }
+            ],
+            "2" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        2
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 5
+                }
+            ],
+            "3" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        2
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 5
+                }
+            ],
+            "4" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        3
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 5
+                }
+            ],
+            "5" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 4
+                }
+            ],
+            "6" : [ 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0
+                    ],
+                    "required" : [ 
+                        0
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        3
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 1
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "required" : [ 
+                        0, 
+                        1, 
+                        2
+                    ],
+                    "targetTeam" : 0,
+                    "maxNum" : 3
+                }, 
+                {
+                    "potential" : [ 
+                        0, 
+                        3, 
+                        4
+                    ],
+                    "required" : [ 
+                        0, 
+                        3, 
+                        4
+                    ],
+                    "targetTeam" : 1,
+                    "maxNum" : 3
+                }
+            ]
+        },
+        "damageMult" : 1
+    },
+    "bid" : 1006959,
+    "lock" : {
+        "mutex" : false,
+        "timeStamp" : 0
+    }
+}
