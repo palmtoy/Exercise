@@ -7,12 +7,14 @@ var numberOfElements = parseInt(process.argv[2]) || 1;
 
 dataStr = JSON.stringify(dataStr);
 
-redisWrite();
+client.del({}, function(err, reply){
+  redisWrite();
+});
 
 function redisWrite () {
   console.time('redisWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    client.set(perfixStr + i, i + " ~ " + Date() + " ~ " + dataStr, function(err, data){
+    client.set(perfixStr + i, i + " ~ " + dataStr, function(err, data){
       if (--i === 0) {
         console.timeEnd('redisWrite');
         redisRead();
