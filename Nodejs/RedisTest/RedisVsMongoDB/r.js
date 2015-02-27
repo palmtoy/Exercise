@@ -11,11 +11,11 @@ var timeStr = Date();
 redisWrite();
 
 function redisWrite () {
-  console.time('RedisWrite');
+  console.time('TimeCost-RedisWrite');
   for (var i = 0; i < numberOfElements; i++) {
     client.set(perfixStr + i, i + " ~ " + timeStr + " ~ " + dataStr, function(err, data){
       if (--i === 0) {
-        console.timeEnd('RedisWrite');
+        console.timeEnd('TimeCost-RedisWrite');
         redisRead();
       }
     });
@@ -24,11 +24,11 @@ function redisWrite () {
 
 function redisRead(){
   client = redis.createClient();
-  console.time('RedisRead');
+  console.time('TimeCost-RedisRead');
   for (var i = 0; i < numberOfElements; i++) {
     client.get(perfixStr + i, function (err, reply) {
       if (--i === 0) {
-        console.timeEnd('RedisRead');
+        console.timeEnd('TimeCost-RedisRead');
         process.exit();
       }
     });
