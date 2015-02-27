@@ -6,15 +6,16 @@ var redis = require("redis")
 var numberOfElements = parseInt(process.argv[2]) || 1;
 
 dataStr = JSON.stringify(dataStr);
+var timeStr = Date();
 
 redisWrite();
 
 function redisWrite () {
-  console.time('redisWrite');
+  console.time('RedisWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    client.set(perfixStr + i, i + " ~ " + Date() + " ~ " + dataStr, function(err, data){
+    client.set(perfixStr + i, i + " ~ " + timeStr + " ~ " + dataStr, function(err, data){
       if (--i === 0) {
-        console.timeEnd('redisWrite');
+        console.timeEnd('RedisWrite');
         redisRead();
       }
     });
@@ -23,11 +24,11 @@ function redisWrite () {
 
 function redisRead(){
   client = redis.createClient();
-  console.time('redisRead');
+  console.time('RedisRead');
   for (var i = 0; i < numberOfElements; i++) {
     client.get(perfixStr + i, function (err, reply) {
       if (--i === 0) {
-        console.timeEnd('redisRead');
+        console.timeEnd('RedisRead');
         process.exit();
       }
     });
