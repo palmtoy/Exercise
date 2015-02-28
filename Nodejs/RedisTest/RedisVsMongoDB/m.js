@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 function mongoWrite(collection, db) {
   console.time('TimeCost-MongoWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    dataObj.randomNum = Math.floor(Math.random() * numberOfElements + 1);
+    dataObj.currentNum = i;
     collection.insert({id: perfixStr + i, value: dataObj}, function(err, docs) {
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoWrite');
