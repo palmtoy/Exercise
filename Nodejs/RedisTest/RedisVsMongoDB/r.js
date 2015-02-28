@@ -11,7 +11,7 @@ redisWrite();
 function redisWrite () {
   console.time('TimeCost-RedisWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    tmpDataStr = JSON.stringify(dataStr);
+    var tmpDataStr = JSON.stringify(dataStr);
     client.set(perfixStr + i, tmpDataStr, function(err, data){
       if (--i === 0) {
         console.timeEnd('TimeCost-RedisWrite');
