@@ -27,6 +27,8 @@ function mongoRead(collection,db) {
   console.time('TimeCost-MongoRead');
   for (var i = 0; i < numberOfElements; i++) {
     collection.findOne({id: perfixStr + i}, function(err, results) {
+      console.log('typeof results = ', typeof results);
+      console.log('results = ', results);
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoRead');
         db.close();
