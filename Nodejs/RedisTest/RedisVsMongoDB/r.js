@@ -1,7 +1,7 @@
 var redis = require("redis")
   , client = redis.createClient()
   , perfixStr = 'performance:'
-  , dataStr = require("./data.json");
+  , dataObj = require("./data.json");
 
 var numberOfElements = parseInt(process.argv[2]) || 1;
 
@@ -11,7 +11,8 @@ redisWrite();
 function redisWrite () {
   console.time('TimeCost-RedisWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    client.set(perfixStr + i, JSON.stringify(dataStr), function(err, data){
+    dataObj.randomNum = Math.floor(Math.random() * numberOfElements + 1);
+    client.set(perfixStr + i, JSON.stringify(dataObj), function(err, data){
       if (--i === 0) {
         console.timeEnd('TimeCost-RedisWrite');
         redisRead();

@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient
   , perfixStr = 'performance:'
-  , dataStr = require("./data.json");
+  , dataObj = require("./data.json");
 
 var numberOfElements = parseInt(process.argv[2]) || 1;
 
@@ -14,7 +14,8 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 function mongoWrite(collection, db) {
   console.time('TimeCost-MongoWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    collection.insert({id: perfixStr + i, value: dataStr}, function(err, docs) {
+    dataObj.randomNum = Math.floor(Math.random() * numberOfElements + 1);
+    collection.insert({id: perfixStr + i, value: dataObj}, function(err, docs) {
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoWrite');
         mongoRead(collection, db);
