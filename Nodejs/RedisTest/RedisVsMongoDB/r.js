@@ -20,12 +20,12 @@ function redisWrite () {
   };
 }
 
-function redisRead(){
+function redisRead() {
   client = redis.createClient();
   console.time('TimeCost-RedisRead');
   for (var i = 0; i < numberOfElements; i++) {
     client.get(perfixStr + i, function (err, reply) {
-      JSON.parse(reply);
+      var tmpDataObj = JSON.parse(reply);
       if (--i === 0) {
         console.timeEnd('TimeCost-RedisRead');
         process.exit();
