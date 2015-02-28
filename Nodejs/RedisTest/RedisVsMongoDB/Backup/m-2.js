@@ -4,6 +4,8 @@ var MongoClient = require('mongodb').MongoClient
 
 var numberOfElements = parseInt(process.argv[2]) || 1;
 
+dataStr = JSON.stringify(dataStr);
+var timeStr = Date();
 
 MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
   var collection = db.collection('benchmark');
@@ -14,7 +16,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/test', function(err, db) {
 function mongoWrite(collection, db) {
   console.time('TimeCost-MongoWrite');
   for (var i = 0; i < numberOfElements; i++) {
-    collection.insert({id: perfixStr + i, value: dataStr}, function(err, docs) {
+    collection.insert({id: perfixStr + i, value: i + " ~ " + timeStr + " ~ " + dataStr}, function(err, docs) {
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoWrite');
         mongoRead(collection, db);
@@ -27,7 +29,6 @@ function mongoRead(collection,db) {
   console.time('TimeCost-MongoRead');
   for (var i = 0; i < numberOfElements; i++) {
     collection.findOne({id: perfixStr + i}, function(err, results) {
-      console.log('typeof results = ', typeof results);
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoRead');
         db.close();
