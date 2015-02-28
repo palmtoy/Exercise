@@ -25,7 +25,7 @@ function redisRead(){
   console.time('TimeCost-RedisRead');
   for (var i = 0; i < numberOfElements; i++) {
     client.get(perfixStr + i, function (err, reply) {
-      var tmpDataObj = JSON.parse(reply);
+      JSON.parse(reply);
       if (--i === 0) {
         console.timeEnd('TimeCost-RedisRead');
         process.exit();
