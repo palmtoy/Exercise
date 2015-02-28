@@ -13,6 +13,7 @@ function redisWrite () {
   for (var i = 0; i < numberOfElements; i++) {
     dataObj.currentNum = i;
     dataObj.lock.timeStamp = numberOfElements + i;
+    dataObj.battle_data.heroObjIndex.combatant = numberOfElements - i;
     client.set(perfixStr + i, JSON.stringify(dataObj), function(err, data){
       if (--i === 0) {
         console.timeEnd('TimeCost-RedisWrite');

@@ -16,6 +16,7 @@ function mongoWrite(collection, db) {
   for (var i = 0; i < numberOfElements; i++) {
     dataObj.currentNum = i;
     dataObj.lock.timeStamp = numberOfElements + i;
+    dataObj.battle_data.heroObjIndex.combatant = numberOfElements - i;
     collection.insert({id: perfixStr + i, value: dataObj}, function(err, docs) {
       if(--i === 0) {
         console.timeEnd('TimeCost-MongoWrite');
