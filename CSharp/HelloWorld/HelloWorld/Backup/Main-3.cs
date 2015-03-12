@@ -6,12 +6,12 @@ namespace HelloWorld
 	{
 		public static void Main (string[] args)
 		{
-			MyPrint("Tom");
+			MyPrint("baby");
 		}
 
 		public static void MyPrint (string name)
 		{
-			string str = string.Format("combat[\"{0}\"]teamInitData", name);
+			string str = string.Format("What's up {0} ?", name);
 			Console.WriteLine (str);
 		}
 	}
