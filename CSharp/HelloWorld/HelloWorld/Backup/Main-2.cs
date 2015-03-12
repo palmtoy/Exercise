@@ -11,8 +11,7 @@ namespace HelloWorld
 
 		public static void MyPrint (string name)
 		{
-			string str = string.Format("What's up {0} ?", name);
-			Console.WriteLine (str);
+			Console.WriteLine ("What's up {0} ?", name);
 		}
 	}
 }
