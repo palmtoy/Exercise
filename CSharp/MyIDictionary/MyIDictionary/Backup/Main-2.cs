@@ -8,7 +8,7 @@ namespace MyIDictionary
 		public static void Main (string[] args)
 		{
 			// Dictionary implements IDictionary.
-			IDictionary<int, string> dict = new Dictionary<int, string>();
+			Dictionary<int, string> dict = new Dictionary<int, string>();
 			int k = 9;
 			dict[k] = "Hello World";
 			WriteKeyA(dict, k);
