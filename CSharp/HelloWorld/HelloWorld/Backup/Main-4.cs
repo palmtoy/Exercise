@@ -11,8 +11,8 @@ namespace HelloWorld
 
 		public static void MyPrint (string name)
 		{
-			string tmpStr = string.Format("{0}", 999);
-			Console.WriteLine (tmpStr);
+			string str = string.Format("combat[\"{0}\"]teamInitData", name);
+			Console.WriteLine (str);
 		}
 	}
 }
