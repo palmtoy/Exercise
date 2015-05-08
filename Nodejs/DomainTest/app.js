@@ -1,3 +1,4 @@
+// raise an error ~ <chrome> ~ http://localhost:1337/error
 // Much better!
 
 var cluster = require('cluster');
