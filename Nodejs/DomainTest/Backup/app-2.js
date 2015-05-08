@@ -40,10 +40,6 @@ if (cluster.isMaster) {
     var d = domain.create();
     d.on('error', function(er) {
       console.error('error.stack = ', er.stack);
-      console.error('error.domain = ', er.domain);
-      console.error('error.domainEmitter = ', er.domainEmitter);
-      console.error('error.domainBound = ', er.domainBound);
-      console.error('error.domainThrown = ', er.domainThrown);
 
       // Note: we're in dangerous territory!
       // By definition, something unexpected occurred,
