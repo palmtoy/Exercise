@@ -1,3 +1,4 @@
+// $ npm install -g wscat
 // $ wscat -l 8086
 
 var WebSocketServer = require('ws').Server
