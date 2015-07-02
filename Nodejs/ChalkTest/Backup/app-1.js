@@ -1,23 +1,31 @@
 var chalk = require('chalk');
+var myPrint = console.log;
  
 // style a string 
-chalk.blue('Hello world!');
+var str = chalk.blue('Hello world!');
+myPrint(str);
  
 // combine styled and normal strings 
-chalk.blue('Hello') + 'World' + chalk.red('!');
+str = chalk.blue('Hello') + 'World' + chalk.red('!');
+myPrint(str);
  
 // compose multiple styles using the chainable API 
-chalk.blue.bgRed.bold('Hello world!');
+str = chalk.blue.bgRed.bold('Hello world!');
+myPrint(str);
  
 // pass in multiple arguments 
-chalk.blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz');
+str = chalk.blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz');
+myPrint(str);
  
 // nest styles 
-chalk.red('Hello', chalk.underline.bgBlue('world') + '!');
+str = chalk.red('Hello', chalk.underline.bgBlue('world') + '!');
+myPrint(str);
  
 // nest styles of the same type even (color, underline, background) 
-chalk.green(
+str = chalk.green(
     'I am a green line ' +
     chalk.blue.underline.bold('with a blue substring') +
     ' that becomes green again!'
 );
+myPrint(str);
+
