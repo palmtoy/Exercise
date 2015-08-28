@@ -14,9 +14,9 @@ http.createServer(function (req, res) {
   console.log(++n + ': queryData =' , JSON.stringify(queryData));
   var now = new Date() + ' ~ ';
   if (queryData.name) {
-    res.end(now + 'Hello ' + queryData.name + '\n');
+    res.end(n + ' -> ' + now + 'Hello ' + queryData.name + '\n');
   } else {
-    res.end(now + 'Hello World\n');
+    res.end(n + ' -> ' + now + 'Hello World\n');
   }
 }).listen(8080, '127.0.0.1');
 
