@@ -1,0 +1,4 @@
+{
+	"DEFAULT_RES": "{0} -> {1} Hello World\n",
+	"SPECIAL_RES": "{0} -> {1} Hello {2}\n"
+}
