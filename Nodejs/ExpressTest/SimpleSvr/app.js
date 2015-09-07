@@ -1,14 +1,13 @@
+// jx package app.js app.exe -native
+
 var express = require('express');
 var app = express();
-var myPrint = require('./utils').myPrint;
+var myPrint = console.log;
+var port = 8080;
+
 
 app.use(function(req, res, next){
-	// myPrint('Object.keys(req) = ', Object.keys(req));
-	// myPrint('Object.keys(res) = ', Object.keys(res));
-	// myPrint('req.method, req.url = ', req.method, req.url);
 	myPrint('req.url = ', req.url);
-	myPrint('req.originalUrl = ', req.originalUrl);
-	myPrint('req._parsedUrl = ', req._parsedUrl);
 
 	var now = Date.now();
 	myPrint('1 ~ now = ', now);
@@ -21,6 +20,6 @@ app.get('/', function(req, res){
 	res.send('hi, baby ~ : ' + now);
 });
 
-app.listen(8080);
-console.log('Express http server is running ...');
+app.listen(port);
+myPrint('Express http server is running on', port, '...');
 
