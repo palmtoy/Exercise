@@ -2,28 +2,6 @@
 <html>
 
 	<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Adding a dynamic "Back To Top" floating button with smooth scroll</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-
-		<style>
-			.back-to-top {
-				position: fixed;
-				bottom: 2em;
-				right: 0px;
-				text-decoration: none;
-				color: #000000;
-				background-color: rgba(235, 235, 235, 0.80);
-				font-size: 12px;
-				padding: 1em;
-				display: none;
-			}
-
-			.back-to-top:hover {
-				background-color: rgba(135, 135, 135, 0.50);
-			}
-		</style>
 	</head>
 
 	<body onLoad="funcStartPageScroll()">
@@ -34,7 +12,6 @@
 		<input id="BtnTop" type="button" onClick="funcGoToTop()" value="Go To Top">
 		<input id="BtnStart" type="button" onClick="funcStartPageScroll()" value="Start Scroll Page">
 		<input id="BtnStop" type="button" onClick="funcStopPageScroll()" value="Stop! Scroll Page">
-		<a href="#" class="back-to-top">Back to Top</a>
 
 		<script>
 			function funcStartPageScroll() {
@@ -59,25 +36,6 @@
 				window.scroll(0, 0);
 				funcStopPageScroll();
 			}
-
-
-			jQuery(document).ready(function() {
-				var offset = 220;
-				var duration = 500;
-				jQuery(window).scroll(function() {
-					if (jQuery(this).scrollTop() > offset) {
-						jQuery('.back-to-top').fadeIn(duration);
-					} else {
-						jQuery('.back-to-top').fadeOut(duration);
-					}
-				});
-
-				jQuery('.back-to-top').click(function(event) {
-					event.preventDefault();
-					jQuery('html, body').animate({scrollTop: 0}, duration);
-					return false;
-				})
-			});
 
 
 			// helper function: log message to screen
