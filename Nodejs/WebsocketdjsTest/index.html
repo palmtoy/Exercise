@@ -77,16 +77,13 @@
 
 		<script>
 			function funcStartPageScroll() {
-				window.scrollBy(0, 100); // horizontal and vertical scroll increments
-				scrollDelay = setTimeout('funcStartPageScroll()', 500); // scrolls every x milliseconds
-				jQuery('.start_scroll').disabled = true;
-				jQuery('.stop_scroll').disabled = false;
+				scrollDelay = setInterval('window.scrollBy(0, 100)', 500); // scrolls every x milliseconds
 			}
 
 			function funcStopPageScroll() {
-				clearTimeout(scrollDelay);
-				jQuery('.start_scroll').disabled = false;
-				jQuery('.stop_scroll').disabled = true;
+				clearInterval(scrollDelay);
+				scrollDelay = null;
+				window.scrollBy(0, 0);
 			}
 
 			jQuery(document).ready(function() {
@@ -107,13 +104,18 @@
 
 				jQuery('.start_scroll').click(function(event) {
 					event.preventDefault();
-					funcStartPageScroll();
+					jQuery('html, body').animate({scrollTop: $(document).height()}, duration);
+					if(!scrollDelay) {
+						funcStartPageScroll();
+					}
 					return false;
 				})
 
 				jQuery('.stop_scroll').click(function(event) {
 					event.preventDefault();
-					funcStopPageScroll();
+					if(scrollDelay) {
+						funcStopPageScroll();
+					}
 					return false;
 				})
 			});
