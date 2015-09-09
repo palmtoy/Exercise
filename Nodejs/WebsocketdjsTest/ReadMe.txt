@@ -2,7 +2,7 @@ $ npm install -g websocketdjs
 
 $ ./count.sh > ./cnt.log
 
-$ websocketdjs --port 8086 tail -f ./cnt.log
+$ websocketdjs --port 8086 tail -f ./cnt.log [or: websocketdjs --port 8086 tailf ./cnt.log]
 
 $ http-server -p 8088
 
