@@ -9,6 +9,9 @@ timestamp() {
 
 for ((COUNT = 1; COUNT <= 3600; COUNT++)); do
 	NOW=$(timestamp)
+	echo
+  echo "******************************************"
   echo "I'm number:" $COUNT "~" $NOW
+  echo "=========================================="
   sleep 1
 done

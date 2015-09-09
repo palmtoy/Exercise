@@ -3,82 +3,120 @@
 
 	<head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Adding a dynamic "Back To Top" floating button with smooth scroll</title>
+    <title>AWS server api.log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 		<style>
-			.back-to-top {
+			.back_to_top {
 				position: fixed;
-				bottom: 2em;
-				right: 0px;
+				bottom: 1em;
+				right: 1em;
 				text-decoration: none;
 				color: #000000;
-				background-color: rgba(235, 235, 235, 0.80);
+				background-color: rgba(125, 125, 125, 0.50);
 				font-size: 12px;
 				padding: 1em;
-				display: none;
+			}
+			.back_to_top:hover {
+				background-color: rgba(35, 35, 35, 0.50);
 			}
 
-			.back-to-top:hover {
-				background-color: rgba(135, 135, 135, 0.50);
+			.go_to_bottom {
+				position: fixed;
+				top: 1em;
+				right: 1em;
+				text-decoration: none;
+				color: #000000;
+				background-color: rgba(125, 125, 125, 0.50);
+				font-size: 12px;
+				padding: 1em;
+			}
+			.go_to_bottom:hover {
+				background-color: rgba(35, 35, 35, 0.50);
+			}
+
+			.start_scroll {
+				position: fixed;
+				bottom: 1em;
+				right: 16em;
+				text-decoration: none;
+				color: #000000;
+				background-color: rgba(125, 125, 125, 0.50);
+				font-size: 12px;
+				padding: 1em;
+			}
+			.start_scroll:hover {
+				background-color: rgba(35, 35, 35, 0.50);
+			}
+
+			.stop_scroll {
+				position: fixed;
+				bottom: 1em;
+				right: 9em;
+				text-decoration: none;
+				color: #000000;
+				background-color: rgba(125, 125, 125, 0.50);
+				font-size: 12px;
+				padding: 1em;
+			}
+			.stop_scroll:hover {
+				background-color: rgba(35, 35, 35, 0.50);
 			}
 		</style>
 	</head>
 
 	<body onLoad="funcStartPageScroll()">
-		<input id="BtnBottom" type="button" onClick="funcGoToBottom()" value="Go To Bottom">
-
 		<pre id="tag4log"></pre>
 
-		<input id="BtnTop" type="button" onClick="funcGoToTop()" value="Go To Top">
-		<input id="BtnStart" type="button" onClick="funcStartPageScroll()" value="Start Scroll Page">
-		<input id="BtnStop" type="button" onClick="funcStopPageScroll()" value="Stop! Scroll Page">
-		<a href="#" class="back-to-top">Back to Top</a>
+		<a href="#" class="go_to_bottom">Go to Bottom</a>
+		<a href="#" class="back_to_top">Back to Top</a>
+		<a href="#" class="start_scroll">Start Scroll</a>
+		<a href="#" class="stop_scroll">Stop Scroll</a>
+
 
 		<script>
 			function funcStartPageScroll() {
 				window.scrollBy(0, 100); // horizontal and vertical scroll increments
 				scrollDelay = setTimeout('funcStartPageScroll()', 500); // scrolls every x milliseconds
-				document.getElementById("BtnStart").disabled = true;
-				document.getElementById("BtnStop").disabled = false;
+				jQuery('.start_scroll').disabled = true;
+				jQuery('.stop_scroll').disabled = false;
 			}
 
 			function funcStopPageScroll() {
 				clearTimeout(scrollDelay);
-				document.getElementById("BtnStop").disabled = true;
-				document.getElementById("BtnStart").disabled = false;
+				jQuery('.start_scroll').disabled = false;
+				jQuery('.stop_scroll').disabled = true;
 			}
-
-			function funcGoToBottom() {
-				window.scroll(0, 999999999);
-				funcStopPageScroll();
-			}
-
-			function funcGoToTop() {
-				window.scroll(0, 0);
-				funcStopPageScroll();
-			}
-
 
 			jQuery(document).ready(function() {
 				var offset = 220;
 				var duration = 500;
-				jQuery(window).scroll(function() {
-					if (jQuery(this).scrollTop() > offset) {
-						jQuery('.back-to-top').fadeIn(duration);
-					} else {
-						jQuery('.back-to-top').fadeOut(duration);
-					}
-				});
 
-				jQuery('.back-to-top').click(function(event) {
+				jQuery('.go_to_bottom').click(function(event) {
+					event.preventDefault();
+					jQuery('html, body').animate({scrollTop: $(document).height()}, duration);
+					return false;
+				})
+
+				jQuery('.back_to_top').click(function(event) {
 					event.preventDefault();
 					jQuery('html, body').animate({scrollTop: 0}, duration);
 					return false;
 				})
-			});
 
+				jQuery('.start_scroll').click(function(event) {
+					event.preventDefault();
+					funcStartPageScroll();
+					return false;
+				})
+
+				jQuery('.stop_scroll').click(function(event) {
+					event.preventDefault();
+					funcStopPageScroll();
+					return false;
+				})
+			});
 
 			// helper function: log message to screen
 			function log(msg) {
