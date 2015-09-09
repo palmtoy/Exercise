@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<style>
+			#top {
+				border: 1px solid black;
+				height: 3000px;
+			}
+
+			#bottom {
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+
+
+	<body onLoad="pageScroll()">
+		<div id="top">top</div>
+		<div id="bottom">bottom</div>
+
+		<input type="button" onClick="pageScroll()" value="Scroll Page">
+
+		<script>
+			function pageScroll() {
+				window.scrollBy(0, 50); // horizontal and vertical scroll increments
+				scrolldelay = setTimeout('pageScroll()', 500); // scrolls every 500 milliseconds
+			}
+		</script>
+	</body>
+
+</html>
+

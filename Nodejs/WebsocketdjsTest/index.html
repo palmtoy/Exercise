@@ -1,23 +1,51 @@
 <!DOCTYPE html>
-<pre id="tag4log"></pre>
-<script>
-	// helper function: log message to screen
-	function log(msg) {
-		// document.getElementById('tag4log').textContent += msg + '\n';
-		document.getElementById('tag4log').textContent += msg;
-	}
+<html>
 
-	// setup websocket with callbacks
-	var ws = new WebSocket('ws://localhost:8086/');
-	ws.onopen = function() {
-		log('CONNECT ...\n');
-	};
-	ws.onclose = function() {
-		log('DISCONNECT ...\n');
-	};
-	ws.onmessage = function(event) {
-		// log('MESSAGE: ' + event.data);
-		log(event.data);
-		// console.log(event.data);
-	};
-</script>
+	<head>
+		<style>
+			#divLogSpace {
+				border: 1px solid black;
+				height: 1000px;
+			}
+		</style>
+	</head>
+
+
+	<body onLoad="funcStartPageScroll()">
+		<input id="BtnBottom" type="button" onClick="funcGoToBottom()" value="Go To Bottom">
+		<div id="divLogSpace">Top</div>
+
+
+		<input id="BtnTop" type="button" onClick="funcGoToTop()" value="Go To Top">
+		<input id="BtnStart" type="button" onClick="funcStartPageScroll()" value="Start Scroll Page">
+		<input id="BtnStop" type="button" onClick="funcStopPageScroll()" value="Stop! Scroll Page">
+
+		<script>
+			function funcStartPageScroll() {
+				window.scrollBy(0, 50); // horizontal and vertical scroll increments
+				scrollDelay = setTimeout('funcStartPageScroll()', 500); // scrolls every x milliseconds
+				document.getElementById("BtnStart").disabled = true;
+				document.getElementById("BtnStop").disabled = false;
+			}
+
+			function funcStopPageScroll() {
+				clearTimeout(scrollDelay);
+				document.getElementById("BtnStop").disabled = true;
+				document.getElementById("BtnStart").disabled = false;
+			}
+
+			function funcGoToBottom() {
+				window.scroll(0, 999999999);
+				funcStopPageScroll();
+			}
+
+			function funcGoToTop() {
+				window.scroll(0, 0);
+				funcStopPageScroll();
+			}
+
+		</script>
+	</body>
+
+</html>
+
