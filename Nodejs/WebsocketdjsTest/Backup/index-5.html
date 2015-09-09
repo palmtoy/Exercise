@@ -2,12 +2,19 @@
 <html>
 
 	<head>
+		<style>
+			#divLogSpace {
+				border: 1px solid black;
+				height: 1000px;
+			}
+		</style>
 	</head>
+
 
 	<body onLoad="funcStartPageScroll()">
 		<input id="BtnBottom" type="button" onClick="funcGoToBottom()" value="Go To Bottom">
+		<div id="divLogSpace">Top</div>
 
-		<pre id="tag4log"></pre>
 
 		<input id="BtnTop" type="button" onClick="funcGoToTop()" value="Go To Top">
 		<input id="BtnStart" type="button" onClick="funcStartPageScroll()" value="Start Scroll Page">
@@ -15,7 +22,7 @@
 
 		<script>
 			function funcStartPageScroll() {
-				window.scrollBy(0, 100); // horizontal and vertical scroll increments
+				window.scrollBy(0, 50); // horizontal and vertical scroll increments
 				scrollDelay = setTimeout('funcStartPageScroll()', 500); // scrolls every x milliseconds
 				document.getElementById("BtnStart").disabled = true;
 				document.getElementById("BtnStop").disabled = false;
@@ -36,24 +43,6 @@
 				window.scroll(0, 0);
 				funcStopPageScroll();
 			}
-
-
-			// helper function: log message to screen
-			function log(msg) {
-				document.getElementById('tag4log').textContent += msg;
-			}
-
-			// setup websocket with callbacks
-			var ws = new WebSocket('ws://localhost:8086/');
-			ws.onopen = function() {
-				log('CONNECTED ...\n\n');
-			};
-			ws.onclose = function() {
-				log('DISCONNECTED ...\n\n');
-			};
-			ws.onmessage = function(event) {
-				log(event.data);
-			};
 
 		</script>
 	</body>
