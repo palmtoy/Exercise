@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <pre id="log"></pre>
 <script>
-  // helper function: log message to screen
-  function log(msg) {
-    document.getElementById('log').textContent += msg + '\n';
-  }
+	// helper function: log message to screen
+	function log(msg) {
+		// document.getElementById('log').textContent += msg + '\n';
+		document.getElementById('log').textContent += msg;
+	}
 
-  // setup websocket with callbacks
-  var ws = new WebSocket('ws://localhost:8086/');
-  ws.onopen = function() {
-    log('CONNECT');
-  };
-  ws.onclose = function() {
-    log('DISCONNECT');
-  };
-  ws.onmessage = function(event) {
-    log('MESSAGE: ' + event.data);
-  };
+	// setup websocket with callbacks
+	var ws = new WebSocket('ws://localhost:8086/');
+	ws.onopen = function() {
+		log('CONNECT ...\n');
+	};
+	ws.onclose = function() {
+		log('DISCONNECT ...\n');
+	};
+	ws.onmessage = function(event) {
+		// log('MESSAGE: ' + event.data);
+		log(event.data);
+		// console.log(event.data);
+	};
 </script>
