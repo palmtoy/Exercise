@@ -40,22 +40,21 @@ jQuery(document).ready(function() {
 		}
 		return false;
 	})
+
+	// helper function: log message to screen
+	function log(msg) {
+		$('#tag4log').append(msg);
+	}
+	// setup websocket with callbacks
+	var ws = new WebSocket('ws://localhost:8086/');
+	ws.onopen = function() {
+		log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n');
+	};
+	ws.onclose = function() {
+		log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n');
+	};
+	ws.onmessage = function(event) {
+		log(event.data);
+	};
 });
-
-// helper function: log message to screen
-function log(msg) {
-	document.getElementById('tag4log').textContent += msg;
-}
-
-// setup websocket with callbacks
-var ws = new WebSocket('ws://localhost:8086/');
-ws.onopen = function() {
-	log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n');
-};
-ws.onclose = function() {
-	log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n');
-};
-ws.onmessage = function(event) {
-	log(event.data);
-};
 
