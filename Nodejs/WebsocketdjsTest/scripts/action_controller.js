@@ -1,15 +1,19 @@
+var scrollDelay = null;
+
 function funcStartPageScroll() {
-	scrollDelay = setInterval('window.scrollBy(0, 100)', 500); // scrolls every x milliseconds
+	if(!scrollDelay) {
+		scrollDelay = setInterval('window.scrollBy(0, 100)', 500); // scrolls every x milliseconds
+	}
 }
 
 function funcStopPageScroll() {
-	clearInterval(scrollDelay);
-	scrollDelay = null;
-	window.scrollBy(0, 0);
+	if(scrollDelay) {
+		clearInterval(scrollDelay);
+		scrollDelay = null;
+	}
 }
 
 jQuery(document).ready(function() {
-	var offset = 220;
 	var duration = 500;
 
 	jQuery('.go_to_bottom').click(function(event) {
@@ -27,17 +31,13 @@ jQuery(document).ready(function() {
 	jQuery('.start_scroll').click(function(event) {
 		event.preventDefault();
 		jQuery('html, body').animate({scrollTop: $(document).height()}, duration);
-		if(!scrollDelay) {
-			funcStartPageScroll();
-		}
+		funcStartPageScroll();
 		return false;
 	})
 
 	jQuery('.stop_scroll').click(function(event) {
 		event.preventDefault();
-		if(scrollDelay) {
-			funcStopPageScroll();
-		}
+		funcStopPageScroll();
 		return false;
 	})
 
