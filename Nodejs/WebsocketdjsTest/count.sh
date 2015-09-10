@@ -7,7 +7,7 @@ timestamp() {
 	date +"%r %Y-%m-%d" # 2015-09-09 11:45:51 AM
 }
 
-for ((COUNT = 1; COUNT <= 3600; COUNT++)); do
+for ((COUNT = 1; COUNT <= 3600*2; COUNT++)); do
 	NOW=$(timestamp)
 	echo
   echo "******************************************"
