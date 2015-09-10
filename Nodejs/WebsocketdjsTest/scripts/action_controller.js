@@ -50,13 +50,12 @@ function log(msg) {
 // setup websocket with callbacks
 var ws = new WebSocket('ws://localhost:8086/');
 ws.onopen = function() {
-	log('CONNECTED ...\n\n');
+	log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n');
 };
 ws.onclose = function() {
-	log('DISCONNECTED ...\n\n');
+	log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n\n');
 };
 ws.onmessage = function(event) {
 	log(event.data);
 };
-
 
