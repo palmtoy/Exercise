@@ -1,3 +1,4 @@
+var wsdPort = 8060;
 var scrollDelay = null;
 
 function funcStartPageScroll() {
@@ -46,7 +47,7 @@ jQuery(document).ready(function() {
 		$('#tag4log').append(msg);
 	}
 	// setup websocket with callbacks
-	var ws = new WebSocket('ws://localhost:8086/');
+	var ws = new WebSocket('ws://localhost:' + wsdPort + '/');
 	ws.onopen = function() {
 		log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\n\n');
 	};
