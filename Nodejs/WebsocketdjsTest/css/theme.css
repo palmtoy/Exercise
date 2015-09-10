@@ -1,0 +1,56 @@
+.go_to_bottom {
+	position: fixed;
+	top: 1em;
+	right: 1em;
+	text-decoration: none;
+	color: #000000;
+	background-color: rgba(125, 125, 125, 0.50);
+	font-size: 12px;
+	padding: 1em;
+}
+.go_to_bottom:hover {
+	background-color: rgba(35, 35, 35, 0.50);
+}
+
+.back_to_top {
+	position: fixed;
+	bottom: 1em;
+	right: 1em;
+	text-decoration: none;
+	color: #000000;
+	background-color: rgba(125, 125, 125, 0.50);
+	font-size: 12px;
+	padding: 1em;
+}
+.back_to_top:hover {
+	background-color: rgba(35, 35, 35, 0.50);
+}
+
+.stop_scroll {
+	position: fixed;
+	bottom: 1em;
+	right: 10em;
+	text-decoration: none;
+	color: #000000;
+	background-color: rgba(240, 74, 31, 1.0);
+	font-size: 12px;
+	padding: 1em;
+}
+.stop_scroll:hover {
+	color: #FFFFFF;
+}
+
+.start_scroll {
+	position: fixed;
+	bottom: 1em;
+	right: 18em;
+	text-decoration: none;
+	color: #000000;
+	background-color: rgba(152, 213, 255, 1.0);
+	font-size: 12px;
+	padding: 1em;
+}
+.start_scroll:hover {
+	color: #FFFFFF;
+}
+

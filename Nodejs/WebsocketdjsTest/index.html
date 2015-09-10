@@ -5,65 +5,10 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>AWS server api.log</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="./css/theme.css">
 
-		<style>
-			.go_to_bottom {
-				position: fixed;
-				top: 1em;
-				right: 1em;
-				text-decoration: none;
-				color: #000000;
-				background-color: rgba(125, 125, 125, 0.50);
-				font-size: 12px;
-				padding: 1em;
-			}
-			.go_to_bottom:hover {
-				background-color: rgba(35, 35, 35, 0.50);
-			}
-
-			.back_to_top {
-				position: fixed;
-				bottom: 1em;
-				right: 1em;
-				text-decoration: none;
-				color: #000000;
-				background-color: rgba(125, 125, 125, 0.50);
-				font-size: 12px;
-				padding: 1em;
-			}
-			.back_to_top:hover {
-				background-color: rgba(35, 35, 35, 0.50);
-			}
-
-			.stop_scroll {
-				position: fixed;
-				bottom: 1em;
-				right: 10em;
-				text-decoration: none;
-				color: #000000;
-				background-color: rgba(240, 74, 31, 1.0);
-				font-size: 12px;
-				padding: 1em;
-			}
-			.stop_scroll:hover {
-				color: #FFFFFF;
-			}
-
-			.start_scroll {
-				position: fixed;
-				bottom: 1em;
-				right: 18em;
-				text-decoration: none;
-				color: #000000;
-				background-color: rgba(152, 213, 255, 1.0);
-				font-size: 12px;
-				padding: 1em;
-			}
-			.start_scroll:hover {
-				color: #FFFFFF;
-			}
-		</style>
+    <script src="./scripts/jquery-2.1.4.min.js"></script>
+    <script src="./scripts/action_controller.js"></script>
 	</head>
 
 	<body onLoad="funcStartPageScroll()">
@@ -73,71 +18,6 @@
 		<a href="#" class="back_to_top">⇡ Back to Top</a>
 		<a href="#" class="start_scroll">‣ Start Scroll</a>
 		<a href="#" class="stop_scroll">⊗ Stop Scroll</a>
-
-
-		<script>
-			function funcStartPageScroll() {
-				scrollDelay = setInterval('window.scrollBy(0, 100)', 500); // scrolls every x milliseconds
-			}
-
-			function funcStopPageScroll() {
-				clearInterval(scrollDelay);
-				scrollDelay = null;
-				window.scrollBy(0, 0);
-			}
-
-			jQuery(document).ready(function() {
-				var offset = 220;
-				var duration = 500;
-
-				jQuery('.go_to_bottom').click(function(event) {
-					event.preventDefault();
-					jQuery('html, body').animate({scrollTop: $(document).height()}, duration);
-					return false;
-				})
-
-				jQuery('.back_to_top').click(function(event) {
-					event.preventDefault();
-					jQuery('html, body').animate({scrollTop: 0}, duration);
-					return false;
-				})
-
-				jQuery('.start_scroll').click(function(event) {
-					event.preventDefault();
-					jQuery('html, body').animate({scrollTop: $(document).height()}, duration);
-					if(!scrollDelay) {
-						funcStartPageScroll();
-					}
-					return false;
-				})
-
-				jQuery('.stop_scroll').click(function(event) {
-					event.preventDefault();
-					if(scrollDelay) {
-						funcStopPageScroll();
-					}
-					return false;
-				})
-			});
-
-			// helper function: log message to screen
-			function log(msg) {
-				document.getElementById('tag4log').textContent += msg;
-			}
-
-			// setup websocket with callbacks
-			var ws = new WebSocket('ws://localhost:8086/');
-			ws.onopen = function() {
-				log('CONNECTED ...\n\n');
-			};
-			ws.onclose = function() {
-				log('DISCONNECTED ...\n\n');
-			};
-			ws.onmessage = function(event) {
-				log(event.data);
-			};
-
-		</script>
 	</body>
 
 </html>
