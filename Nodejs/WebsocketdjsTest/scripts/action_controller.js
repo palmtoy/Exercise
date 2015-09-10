@@ -1,7 +1,4 @@
-var wsdPort = 8060;
-var intervalObj = null
-	, scrollDelay = 500 // scrolls every x milliseconds
-	, scrollSpan = 100;
+var intervalObj = null;
 
 function funcStartPageScroll() {
 	if(!intervalObj) {
