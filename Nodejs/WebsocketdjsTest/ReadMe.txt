@@ -4,6 +4,6 @@ $ ./count.sh > ./cnt.log
 
 $ websocketdjs --port 8060 tail -f ./cnt.log [or: websocketdjs --port 8060 tailf ./cnt.log]
 
-$ http-server -p 8066
+$ http-server -p 8068
 
-Go to ~ http://localhost:8088
+Go to ~ http://localhost:8068/
