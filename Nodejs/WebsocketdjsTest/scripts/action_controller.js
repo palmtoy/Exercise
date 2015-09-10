@@ -1,16 +1,19 @@
 var wsdPort = 8060;
-var scrollDelay = null;
+var intervalObj = null
+	, scrollDelay = 500 // scrolls every x milliseconds
+	, scrollSpan = 100;
 
 function funcStartPageScroll() {
-	if(!scrollDelay) {
-		scrollDelay = setInterval('window.scrollBy(0, 100)', 500); // scrolls every x milliseconds
+	if(!intervalObj) {
+		var tmpCmd = 'window.scrollBy(0, ' + scrollSpan + ')';
+		intervalObj = setInterval(tmpCmd, scrollDelay);
 	}
 }
 
 function funcStopPageScroll() {
-	if(scrollDelay) {
-		clearInterval(scrollDelay);
-		scrollDelay = null;
+	if(intervalObj) {
+		clearInterval(intervalObj);
+		intervalObj = null;
 	}
 }
 
