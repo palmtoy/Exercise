@@ -1,0 +1,9 @@
+{
+  "name": "EjsTest",
+  "version": "0.0.1",
+  "author": "palmtoy",
+  "dependencies": {
+    "ejs": "^2.3.4",
+    "express": "^4.13.3"
+  }
+}
