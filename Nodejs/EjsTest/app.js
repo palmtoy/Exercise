@@ -9,6 +9,7 @@ app.locals = {
 };
 
 app.all('*', function(req, res, next){
+	console.log('app.all is running ...');
 	fs.readFile('posts.json', function(err, data){
 		res.locals.posts = JSON.parse(data);
 		next();
@@ -16,10 +17,12 @@ app.all('*', function(req, res, next){
 });
 
 app.get('/', function(req, res){
+	console.log('/ is running ...');
 	res.render('index.ejs');
 });
 
 app.get('/post/:slug', function(req, res, next){
+	console.log('/post/:slug is running ... req.params.slug =', req.params.slug);
 	res.locals.posts.forEach(function(post){
 		if (req.params.slug === post.slug){
 			res.render('post.ejs', { post: post });
@@ -28,6 +31,7 @@ app.get('/post/:slug', function(req, res, next){
 });
 
 app.get('/api/posts', function(req, res){
+	console.log('/api/posts is running ...');
 	res.json(res.locals.posts);
 });
 
