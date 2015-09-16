@@ -1,0 +1,11 @@
+{
+  "name": "WebsocketTest",
+  "version": "0.0.1",
+  "description": "",
+  "main": "svr.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "websocket": "^1.0.21"
+  }
+}
