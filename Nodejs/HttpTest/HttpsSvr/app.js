@@ -1,14 +1,21 @@
+// openssl pkcs12 -export -out server.pfx -inkey agent2-key.pem -in agent2-cert.pem
+
+// curl -k https://localhost:8089/
+
 var https = require('https');
+var fs = require('fs');
 
-https.get('https://encrypted.google.com/', function(res) {
-  // console.log("statusCode: ", res.statusCode);
-  // console.log("headers: ", res.headers);
+var options = {
+  pfx: fs.readFileSync('test/fixtures/keys/server.pfx')
+};
 
-  res.on('data', function(d) {
-    process.stdout.write(d);
-  });
+var port = 8089;
+https.createServer(options, function (req, res) {
+	var now = new Date();
+	console.log(now + ' ~ req.url =', req.url);
+  res.writeHead(200);
+  res.end(now + " ~ Hello World\n");
+}).listen(port);
 
-}).on('error', function(e) {
-  console.error(e);
-});
+console.log('Https svr is running on port:', port, '...');
 
