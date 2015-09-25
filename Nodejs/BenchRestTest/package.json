@@ -1,0 +1,12 @@
+{
+  "name": "BenchRestTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bench-rest": "^1.0.2"
+  },
+  "devDependencies": {},
+  "author": "palmtoy",
+  "license": "MIT"
+}
