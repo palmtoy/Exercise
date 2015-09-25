@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 var myPrint = console.log;
-var port = 8086;
+var port = 8080;
 
 
 app.use(function(req, res, next){
@@ -14,12 +14,10 @@ app.use(function(req, res, next){
 	next();
 });
 
-app.get('/greet/:name', function(req, res){
+app.get('/', function(req, res){
 	var now = Date();
 	myPrint(now + ' ~ Http request ...');
-
-	var userName = req.params.name;
-	res.send(now + ' ~ hi, ' + userName);
+	res.send('hi, baby ~ : ' + now);
 });
 
 app.listen(port);
