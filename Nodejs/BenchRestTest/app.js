@@ -3,9 +3,9 @@ var flow = {
 	before: [{get: 'http://localhost:8086/greet/palmtoy'}],      // operations to do before anything
 	beforeMain: [],  // operations to do before each iteration
 	main: [  // the main flow for each iteration
-		{get: 'http://localhost:8086/playwith/palmtoy'}
+		{get: 'http://localhost:8086/playwith/palmtoy_#{INDEX}'}
 	],
-	afterMain: [{get: 'http://localhost:8086/bye/palmtoy'}],   // operations to do after each iteration
+	afterMain: [{get: 'http://localhost:8086/bye/palmtoy_#{INDEX}'}],   // operations to do after each iteration
 	after: []        // operations to do after everything is done
 };
 
