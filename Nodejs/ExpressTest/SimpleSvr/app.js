@@ -19,7 +19,15 @@ app.get('/greet/:name', function(req, res){
 	myPrint(now + ' ~ Http request ...');
 
 	var userName = req.params.name;
-	res.send(now + ' ~ hi, ' + userName);
+	res.send(now + ' ~ Hi, ' + userName);
+});
+
+app.get('/bye/:name', function(req, res){
+	var now = Date();
+	myPrint(now + ' ~ Http request ...');
+
+	var userName = req.params.name;
+	res.send(now + ' ~ Bye, ' + userName);
 });
 
 app.listen(port);
