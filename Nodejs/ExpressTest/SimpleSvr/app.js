@@ -16,15 +16,23 @@ app.use(function(req, res, next){
 
 app.get('/greet/:name', function(req, res){
 	var now = Date();
-	myPrint(now + ' ~ Http request ...');
+	myPrint(now + ' ~ Http request-/greet/:name ...');
 
 	var userName = req.params.name;
 	res.send(now + ' ~ Hi, ' + userName);
 });
 
+app.get('/playwith/:name', function(req, res){
+	var now = Date();
+	myPrint(now + ' ~ Http request-/playwith/:name ...');
+
+	var userName = req.params.name;
+	res.send(now + ' ~ Awesome, ' + userName);
+});
+
 app.get('/bye/:name', function(req, res){
 	var now = Date();
-	myPrint(now + ' ~ Http request ...');
+	myPrint(now + ' ~ Http request-/bye/:name ...');
 
 	var userName = req.params.name;
 	res.send(now + ' ~ Bye, ' + userName);
