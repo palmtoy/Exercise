@@ -1,6 +1,6 @@
 /*
 
-openssl genrsa 1024 > ./ssh/server.key
+openssl genrsa 2048 > ./ssh/server.key
 openssl req -x509 -new -key ./ssh/server.key > ./ssh/server.cert
 
 */
