@@ -1,0 +1,10 @@
+{
+  "name": "TtyTest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "tty.js": "^0.2.15"
+  }
+}
