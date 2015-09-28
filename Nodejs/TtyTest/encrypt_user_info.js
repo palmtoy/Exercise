@@ -1,3 +1,10 @@
+/*
+usage:
+
+node encrypt_user_info.js YourUserName
+node encrypt_user_info.js YourPassword
+*/
+
 var crypto = require('crypto');
 
 function sha1(text) {
