@@ -1,13 +1,8 @@
 {
+	"shell": "zsh",
 	"users": {
 		"0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33": "62cdb7020ff920e5aa642c3d4066950dd1f01f4d",
 		"aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d": "7c211433f02071597741e6ff5a8ea34789abbf43"
 	},
-	"https": {
-		"key": "./ssh/server.key",
-		"cert": "./ssh/server.cert"
-	},
-	"shell": "zsh",
 	"port": 6868
 }
-

@@ -1,10 +1,3 @@
-/*
-
-openssl genrsa 1024 > ./ssh/server.key
-openssl req -x509 -new -key ./ssh/server.key > ./ssh/server.cert
-
-*/
-
 var tty = require('tty.js');
 
 // username & password: ['foo': 'bar'], ['hello': 'world']
