@@ -1,5 +1,5 @@
 cmd:
-nexe -i HelloWorld.js -o hw.exe
+nexe -i HelloWorld.js -r 0.10.38 -o hw.exe
 
 Info:
 Nexe is a command-line utility that compiles your Node.js application into a single executable file.
