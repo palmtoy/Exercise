@@ -20,18 +20,8 @@ Spreadsheet.load({
 		if (err) {
 			throw err;
 		}
+
 		console.dir(rows);
 		console.dir(info);
 	});
-
-	spreadsheet.add(
-		{ 4: { 1: 'work', 2: 'work', 3: 'enjoy' } }
-	);
-	spreadsheet.send(function(err) {
-		if (err) {
-			throw err;
-		}
-		console.log("Updated the 4th line ...");
-	});
 });
-
