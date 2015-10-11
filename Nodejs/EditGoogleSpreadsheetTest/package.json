@@ -1,0 +1,10 @@
+{
+  "name": "EditGoogleSpreadsheetTest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "edit-google-spreadsheet": "^0.2.19"
+  },
+  "author": "palmtoy",
+  "license": "MIT"
+}
