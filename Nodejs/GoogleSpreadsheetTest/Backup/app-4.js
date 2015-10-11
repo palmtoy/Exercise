@@ -24,24 +24,16 @@ my_sheet.useServiceAccountAuth(creds, function(err){
 	my_sheet.getInfo( function( err, sheet_info ){
 		console.log( '\n' + sheet_info.title + ' is loaded.\n' );
 		console.dir(sheet_info);
+		console.log('\n');
 
 		// use worksheet object if you want to stop using the # in your calls 
 		var sheet1 = sheet_info.worksheets[0];
 		sheet1.getRows( function( err, rows ){
-			console.log('\n');
 			console.dir(rows[0]);
 			rows[0].macosx = 'NetEase';
-			rows[0].save(function() {
-				my_sheet.getInfo( function( err, sheet_info ){
-					var sheet1 = sheet_info.worksheets[0];
-					sheet1.getRows( function( err, rows ){
-						console.log('\n');
-						console.dir(rows[0]);
-					});
-				});
-			});
-		}); //async and takes a callback
-		// console.dir(rows);
+			rows[0].save(); //async and takes a callback
+			// console.dir(rows);
+		});
 	});
 });
 
