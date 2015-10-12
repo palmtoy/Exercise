@@ -1,0 +1,11 @@
+{
+  "name": "GoogleSpreadsheetTest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "google-oauth-jwt": "^0.1.7",
+    "google-spreadsheet": "^1.0.1"
+  },
+  "author": "palmtoy",
+  "license": "MIT"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "GoogleOauthJwtTest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "google-oauth-jwt": "^0.1.7"
+  },
+  "author": "palmtoy",
+  "license": "MIT"
+}
