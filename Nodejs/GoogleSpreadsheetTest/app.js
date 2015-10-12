@@ -11,6 +11,7 @@ var oauth = {
 };
 
 GoogleOAuthJWT.authenticate(oauth, function(err, token) {
+	console.log('token =', token);
 	var sheetId = '1b0u48zSjGrZ8ePe7Sa-3QuT9Mty4nG6WPslY180GpJc';
 	var my_sheet = new GoogleSpreadsheet(sheetId, {type : 'Bearer', value: token});
 
