@@ -1,0 +1,12 @@
+{
+  "name": "GcloudTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "gcloud": "^0.23.0"
+  },
+  "devDependencies": {},
+  "author": "palmtoy",
+  "license": "MIT"
+}
