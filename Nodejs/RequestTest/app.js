@@ -1,8 +1,11 @@
 var request = require('request');
 
-request.post({url: 'http://localhost:8086/pullCodeAndUpdateSvr', form: {title:'Mr.', username:'palmtoy'}}, function(err, httpRes, body){
+request.get({
+	url: 'http://localhost:8086/greet/will',
+	timeout: 3000,
+	gzip: true},
+	function(err, httpRes, body){
   if (!err && httpRes.statusCode === 200) {
-    // console.log(httpRes);
     console.log(httpRes.statusCode);
     console.log(body);
   }

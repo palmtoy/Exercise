@@ -19,10 +19,7 @@ app.get('/greet/:name', function(req, res){
 	myPrint(now + ' ~ Http request-/greet/:name ...');
 
 	var userName = req.params.name;
-
-	setTimeout(function() {
-		res.send(now + ' ~ Hi, ' + userName);
-	}, 2000);
+	res.send(now + ' ~ Hi, ' + userName);
 });
 
 app.get('/playwith/:name', function(req, res){
