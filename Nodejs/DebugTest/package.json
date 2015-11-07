@@ -1,0 +1,10 @@
+{
+  "name": "DebugTest",
+  "version": "0.0.1",
+  "main": "app.js",
+  "dependencies": {
+    "debug": "^2.2.0"
+  },
+  "author": "palmtoy",
+  "license": "MIT"
+}
