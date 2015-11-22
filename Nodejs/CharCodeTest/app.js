@@ -24,7 +24,7 @@ for(var j = 0; j < originStr.length; j++) {
 }
 console.log('');
 
-console.log('tmpArray =', tmpArray);
+console.log('tmpArray =', JSON.stringify(tmpArray));
 targetStr = String.fromCharCode.apply(null, tmpArray);
 console.log('TargetStr =', targetStr, '\n');
 
