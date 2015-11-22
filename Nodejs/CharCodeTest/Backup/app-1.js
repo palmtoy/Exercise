@@ -11,13 +11,7 @@ console.log('');
 
 var tmpArray = [];
 for(var j = 0; j < originStr.length; j++) {
-	var randomNum = 1;
-	console.log('AAA: randomNum =', randomNum);
-	if(Math.random() < 0.5) {
-		randomNum = -1;
-	}
-	console.log('BBB: randomNum =', randomNum);
-	var newCode = originStr.charCodeAt(j) + randomNum;
+	var newCode = originStr.charCodeAt(j) + 1;
 	var newChar = String.fromCharCode(newCode);
 	tmpArray.push(newCode);
 	console.log('newChar, newCode =', newChar, '\t', newCode);
