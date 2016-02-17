@@ -1,0 +1,10 @@
+{
+  "name": "MkdirpTest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  }
+}
