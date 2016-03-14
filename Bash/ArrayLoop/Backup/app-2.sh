@@ -4,7 +4,7 @@ mkdir -p /tmp/mongodb_dump
 rm -rf /tmp/mongodb_dump/*
 
 # array
-PF_ARRAY=("performance_devices" "performance_gpus" "performance_profiles" "performance_rules" "performance_scenes" "performance_version")
+PF_ARRAY=(performance_devices performance_gpus performance_profiles performance_rules performance_scenes performance_version)
 
 for COLL_NAME in "${PF_ARRAY[@]}"
 do
