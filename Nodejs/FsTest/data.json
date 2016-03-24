@@ -1,0 +1,5 @@
+{
+	"wske": "git+https://github.com/***/node-wske.git#",
+	"immortal": "git+https://github.com/***/immortal.git#"
+}
+
