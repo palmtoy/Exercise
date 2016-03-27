@@ -1,0 +1,12 @@
+{
+  "name": "CldTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "cld": "^2.4.5"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
