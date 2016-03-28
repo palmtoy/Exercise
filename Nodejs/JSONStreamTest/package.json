@@ -1,0 +1,12 @@
+{
+  "name": "JSONStreamTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "JSONStream": "^1.1.1"
+  }
+}
