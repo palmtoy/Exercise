@@ -1,0 +1,162 @@
+{
+	"skillBar" : 
+		{
+		"0" : 
+			{
+			"cooldown_total" : 0.0,            
+			"system" : "Skill",            
+			"rage_cost" : 2.0,            
+			"cooldown_left" : 0.0,            
+			"qte_a" : "",            
+			"qte_b" : "",            
+			"qte_c" : "",            
+			"localization" : 
+				{
+				"qte_desc" : 
+					{
+					"id" : "",                    
+					"params" : 
+						[
+						null
+					]
+				},                
+				"description" : 
+					{
+					"id" : "ID_SKILL_W_Default_Desc_002",                    
+					"params" : 
+						[
+						0.0,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null
+					]
+				},                
+				"display_name" : 
+					{
+					"id" : "ID_SKILL_W_Default",                    
+					"params" : 
+						[
+						null
+					]
+				}
+			},            
+			"skillType" : "Active",            
+			"name" : "SKILL_W_Default",            
+			"display_rage" : 2.0
+		},        
+		"1" : 
+			{
+			"cooldown_total" : 0.0,            
+			"system" : "Skill",            
+			"rage_cost" : 5.0,            
+			"cooldown_left" : 0.0,            
+			"qte_a" : "",            
+			"qte_b" : "",            
+			"qte_c" : "",            
+			"localization" : 
+				{
+				"qte_desc" : 
+					{
+					"id" : "",                    
+					"params" : 
+						[
+						null
+					]
+				},                
+				"description" : 
+					{
+					"id" : "ID_SKILL_W_Slasher_Desc_002",                    
+					"params" : 
+						[
+						455.0,                        
+					"15",                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null
+					]
+				},                
+				"display_name" : 
+					{
+					"id" : "ID_SKILL_W_Slasher",                    
+					"params" : 
+						[
+						null
+					]
+				}
+			},            
+			"skillType" : "Active",            
+			"name" : "SKILL_W_Slasher",            
+			"display_rage" : 5.0
+		},        
+		"2" : 
+			{
+			"cooldown_total" : 1.0,            
+			"system" : "Skill",            
+			"rage_cost" : -10.0,            
+			"cooldown_left" : 0.0,            
+			"qte_a" : "Down",            
+			"qte_b" : 34.0,            
+			"qte_c" : 6.0,            
+			"localization" : 
+				{
+				"qte_desc" : 
+					{
+					"id" : "ID_SKILL_QTE_DamageBoost",                    
+					"params" : 
+						[
+						"5"
+					]
+				},                
+				"description" : 
+					{
+					"id" : "ID_SKILL_W_UltimateSlasher_Desc_002",                    
+					"params" : 
+						[
+						590.0,                        
+					"50",                        
+					"5",                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null,                        
+					null
+					]
+				},                
+				"display_name" : 
+					{
+					"id" : "ID_SKILL_W_UltimateSlasher",                    
+					"params" : 
+						[
+						null
+					]
+				}
+			},            
+			"skillType" : "Swipe",            
+			"name" : "SKILL_W_UltimateSlasher",            
+			"display_rage" : 10.0
+		}
+	}
+}
+
