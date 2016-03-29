@@ -1,10 +1,10 @@
 var CronJob = require('cron').CronJob;
 var moment = require('moment-timezone');
 
-var job = new CronJob('10 44 12 * * 1-5', function() {
+var job = new CronJob('05 48 12 * * 1-5', function() {
 		/*
 		* Runs every weekday (Monday through Friday)
-		* at 11:30:00 AM. It does not run on Saturday
+		* at 12:48:05(UTC). It does not run on Saturday
 		* or Sunday.
 		*/
 		var now = moment(new Date());
