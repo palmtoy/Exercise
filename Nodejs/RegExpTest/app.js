@@ -1,10 +1,5 @@
-var nameRegexInv = new RegExp("((?=[\x20-\xff]+)[^A-Za-z0-9-_])|(?=[\u2016-\u29FB]+)");
+var value = '\'{"id":"ID_HELLO","params":["1","ID_WORLD_MATK_101"]}\'';
 
-var name = '€£¥₩¤♡♥¡¿º•○●□■◇◆♧♣▲▼▶◀↑↓←→☆★▪';
-
-for(var i = 0; i < name.length; i++) {
-	var ret = nameRegexInv.test(name[i]);
-	console.log(name[i], name.charCodeAt(i), ' : ', ret);
-	console.log('-----------------------------------------\n');
-}
+value = value.replace(/^(['==])|([=='])$/gm, "");
+console.log('value =', value);
 
