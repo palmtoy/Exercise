@@ -1,0 +1,10 @@
+{
+  "name": "Ssh2Test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "dependencies": {
+    "ssh2": "^0.5.0"
+  }
+}
