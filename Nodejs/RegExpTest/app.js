@@ -1,5 +1,7 @@
-var value = '\'{"id":"ID_HELLO","params":["1","ID_WORLD_MATK_101"]}\'';
+var ipRegex = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
 
-value = value.replace(/^(['==])|([=='])$/gm, "");
-console.log('value =', value);
+var url = "http://www.example.com/landing.aspx?referrer=10.11.12.13";
+
+var tmpList = url.match(ipRegex);
+console.log(tmpList);
 
