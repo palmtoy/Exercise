@@ -3,9 +3,7 @@
 function ValidateIPaddress(ipaddress) {
 	ipaddress = ipaddress.trim();
 
-	var ipReg = new RegExp('^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$');
-
-	if (ipReg.test(ipaddress)) {
+	if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/.test(ipaddress)) {
 		return true;
 	}
 	return false;
