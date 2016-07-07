@@ -1,16 +1,26 @@
-var util = require('util'),
-    vm = require('vm'),
-    sandbox = {
-      animal: 'cat',
-      count: 2
-    };
+var vm = require('vm')
+	, fs = require('fs');
 
-var script = vm.createScript('count += 1; name = "kitty"', 'myfile.vm');
 
-for (var i = 0; i < 10 ; i += 1) {
-  script.runInNewContext(sandbox);
-}
+var uidsData = 'json = ' + fs.readFileSync(__dirname + '/robot_ids.json');
 
-console.log(util.inspect(sandbox));
+var tmpSandbox = {
+	ObjectId: function(){return 0}
+};
+vm.runInNewContext(uidsData, tmpSandbox);
+    
+console.log('\ntypeof tmpSandbox.json =', typeof tmpSandbox.json);
+console.log('\ntmpSandbox.json.length =', tmpSandbox.json.length);
 
-// { animal: 'cat', count: 12, name: 'kitty' }
+
+var strUid = 'hdel zju_user';
+var i = 0;
+
+tmpSandbox.json.forEach(function(o) {
+	strUid = strUid + ' ' + o.uid;
+	i++;
+});
+
+console.log('\ni =', i);
+console.log('\nstrUid =>', strUid);
+
