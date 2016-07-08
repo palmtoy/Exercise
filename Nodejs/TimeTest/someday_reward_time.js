@@ -40,7 +40,7 @@ var threeDaysAgoZero = todayZero - threeDaysTime;
 console.log('\n threeDaysAgoZero =', threeDaysAgoZero);
 
 
-var lastPeriodTS = 1467849187;
+var lastPeriodTS = 1467849187 + 420 - 7;
 var lastPeriod = new Date(lastPeriodTS * 1000);
 console.log('\n lastPeriod =', lastPeriod);
 
