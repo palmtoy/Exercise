@@ -10,20 +10,17 @@ var tmpSandbox = {
 vm.runInNewContext(uidsData, tmpSandbox);
     
 console.log('\ntypeof tmpSandbox.json =', typeof tmpSandbox.json);
-console.log('\ntmpSandbox.json.length =', tmpSandbox.json.length, '\n');
+console.log('\ntmpSandbox.json.length =', tmpSandbox.json.length);
 
 
-var strTemplate = 'db.students.update({uid: UidTemplate}, {$set: {isLeader: NumberInt(1)}});' 
+var strUid = 'hdel zju_user';
 var i = 0;
 
-
-var uidTemplate = "UidTemplate";
-
 tmpSandbox.json.forEach(function(o) {
-	var tmpStr = strTemplate.replace(uidTemplate, o.uid);
-	console.log(tmpStr);
+	strUid = strUid + ' ' + o.uid;
 	i++;
 });
 
 console.log('\ni =', i);
+console.log('\nstrUid =>', strUid);
 
