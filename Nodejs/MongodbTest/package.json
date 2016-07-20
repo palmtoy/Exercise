@@ -1,0 +1,12 @@
+{
+  "name": "MongodbTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "mongodb": "^2.2.4"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "MIT"
+}
