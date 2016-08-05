@@ -1,11 +1,24 @@
-var exec = require('child_process').exec;
+#!/usr/bin/env node
 
-exec('ls -la',
-  function (error, _, _) {
-    if (error !== null) {
-      console.log('Exec error: ' + error + '!');
-    } else {
-      console.log('OK ~');
-    }
+var spawn = require('child_process').spawn;
+var lsChildP = spawn(
+		'ls'
+	, ['-lh', '/usr']
+	, {detached: true}
+);
+
+lsChildP.stdout.on('data', function(data) {
+  console.log('stdout: ' + data.toString());
 });
+
+lsChildP.stderr.on('data', function(data) {
+  console.log('stderr: ' + data);
+});
+
+lsChildP.on('close', function(code) {
+  console.log('child process exited with code ' + code);
+});
+
+
+lsChildP.unref();
 
