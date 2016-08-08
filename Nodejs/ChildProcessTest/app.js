@@ -1,24 +1,18 @@
 #!/usr/bin/env node
 
-var spawn = require('child_process').spawn;
-var lsChildP = spawn(
-		'ls'
+var fs = require('fs'),
+spawn = require('child_process').spawn,
+out = fs.openSync('./out.log', 'a'),
+err = fs.openSync('./out.log', 'a');
+
+var child = spawn(
+	'ls'
 	, ['-lh', '/usr']
-	, {detached: true}
+	, {
+			detached: true,
+			stdio: [ 'ignore', out, err ]
+		}
 );
 
-lsChildP.stdout.on('data', function(data) {
-  console.log('stdout: ' + data.toString());
-});
-
-lsChildP.stderr.on('data', function(data) {
-  console.log('stderr: ' + data);
-});
-
-lsChildP.on('close', function(code) {
-  console.log('child process exited with code ' + code);
-});
-
-
-lsChildP.unref();
+child.unref();
 
