@@ -12,7 +12,11 @@
 		"toolbar": true,
 		"width": 460,
 		"height": 256,
-		"position": "center"
+		"position": "center",
+		"min_width": 460,
+		"min_height": 256,
+		"max_width": 460,
+		"max_height": 256
 	}
 }
 
