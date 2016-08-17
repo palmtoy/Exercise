@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>Mini Clock</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./lib/bootstrap.css">
+		<script src="./lib/jquery.js"></script>
+		<script src="./lib/bootstrap.js"></script>
+
+	</head>
+
+
+	<body>
+
+		<table class="table table-bordered table-hover" align="center">
+			<thead>
+				<tr class="info">
+					<th>Zone</th>
+					<th>Time</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr>
+					<td>Beijing</td>
+					<td><span id="bjTime"></span></td>
+				</tr>
+				<tr>
+					<td>UTC</td>
+					<td><span id="utcTime"></span></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<script>
+			var _getTime = function() {
+				var d = new Date();
+				$('#bjTime').text(d.toString());
+				$('#utcTime').text(d.toUTCString());
+			};
+			
+			_getTime();
+			setInterval(function() {
+				_getTime();
+			}, 1000);
+		</script>
+
+	</body>
+
+</html>
+

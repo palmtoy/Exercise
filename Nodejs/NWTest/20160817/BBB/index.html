@@ -9,6 +9,9 @@
 		<link rel="stylesheet" href="./lib/bootstrap.css">
 		<script src="./lib/jquery.js"></script>
 		<script src="./lib/bootstrap.js"></script>
+		<script>
+			var mtz = require('moment-timezone');
+		</script>
 
 	</head>
 
@@ -32,20 +35,43 @@
 					<td>UTC</td>
 					<td><span id="utcTime"></span></td>
 				</tr>
+				<tr>
+					<tr>
+						<td>NewYork</td>
+						<td><span id="nyTime"></span></td>
+					</tr>
+					<td>Vancouver</td>
+					<td><span id="vTime"></span></td>
+				</tr>
+				<tr>
+					<td>London</td>
+					<td><span id="lTime"></span></td>
+				</tr>
 			</tbody>
 		</table>
 
 		<script>
+
 			var _getTime = function() {
-				var d = new Date();
-				$('#bjTime').text(d.toString());
-				$('#utcTime').text(d.toUTCString());
+				var beijing = mtz().tz("Asia/Shanghai");
+				var utc = beijing.clone().tz("UTC");
+				var newYork = beijing.clone().tz("America/New_York");
+				var vancouver = beijing.clone().tz("America/Vancouver");
+				var london = beijing.clone().tz("Europe/London");
+				var fStr = 'MMMM Do YYYY, HH:mm:ss Z';
+
+				$('#bjTime').text(beijing.format(fStr));
+				$('#utcTime').text(utc.format(fStr));
+				$('#nyTime').text(newYork.format(fStr));
+				$('#vTime').text(vancouver.format(fStr));
+				$('#lTime').text(london.format(fStr));
 			};
-			
+
 			_getTime();
 			setInterval(function() {
 				_getTime();
 			}, 1000);
+
 		</script>
 
 	</body>
