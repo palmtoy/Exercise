@@ -1,0 +1,12 @@
+{
+  "name": "HttpProxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "http-proxy": "^1.14.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
