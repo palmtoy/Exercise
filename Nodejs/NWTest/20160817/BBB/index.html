@@ -3,7 +3,7 @@
 
 	<head>
 
-		<title>Mini Clock</title>
+		<title>LOZClock</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="./lib/bootstrap.css">
@@ -18,7 +18,7 @@
 
 	<body>
 
-		<table class="table table-bordered table-hover" align="center">
+		<table class="table table-bordered table-striped" align="center">
 			<thead>
 				<tr class="info">
 					<th>Zone</th>
@@ -27,26 +27,33 @@
 			</thead>
 
 			<tbody>
+				<!--
 				<tr>
-					<td>Beijing</td>
+					<td>Beijing(China)</td>
 					<td><span id="bjTime"></span></td>
+				</tr>
+				-->
+				<tr>
+					<td>Vancouver(Canada)</td>
+					<td><span id="vancouverTime"></span></td>
 				</tr>
 				<tr>
 					<td>UTC</td>
 					<td><span id="utcTime"></span></td>
 				</tr>
 				<tr>
-					<tr>
-						<td>NewYork</td>
-						<td><span id="nyTime"></span></td>
-					</tr>
-					<td>Vancouver</td>
-					<td><span id="vTime"></span></td>
+					<td>Copenhagen(Denmark)</td>
+					<td><span id="copenhagenTime"></span></td>
 				</tr>
 				<tr>
-					<td>London</td>
-					<td><span id="lTime"></span></td>
+					<td>Stockholm(Sweden)</td>
+					<td><span id="stockholmTime"></span></td>
 				</tr>
+				<tr>
+					<td>Canberra(Australia)</td>
+					<td><span id="canberraTime"></span></td>
+				</tr>
+
 			</tbody>
 		</table>
 
@@ -55,16 +62,18 @@
 			var _getTime = function() {
 				var beijing = mtz().tz("Asia/Shanghai");
 				var utc = beijing.clone().tz("UTC");
-				var newYork = beijing.clone().tz("America/New_York");
 				var vancouver = beijing.clone().tz("America/Vancouver");
-				var london = beijing.clone().tz("Europe/London");
-				var fStr = 'MMMM Do YYYY, HH:mm:ss Z';
+				var copenhagen = beijing.clone().tz("Europe/Copenhagen");
+				var stockholm = beijing.clone().tz("Europe/Stockholm");
+				var canberra = beijing.clone().tz("Australia/Sydney");
+				var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
 
-				$('#bjTime').text(beijing.format(fStr));
+				// $('#bjTime').text(beijing.format(fStr));
+				$('#vancouverTime').text(vancouver.format(fStr));
 				$('#utcTime').text(utc.format(fStr));
-				$('#nyTime').text(newYork.format(fStr));
-				$('#vTime').text(vancouver.format(fStr));
-				$('#lTime').text(london.format(fStr));
+				$('#copenhagenTime').text(copenhagen.format(fStr));
+				$('#stockholmTime').text(stockholm.format(fStr));
+				$('#canberraTime').text(canberra.format(fStr));
 			};
 
 			_getTime();

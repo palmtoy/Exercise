@@ -1,11 +1,18 @@
 {
-  "name": "nw-demo",
-  "version": "0.0.1",
-  "main": "index.html",
-  "scripts": {
-    "start": "nw ."
-  },
-  "dependencies": {
-    "moment-timezone": "^0.5.5"
-  }
+	"name": "LOZClock",
+	"version": "1.0",
+	"main": "index.html",
+	"scripts": {
+		"start": "nw ."
+	},
+	"dependencies": {
+		"moment-timezone": "^0.5.5"
+	},
+	"window": {
+		"toolbar": true,
+		"width": 460,
+		"height": 256,
+		"position": "center"
+	}
 }
+
