@@ -14,8 +14,7 @@ qs           : https://github.com/visionmedia/node-querystring
 
 ================================================
 
-Please save this file as "app.js".
-Use this cmd to run it: "node app.js".
+Use this cmd to run it: "node svr.js"
 
 ================================================
 
