@@ -11,12 +11,12 @@
 	"window": {
 		"toolbar": true,
 		"width": 460,
-		"height": 256,
+		"height": 286,
 		"position": "center",
 		"min_width": 460,
-		"min_height": 256,
+		"min_height": 286,
 		"max_width": 460,
-		"max_height": 256
+		"max_height": 286
 	}
 }
 

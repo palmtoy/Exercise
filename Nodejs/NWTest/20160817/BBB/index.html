@@ -27,13 +27,6 @@
 					<td><b>Time</b></td>
 				</tr>
 
-				<!--
-				<tr>
-					<td>Beijing(China)</td>
-					<td><span id="bjTime"></span></td>
-				</tr>
-				-->
-
 				<tr align="center">
 					<td>Vancouver(Canada)</td>
 					<td><span id="vancouverTime"></span></td>
@@ -49,6 +42,10 @@
 				<tr align="center">
 					<td>Stockholm(Sweden)</td>
 					<td><span id="stockholmTime"></span></td>
+				</tr>
+				<tr class="success" align="center">
+					<td>Beijing(China)</td>
+					<td><span id="bjTime"></span></td>
 				</tr>
 				<tr align="center">
 					<td>Canberra(Australia)</td>
@@ -69,11 +66,11 @@
 				var canberra = beijing.clone().tz("Australia/Sydney");
 				var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
 
-				// $('#bjTime').text(beijing.format(fStr));
 				$('#vancouverTime').text(vancouver.format(fStr));
 				$('#utcTime').text(utc.format(fStr));
 				$('#copenhagenTime').text(copenhagen.format(fStr));
 				$('#stockholmTime').text(stockholm.format(fStr));
+				$('#bjTime').text(beijing.format(fStr));
 				$('#canberraTime').text(canberra.format(fStr));
 			};
 
