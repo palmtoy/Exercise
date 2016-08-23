@@ -1,9 +1,18 @@
+#!/usr/bin/env node
+
 var request = require('request');
 
-var tmpInterval = parseInt(process.argv[2]);
+var tmpInterval = parseInt(process.argv[2]) || 1000;
+var intervalObj = null;
+var maxTurn = 3
+	, curTurm = 0;
 
-
-setInterval(function() {
+intervalObj = setInterval(function() {
+	++curTurm;
+	if(intervalObj && curTurm > maxTurn) {
+		return clearInterval(intervalObj);
+	}
+	console.log('===================================================');
 	request('http://localhost:3000', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			console.log(body);
