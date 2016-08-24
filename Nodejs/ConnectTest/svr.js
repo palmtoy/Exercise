@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 
 Readme:
@@ -24,6 +26,10 @@ GET  ~~  curl -v http://127.0.0.1:3000
 GET  ~~  curl -v http://127.0.0.1:3000/hi
 POST ~~  curl -v -d 'user=will' http://localhost:3000/wow
 POST ~~  curl -v -d 'user[name][first]=will&user[email]=zgli@kabaminc.com' http://localhost:3000/qs
+
+Chrome Postman:
+POST ~~  localhost:3000/wow   form-data: user will
+POST ~~  localhost:3000/qs    form-data: user[name][first] will; user[email] zgli@kabaminc.com
 
 */
 
