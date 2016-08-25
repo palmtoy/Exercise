@@ -13,17 +13,15 @@
 		<div id="timePanel"></div>
 
 		<script>
-			var fs = require('fs');
-			var ejs = require('ejs');
-			var mtz = require('moment-timezone');
+			var ejs = require('ejs')
+				, mtz = require('moment-timezone');
 
-			fs.readFile('./timepanel.ejs', function(err, data){
+			ejs.renderFile('./timepanel.ejs', {mtz: mtz}, function(err, str){
+				// str => Rendered HTML string
 				if(err){
 					return $('#timePanel').html(err.toString());
 				}
-
-				var ejsContent = ejs.render(data.toString(), {mtz: mtz});
-				$('#timePanel').html(ejsContent);
+				$('#timePanel').html(str);
 			});
 		</script>
 	</body>
