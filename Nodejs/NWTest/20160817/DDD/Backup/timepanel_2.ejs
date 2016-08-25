@@ -1,0 +1,56 @@
+<table class="table table-bordered table-striped" align="center" style="font-size: 100%">
+	<tbody>
+		<tr class="info" align="center">
+			<td><b>Zone</b></td>
+			<td><b>Time</b></td>
+		</tr>
+
+		<%
+		var trList = [
+			{zone: 'Vancouver(Canada)', id: 'vancouverTime'},
+			{zone: 'UTC', id: 'utcTime', class: 'success'},
+			{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime'},
+			{zone: 'Stockholm(Sweden)', id: 'stockholmTime'},
+			{zone: 'Beijing(China)', id: 'bjTime', class: 'success'},
+			{zone: 'Canberra(Australia)', id: 'canberraTime'}
+		];
+
+		for(var i = 0, len = trList.length; i < len; i++) {
+			var o = trList[i];
+		%>
+
+			<tr align="center" <% if(o.class) { %> class=<%= o.class %> <% } %>>
+				<td><%= o.zone %></td>
+				<td><span id=<%= o.id %>></span></td>
+			</tr>
+
+		<%
+		}
+		%>
+	</tbody>
+</table>
+
+<script>
+	var _getTime = function() {
+		var beijing = mtz().tz("Asia/Shanghai");
+		var utc = beijing.clone().tz("UTC");
+		var vancouver = beijing.clone().tz("America/Vancouver");
+		var copenhagen = beijing.clone().tz("Europe/Copenhagen");
+		var stockholm = beijing.clone().tz("Europe/Stockholm");
+		var canberra = beijing.clone().tz("Australia/Sydney");
+		var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
+
+		$('#vancouverTime').text(vancouver.format(fStr));
+		$('#utcTime').text(utc.format(fStr));
+		$('#copenhagenTime').text(copenhagen.format(fStr));
+		$('#stockholmTime').text(stockholm.format(fStr));
+		$('#bjTime').text(beijing.format(fStr));
+		$('#canberraTime').text(canberra.format(fStr));
+	};
+
+	_getTime();
+	setInterval(function() {
+		_getTime();
+	}, 1000);
+</script>
+

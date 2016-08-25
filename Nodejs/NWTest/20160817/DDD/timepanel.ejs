@@ -5,49 +5,30 @@
 			<td><b>Time</b></td>
 		</tr>
 
-		<tr align="center">
-			<td>Vancouver(Canada)</td>
-			<td><span id="vancouverTime"></span></td>
-		</tr>
-		<tr class="success" align="center">
-			<td>UTC</td>
-			<td><span id="utcTime"></span></td>
-		</tr>
-		<tr align="center">
-			<td>Copenhagen(Denmark)</td>
-			<td><span id="copenhagenTime"></span></td>
-		</tr>
-		<tr align="center">
-			<td>Stockholm(Sweden)</td>
-			<td><span id="stockholmTime"></span></td>
-		</tr>
-		<tr class="success" align="center">
-			<td>Beijing(China)</td>
-			<td><span id="bjTime"></span></td>
-		</tr>
-		<tr align="center">
-			<td>Canberra(Australia)</td>
-			<td><span id="canberraTime"></span></td>
-		</tr>
+		<%
+		for(var i = 0, len = trList.length; i < len; i++) {
+			var o = trList[i];
+		%>
+
+			<tr align="center" <% if(o.class) { %> class=<%= o.class %> <% } %>>
+				<td><%= o.zone %></td>
+				<td><span id=<%= o.id %>></span></td>
+			</tr>
+
+		<%
+		}
+		%>
 	</tbody>
 </table>
 
 <script>
-	var _getTime = function() {
-		var beijing = mtz().tz("Asia/Shanghai");
-		var utc = beijing.clone().tz("UTC");
-		var vancouver = beijing.clone().tz("America/Vancouver");
-		var copenhagen = beijing.clone().tz("Europe/Copenhagen");
-		var stockholm = beijing.clone().tz("Europe/Stockholm");
-		var canberra = beijing.clone().tz("Australia/Sydney");
-		var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
+	var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
 
-		$('#vancouverTime').text(vancouver.format(fStr));
-		$('#utcTime').text(utc.format(fStr));
-		$('#copenhagenTime').text(copenhagen.format(fStr));
-		$('#stockholmTime').text(stockholm.format(fStr));
-		$('#bjTime').text(beijing.format(fStr));
-		$('#canberraTime').text(canberra.format(fStr));
+	var _getTime = function() {
+		trList.forEach(function(o) {
+			var t = mtz().tz(o.tz);
+			$('#' + o.id).text(t.format(fStr));
+		});
 	};
 
 	_getTime();
