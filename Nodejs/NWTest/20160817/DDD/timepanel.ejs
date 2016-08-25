@@ -34,6 +34,9 @@
 
 <script>
 	var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
+
+	// Don't use `<%= %>`, use `<%- %>` instead. For example: `<%- JSON.stringify(trStr) %>`.
+	// The first one will render in HTML, the second one will render variables(as they are: eval).
 	var trList = JSON.parse(<%- JSON.stringify(trStr) %>);
 
 	var _getTime = function() {
