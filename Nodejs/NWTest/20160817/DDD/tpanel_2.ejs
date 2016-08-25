@@ -1,0 +1,16 @@
+<script>
+	var trList = JSON.parse(<%- JSON.stringify(trStr) %>);
+
+	var _getTime = function() {
+		trList.forEach(function(o) {
+			var tzObj = mtz().tz(o.tzStr);
+			$('#' + o.id).text(tzObj.format('MMMM Do YYYY, HH:mm:ss A Z'));
+		});
+	};
+
+	_getTime();
+	setInterval(function() {
+		_getTime();
+	}, 1000);
+</script>
+

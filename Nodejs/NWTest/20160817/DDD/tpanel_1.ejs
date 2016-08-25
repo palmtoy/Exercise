@@ -1,0 +1,23 @@
+<table class="table table-bordered table-striped" align="center" style="font-size: 100%">
+	<tbody>
+		<tr class="info" align="center">
+			<td><b>Zone</b></td>
+			<td><b>Time</b></td>
+		</tr>
+
+		<%
+		for(var i = 0, len = trList.length; i < len; i++) {
+			var o = trList[i];
+		%>
+
+			<tr align="center" <% if(o.class) { %> class=<%= o.class %> <% } %>>
+				<td><%= o.zone %></td>
+				<td><span id=<%= o.id %>></span></td>
+			</tr>
+
+		<%
+		}
+		%>
+	</tbody>
+</table>
+
