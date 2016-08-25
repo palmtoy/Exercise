@@ -16,7 +16,7 @@
 			var ejs = require('ejs')
 				, mtz = require('moment-timezone');
 
-			ejs.renderFile('./bucket.ejs', {mtz: mtz}, function(err, str){
+			ejs.renderFile('./timepanel.ejs', {mtz: mtz}, function(err, str){
 				// str => Rendered HTML string
 				if(err){
 					return $('#timePanel').html(err.toString());

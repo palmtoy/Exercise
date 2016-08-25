@@ -1,0 +1,51 @@
+<table class="table table-bordered table-striped" align="center" style="font-size: 100%">
+	<tbody>
+		<tr class="info" align="center">
+			<td><b>Zone</b></td>
+			<td><b>Time</b></td>
+		</tr>
+
+		<%
+		var trList = [
+			{zone: 'Vancouver(Canada)', id: 'vancouverTime', tzStr: 'America/Vancouver'},
+			{zone: 'UTC', id: 'utcTime', class: 'success', tzStr: 'UTC'},
+			{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tzStr: 'Europe/Copenhagen'},
+			{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tzStr: 'Europe/Stockholm'},
+			{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tzStr: 'Asia/Shanghai'},
+			{zone: 'Canberra(Australia)', id: 'canberraTime', tzStr: 'Australia/Sydney'}
+		];
+		var trStr = JSON.stringify(trList);
+
+		for(var i = 0, len = trList.length; i < len; i++) {
+			var o = trList[i];
+		%>
+
+			<tr align="center" <% if(o.class) { %> class=<%= o.class %> <% } %>>
+				<td><%= o.zone %></td>
+				<td><span id=<%= o.id %>></span></td>
+			</tr>
+
+		<%
+		}
+		%>
+	</tbody>
+</table>
+
+<script>
+	// Don't use `<%= %>`, use `<%- %>` instead. For example: `<%- JSON.stringify(trStr) %>`.
+	// The first one will render in HTML, the second one will render variables(as they are: eval).
+	var trList = JSON.parse(<%- JSON.stringify(trStr) %>);
+
+	var _getTime = function() {
+		trList.forEach(function(o) {
+			var tzObj = mtz().tz(o.tzStr);
+			$('#' + o.id).text(tzObj.format('MMMM Do YYYY, HH:mm:ss A Z'));
+		});
+	};
+
+	_getTime();
+	setInterval(function() {
+		_getTime();
+	}, 1000);
+</script>
+
