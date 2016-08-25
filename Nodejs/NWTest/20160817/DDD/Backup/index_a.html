@@ -16,7 +16,16 @@
 			var ejs = require('ejs')
 				, mtz = require('moment-timezone');
 
-			ejs.renderFile('./timepanel.ejs', {mtz: mtz}, function(err, str){
+			var trList = [
+				{zone: 'Vancouver(Canada)', id: 'vancouverTime', tz: 'America/Vancouver'},
+				{zone: 'UTC', id: 'utcTime', class: 'success', tz: 'UTC'},
+				{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tz: 'Europe/Copenhagen'},
+				{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tz: 'Europe/Stockholm'},
+				{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tz: 'Asia/Shanghai'},
+				{zone: 'Canberra(Australia)', id: 'canberraTime', tz: 'Australia/Sydney'}
+			];
+
+			ejs.renderFile('./timepanel.ejs', {mtz: mtz, trList: trList}, function(err, str){
 				// str => Rendered HTML string
 				if(err){
 					return $('#timePanel').html(err.toString());

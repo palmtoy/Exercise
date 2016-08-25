@@ -1,6 +1,3 @@
-
-
-
 <table class="table table-bordered table-striped" align="center" style="font-size: 100%">
 	<tbody>
 		<tr class="info" align="center">
@@ -9,16 +6,6 @@
 		</tr>
 
 		<%
-		var trList = [
-			{zone: 'Vancouver(Canada)', id: 'vancouverTime', tz: 'America/Vancouver'},
-			{zone: 'UTC', id: 'utcTime', class: 'success', tz: 'UTC'},
-			{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tz: 'Europe/Copenhagen'},
-			{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tz: 'Europe/Stockholm'},
-			{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tz: 'Asia/Shanghai'},
-			{zone: 'Canberra(Australia)', id: 'canberraTime', tz: 'Australia/Sydney'}
-		];
-		var trStr = JSON.stringify(trList);
-
 		for(var i = 0, len = trList.length; i < len; i++) {
 			var o = trList[i];
 		%>
@@ -30,14 +17,12 @@
 
 		<%
 		}
-
 		%>
 	</tbody>
 </table>
 
 <script>
 	var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
-	var trList = JSON.parse(<%- JSON.stringify(trStr) %>);
 
 	var _getTime = function() {
 		trList.forEach(function(o) {
