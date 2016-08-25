@@ -7,12 +7,12 @@
 
 		<%
 		var trList = [
-			{zone: 'Vancouver(Canada)', id: 'vancouverTime', tz: 'America/Vancouver'},
-			{zone: 'UTC', id: 'utcTime', class: 'success', tz: 'UTC'},
-			{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tz: 'Europe/Copenhagen'},
-			{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tz: 'Europe/Stockholm'},
-			{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tz: 'Asia/Shanghai'},
-			{zone: 'Canberra(Australia)', id: 'canberraTime', tz: 'Australia/Sydney'}
+			{zone: 'Vancouver(Canada)', id: 'vancouverTime', tzStr: 'America/Vancouver'},
+			{zone: 'UTC', id: 'utcTime', class: 'success', tzStr: 'UTC'},
+			{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tzStr: 'Europe/Copenhagen'},
+			{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tzStr: 'Europe/Stockholm'},
+			{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tzStr: 'Asia/Shanghai'},
+			{zone: 'Canberra(Australia)', id: 'canberraTime', tzStr: 'Australia/Sydney'}
 		];
 		var trStr = JSON.stringify(trList);
 
@@ -33,16 +33,14 @@
 </table>
 
 <script>
-	var fStr = 'MMMM Do YYYY, HH:mm:ss A Z';
-
 	// Don't use `<%= %>`, use `<%- %>` instead. For example: `<%- JSON.stringify(trStr) %>`.
 	// The first one will render in HTML, the second one will render variables(as they are: eval).
 	var trList = JSON.parse(<%- JSON.stringify(trStr) %>);
 
 	var _getTime = function() {
 		trList.forEach(function(o) {
-			var t = mtz().tz(o.tz);
-			$('#' + o.id).text(t.format(fStr));
+			var tzObj = mtz().tz(o.tzStr);
+			$('#' + o.id).text(tzObj.format('MMMM Do YYYY, HH:mm:ss A Z'));
 		});
 	};
 
