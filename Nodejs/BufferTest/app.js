@@ -1,14 +1,13 @@
-var http = require('http');
-var helloworld = '';
+var buf = new Buffer(4);
 
-for(var i = 0; i < 1024 * 10; i++) {
-  helloworld += 'a';
-};
+buf[0] = 0x3;
+buf[1] = 0x4;
+buf[2] = 0x23;
+buf[3] = 0x42;
 
-helloworld = new Buffer(helloworld);
+console.log(buf.readUInt32BE(0));
+console.log(buf.readUInt32LE(0));
 
-http.createServer(function(req, res) {
-  res.writeHead(200);
-  res.end(helloworld);
-}).listen(8001);
+// 0x03042342 (50602818)
+// 0x42230403 (1109591043)
 
