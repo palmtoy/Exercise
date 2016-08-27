@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mini Clock</title>
+		<script src="./lib/jquery.js"></script>
+	</head>
+	<body>
+		<tr>
+			<td><span>Beijing Time ~ </span></td>
+			<td><span id="timeFlag"></span></td>
+		</tr>
+
+		<script>
+			$('#timeFlag').text(Date());
+			setInterval(function() {
+				$('#timeFlag').text(Date());
+			}, 1000);
+		</script>
+	</body>
+</html>
+

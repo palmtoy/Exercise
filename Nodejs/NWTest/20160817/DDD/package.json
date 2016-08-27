@@ -1,0 +1,23 @@
+{
+	"name": "GAMClock",
+	"version": "1.0.0",
+	"main": "index.html",
+	"scripts": {
+		"start": "nw ."
+	},
+	"dependencies": {
+		"ejs": "^2.3.4",
+		"moment-timezone": "^0.5.5"
+	},
+	"window": {
+		"toolbar": true,
+		"width": 460,
+		"height": 286,
+		"position": "center",
+		"min_width": 460,
+		"min_height": 286,
+		"max_width": 460,
+		"max_height": 286
+	}
+}
+

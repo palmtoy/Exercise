@@ -1,0 +1,30 @@
+<html>
+
+	<head>
+		<title>GAMClock</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./lib/bootstrap.css">
+		<script src="./lib/jquery.js"></script>
+		<script src="./lib/bootstrap.js"></script>
+	</head>
+
+	<body>
+		<div id="timePanel"></div>
+
+		<script>
+			var ejs = require('ejs')
+				, mtz = require('moment-timezone');
+
+			ejs.renderFile('./timepanel.ejs', {mtz: mtz}, function(err, str){
+				// str => Rendered HTML string
+				if(err){
+					return $('#timePanel').html(err.toString());
+				}
+				$('#timePanel').html(str);
+			});
+		</script>
+	</body>
+
+</html>
+

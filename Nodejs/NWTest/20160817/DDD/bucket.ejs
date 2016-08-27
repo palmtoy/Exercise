@@ -1,0 +1,15 @@
+<%
+	var trList = [
+		{zone: 'Vancouver(Canada)', id: 'vancouverTime', tzStr: 'America/Vancouver'},
+		{zone: 'UTC', id: 'utcTime', class: 'success', tzStr: 'UTC'},
+		{zone: 'Copenhagen(Denmark)', id: 'copenhagenTime', tzStr: 'Europe/Copenhagen'},
+		{zone: 'Stockholm(Sweden)', id: 'stockholmTime', tzStr: 'Europe/Stockholm'},
+		{zone: 'Beijing(China)', id: 'bjTime', class: 'success', tzStr: 'Asia/Shanghai'},
+		{zone: 'Canberra(Australia)', id: 'canberraTime', tzStr: 'Australia/Sydney'}
+	];
+	var trStr = JSON.stringify(trList);
+%>
+
+<%- include('./tpanel_1.ejs', {trList: trList}) %>
+<%- include('./tpanel_2.ejs', {trStr: trStr}) %>
+

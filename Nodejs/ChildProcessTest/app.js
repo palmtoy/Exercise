@@ -1,11 +1,18 @@
-var exec = require('child_process').exec;
+#!/usr/bin/env node
 
-exec('ls -la',
-  function (error, _, _) {
-    if (error !== null) {
-      console.log('Exec error: ' + error + '!');
-    } else {
-      console.log('OK ~');
-    }
-});
+var fs = require('fs'),
+spawn = require('child_process').spawn,
+out = fs.openSync('./out.log', 'a'),
+err = fs.openSync('./out.log', 'a');
+
+var child = spawn(
+	'ls'
+	, ['-lh', '/usr']
+	, {
+			detached: true,
+			stdio: [ 'ignore', out, err ]
+		}
+);
+
+child.unref();
 

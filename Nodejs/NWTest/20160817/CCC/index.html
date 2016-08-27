@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<script>
+			var fs = require('fs');
+			var ejs = require('ejs');
+
+			fs.readFile('./index.ejs', function(err, data){
+				if(err){
+					document.body.innerHTML = err.toString();
+					return;
+				}
+
+				var template = ejs.compile(data.toString());
+				document.body.innerHTML = template({ name: 'World', now: Date() });
+				setInterval(function() {
+					document.body.innerHTML = template({ name: 'World', now: Date() });
+				}, 1000);
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+
