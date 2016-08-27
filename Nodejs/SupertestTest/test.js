@@ -12,7 +12,7 @@ var port = 8081;
 var app = express();
 
 app.get('/user', function(req, res){
-  res.send(200, { name: 'palmtoy' });
+  res.send(200, { name: 'will' });
 });
 
 app.post('/user', function(req, res){
@@ -30,8 +30,13 @@ describe('GET /users', function(){
     .get('/user')
     .set('Accept', 'application/json')
     .expect('Content-Type', /json/)
-    .expect('{"name":"palmtoy"}') // body
-    .expect(200, done);
+    .expect('{"name":"will"}') // body
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      console.log('\nAAA ~ res.body = ', res.body);
+      done()
+    });
   });
 
   it('respond with json ~ 2', function(done){
@@ -42,7 +47,7 @@ describe('GET /users', function(){
     .expect(200)
     .end(function(err, res){
       if (err) return done(err);
-      console.log('\nAAA ~ res.body = ', res.body);
+      console.log('\nBBB ~ res.body = ', res.body);
       done()
     });
   });
