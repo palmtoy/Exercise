@@ -6,8 +6,11 @@
   "scripts": {},
   "author": "",
   "license": "MIT",
-  "devDependencies": {
-		"express": "4.6.1",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "4.6.1",
+    "should": "^11.1.0",
     "supertest": "0.10.0"
-  }
+  },
+  "devDependencies": {}
 }
