@@ -20,8 +20,24 @@ app.get('/', function(req, res){
 	res.send('hi, baby ~ : ' + now);
 });
 
+app.get('/wow', function(req, res){
+	res.send('heya');
+});
+
 
 var port = 8081;
 app.listen(port);
 console.log('Express http server is running on', port, '...');
+
+
+var request = require('supertest');
+request = request('http://localhost:' + port);
+
+request.get('/wow').expect(200, function(err){
+	console.log(err);
+});
+
+request.get('/wow').expect('heya', function(err){
+	console.log(err);
+});
 

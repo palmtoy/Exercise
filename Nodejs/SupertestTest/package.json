@@ -1,0 +1,16 @@
+{
+  "name": "SupertestTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "4.6.1",
+    "should": "^11.1.0",
+    "supertest": "0.10.0"
+  },
+  "devDependencies": {}
+}
