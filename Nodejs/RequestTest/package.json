@@ -1,0 +1,12 @@
+{
+  "name": "RequestTest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "request": "^2.74.0"
+  },
+  "devDependencies": {},
+  "author": "palmtoy",
+  "license": "MIT"
+}

@@ -2,7 +2,7 @@ var request = require('request')
 
 request(
 	{ method: 'GET'
-		, uri: 'http://localhost:80'
+		, uri: 'http://localhost:8086/greet/will'
 		, timeout: 3000
 		, gzip: true
 	}
