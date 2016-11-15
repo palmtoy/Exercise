@@ -1,14 +1,14 @@
 /*
-	1) put the picture 'mona.png(Mona Lisa)' at Downloads folder
+	1) put the picture 'mona.jpg(Mona Lisa)' at Downloads folder
 	2) node app.js
-	3) open out.jpg at Downloads folder
+	3) open mona_face.jpg at Downloads folder
 */
 
 var cv = require('opencv');
 
 var dlDir = process.env.HOME + '/Downloads/';
 
-cv.readImage(dlDir + 'mona.png', function(err, im){
+cv.readImage(dlDir + 'mona.jpg', function(err, im){
 	im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
 		for (var i = 0; i < faces.length; i++){
 			var x = faces[i]
