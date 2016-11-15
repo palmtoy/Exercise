@@ -14,7 +14,7 @@ amqp.connect('amqp://UbuntuVB', function(err, conn) {
 
 		ch.assertQueue(q, {durable: true});
 		// don't dispatch a new message to a worker until it has processed and acknowledged the previous one
-    ch.prefetch(1);
+		ch.prefetch(1);
 		console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", q);
 
 		ch.consume(q, function(msg) {
