@@ -1,0 +1,12 @@
+{
+  "name": "opencvtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "opencv": "^6.0.0"
+  }
+}
