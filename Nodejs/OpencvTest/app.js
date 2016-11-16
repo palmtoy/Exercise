@@ -1,23 +1,23 @@
-/*
-	1) put the picture 'mona.jpg(Mona Lisa)' at Downloads folder
-	2) node app.js
-	3) open mona_face.jpg at Downloads folder
-*/
-
 var cv = require('opencv');
 
 var dlDir = process.env.HOME + '/Downloads/';
 
-cv.readImage(dlDir + 'mona.jpg', function(err, im){
-	im.detectObject(cv.FACE_CASCADE, {}, function(err, faces){
-		for (var i = 0; i < faces.length; i++){
-			var x = faces[i]
-			im.ellipse(x.x + x.width/2, x.y + x.height/2, x.width/2, x.height/2);
-		}
+cv.readImage(dlDir + 'car.jpg', function(err, imgCar){
+	cv.readImage(dlDir + 'car_head.jpg', function(err, imgCarHead){
+		var res = cv.matchTemplate(imgCar, imgCarHead, cv.TM_CCOEFF_NORMED);
+		var mnLoc = cv.minMaxLoc(res);
+		console.log('mnLoc =', mnLoc);
 
-		var monaFace = dlDir + 'mona_face.jpg';
-		im.save(monaFace);
-		console.log('Mona face picture has been saved to ' + monaFace + '.');
+
+		/*
+		threshold = 0.8
+		loc = np.where( res >= threshold)
+		for pt in zip(*loc[::-1]):
+				cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
+
+			cv2.imwrite('res.png',img_rgb)
+		*/
+
 	});
-})
+});
 
