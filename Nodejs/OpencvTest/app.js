@@ -1,23 +1,20 @@
 var cv = require('opencv');
 
-var dlDir = process.env.HOME + '/Downloads/';
+cv.readImage("./images/car.jpg", function(err, img){
+  if (err) throw err;
+  if (img.width() < 1 || img.height() < 1) throw new Error('Image has no size');
 
-cv.readImage(dlDir + 'car.jpg', function(err, imgCar){
-	cv.readImage(dlDir + 'car_head.jpg', function(err, imgCarHead){
-		var res = cv.matchTemplate(imgCar, imgCarHead, cv.TM_CCOEFF_NORMED);
-		var mnLoc = cv.minMaxLoc(res);
-		console.log('mnLoc =', mnLoc);
+  img.detectObject("./data/hogcascade_cars_sideview.xml", {}, function(err, cars){
+    if (err) throw err;
 
+    for (var i = 0; i < cars.length; i++) {
+      var c = cars[i];
+      img.rectangle([c.x, c.y], [c.width, c.height]);
+    }
 
-		/*
-		threshold = 0.8
-		loc = np.where( res >= threshold)
-		for pt in zip(*loc[::-1]):
-				cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
-
-			cv2.imwrite('res.png',img_rgb)
-		*/
-
-	});
+		var tmpJpg = './tmp/cardetection.jpg';
+    img.save(tmpJpg);
+    console.log('Image saved to ' + tmpJpg);
+  });
 });
 
