@@ -10,7 +10,7 @@ var templateList = [
 	];
 
 cv.readImage(targetFilename, function(err, imgTarget){
-	async.each(templateList, function(tObj, cb) {
+	async.each(templateList, function(tObj, next) {
 		cv.readImage(tObj.img, function(err, imgTemplate){
 			var TM_CCORR_NORMED = 3;
 			var res = imgTarget.matchTemplateByMatrix(imgTemplate, TM_CCORR_NORMED);
@@ -24,7 +24,7 @@ cv.readImage(targetFilename, function(err, imgTarget){
 
 			var LINE_WIDTH = 2;
 			imgTarget.rectangle([topLeft.x, topLeft.y], [tmpWidth, tmpHeight], tObj.color, LINE_WIDTH);
-			cb();
+			return next();
 		});
 	}, function(err) {
 		var outputFilename = './game_scene-rectangle.jpg';
