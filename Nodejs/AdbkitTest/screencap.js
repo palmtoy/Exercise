@@ -1,15 +1,21 @@
-var fs = require('fs');
+var Promise = require('bluebird');
 var adb = require('adbkit');
 var client = adb.createClient();
+var fs = require('fs');
 
-client.listDevices(function(err, devices) {
-	devices.forEach(function(d) {
-		client.screencap(d.id, function(err, imgStream) {
-			if(err) {
-				return console.error('Something went wrong:', err.stack)
-			}
-			imgStream.pipe(fs.createWriteStream('myscreen-' + d.id + '.png'));
+client.listDevices()
+	.then(function(devices) {
+		return Promise.map(devices, function(device) {
+			return client.screencap(device.id)
+			.then(function(imgStream) {
+				imgStream.pipe(fs.createWriteStream('myscreen-' + device.id + '.png'));
+			});
 		})
+	})
+	.then(function() {
+		console.log('Done screencap on connected devices.')
+	})
+	.catch(function(err) {
+		console.error('Something went wrong:', err.stack)
 	});
-});
 
