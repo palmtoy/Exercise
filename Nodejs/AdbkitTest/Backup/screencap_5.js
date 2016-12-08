@@ -2,13 +2,7 @@ var Promise = require('bluebird');
 var adb = require('adbkit');
 var client = adb.createClient();
 var fs = require('fs');
-var sharp = require('sharp');
-
-var transformer = sharp()
-	.resize(360, 640)
-	.on('info', function(info) {
-		console.log('Image size is ' + info.width + 'x' + info.height + '.');
-	});
+var PNG = require('pngjs').PNG;
 
 client.listDevices()
 	.then(function(devices) {
@@ -16,8 +10,15 @@ client.listDevices()
 			return client.screencap(device.id)
 			.then(function(imgStream) {
 				imgStream
-				.pipe(transformer)
-				.pipe(fs.createWriteStream('myscreen-' + device.id + '-resized.png'));
+				.pipe(new PNG({
+					filterType: 4
+				}))
+				.on('parsed', function() {
+					this.pack().pipe(fs.createWriteStream('myscreen-' + device.id + '-parsed.png'));
+				})
+				.on('metadata', function(metadata) {
+					console.log('metadata =', JSON.stringify(metadata))
+				})
 			});
 		})
 	})
