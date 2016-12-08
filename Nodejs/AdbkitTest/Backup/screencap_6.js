@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var Promise = require('bluebird');
 var adb = require('adbkit');
 var client = adb.createClient();
