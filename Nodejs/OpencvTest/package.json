@@ -8,6 +8,10 @@
   "license": "ISC",
   "dependencies": {
     "async": "^1.4.2",
-    "opencv": "^6.0.0"
+    "opencv": "^6.0.0",
+
+    "adbkit": "^2.6.2",
+    "bluebird": "^3.4.6",
+    "sharp": "^0.16.2"
   }
 }
