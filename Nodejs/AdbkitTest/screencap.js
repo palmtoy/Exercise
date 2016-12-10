@@ -6,6 +6,13 @@ var client = adb.createClient();
 var fs = require('fs');
 var sharp = require('sharp');
 
+
+var outputImg = process.argv[2];
+if(outputImg) {
+	outputImg += '.png';
+}
+
+
 var transformer = sharp()
 	.resize(360, 640)
 	.on('info', function(info) {
@@ -17,9 +24,10 @@ client.listDevices()
 		return Promise.map(devices, function(device) {
 			return client.screencap(device.id)
 			.then(function(imgStream) {
+				outputImg = outputImg || ('myscreen-' + device.id + '-resized.png');
 				imgStream
 				.pipe(transformer)
-				.pipe(fs.createWriteStream('myscreen-' + device.id + '-resized.png'));
+				.pipe(fs.createWriteStream(outputImg));
 			});
 		})
 	})
