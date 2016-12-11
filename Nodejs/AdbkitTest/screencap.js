@@ -13,19 +13,27 @@ if(outputImg) {
 }
 
 
-var transformer = sharp()
-	.resize(360, 640)
-	.on('info', function(info) {
-		console.log('Image size is ' + info.width + 'x' + info.height + '.');
-	});
-
 client.listDevices()
 	.then(function(devices) {
 		return Promise.map(devices, function(device) {
 			return client.screencap(device.id)
 			.then(function(imgStream) {
+				var getScreencapInfo = sharp()
+					.on('info', function(info) {
+						device.info = info;
+						console.log('Device =', JSON.stringify(device));
+					});
+
+				var transformer = sharp()
+					.resize(360, 640)
+					.on('info', function(info) {
+						console.log('Resized image size is ' + info.width + 'x' + info.height + '.');
+					});
+
 				outputImg = outputImg || ('myscreen-' + device.id + '-resized.png');
+
 				imgStream
+				.pipe(getScreencapInfo)
 				.pipe(transformer)
 				.pipe(fs.createWriteStream(outputImg));
 			});
