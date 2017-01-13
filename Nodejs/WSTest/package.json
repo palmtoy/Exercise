@@ -1,0 +1,12 @@
+{
+  "name": "wstest",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "express": "^4.6.1",
+    "ws": "^0.7.2"
+  },
+  "devDependencies": {},
+  "author": "palmtoy",
+  "license": "MIT"
+}
