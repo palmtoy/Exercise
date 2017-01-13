@@ -1,11 +1,14 @@
-// $ wscat -c ws://localhost:8086
+#!/usr/bin/env node
+
+// remove tls rejections
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 var WebSocket = require('ws')
-  , ws = new WebSocket('ws://localhost:8086/');
+  , wss = new WebSocket('wss://localhost:8068/');
 
 var intervalId = null;
 
-ws.on('open', function() {
+wss.on('open', function() {
   console.log('Connected to server.');
   var headLen = 4
     , itemLen = 4;
@@ -31,7 +34,7 @@ ws.on('open', function() {
     }
 
     try {
-      ws.send(buf, {binary: true, mask: true});
+      wss.send(buf, {binary: true, mask: true});
     } catch(err) {
       throw err;
     }
@@ -42,12 +45,12 @@ ws.on('open', function() {
   intervalId = setInterval(sendArray, 1500);
 });
 
-ws.on('message', function(message) {
+wss.on('message', function(message) {
   console.log('\nEcho from svr: %s', message);
   console.log('====================================\n');
 });
 
-ws.on('close', function() {
+wss.on('close', function() {
   if(!!intervalId) {
     clearInterval(intervalId);
   }

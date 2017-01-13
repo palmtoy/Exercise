@@ -1,17 +1,40 @@
-// $ npm install -g wscat
-// $ wscat -l 8086
+#!/usr/bin/env node
 
-var WebSocketServer = require('ws').Server
-  , port = 8086
-  , wss = new WebSocketServer({port: port});
+var fs = require('fs')
+	, https = require('https');
+
+var privateKey  = fs.readFileSync('sslcerts/key.pem', 'utf8');
+var certificate = fs.readFileSync('sslcerts/cert.pem', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var app = express();
+
+var htmlPath = __dirname + '/pages';
+app.use(express.static(htmlPath));
+
+//... bunch of other express stuff here ...
+
+//pass in your express app and credentials to create an https server
+var httpsServer = https.createServer(credentials, app);
+var port = 8068;
+httpsServer.listen(port);
+console.log('Https is running on port ' + port + ' ...');
+
+
+// wss server
+var WebSocketServer = require('ws').Server;
+var wss = new WebSocketServer({
+	server: httpsServer
+});
 
 var msgId = 0;
-wss.on('connection', function(ws) {
+wss.on('connection', function connection(wsObj) {
   var self = this;
   var headLen = 4
     , itemLen = 4;
 
-  ws.on('message', function(buf) {
+  wsObj.on('message', function(buf) {
     console.log('\nisBuffer(buf) = ', Buffer.isBuffer(buf));
     console.log('Received from cli: %d ~ %j', ++msgId, buf);
 
@@ -41,6 +64,4 @@ wss.on('connection', function(ws) {
     }
   });
 });
-
-console.log('WebSocket server is listening on port %s ...', port);
 
