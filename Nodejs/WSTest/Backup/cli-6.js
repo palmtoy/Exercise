@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 // remove tls rejections
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-var WebSocket = require('ws');
-var wss = new WebSocket('wss://localhost:8068/', {rejectUnauthorized: false});
+var WebSocket = require('ws')
+  , wss = new WebSocket('wss://localhost:8068/');
 
 var intervalId = null;
 
