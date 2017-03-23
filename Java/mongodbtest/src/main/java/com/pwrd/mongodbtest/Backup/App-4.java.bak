@@ -6,8 +6,6 @@ import org.bson.Document;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.model.Filters;
-
 
 /**
  *
@@ -16,10 +14,9 @@ import com.mongodb.client.model.Filters;
 public class App
 {
 	public static void main( String args[] ) {
-		MongoClient mongoClient = null;
 		try {
 			// 连接到 mongodb 服务
-			mongoClient = new MongoClient("localhost" , 27017);
+			MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 
 			// 连接到数据库
 			MongoDatabase mongoDatabase = mongoClient.getDatabase("slg");
@@ -28,12 +25,12 @@ public class App
 			MongoCollection<Document> collection = mongoDatabase.getCollection("mycol");
 			System.out.println("Collection selected.");
 
-			//删除符合条件的第一个文档
-			collection.deleteOne(Filters.eq("likes", 200));
-			//删除所有符合条件的文档
-			collection.deleteMany(Filters.eq("likes", 200));
-
-			//检索查看结果
+			//检索所有文档
+			/**
+			 * 1. 获取迭代器FindIterable<Document>
+			 * 2. 获取游标MongoCursor<Document>
+			 * 3. 通过游标遍历检索出的文档集合
+			 * */
 			FindIterable<Document> findIterable = collection.find();
 			MongoCursor<Document> mongoCursor = findIterable.iterator();
 			for (;mongoCursor.hasNext();) {
@@ -41,8 +38,6 @@ public class App
 			}
 		} catch(Exception e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		} finally{
-			mongoClient.close();
 		}
 	}
 }
