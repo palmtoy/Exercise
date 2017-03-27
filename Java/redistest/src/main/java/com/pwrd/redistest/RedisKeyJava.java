@@ -3,7 +3,7 @@ package com.pwrd.redistest;
 import redis.clients.jedis.Jedis;
 
 import java.util.HashSet;
-import java.util.List;
+import java.util.Iterator;
 
 public class RedisKeyJava {
 	public static void main(String[] args) {
@@ -13,6 +13,18 @@ public class RedisKeyJava {
 
 		// 获取数据并输出
 		HashSet<String> tmpHset = (HashSet<String>) jedis.keys("*");
-		System.out.println("List of stored keys:: " + tmpHset.toString());
+		// System.out.println("List of stored keys:: " + tmpHset.toString());
+		// System.out.println("List of stored keys:: " + tmpHset);
+
+		// create an iterator
+		Iterator iterator = tmpHset.iterator();
+		// check values
+		for (;iterator.hasNext();){
+			System.out.println("A: List of stored keys:: " + iterator.next());
+		}
+
+		for (String s : tmpHset) {
+			System.out.println("B: List of stored keys:: " + s);
+		}
 	}
 }
