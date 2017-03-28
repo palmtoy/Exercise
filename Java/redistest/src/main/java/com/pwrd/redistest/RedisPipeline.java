@@ -15,12 +15,12 @@ public class RedisPipeline {
 
 		Pipeline p = jedis.pipelined();
 
-		p.set("fool", "bar");
+		p.set("hello", "world");
 		p.zadd("foo", 1,"barowitch");
 		p.zadd("foo", 0, "barinsky");
 		p.zadd("foo", 0, "barikoviev");
 
-		Response<String> pipeString = p.get("fool");
+		Response<String> pipeString = p.get("hello");
 
 		Response<Set<String>> sose = p.zrange("foo", 0, -1);
 		p.sync();
