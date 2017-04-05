@@ -14,7 +14,7 @@ public class MessagePrinter {
 	}
 
 	public void printMessage() {
-		System.out.println(this.myService.getMessage());
+		System.out.println("Printer -> " + this.myService.getMessage());
 	}
 }
 
