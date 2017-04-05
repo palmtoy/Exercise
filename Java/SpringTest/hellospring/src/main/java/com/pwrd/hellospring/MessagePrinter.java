@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessagePrinter {
 
-	final private MessageService service;
+	final private MessageService myService;
 
 	@Autowired
-	public MessagePrinter(MessageService service) {
-		this.service = service;
+	public MessagePrinter(MessageService tmpService) {
+		this.myService = tmpService;
 	}
 
 	public void printMessage() {
-		System.out.println(this.service.getMessage());
+		System.out.println(this.myService.getMessage());
 	}
 }
 

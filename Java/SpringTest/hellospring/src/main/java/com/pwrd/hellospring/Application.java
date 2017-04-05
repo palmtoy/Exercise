@@ -19,10 +19,10 @@ public class Application {
 	}
 
 	public static void main(String[] args) {
-		ApplicationContext context = 
+		ApplicationContext appContext =
 			new AnnotationConfigApplicationContext(Application.class);
-		MessagePrinter printer = context.getBean(MessagePrinter.class);
-		printer.printMessage();
+		MessagePrinter msgPrinter = appContext.getBean(MessagePrinter.class);
+		msgPrinter.printMessage();
 	}
 }
 
