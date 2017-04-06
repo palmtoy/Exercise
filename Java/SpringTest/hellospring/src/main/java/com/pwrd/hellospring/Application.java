@@ -9,7 +9,7 @@ import java.util.Date;
 @ComponentScan
 public class Application {
 
-	@Bean
+	@Bean(name = "msgService")
 	MessageService mockMessageService() {
 		return new MessageService() {
 			public String getMessage() {

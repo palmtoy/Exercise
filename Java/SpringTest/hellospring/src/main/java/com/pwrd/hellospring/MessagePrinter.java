@@ -1,6 +1,7 @@
 package com.pwrd.hellospring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ public class MessagePrinter {
 	final private MessageService myService;
 
 	@Autowired
-	public MessagePrinter(MessageService tmpService) {
+	public MessagePrinter(@Qualifier("msgService") MessageService tmpService) {
 		this.myService = tmpService;
 	}
 
