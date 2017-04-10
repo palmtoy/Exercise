@@ -13,11 +13,13 @@ public class HelloClient {
 	private void startClient() {
 		TTransport transport;
 		try {
-			transport = new TSocket("localhost", 1234);
+			int iPort = 8989;
+			transport = new TSocket("localhost", iPort);
 			TProtocol protocol = new TBinaryProtocol(transport);
-			Hello.Client client = new Hello.Client(protocol);
+			Hello.Client hCliObj = new Hello.Client(protocol);
 			transport.open();
-			System.out.println(client.helloInt(888));
+			int param = 888;
+			System.out.println("param = " + param + "\nparam + 1 = " + hCliObj.helloInt(param));
 			transport.close();
 		} catch (TTransportException e) {
 			e.printStackTrace();
@@ -27,8 +29,8 @@ public class HelloClient {
 	}
 
 	public static void main(String[] args) {
-		HelloClient client = new HelloClient();
-		client.startClient();
+		HelloClient hCli = new HelloClient();
+		hCli.startClient();
 	}
 }
 

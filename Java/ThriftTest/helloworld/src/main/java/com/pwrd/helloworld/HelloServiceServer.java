@@ -11,9 +11,10 @@ import org.apache.thrift.transport.TTransportException;
 
 
 public class HelloServiceServer {
+	private int iPort = 8989;
 	private void startServer() {
 		try {
-			TServerSocket serverTransport = new TServerSocket(1234);
+			TServerSocket serverTransport = new TServerSocket(iPort);
 
 			Hello.Processor process = new Hello.Processor(new HelloServiceImpl());
 			Factory portFactory = new TBinaryProtocol.Factory(true, true);
@@ -21,16 +22,17 @@ public class HelloServiceServer {
 			args.processor(process);
 			args.protocolFactory(portFactory);
 
-			TServer server = new TThreadPoolServer(args);
-			server.serve();
+			TServer tServerObj = new TThreadPoolServer(args);
+			tServerObj.serve();
 		} catch (TTransportException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) {
-		HelloServiceServer server = new HelloServiceServer();
-		server.startServer();
+		HelloServiceServer hServerObj = new HelloServiceServer();
+		System.out.println("Server is running on " + hServerObj.iPort + " ...");
+		hServerObj.startServer();
 	}
 }
 
