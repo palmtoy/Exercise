@@ -3,6 +3,8 @@ package com.pwrd.helloworld;
 import com.pwrd.helloworld.gen.service.demo.Hello;
 import org.apache.thrift.TException;
 
+import java.util.Date;
+
 public class HelloServiceImpl implements Hello.Iface {
 	@Override
 	public boolean helloBoolean(boolean para) throws TException {
@@ -26,12 +28,12 @@ public class HelloServiceImpl implements Hello.Iface {
 
 	@Override
 	public String helloString(String para) throws TException {
-		return para;
+		return new Date() + " ~ Server echo: \'" + para + "\'";
 	}
 
 	@Override
 	public void helloVoid() throws TException {
-		System.out.println("Hello World");
+		System.out.println(new Date() + " ~ Hello World");
 	}
 }
 

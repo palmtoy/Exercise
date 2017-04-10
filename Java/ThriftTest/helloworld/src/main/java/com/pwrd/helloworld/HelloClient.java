@@ -20,6 +20,8 @@ public class HelloClient {
 			transport.open();
 			int param = 888;
 			System.out.println("param = " + param + "\nparam + 1 = " + hCliObj.helloInt(param));
+			hCliObj.helloVoid();
+			System.out.println(hCliObj.helloString("foo bar"));
 			transport.close();
 		} catch (TTransportException e) {
 			e.printStackTrace();
