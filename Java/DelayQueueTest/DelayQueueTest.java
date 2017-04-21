@@ -1,6 +1,7 @@
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
+import java.util.Date;
 
 /**
  * @author palmtoy
@@ -58,7 +59,7 @@ public class DelayQueueTest {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println("delayQueue size: " + delayQueue.size());
+					System.out.println(new Date() + " ~ DelayQueue size: " + delayQueue.size());
 				}
 			}
 		}).start();
@@ -127,7 +128,7 @@ class DelayedElement implements Delayed {
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder("DelayedElement {");
+		final StringBuilder sb = new StringBuilder(new Date() + " ~ DelayedElement {");
 		sb.append("delay=").append(delay);
 		sb.append(", expire=").append(expire);
 		sb.append(", msg='").append(msg).append('\'');
