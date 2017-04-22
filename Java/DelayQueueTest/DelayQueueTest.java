@@ -73,14 +73,15 @@ public class DelayQueueTest {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				int i = 1;
 				while (true){
 					DelayedElement element = null;
 					try {
-						element =  delayQueue.take();
+						element = delayQueue.take();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println(System.currentTimeMillis() + " --> " + element);
+					System.out.println("(" + i++ + ") " + System.currentTimeMillis() + " --> " + element);
 				}
 			}
 		}).start();
