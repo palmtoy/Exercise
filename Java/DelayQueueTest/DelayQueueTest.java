@@ -1,6 +1,7 @@
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.Date;
 
 /**
@@ -34,6 +35,7 @@ public class DelayQueueTest {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				int i = 0;
 				while (true){
 					try {
 						TimeUnit.MILLISECONDS.sleep(100);
@@ -41,8 +43,13 @@ public class DelayQueueTest {
 						e.printStackTrace();
 					}
 
-					DelayedElement element = new DelayedElement(1000, "test");
+					// nextInt is normally exclusive of the top value,
+					// so add 1 to make it inclusive
+					int delayedTime = ThreadLocalRandom.current().nextInt(1000, 2000 + 1);
+					DelayedElement element = new DelayedElement(delayedTime, "test");
 					delayQueue.offer(element);
+					i++;
+					if(i >= 30) break;
 				}
 			}
 		}).start();
@@ -53,14 +60,24 @@ public class DelayQueueTest {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				int maxTestNum = 3, i = 0;
+
 				while (true){
 					try {
 						TimeUnit.MILLISECONDS.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println("\n" + new Date() + " ~ DelayQueue size: " + delayQueue.size());
+					int qSize = delayQueue.size();
+					System.out.println("\n" + new Date() + " ~ DelayQueue size: " + qSize);
+					if(qSize <= 0) {
+						i++;
+						if(i >= maxTestNum) {
+							break;
+						}
+					}
 				}
+				System.exit(0);
 			}
 		}).start();
 	}
@@ -97,14 +114,14 @@ class DelayedElement implements Delayed {
 	// 数据
 	private final String msg;
 	// 创建时间
-	private final long now;
+	private final long startfrom;
 
 	public DelayedElement(long delay, String msg) {
 		this.delay = delay;
 		this.msg = msg;
-		now = System.currentTimeMillis();
+		startfrom = System.currentTimeMillis();
 		// 到期时间 = 当前时间 + 延迟时间
-		expire = now + delay;
+		expire = startfrom + delay;
 	}
 
 	/**
@@ -132,10 +149,10 @@ class DelayedElement implements Delayed {
 		Date tmpNow = new Date();
 		String strTime = String.format("%1$tF %1$tH:%1$tM:%1$tS:", tmpNow) + String.format("%tL", tmpNow);
 		final StringBuilder sb = new StringBuilder(strTime + " ~ DelayedElement {");
-		sb.append("delay=").append(delay);
-		sb.append(", expire=").append(expire);
+		sb.append("startfrom=").append(startfrom);
+		sb.append(", delay=").append(delay);
 		sb.append(", msg='").append(msg).append('\'');
-		sb.append(", now=").append(now);
+		sb.append(", expire=").append(expire);
 		sb.append('}');
 		return sb.toString();
 	}
