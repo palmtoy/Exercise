@@ -35,7 +35,7 @@ public class DelayQueueTest {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int i = 0;
+				int maxItemNum = 15, i = 0;
 				while (true){
 					try {
 						TimeUnit.MILLISECONDS.sleep(100);
@@ -43,13 +43,13 @@ public class DelayQueueTest {
 						e.printStackTrace();
 					}
 
+					i++;
 					// nextInt is normally exclusive of the top value,
 					// so add 1 to make it inclusive
 					int delayedTime = ThreadLocalRandom.current().nextInt(1000, 2000 + 1);
-					DelayedElement element = new DelayedElement(delayedTime, "test");
+					DelayedElement element = new DelayedElement(delayedTime, "test-"+i);
 					delayQueue.offer(element);
-					i++;
-					if(i >= 30) break;
+					if(i >= maxItemNum) break;
 				}
 			}
 		}).start();
@@ -60,11 +60,11 @@ public class DelayQueueTest {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				int maxTestNum = 3, i = 0;
+				int maxTestNum = 2, i = 0;
 
 				while (true){
 					try {
-						TimeUnit.MILLISECONDS.sleep(1000);
+						TimeUnit.MILLISECONDS.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
