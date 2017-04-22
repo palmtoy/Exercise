@@ -59,7 +59,7 @@ public class DelayQueueTest {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					System.out.println(new Date() + " ~ DelayQueue size: " + delayQueue.size());
+					System.out.println("\n" + new Date() + " ~ DelayQueue size: " + delayQueue.size());
 				}
 			}
 		}).start();
@@ -101,9 +101,9 @@ class DelayedElement implements Delayed {
 	public DelayedElement(long delay, String msg) {
 		this.delay = delay;
 		this.msg = msg;
-		// 到期时间 = 当前时间 + 延迟时间
-		expire = System.currentTimeMillis() + delay;
 		now = System.currentTimeMillis();
+		// 到期时间 = 当前时间 + 延迟时间
+		expire = now + delay;
 	}
 
 	/**
@@ -123,12 +123,14 @@ class DelayedElement implements Delayed {
 	 */
 	@Override
 	public int compareTo(Delayed o) {
-		return (int) (this.getDelay(TimeUnit.MILLISECONDS) -o.getDelay(TimeUnit.MILLISECONDS));
+		return (int)(this.getDelay(TimeUnit.MILLISECONDS) - o.getDelay(TimeUnit.MILLISECONDS));
 	}
 
 	@Override
 	public String toString() {
-		final StringBuilder sb = new StringBuilder(new Date() + " ~ DelayedElement {");
+		Date tmpNow = new Date();
+		String strTime = String.format("%1$tF %1$tH:%1$tM:%1$tS:", tmpNow) + String.format("%tL", tmpNow);
+		final StringBuilder sb = new StringBuilder(strTime + " ~ DelayedElement {");
 		sb.append("delay=").append(delay);
 		sb.append(", expire=").append(expire);
 		sb.append(", msg='").append(msg).append('\'');
