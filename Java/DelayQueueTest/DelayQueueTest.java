@@ -28,7 +28,7 @@ public class DelayQueueTest {
 	}
 
 	/**
-	 * 每100毫秒创建一个对象, 放入延迟队列, 延迟时间1毫秒
+	 * 每 100ms 创建一个对象, 共15个对象被放入延迟队列, 每个对象的延迟时间为:1s-2s
 	 * @param delayQueue
 	 */
 	private static void producer(final DelayQueue<DelayedElement> delayQueue){
@@ -55,7 +55,7 @@ public class DelayQueueTest {
 		}).start();
 
 		/**
-		 * 每秒打印延迟队列中的对象个数
+		 * 每 500ms 打印一次延迟队列中的对象个数, 如果有2次的打印结果为0 则demo完成
 		 */
 		new Thread(new Runnable() {
 			@Override
