@@ -1,0 +1,16 @@
+package com.pwrd.gsontest;
+
+import net.sf.json.JSONObject;
+
+/**
+ *
+ */
+public class App
+{
+	public static void main( String[] args ) {
+		String str = "{\"code\":\"0000\", \"msg\":{\"availableBalance\":31503079.02}, \"city\":\"Beijing\"}";
+		JSONObject json = JSONObject.fromObject(str);
+		System.out.println(json.get("city").toString() + "\n" + json.get("msg"));
+	}
+}
+

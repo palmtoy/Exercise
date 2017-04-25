@@ -1,0 +1,23 @@
+package com.pwrd.gsontest;
+
+import net.sf.ezmorph.bean.MorphDynaBean;
+import net.sf.json.JSONObject;
+import net.sf.json.JSONSerializer;
+
+import java.util.Date;
+
+/**
+ *
+ */
+public class App
+{
+	public static void main( String[] args ) {
+		// 打印当前日期的json格式
+		System.out.println(JSONSerializer.toJSON(new Date()));
+		// 返回一个动态bean
+		MorphDynaBean db = (MorphDynaBean) JSONSerializer.toJava(JSONObject.fromObject("{\"Hello\": \"World!\"}"));
+
+		System.out.println(db.get("Hello"));
+	}
+}
+
