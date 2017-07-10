@@ -18,8 +18,8 @@ public class Reloader extends ClassLoader {
 			System.out.println("Press <ENTER> when MyFoo.class has changed");
 
 			Class<?> clazz = foo.getClass();
-			MyFoo obj = new MyFoo();
-			System.out.println("obj.coffee = " + obj.coffee);
+			Field coffeeField = clazz.getField("coffee");
+			System.out.println("foo.coffee = " + coffeeField.get(foo));
 
 			Field teaField = null;
 			try {
@@ -33,7 +33,7 @@ public class Reloader extends ClassLoader {
 			}
 		
 			if(teaField != null) {
-				System.out.println("obj.tea = " + teaField.get(obj));
+				System.out.println("foo.tea = " + teaField.get(foo));
 			}
 
 			System.in.read();
