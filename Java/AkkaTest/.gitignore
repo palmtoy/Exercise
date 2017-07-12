@@ -1,0 +1,10 @@
+bin
+obj
+logs
+.idea
+.DS_Store
+*.swp
+
+out/
+target/*
+
