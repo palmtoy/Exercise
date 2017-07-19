@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 public class App
 {
 	public static void main( String[] args ) throws IOException {
-		System.out.println("ResourcePath = " + App.class.getResource("/"));
+		System.out.println("\nResourcePath = " + App.class.getResource("/") + "\n");
 		String filePath = App.class.getResource("/").getPath() + "data.json";
 		String strJson = new String(Files.readAllBytes(Paths.get(filePath)));
 
