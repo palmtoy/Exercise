@@ -49,9 +49,6 @@
 	<profiles>
 		<profile>
 			<id>pack</id>
-			<properties>
-				<doodle.version.type>SNAPSHOT</doodle.version.type>
-			</properties>
 		</profile>
 	</profiles>
 </project>
