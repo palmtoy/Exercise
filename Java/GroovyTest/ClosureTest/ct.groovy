@@ -21,14 +21,14 @@ def buildings = [officeSpace, theOffice, coffeeShop]
 
 // Create a closure which we will use 
 // later in our code.
-def mapBuildingName = { building -> building.name }
+def mapBuildingName = { bd -> bd.name }
 
 // Invoke Java Streams API with lambda methods,
 // but we use Groovy closures.
 def officeBuildingNames = buildings
 	.stream() // Get Java streams
-	.filter { building -> 
-		building.officeSpace && building.floors > 2 
+	.filter { bd ->
+		bd.officeSpace && bd.floors > 2
 	} // 'anonymous' closure
 	.map(mapBuildingName) // Predefined closure
 	.collect()
