@@ -1,36 +1,30 @@
 package single;
 
-import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
-/*
-	$ sudo keytool -import -alias myself_signed -keystore $JAVA_HOME/jre/lib/security/cacerts -file ./ssl/agent2-cert.pem
-		You will be asked for password which default is: `changeit`
+public class HttpURLConnectionExample {
 
-	$ sudo keytool -delete -alias myself_signed -keystore $JAVA_HOME/jre/lib/security/cacerts
- */
-public class HttpsURLConnectionExample {
 	private final String USER_AGENT = "Mozilla/5.0";
 
 	public static void main(String[] args) throws Exception {
-		HttpsURLConnectionExample httpsObj = new HttpsURLConnectionExample();
+		HttpURLConnectionExample http = new HttpURLConnectionExample();
 
-		System.out.println("Testing 1 - Send Https GET request ->");
-		httpsObj.sendGet();
+		System.out.println("Testing 1 - Send Http GET request");
+		http.sendGet();
 
-		System.out.println("\nTesting 2 - Send Https POST request ->");
-		httpsObj.sendPost();
+		System.out.println("\nTesting 2 - Send Http POST request");
+		http.sendPost();
 	}
 
-		// HTTP GET request
+	// HTTP GET request
 	private void sendGet() throws Exception {
-		String url = "https://localhost:3000/hi";
+		String url = "http://localhost:3000/hi";
 		URL obj = new URL(url);
-		HttpsURLConnection.setDefaultHostnameVerifier ((hostname, session) -> true);
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 		// optional default is GET
 		con.setRequestMethod("GET");
@@ -44,7 +38,7 @@ public class HttpsURLConnectionExample {
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
-		StringBuilder response = new StringBuilder();
+		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
@@ -52,17 +46,15 @@ public class HttpsURLConnectionExample {
 		in.close();
 
 		//print result
-		System.out.println(response.toString() + "\n");
+		System.out.println(response.toString());
 	}
-
 
 	// HTTP POST request
 	private void sendPost() throws Exception {
-		String url = "https://localhost:3000/wow";
+		String url = "http://localhost:3000/wow";
 		URL obj = new URL(url);
-		// HttpsURLConnection.setDefaultHostnameVerifier ((hostname, session) -> true);
-		HttpsURLConnection.setDefaultHostnameVerifier((hostname, sslSession) -> hostname.equals("localhost"));
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+		// HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 		//add reuqest header
 		con.setRequestMethod("POST");
@@ -83,9 +75,10 @@ public class HttpsURLConnectionExample {
 		System.out.println("Post parameters : " + urlParameters);
 		System.out.println("Response Code : " + responseCode);
 
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		BufferedReader in = new BufferedReader(
+			                                      new InputStreamReader(con.getInputStream()));
 		String inputLine;
-		StringBuilder response = new StringBuilder();
+		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);

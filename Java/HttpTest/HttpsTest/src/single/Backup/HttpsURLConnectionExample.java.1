@@ -13,48 +13,13 @@ import java.net.URL;
 	$ sudo keytool -delete -alias myself_signed -keystore $JAVA_HOME/jre/lib/security/cacerts
  */
 public class HttpsURLConnectionExample {
-	private final String USER_AGENT = "Mozilla/5.0";
 
 	public static void main(String[] args) throws Exception {
 		HttpsURLConnectionExample httpsObj = new HttpsURLConnectionExample();
 
-		System.out.println("Testing 1 - Send Https GET request ->");
-		httpsObj.sendGet();
-
-		System.out.println("\nTesting 2 - Send Https POST request ->");
+		System.out.println("\nTesting - Send Https POST request");
 		httpsObj.sendPost();
 	}
-
-		// HTTP GET request
-	private void sendGet() throws Exception {
-		String url = "https://localhost:3000/hi";
-		URL obj = new URL(url);
-		HttpsURLConnection.setDefaultHostnameVerifier ((hostname, session) -> true);
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
-
-		// optional default is GET
-		con.setRequestMethod("GET");
-
-		//add request header
-		con.setRequestProperty("User-Agent", USER_AGENT);
-
-		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuilder response = new StringBuilder();
-
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-
-		//print result
-		System.out.println(response.toString() + "\n");
-	}
-
 
 	// HTTP POST request
 	private void sendPost() throws Exception {
@@ -66,6 +31,7 @@ public class HttpsURLConnectionExample {
 
 		//add reuqest header
 		con.setRequestMethod("POST");
+		String USER_AGENT = "Mozilla/5.0";
 		con.setRequestProperty("User-Agent", USER_AGENT);
 		con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
 
