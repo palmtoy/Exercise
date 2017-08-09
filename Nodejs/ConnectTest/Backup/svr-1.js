@@ -2,6 +2,12 @@
 
 /*
 
+Readme:
+
+This is the simplest sparx http sever prototype.
+
+================================================
+
 connect, connectables, qs are 3 open source projects:
 
 connect      : https://github.com/senchalabs/connect
@@ -16,22 +22,21 @@ Use this cmd to run it: "node svr.js"
 
 In another cmd window, run these test cases:
 
-GET  ~~  curl -kv https://127.0.0.1:3000
-GET  ~~  curl -kv https://127.0.0.1:3000/hi
-POST ~~  curl -kv -d 'user=will' https://localhost:3000/wow
-POST ~~  curl -kv -d 'user[name][first]=will&user[email]=zgli@kabaminc.com' https://localhost:3000/qs
+GET  ~~  curl -v http://127.0.0.1:3000
+GET  ~~  curl -v http://127.0.0.1:3000/hi
+POST ~~  curl -v -d 'user=will' http://localhost:3000/wow
+POST ~~  curl -v -d 'user[name][first]=will&user[email]=zgli@kabaminc.com' http://localhost:3000/qs
 
 Chrome Postman:
-POST ~~  https://localhost:3000/wow   form-data: user will
-POST ~~  https://localhost:3000/qs    form-data: user[name][first] will; user[email] lzg@pwrd.com
+POST ~~  localhost:3000/wow   form-data: user will
+POST ~~  localhost:3000/qs    form-data: user[name][first] will; user[email] zgli@kabaminc.com
 
 */
 
-var https = require('https');
+var http = require('http');
 var connect = require('connect');
 var connectables = require('connectables');
 var qs = require('qs');
-var fs = require('fs');
 
 var port = 3000;
 
@@ -67,13 +72,9 @@ var app = connect.createServer(
   })
 );
 
-var options = {
-	key: fs.readFileSync('ssl/agent2-key.pem'),
-	cert: fs.readFileSync('ssl/agent2-cert.pem')
-};
 
-var server = https.createServer(options, app);
+var server = http.createServer(app);
 server.listen(port);
 
-console.log('Https server running at https://127.0.0.1:' + port);
+console.log('Http server running at http://127.0.0.1:' + port);
 
