@@ -16,7 +16,7 @@ qs           : https://github.com/visionmedia/node-querystring
 
 ================================================
 
-Use this cmd to run it: "node svr.js"
+Use this cmd to run it: "node httpSvr.js"
 
 ================================================
 
