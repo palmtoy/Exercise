@@ -9,16 +9,16 @@
     <diskStore path="/tmp/ehcache" />
 
     <!-- Sample cache named helloCache
-    This cache contains a maximum in memory of 10000 elements, and will expire
+    This cache contains a maximum in memory of 6 elements, and will expire
     an element if it is idle for more than 5 minutes and lives for more than
     10 minutes.
 
-    If there are more than 3 elements it will overflow to the
+    If there are more than 6 elements it will overflow to the
     disk cache, which in this configuration will go to wherever java.io.tmp is
     defined on your system. On a standard Linux system this will be /tmp" -->
     <cache name="helloCache"
-           maxEntriesLocalHeap="3"
-           maxEntriesLocalDisk="6"
+           maxEntriesLocalHeap="6"
+           maxEntriesLocalDisk="9"
            eternal="false"
            diskSpoolBufferSizeMB="20"
            timeToIdleSeconds="300" timeToLiveSeconds="600"
@@ -28,8 +28,8 @@
     </cache>
 
     <cache name="hello-world"
-           maxEntriesLocalHeap="3"
-           maxEntriesLocalDisk="6"
+           maxEntriesLocalHeap="100"
+           maxEntriesLocalDisk="1000"
            eternal="false"
            diskSpoolBufferSizeMB="20"
            timeToIdleSeconds="300" timeToLiveSeconds="600"
@@ -37,5 +37,6 @@
            transactionalMode="off">
         <persistence strategy="localTempSwap" />
     </cache>
+
 </ehcache>
 
