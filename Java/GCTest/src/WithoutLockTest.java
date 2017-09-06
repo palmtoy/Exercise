@@ -34,7 +34,7 @@ public class WithoutLockTest {
 							WithoutLockTest ~ value: 10000000  times: 6539ms
 
 							VM options: -Xms3g -Xmx3g -Xmn2g
-							WithoutLockTest ~ value: 10000000  times: 1960ms
+							WithoutLockTest ~ value: 10000000  times: 1832ms
 
 							Linux:
 							Without VM options:
@@ -54,7 +54,7 @@ public class WithoutLockTest {
 
 	}
 
-	private static synchronized int incrementAndGet() {
+	private static int incrementAndGet() {
 		int oldCounter, newCounter;
 		for(;;) {
 			oldCounter = updater.get(counter);
