@@ -31,17 +31,17 @@ public class WithoutLockTest {
 						/*
 							MacOSX:
 							Without VM options:
-							WithoutLockTest ~ value: 10000000  times: 6539ms
+							WithoutLockTest ~ value: 10000000  times: 5747ms
 
 							VM options: -Xms3g -Xmx3g -Xmn2g
 							WithoutLockTest ~ value: 10000000  times: 1832ms
 
 							Linux:
 							Without VM options:
-							WithoutLockTest ~ value: 10000000  times: 3591ms
+							WithoutLockTest ~ value: 10000000  times: 3209ms
 
 							VM options: -Xms3g -Xmx3g -Xmn2g
-							WithoutLockTest ~ value: 10000000  times: 1490ms
+							WithoutLockTest ~ value: 10000000  times: 1439ms
 						*/
 						System.out.println("WithoutLockTest ~ value: " + v + "  times: " + (end - begin) + "ms");
 						Scanner in = new Scanner(System.in);
