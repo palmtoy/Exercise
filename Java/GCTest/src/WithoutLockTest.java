@@ -29,11 +29,19 @@ public class WithoutLockTest {
 					if(v == num) {
 						long end = System.currentTimeMillis();
 						/*
+							MacOSX:
 							Without VM options:
 							WithoutLockTest ~ value: 10000000  times: 6539ms
 
 							VM options: -Xms3g -Xmx3g -Xmn2g
 							WithoutLockTest ~ value: 10000000  times: 1960ms
+
+							Linux:
+							Without VM options:
+							WithoutLockTest ~ value: 10000000  times: 3591ms
+
+							VM options: -Xms3g -Xmx3g -Xmn2g
+							WithoutLockTest ~ value: 10000000  times: 1490ms
 						*/
 						System.out.println("WithoutLockTest ~ value: " + v + "  times: " + (end - begin) + "ms");
 						Scanner in = new Scanner(System.in);

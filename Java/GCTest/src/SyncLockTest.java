@@ -21,11 +21,20 @@ public class SyncLockTest {
 					if(v == num) {
 						long end = System.currentTimeMillis();
 						/*
+							MacOSX:
 							Without VM options:
 							SyncLockTest ~ value: 10000000  times: 5913ms
 
 							VM options: -Xms3g -Xmx3g -Xmn2g
 							SyncLockTest ~ value: 10000000  times: 1836ms
+
+
+							Linux:
+							Without VM options:
+							SyncLockTest ~ value: 10000000  times: 3073ms
+
+							VM options: -Xms3g -Xmx3g -Xmn2g
+							SyncLockTest ~ value: 10000000  times: 1839ms
 						*/
 						System.out.println("SyncLockTest ~ value: " + v + "  times: " + (end - begin) + "ms");
 						Scanner in = new Scanner(System.in);
