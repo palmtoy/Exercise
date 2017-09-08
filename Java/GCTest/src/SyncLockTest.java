@@ -13,6 +13,8 @@ public class SyncLockTest {
 	private static int[] cntArray = new int[threadNum];
 
 	public static void main(String[] args) {
+		String mainThreadName = Thread.currentThread().getName();
+		System.out.println("MainThreadName = " + mainThreadName + "\n");
 		long begin = System.currentTimeMillis();
 		ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
 		int num = 10000000;
