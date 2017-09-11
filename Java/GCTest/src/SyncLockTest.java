@@ -38,7 +38,7 @@ public class SyncLockTest {
 							SyncLockTest ~ value: 10000000  times: 1933ms
 							CntArray =[2427774, 2559846, 2595576, 2416804]
 
-							VM options: -Xms3g -Xmx3g -Xmn2g -XX:-UseBiasedLocking
+							VM options: -XX:-UseBiasedLocking -Xms3g -Xmx3g -Xmn2g
 							SyncLockTest ~ value: 10000000  times: 2012ms
 							CntArray =[2512125, 2493540, 2555175, 2439160]
 
