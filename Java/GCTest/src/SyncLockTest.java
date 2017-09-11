@@ -22,7 +22,12 @@ public class SyncLockTest {
 			executorService.execute(new Runnable() {
 				@Override
 				public void run() {
-					int v = incrementAndGet();
+					int v = 0;
+					try {
+						v = incrementAndGet();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					if(v == num) {
 						long end = System.currentTimeMillis();
 						/*
@@ -53,7 +58,7 @@ public class SyncLockTest {
 
 	}
 
-	private static synchronized int incrementAndGet() {
+	private static synchronized int incrementAndGet() throws InterruptedException {
 		String threadName = Thread.currentThread().getName();
 		if(value % 2000000 == 0) {
 			System.out.println("IncrementAndGet ~ ThreadName = " + threadName);
@@ -62,6 +67,7 @@ public class SyncLockTest {
 		String tmp = threadName.substring(threadName.length()-1);
 		int idx = Integer.parseInt(tmp);
 		cntArray[idx-1]++;
+		Thread.sleep(1);
 		return ++value;
 	}
 
