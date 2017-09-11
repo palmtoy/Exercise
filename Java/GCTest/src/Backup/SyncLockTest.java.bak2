@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -47,6 +48,8 @@ public class SyncLockTest {
 						*/
 						System.out.println("SyncLockTest ~ value: " + v + "  times: " + (end - begin) + "ms\n");
 						System.out.println("CntArray =" + Arrays.toString(cntArray));
+						Scanner in = new Scanner(System.in);
+						String s = in.nextLine();
 						System.exit(0);
 					}
 				}

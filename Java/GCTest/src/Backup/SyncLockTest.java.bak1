@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,12 +22,7 @@ public class SyncLockTest {
 			executorService.execute(new Runnable() {
 				@Override
 				public void run() {
-					int v = 0;
-					try {
-						v = incrementAndGet();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					int v = incrementAndGet();
 					if(v == num) {
 						long end = System.currentTimeMillis();
 						/*
@@ -47,6 +43,8 @@ public class SyncLockTest {
 						*/
 						System.out.println("SyncLockTest ~ value: " + v + "  times: " + (end - begin) + "ms\n");
 						System.out.println("CntArray =" + Arrays.toString(cntArray));
+						Scanner in = new Scanner(System.in);
+						String s = in.nextLine();
 						System.exit(0);
 					}
 				}
@@ -55,7 +53,7 @@ public class SyncLockTest {
 
 	}
 
-	private static synchronized int incrementAndGet() throws InterruptedException {
+	private static synchronized int incrementAndGet() {
 		String threadName = Thread.currentThread().getName();
 		if(value % 2000000 == 0) {
 			System.out.println("IncrementAndGet ~ ThreadName = " + threadName);
@@ -64,7 +62,6 @@ public class SyncLockTest {
 		String tmp = threadName.substring(threadName.length()-1);
 		int idx = Integer.parseInt(tmp);
 		cntArray[idx-1]++;
-		Thread.sleep(1);
 		return ++value;
 	}
 
