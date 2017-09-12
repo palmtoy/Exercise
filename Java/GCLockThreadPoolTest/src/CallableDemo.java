@@ -39,7 +39,7 @@ class TaskWithResult implements Callable<String> {
 	}
 
 	/**
-	 * 任务的具体过程，一旦任务传给ExecutorService的submit方法，
+	 * 任务的具体过程, 一旦任务传给ExecutorService的submit方法,
 	 * 则该方法自动在一个线程上执行
 	 */
 	public String call() throws Exception {
