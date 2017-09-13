@@ -25,7 +25,12 @@ public class WithoutLockTest {
 			executorService.execute(new Runnable() {
 				@Override
 				public void run() {
-					int v = incrementAndGet();
+					int v = 0;
+					try {
+						v = incrementAndGet();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 					if(v == num) {
 						long end = System.currentTimeMillis();
 						/*
@@ -54,8 +59,9 @@ public class WithoutLockTest {
 
 	}
 
-	private static int incrementAndGet() {
+	private static int incrementAndGet() throws InterruptedException {
 		int oldCounter, newCounter;
+		// Thread.sleep(1);
 		for(;;) {
 			oldCounter = updater.get(counter);
 			newCounter = oldCounter + 1;
