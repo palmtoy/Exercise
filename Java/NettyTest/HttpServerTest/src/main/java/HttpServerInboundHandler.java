@@ -33,7 +33,7 @@ public class HttpServerInboundHandler extends ChannelInboundHandlerAdapter {
 			System.out.println(buf.toString(io.netty.util.CharsetUtil.UTF_8));
 			buf.release();
 
-			String res = now + "Netty http server here!";
+			String res = now + "Hi, netty http server here!";
 			FullHttpResponse response = new DefaultFullHttpResponse(
 				HTTP_1_1, OK, Unpooled.wrappedBuffer(res.getBytes("UTF-8")));
 			response.headers().set(CONTENT_TYPE, "text/plain");
