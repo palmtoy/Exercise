@@ -1,6 +1,3 @@
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -9,8 +6,11 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.http.HttpContentCompressor;
 import io.netty.handler.codec.http.HttpRequestDecoder;
 import io.netty.handler.codec.http.HttpResponseEncoder;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class HttpServer {
 
@@ -29,6 +29,7 @@ public class HttpServer {
 						ch.pipeline().addLast(new HttpResponseEncoder());
 						// add HttpRequestDecoder
 						ch.pipeline().addLast(new HttpRequestDecoder());
+						ch.pipeline().addLast("compressor",new HttpContentCompressor());
 						ch.pipeline().addLast(new HttpServerInboundHandler());
 					}
 				}).option(ChannelOption.SO_BACKLOG, 128)

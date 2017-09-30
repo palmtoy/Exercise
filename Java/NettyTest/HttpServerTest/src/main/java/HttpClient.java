@@ -28,6 +28,7 @@ public class HttpClient {
 					ch.pipeline().addLast(new HttpResponseDecoder());
 					// add HttpRequestEncoder
 					ch.pipeline().addLast(new HttpRequestEncoder());
+					ch.pipeline().addLast("decompressor",new HttpContentDecompressor());
 					ch.pipeline().addLast(new HttpClientInboundHandler());
 				}
 			});
