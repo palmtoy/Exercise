@@ -19,7 +19,8 @@ public class HelloClient {
 			Hello.Client hCliObj = new Hello.Client(protocol);
 			transport.open();
 			int param = 888;
-			System.out.println("param = " + param + "\nparam + 1 = " + hCliObj.helloInt(param));
+			System.out.println("param = " + param);
+			System.out.println("param + 1 = " + hCliObj.helloInt(param));
 			hCliObj.helloVoid();
 			System.out.println(hCliObj.helloString("foo bar"));
 			transport.close();
