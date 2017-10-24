@@ -9,5 +9,12 @@ public class UserServiceImpl implements UserService.Iface {
 		userObj.setId(id);
 		return userObj;
 	}
+
+	@Override
+	public User getByAll(long id, String name, long timestamp, boolean vip) {
+		System.out.println("getByAll is running ~ id, name, timestamp, vip = "
+			                   + id + ", " + name + ", " + timestamp + ", " + vip);
+		return new User(id, name, timestamp, vip);
+	}
 }
 

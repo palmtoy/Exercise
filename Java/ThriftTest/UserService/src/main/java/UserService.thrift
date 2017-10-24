@@ -13,5 +13,6 @@ struct User {
 
 service UserService {
     User getById(1: i64 id)
+    User getByAll(10: i64 id, 20: string name, 30: i64 timestamp, 40: bool vip)
 }
 
