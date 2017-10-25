@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class ClientHandler extends SimpleChannelInboundHandler<String> {
+
 	// key is sequence ID, value is response message
 	private Map<Integer,String> response = new ConcurrentHashMap<Integer, String>();
 	// key is sequence ID, value is request thread

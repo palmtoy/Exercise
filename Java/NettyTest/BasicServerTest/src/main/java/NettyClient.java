@@ -16,17 +16,11 @@ import java.nio.charset.Charset;
 
 
 class NettyClient {
-
 	private static final Charset UTF_8 = Charset.forName("utf-8");
-
 	private ClientHandler clientHandler = new ClientHandler();
-
 	private Bootstrap bootstrap;
-
 	private ChannelFuture future;
-
 	private boolean init = false;
-
 	private boolean isClosed = false;
 
 	void start() {
