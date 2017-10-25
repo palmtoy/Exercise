@@ -27,7 +27,8 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 	public void channelRead0(ChannelHandlerContext ctx, String message) throws Exception {
 		JSONObject json = JSONObject.fromObject(message);
 		Integer id = json.getInt("id");
-		response.put(id,json.getString("md5Hex"));
+		String cliSource = json.getString("source");
+		response.put(id, cliSource + " ~ " + json.getString("md5Hex"));
 		// after getting response, remove from waiters and wakeup the thread
 		Thread thread = waiters.remove(id);
 		synchronized(thread) {

@@ -13,6 +13,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
 		String source = json.getString("source");
 
 		String md5 = DigestUtils.md5Hex(source);
+		System.out.println("Client source's md5: " + md5);
 		// parse to JSON
 		json.put("md5Hex", md5);
 		// write bytes to socket, and flush(clear) the buffer cache

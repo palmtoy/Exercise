@@ -13,7 +13,7 @@ public class NettyTestMain {
 		try {
 			for(int i = 0; i < 3; i++) {
 				String response = nettyClient.send(RandomStringUtils.random(32, true, true));
-				System.out.println("From server:" + response);
+				System.out.println("From server: " + response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
