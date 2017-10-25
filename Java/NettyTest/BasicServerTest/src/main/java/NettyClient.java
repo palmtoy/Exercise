@@ -28,14 +28,14 @@ class NettyClient {
 		if(init) {
 			throw new RuntimeException("client is already started");
 		}
-		// thread model: one worker thread pool,contains selector thread and workers‘
-		// "1" is OK
+		// thread model: one worker thread pool, contains selector thread and workers
+		// "1" is ok, we just use "2" here
 		workerGroup = new NioEventLoopGroup(2);
 		try {
 			bootstrap = new Bootstrap();
 			bootstrap.group(workerGroup)
 				.channel(NioSocketChannel.class) //create SocketChannel transport
-				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS,10000)
+				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 10000)
 				.handler(new ChannelInitializer<SocketChannel>() {
 					@Override
 					protected void initChannel(SocketChannel ch) throws Exception {
