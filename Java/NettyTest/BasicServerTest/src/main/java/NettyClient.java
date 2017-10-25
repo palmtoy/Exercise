@@ -22,6 +22,7 @@ class NettyClient {
 	private ChannelFuture future;
 	private boolean init = false;
 	private boolean isClosed = false;
+	private EventLoopGroup workerGroup = null;
 
 	void start() {
 		if(init) {
@@ -29,7 +30,7 @@ class NettyClient {
 		}
 		// thread model: one worker thread pool,contains selector thread and workers‘
 		// "1" is OK
-		EventLoopGroup workerGroup = new NioEventLoopGroup(2);
+		workerGroup = new NioEventLoopGroup(2);
 		try {
 			bootstrap = new Bootstrap();
 			bootstrap.group(workerGroup)
@@ -64,7 +65,11 @@ class NettyClient {
 		try {
 			future.channel().close();
 		} finally {
+			workerGroup.shutdownGracefully();
+			/*
+			// noinspection deprecation
 			bootstrap.group().shutdownGracefully();
+			*/
 		}
 		isClosed = true;
 	}
