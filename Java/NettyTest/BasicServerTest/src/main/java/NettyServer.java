@@ -79,7 +79,7 @@ class NettyServer {
 			*/
 		}
 		isClosed = true;
-		System.out.println("Netty server closed.");
+		System.out.println("\nNetty server closed.");
 	}
 
 }

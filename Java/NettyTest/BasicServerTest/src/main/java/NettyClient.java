@@ -77,7 +77,7 @@ class NettyClient {
 			throw new RuntimeException("client has been closed!");
 		}
 		//send a request call,and blocking until recevie a response from server.
-		return clientHandler.call(message,future.channel());
+		return clientHandler.call(message, future.channel());
 	}
 
 }

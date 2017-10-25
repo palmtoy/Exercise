@@ -10,9 +10,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ClientHandler extends SimpleChannelInboundHandler<String> {
 
 	// key is sequence ID, value is response message
-	private Map<Integer,String> response = new ConcurrentHashMap<Integer, String>();
+	private Map<Integer, String> response = new ConcurrentHashMap<Integer, String>();
 	// key is sequence ID, value is request thread
-	private final Map<Integer,Thread> waiters = new ConcurrentHashMap<Integer, Thread>();
+	private final Map<Integer, Thread> waiters = new ConcurrentHashMap<Integer, Thread>();
 	private final AtomicInteger sequence = new AtomicInteger();
 
 	@Override
@@ -39,10 +39,10 @@ public class ClientHandler extends SimpleChannelInboundHandler<String> {
 		// create one ID and bind with the request
 		int id = sequence.incrementAndGet();
 		Thread current = Thread.currentThread();
-		waiters.put(id,current);
+		waiters.put(id, current);
 		JSONObject json = new JSONObject();
-		json.put("id",id);
-		json.put("source",message);
+		json.put("id", id);
+		json.put("source", message);
 		channel.writeAndFlush(json.toString());
 		while (!response.containsKey(id)) {
 			synchronized (current) {
