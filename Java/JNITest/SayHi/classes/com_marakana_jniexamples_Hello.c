@@ -20,7 +20,14 @@ JNIEXPORT void JNICALL Java_com_marakana_jniexamples_Hello_sayHi(JNIEnv *env, jo
 	const char *name;
 	name = (*env)->GetStringUTFChars(env, who, &iscopy);
 	for (i = 0; i < times; i++) {
-		printf("Hello %s\n", name);
+		printf("Hi %s\n", name);
 	}
+}
+
+
+JNIEXPORT jstring JNICALL Java_com_marakana_jniexamples_Hello_getName(JNIEnv *env, jclass class) {
+	char buffer[20];
+	scanf("%s", buffer);
+	return (*env)->NewStringUTF(env, buffer);
 }
 
