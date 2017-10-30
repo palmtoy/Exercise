@@ -1,6 +1,7 @@
 /*
 	javac -d ./classes/ ./src/com/marakana/jniexamples/Hello.java
 	javah -jni com.marakana.jniexamples.Hello (in the classes directory run this cmd to generate the header file: com_marakana_jniexamples_Hello.h)
+	java com.marakana.jniexamples.Hello Student 5 (in the classes directory run this cmd)
 */
 
 package com.marakana.jniexamples;
