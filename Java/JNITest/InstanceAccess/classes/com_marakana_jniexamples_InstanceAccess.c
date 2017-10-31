@@ -44,6 +44,7 @@ JNIEXPORT void JNICALL Java_com_marakana_jniexamples_InstanceAccess_propertyAcce
 
 JNIEXPORT void JNICALL Java_com_marakana_jniexamples_InstanceAccess_methodAccess(JNIEnv *env, jobject object){
 	jclass class = (*env)->GetObjectClass(env, object);
+	// javap -s -p com.marakana.jniexamples.InstanceAccess (in the classes directory run this cmd to get the signature of a method)
 	jmethodID methodId = (*env)->GetMethodID(env, class, "setName", "(Ljava/lang/String;)V");
 	jstring jstr;
 	if (methodId == NULL) {

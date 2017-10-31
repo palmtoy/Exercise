@@ -1,6 +1,7 @@
 /*
 	javac -d ./classes/ ./src/com/marakana/jniexamples/InstanceAccess.java
 	javah -jni com.marakana.jniexamples.InstanceAccess (in the classes directory run this cmd to generate the header file: com_marakana_jniexamples_InstanceAccess.h)
+	javap -s -p com.marakana.jniexamples.InstanceAccess (in the classes directory run this cmd to get the signature of a method)
 	java com.marakana.jniexamples.InstanceAccess (in the classes directory run this cmd)
 */
 
