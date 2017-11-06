@@ -4,6 +4,9 @@
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
+        <!-- If make it effect, it would just print: "[main] DEBUG Foo - Let's do it"
+        <filter class="SampleFilter" />
+        -->
     </appender>
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
