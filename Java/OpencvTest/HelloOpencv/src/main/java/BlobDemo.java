@@ -40,7 +40,7 @@ public class BlobDemo {
 		cvDilate(WorkingImage, WorkingImage,null, DilateCount);
 
 		Blobs Regions = new Blobs();
-		Regions.BlobAnalysis(WorkingImage, // image
+		Regions.BlobAnalysis(WorkingImage,  // image
 			-1,-1,  // ROI start col, row
 			-1,-1,  // ROI cols, rows
 			1,  // border(0 = black; 1 = white)
@@ -75,11 +75,15 @@ public class BlobDemo {
 
 	private static void ShowImage(IplImage image, String caption, int size) {
 		size = Math.max(size, 128);
-		@SuppressWarnings("deprecation")
-		CvMat mat = image.asCvMat();
-		int width = mat.cols();
-		width = Math.max(width, 1);
-		int height = mat.rows();
+		/*
+			@SuppressWarnings("deprecation")
+			CvMat mat = image.asCvMat();
+			int width = mat.cols();
+			width = Math.max(width, 1);
+			int height = mat.rows();
+		*/
+		int width = image.width();
+		int height = image.height();
 		height = Math.max(height, 1);
 		double aspect = 1.0 * width / height;
 		if(height != size) {
