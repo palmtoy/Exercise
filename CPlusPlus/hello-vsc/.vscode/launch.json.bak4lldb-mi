@@ -5,12 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(lldb) Debug",
-      "type": "cppdbg",
+      "name": "Debug",
+      "type": "lldb-mi",
       "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "program": "${cwd}/build/hello-vsc",
-      "MIMode": "lldb"
+      "target": "./build/hello-vsc",
+      "cwd": "${workspaceRoot}"
     }
   ]
 }
