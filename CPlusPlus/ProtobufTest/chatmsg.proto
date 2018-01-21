@@ -1,3 +1,7 @@
+// $ protoc --cpp_out=. chatmsg.proto
+
+syntax = "proto2";
+
 package chatmsg;
 
 message Msg

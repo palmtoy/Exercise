@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package EchoSrv;
+
+message Staff {
+    required int32 id = 1;
+    required string name = 5;
+    required string email = 10;
+}
+
