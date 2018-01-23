@@ -38,7 +38,7 @@ int main()
 		}
 
 		const auto last_error = WSAGetLastError();
-		
+
 		if(last_error > 0)
 		{
 			cout << "Error: " << last_error << endl;
