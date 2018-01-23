@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSockCli", "WinSockCli\WinSockCli.vcxproj", "{9CCA1719-DD09-4D31-8C97-67D0081F1B45}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinSockSrv", "WinSockSrv\WinSockSrv.vcxproj", "{D53895DD-794C-4F13-93C9-ACB68B409042}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9CCA1719-DD09-4D31-8C97-67D0081F1B45}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9CCA1719-DD09-4D31-8C97-67D0081F1B45}.Debug|Win32.Build.0 = Debug|Win32
+		{9CCA1719-DD09-4D31-8C97-67D0081F1B45}.Release|Win32.ActiveCfg = Release|Win32
+		{9CCA1719-DD09-4D31-8C97-67D0081F1B45}.Release|Win32.Build.0 = Release|Win32
+		{D53895DD-794C-4F13-93C9-ACB68B409042}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D53895DD-794C-4F13-93C9-ACB68B409042}.Debug|Win32.Build.0 = Debug|Win32
+		{D53895DD-794C-4F13-93C9-ACB68B409042}.Release|Win32.ActiveCfg = Release|Win32
+		{D53895DD-794C-4F13-93C9-ACB68B409042}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
