@@ -36,4 +36,6 @@
 *.map
 *.sdf
 *.suo
+*.vcxproj.user
 Debug
+
