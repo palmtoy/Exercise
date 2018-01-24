@@ -5,6 +5,7 @@
 #include <string>
 
 #pragma comment(lib, "Ws2_32.lib")
+#pragma comment(lib, "libprotobuf.lib")
 
 using namespace std;
 using namespace std::chrono;
