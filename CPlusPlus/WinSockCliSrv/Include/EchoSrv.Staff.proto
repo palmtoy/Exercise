@@ -6,5 +6,6 @@ message Staff {
     required int32 id = 1;
     required string name = 5;
     required string email = 10;
+    optional int64 ts = 15; // timestamp
 }
 

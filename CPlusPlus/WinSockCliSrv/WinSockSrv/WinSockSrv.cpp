@@ -1,6 +1,7 @@
 #include <winsock2.h>
 #include <future>
 #include <iostream>
+#include "../Include/EchoSrv.Staff.pb.h"
 
 using namespace std;
 
@@ -46,13 +47,20 @@ int main()
 
 void on_client_connect(SOCKET client)
 {
-	char buffer[1024];
+	char cBuffer[1024];
 
 	cout << "\nClient connected ..." << endl;
-	recv(client, buffer, sizeof(buffer), 0);
+	recv(client, cBuffer, sizeof(cBuffer), 0);
 
-	cout << "Client says: " << buffer << endl;
-	memset(buffer, 0, sizeof(buffer));
+	// Receive msg from clients
+	string strTmp = cBuffer;
+	EchoSrv::Staff msg;
+	msg.ParseFromString(strTmp);
+	cout << "Staff ->\t" << endl;
+	cout << "ID:\t" << msg.id() << endl;
+	cout << "Name:\t" << msg.name() << endl;
+	cout << "Email:\t" << msg.email() << endl;
+	cout << "Timestamp: " << msg.ts() << endl;
 
 	closesocket(client);
 	cout << "Client disconnected." << endl;

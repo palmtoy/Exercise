@@ -3,21 +3,13 @@
 #include <ws2tcpip.h>
 #include <chrono>
 #include <string>
+#include "../Include/EchoSrv.Staff.pb.h"
 
 using namespace std;
 using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {
-	string strBuffer = "Hi ~ ";
-	time_t tt = system_clock::to_time_t(system_clock::now());
-	strBuffer += std::to_string(tt);
-
-	if(argc > 1)
-	{
-		strBuffer = argv[1];
-	}
-
 	WSADATA wsa_data;
 	SOCKADDR_IN addr;
 
@@ -36,8 +28,22 @@ int main(int argc, char *argv[])
 	connect(server, reinterpret_cast<SOCKADDR *>(&addr), sizeof(addr));
 	cout << "Connected to server ..." << endl;
 
-	send(server, strBuffer.c_str(), sizeof(strBuffer), 0);
-	cout << "Message sent -> " << strBuffer.c_str() << endl;
+	string strBuffer;
+	EchoSrv::Staff to;
+	to.set_id(3796);
+	to.set_name("Will");
+	to.set_email("will@gmail.com");
+	time_t tt = system_clock::to_time_t(system_clock::now());
+	to.set_ts(tt);
+	to.SerializeToString(&strBuffer);
+
+	send(server, strBuffer.c_str(), strBuffer.length(), 0);
+
+	cout << "Message sent: Staff -> " << endl;
+	cout << "ID:\t" << to.id() << endl;
+	cout << "Name:\t" << to.name() << endl;
+	cout << "Email:\t" << to.email() << endl;
+	cout << "Timestamp: " << to.ts() << endl;
 
 	closesocket(server);
 	WSACleanup();

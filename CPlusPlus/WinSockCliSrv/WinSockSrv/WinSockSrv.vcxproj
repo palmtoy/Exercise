@@ -87,6 +87,9 @@
   <ItemGroup>
     <ClInclude Include="..\Include\EchoSrv.Staff.pb.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Include\EchoSrv.Staff.proto" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
