@@ -4,6 +4,7 @@
 #include "../Include/EchoSrv.Staff.pb.h"
 
 using namespace std;
+using namespace std::chrono;
 
 void on_client_connect(SOCKET client);
 
@@ -61,6 +62,17 @@ void on_client_connect(SOCKET client)
 	cout << "Name:\t" << msg.name() << endl;
 	cout << "Email:\t" << msg.email() << endl;
 	cout << "Timestamp: " << msg.ts() << endl;
+
+	string strBuffer;
+	EchoSrv::Staff msgPing;
+	msgPing.set_id(msg.id());
+	msgPing.set_name("Lee");
+	msgPing.set_email("lee@gmail.com");
+	time_t tt = system_clock::to_time_t(system_clock::now());
+	msgPing.set_ts(tt);
+	msgPing.SerializeToString(&strBuffer);
+
+	send(client, strBuffer.c_str(), strBuffer.length(), 0);
 
 	closesocket(client);
 	cout << "Client disconnected." << endl;

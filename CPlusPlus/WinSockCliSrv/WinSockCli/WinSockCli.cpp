@@ -29,25 +29,37 @@ int main(int argc, char *argv[])
 	cout << "Connected to server ..." << endl;
 
 	string strBuffer;
-	EchoSrv::Staff to;
-	to.set_id(3796);
-	to.set_name("Will");
-	to.set_email("will@gmail.com");
+	EchoSrv::Staff msgPing;
+	msgPing.set_id(3796);
+	msgPing.set_name("Will");
+	msgPing.set_email("will@gmail.com");
 	time_t tt = system_clock::to_time_t(system_clock::now());
-	to.set_ts(tt);
-	to.SerializeToString(&strBuffer);
+	msgPing.set_ts(tt);
+	msgPing.SerializeToString(&strBuffer);
 
 	send(server, strBuffer.c_str(), strBuffer.length(), 0);
 
-	cout << "Message sent: Staff -> " << endl;
-	cout << "ID:\t" << to.id() << endl;
-	cout << "Name:\t" << to.name() << endl;
-	cout << "Email:\t" << to.email() << endl;
-	cout << "Timestamp: " << to.ts() << endl;
+	cout << "\nMessage sent to server: Staff -> " << endl;
+	cout << "ID:\t" << msgPing.id() << endl;
+	cout << "Name:\t" << msgPing.name() << endl;
+	cout << "Email:\t" << msgPing.email() << endl;
+	cout << "Timestamp: " << msgPing.ts() << endl;
+
+	char cBuffer[1024];
+	int numbytes = recv(server, cBuffer, sizeof(cBuffer), 0);
+	cBuffer[numbytes] = '\0';
+	string data = cBuffer;
+	EchoSrv::Staff msgPong;
+	msgPong.ParseFromString(data);
+	cout << "\nMessage received from server: Staff -> " << endl;
+	cout << "ID:\t" << msgPong.id() << endl;
+	cout << "Name:\t" << msgPong.name() << endl;
+	cout << "Email:\t" << msgPong.email() << endl;
+	cout << "Timestamp: " << msgPing.ts() << endl;
 
 	closesocket(server);
 	WSACleanup();
-	cout << "Socket closed." << endl << endl;
+	cout << "\nSocket closed." << endl << endl;
 
-	Sleep(2000);
+	Sleep(10000);
 }
