@@ -4,9 +4,6 @@
 #include <chrono>
 #include <string>
 
-#pragma comment(lib, "Ws2_32.lib")
-#pragma comment(lib, "libprotobuf.lib")
-
 using namespace std;
 using namespace std::chrono;
 
@@ -46,5 +43,5 @@ int main(int argc, char *argv[])
 	WSACleanup();
 	cout << "Socket closed." << endl << endl;
 
-	Sleep(3000);
+	Sleep(2000);
 }

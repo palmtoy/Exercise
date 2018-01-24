@@ -2,9 +2,6 @@
 #include <future>
 #include <iostream>
 
-#pragma comment(lib, "Ws2_32.lib")
-#pragma comment(lib, "libprotobuf.lib")
-
 using namespace std;
 
 void on_client_connect(SOCKET client);
