@@ -51,11 +51,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\MyDisc\Repository\Software\Programming\Protobuf\protobuf-2.5.0\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>WS2_32.Lib;C:\MyDisc\Repository\Software\Programming\Protobuf\protobuf-2.5.0\vsprojects\Debug\libprotobuf.lib
+;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -76,7 +79,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Include\EchoSrv.Staff.pb.cc" />
+    <ClCompile Include="..\Include\Utils.cc" />
     <ClCompile Include="WinSelectSrv.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Include\EchoSrv.Staff.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Include\EchoSrv.Staff.pb.h" />
+    <ClInclude Include="..\Include\Utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

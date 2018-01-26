@@ -3,8 +3,6 @@
 #include <ws2tcpip.h>
 #include <chrono>
 #include <string>
-#include "../Include/EchoSrv.Staff.pb.h"
-#include "../Include/Utils.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -29,28 +27,25 @@ int main(int argc, char *argv[])
 	connect(server, reinterpret_cast<SOCKADDR *>(&addr), sizeof(addr));
 	cout << "Connected to server ..." << endl;
 
-	string strBuffer;
-	EchoSrv::Staff msgPing;
-	msgPing.set_id(3796);
-	msgPing.set_name("Will");
-	msgPing.set_email("will@gmail.com");
 	time_t tt = system_clock::to_time_t(system_clock::now());
-	msgPing.set_ts(tt);
-	msgPing.SerializeToString(&strBuffer);
-
+	string strBuffer = "Hi ~ " + to_string(tt);
 	send(server, strBuffer.c_str(), strBuffer.length(), 0);
-
-	PrintMsg(msgPing, "\nMessage sent to server: Staff -> ");
+	cout << "\nMessage sent to server: " << strBuffer << endl;
 
 	char cBuffer[1024];
 	int numbytes = recv(server, cBuffer, sizeof(cBuffer), 0);
 	cBuffer[numbytes] = '\0';
-	string data = cBuffer;
-	EchoSrv::Staff msgPong;
-	msgPong.ParseFromString(data);
-	PrintMsg(msgPong, "\nMessage received from server: Staff -> ");
+	string recvStr = cBuffer;
+	cout << "\nMessage received from server: " << recvStr << endl;
 
-	getchar();
+	strBuffer = (char)getchar();
+	send(server, strBuffer.c_str(), strBuffer.length(), 0);
+	cout << "\nMessage sent to server: " << strBuffer << endl;
+
+	numbytes = recv(server, cBuffer, sizeof(cBuffer), 0);
+	cBuffer[numbytes] = '\0';
+	recvStr = cBuffer;
+	cout << "\nMessage received from server: " << recvStr << endl;
 
 	closesocket(server);
 	WSACleanup();
