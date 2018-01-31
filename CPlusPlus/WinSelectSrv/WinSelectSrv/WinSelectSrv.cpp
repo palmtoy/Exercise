@@ -13,8 +13,8 @@ Live Server on port 8888
 int main(int argc, char* argv[])
 {
 	WSADATA wsa;
-	SOCKET master, new_socket, client_socket[MAX_CLIENTS], s;
-	struct sockaddr_in server, address;
+	SOCKET master_socket, new_socket, client_socket[MAX_CLIENTS], tmpSock;
+	struct sockaddr_in server_addr, cli_addr;
 	int activity, addrlen, i, valread;
 
 	// size of our receive buffer, this is string length.
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	printf("Initialised.\n");
 
 	// Create a socket
-	if((master = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET)
+	if((master_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET)
 	{
 		printf("Could not create socket: %d", WSAGetLastError());
 		exit(EXIT_FAILURE);
@@ -49,12 +49,12 @@ int main(int argc, char* argv[])
 	printf("Socket created.\n");
 
 	// Prepare the sockaddr_in structure
-	server.sin_family = AF_INET;
-	server.sin_addr.s_addr = INADDR_ANY;
-	server.sin_port = htons(8888);
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_addr.s_addr = INADDR_ANY;
+	server_addr.sin_port = htons(8888);
 
 	// Bind
-	if(bind(master, (struct sockaddr *)&server, sizeof(server)) == SOCKET_ERROR)
+	if(bind(master_socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) == SOCKET_ERROR)
 	{
 		printf("Bind failed with error code: %d", WSAGetLastError());
 		exit(EXIT_FAILURE);
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	puts("Bind done.");
 
 	// Listen to incoming connections
-	listen(master, 3);
+	listen(master_socket, 3);
 
 	// Accept and incoming connection
 	puts("Waiting for incoming connections...");
@@ -76,15 +76,15 @@ int main(int argc, char* argv[])
 		FD_ZERO(&readfds);
 
 		// add master socket to fd set
-		FD_SET(master, &readfds);
+		FD_SET(master_socket, &readfds);
 
 		// add child sockets to fd set
 		for (i = 0; i < MAX_CLIENTS; i++)
 		{
-			s = client_socket[i];
-			if(s > 0)
+			tmpSock = client_socket[i];
+			if(tmpSock > 0)
 			{
-				FD_SET(s, &readfds);
+				FD_SET(tmpSock, &readfds);
 			}
 		}
 
@@ -98,16 +98,16 @@ int main(int argc, char* argv[])
 		}
 
 		// If something happened on the master socket, then its an incoming connection
-		if (FD_ISSET(master, &readfds))
+		if (FD_ISSET(master_socket, &readfds))
 		{
-			if ((new_socket = accept(master, (struct sockaddr*)&address, (int*)&addrlen)) < 0)
+			if ((new_socket = accept(master_socket, (struct sockaddr*)&cli_addr, (int*)&addrlen)) < 0)
 			{
 				perror("accept");
 				exit(EXIT_FAILURE);
 			}
 
 			// inform user of socket number - used in send and receive commands
-			printf("\nNew connection, socket fd is %d, ip is: %s, port: %d \n", new_socket, inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+			printf("\nNew connection, socket fd is %d, ip is: %s, port: %d \n", new_socket, inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 
 			// add new socket to array of sockets
 			for (i = 0; i < MAX_CLIENTS; i++)
@@ -124,16 +124,16 @@ int main(int argc, char* argv[])
 		// else its some IO operation on some other socket
 		for (i = 0; i < MAX_CLIENTS; i++)
 		{
-			s = client_socket[i];
+			tmpSock = client_socket[i];
 			// if client presend in read sockets             
-			if (FD_ISSET(s, &readfds))
+			if (FD_ISSET(tmpSock, &readfds))
 			{
 				// get details of the client
-				getpeername(s, (struct sockaddr*)&address, (int*)&addrlen);
+				getpeername(tmpSock, (struct sockaddr*)&cli_addr, (int*)&addrlen);
 
 				// Check if it was for closing, and also read the incoming message
 				// recv does not place a null terminator at the end of the string (whilst printf %s assumes there is one)
-				valread = recv(s, buffer, MAXRECV, 0);
+				valread = recv(tmpSock, buffer, MAXRECV, 0);
 
 				if (valread == SOCKET_ERROR)
 				{
@@ -141,10 +141,10 @@ int main(int argc, char* argv[])
 					if(error_code == WSAECONNRESET)
 					{
 						// Somebody disconnected, get his details and print
-						printf("\nHost disconnected unexpectedly, ip %s, port %d \n", inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+						printf("\nHost disconnected unexpectedly, ip %s, port %d \n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 
 						// Close the socket and mark as 0 in list for reuse
-						closesocket( s );
+						closesocket( tmpSock );
 						client_socket[i] = 0;
 					}
 					else
@@ -155,10 +155,10 @@ int main(int argc, char* argv[])
 				if (valread == 0)
 				{
 					// Somebody disconnected, get his details and print
-					printf("\nHost disconnected, ip %s, port %d \n\n", inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+					printf("\nHost disconnected, ip %s, port %d \n\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 
 					// Close the socket and mark as 0 in list for reuse
-					closesocket( s );
+					closesocket( tmpSock );
 					client_socket[i] = 0;
 				}
 
@@ -171,7 +171,7 @@ int main(int argc, char* argv[])
 					std::string strTmp = buffer;
 					EchoSrv::Staff msg;
 					msg.ParseFromString(strTmp);
-					printf("%s:%d - \n", inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+					printf("%s:%d - \n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
 					PrintMsg(msg, "\nMessage received from client: Staff -> ");
 
 					std::string strBuffer;
@@ -183,13 +183,13 @@ int main(int argc, char* argv[])
 					msgPong.set_ts(tt);
 					msgPong.SerializeToString(&strBuffer);
 
-					send(s, strBuffer.c_str(), strBuffer.length(), 0);
+					send(tmpSock, strBuffer.c_str(), strBuffer.length(), 0);
 				}
 			}
 		}
 	}
 
-	closesocket(s);
+	closesocket(tmpSock);
 	WSACleanup();
 
 	return 0;
