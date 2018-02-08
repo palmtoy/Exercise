@@ -60,6 +60,49 @@ void bar()
 	return;
 }
 
+void my_map()
+{
+	std::map<char,int> mymap;
+
+	// first insert function version (single parameter):
+	mymap.insert ( std::pair<char,int>('a',100) );
+	mymap.insert ( std::pair<char,int>('z',200) );
+
+	// showing contents:
+	std::map<char,int>::iterator it;
+	std::cout << "mymap contains:\n";
+	for (it=mymap.begin(); it!=mymap.end(); ++it)
+	{
+		std::cout << it->first << " => " << it->second << '\n';
+	}
+
+	// serialize it into simple buffer.
+	msgpack::sbuffer sbuf;
+	msgpack::pack(sbuf, mymap);
+
+	// deserialized it.
+	msgpack::object_handle oh = msgpack::unpack(sbuf.data(), sbuf.size());
+
+	// print the deserialized object.
+	msgpack::object obj = oh.get();
+
+	// convert it into statically typed object.
+	std::vector<std::string> rvec;
+	std::map<char,int> rmap;
+	obj.convert(rmap);
+
+	std::cout << "---------------\nrmap contains:\n";
+	for (it=rmap.begin(); it!=rmap.end(); ++it)
+	{
+		std::cout << it->first << " => " << it->second << '\n';
+	}
+
+	std::cout << std::endl;
+	return;
+}
+
+
+
 void unpacker_print(msgpack::sbuffer& buffer)
 {
 	// deserializes these objects using msgpack::unpacker.
@@ -154,6 +197,8 @@ int main(void)
 	foo();
 
 	bar();
+
+	my_map();
 
 	streaming();
 
