@@ -113,6 +113,42 @@ void streaming2map()
 	unpacker_print(buffer2);
 }
 
+class MyClass {
+private:
+	std::string m_str;
+	std::vector<int> m_vec;
+public:
+	MSGPACK_DEFINE(m_str, m_vec);
+	void set_str(std::string& str) { m_str = str; }
+	void add_int(int n) { m_vec.push_back(n); }
+};
+
+void user_defined_class()
+{
+	std::vector<MyClass> vec;
+
+	// add some elements into vec...
+	MyClass myObj;
+	myObj.set_str(std::string("Hi baby ~"));
+	myObj.add_int(789);
+	vec.push_back(myObj);
+
+	// you can serialize MyClass directly
+	msgpack::sbuffer sbuf;
+	msgpack::pack(sbuf, vec);
+
+	msgpack::object_handle oh =
+		msgpack::unpack(sbuf.data(), sbuf.size());
+
+	msgpack::object obj = oh.get();
+
+	// you can convert object to MyClass directly
+	std::vector<MyClass> rvec;
+	obj.convert(rvec);
+
+	std::cout << obj << std::endl << std::endl;
+}
+
 int main(void)
 {
 	foo();
@@ -122,6 +158,8 @@ int main(void)
 	streaming();
 
 	streaming2map();
+
+	user_defined_class();
 
 	getchar();
 	return 0;
