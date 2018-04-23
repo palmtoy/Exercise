@@ -1,5 +1,5 @@
 //node.js
-var  HTTPClient = require('HTTPClient.js');
+var  HTTPClient = require('httpclient');
 var options = {
   hostname: 'localhost',
   path: '/',
