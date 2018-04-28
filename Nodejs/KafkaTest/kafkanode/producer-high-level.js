@@ -1,7 +1,7 @@
 var kafka = require('kafka-node');
 var HighLevelProducer = kafka.HighLevelProducer;
 var Client = kafka.Client;
-var client = new Client();
+var client = new Client('localhost:2181');
 var argv = require('optimist').argv;
 var topic = argv.topic || 'mytest-topic-z';
 var count = 3;
