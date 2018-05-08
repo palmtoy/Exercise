@@ -1,6 +1,8 @@
 /*
-	 curl -v http://127.0.0.1:8080
-	 */
+	 curl -v http://127.0.0.1:8081
+	 curl -v http://127.0.0.1:8081/echo?name=xyt
+	 curl -kv https://127.0.0.1/echo?name=palmtoy (nginx https proxy)
+*/
 
 var http = require('http');
 var url = require('url');
@@ -22,9 +24,9 @@ http.createServer(function (req, res) {
 	}
 
 	res.end(str);
-}).listen(8080, '127.0.0.1');
+}).listen(8081, '127.0.0.1');
 
-console.log('Server running at http://127.0.0.1:8080/');
+console.log('Server running at http://127.0.0.1:8081/');
 
 
 function stringFormat() {

@@ -1,9 +1,9 @@
 //node.js
-var  HTTPClient = require('HTTPClient.js');
+var  HTTPClient = require('httpclient');
 var options = {
   hostname: 'localhost',
   path: '/',
-  port: 8080,
+  port: 8081,
   secure: false,
   method: 'GET',
   headers: {
