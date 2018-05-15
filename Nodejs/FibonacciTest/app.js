@@ -10,7 +10,7 @@ function tailFact(n, p) {
   }
 }
 
-var cnt = parseInt(process.argv[2]) || 1;
+var cnt = parseInt(process.argv[2]) || 5;
 var ret = tailFact(cnt);
 console.log('ret = ', ret);
 
