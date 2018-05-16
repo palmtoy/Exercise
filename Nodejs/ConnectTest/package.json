@@ -4,11 +4,12 @@
   "description": "ConnectTest",
   "main": "app.js",
   "dependencies": {
+    "connect": "2.3.3",
+    "connectables": "git+https://github.com/explodingbarrel/connectables.git#a5a09f06fbad5866da459ab73f42590738941f2f",
+    "crc": "^2.1.1",
     "qs": "~0.6.6",
     "request": "^2.40.0",
-    "crc": "^2.1.1",
-    "connect": "2.3.3",
-    "connectables": "git+https://github.com/explodingbarrel/connectables.git#a5a09f06fbad5866da459ab73f42590738941f2f"
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {},
   "scripts": {
