@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // curl -v -d 'user=palmtoy' http://localhost:3000/wow
 
 var rp = require('request-promise');
