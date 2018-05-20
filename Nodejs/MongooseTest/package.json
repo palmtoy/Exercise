@@ -1,0 +1,10 @@
+{
+  "name": "mongoosetest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.1.1"
+  }
+}
