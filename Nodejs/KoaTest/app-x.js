@@ -1,28 +1,29 @@
+/*
+	curl -v http://localhost:3000
+*/
 const Koa = require('koa');
 const app = new Koa();
 
-// x-response-time
-
+// X-Response-Time
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;
+  console.log(`X-Response-Time: ${ms}ms\n`);
   ctx.set('X-Response-Time', `${ms}ms`);
 });
 
 // logger
-
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}`);
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 // response
-
 app.use(async ctx => {
-  ctx.body = 'Hello World';
+  ctx.body = new Date() + ' ~ Hello World';
 });
 
 const port = 3000;
