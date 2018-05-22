@@ -7,6 +7,7 @@ const app = new Koa();
 // X-Response-Time
 app.use(async (ctx, next) => {
   const start = Date.now();
+  console.log(`\nX-Response-Time: start = ${start}\n`);
   await next();
   const ms = Date.now() - start;
   console.log(`X-Response-Time: ${ms}ms\n`);
@@ -16,9 +17,10 @@ app.use(async (ctx, next) => {
 // logger
 app.use(async (ctx, next) => {
   const start = Date.now();
+  console.log(`logger: start = ${start}\n`);
   await next();
   const ms = Date.now() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+  console.log(`logger: ${ctx.method} ${ctx.url} - ${ms}ms\n`);
 });
 
 // response
