@@ -17,5 +17,10 @@ module.exports = appInfo => {
     },
   };
 
+  config.news = {
+    pageSize: 5,
+    serverUrl: 'https://hacker-news.firebaseio.com/v0',
+  };
+
   return config;
 };
