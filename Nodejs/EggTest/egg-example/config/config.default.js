@@ -22,5 +22,16 @@ module.exports = appInfo => {
     serverUrl: 'http://localhost:8080/sisp',
   };
 
+  // add middleware robot
+  config.middleware = [
+    'robot',
+  ];
+  // robot's configurations
+  config.robot = {
+    ua: [
+      /Baiduspider/i,
+    ],
+  };
+
   return config;
 };
