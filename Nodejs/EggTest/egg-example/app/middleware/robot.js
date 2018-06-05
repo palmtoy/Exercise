@@ -8,7 +8,7 @@ module.exports = (options, app) => {
     if (match) {
       ctx.status = 403;
       ctx.message = 'Go away, robot.';
-      console.log(app.config.robot);
+      console.log('  ' + app.config.robot.ua[0]);
     } else {
       await next();
     }
