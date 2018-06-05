@@ -9,8 +9,8 @@ class NewsService extends Service {
 
     const dataList = {
       list: [
-        { id: page, title: 'this is news ' + page + '/' + pageSize, url: serverUrl + '/news/' + page + '/' + pageSize },
-        { id: ++page, title: 'this is news ' + page + '/' + pageSize, url: serverUrl + '/news/' + page + '/' + pageSize },
+        { id: page, title: 'this is news ' + page + '/' + pageSize, url: serverUrl + '/' + page },
+        { id: ++page, title: 'this is news ' + page + '/' + pageSize, url: serverUrl + '/' + page },
       ],
     };
 
