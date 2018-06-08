@@ -6,9 +6,12 @@ class UserController extends Controller {
   async info() {
     const { ctx } = this;
     ctx.body = {
-      name: `hello ${ctx.params.id}`,
+      user: `${ctx.params.id}, ${ctx.params.name}`,
+      msg: `hello ${ctx.params.name}`,
     };
   }
 }
 
 module.exports = UserController;
+
+// curl http://127.0.0.1:7001/user/123/xiaoming

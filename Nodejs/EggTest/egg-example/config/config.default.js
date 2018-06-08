@@ -33,5 +33,9 @@ module.exports = appInfo => {
     ],
   };
 
+  config.security = {
+    csrf: false,
+  };
+
   return config;
 };
