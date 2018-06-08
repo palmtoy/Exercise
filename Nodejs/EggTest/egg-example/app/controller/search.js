@@ -18,3 +18,8 @@ exports.index2 = async ctx => {
     ctx.redirect(`https://www.google.co.kr/search?q=${q}`);
   }
 };
+
+// curl http://localhost:7001/search3?name=egg
+exports.index3 = async ctx => {
+  ctx.body = `search: ${ctx.query.name}`;
+};

@@ -16,6 +16,7 @@ module.exports = app => {
 
   router.get('/search', controller.search.index);
   router.get('/search2', controller.search.index2);
+  router.get('s', '/search3', app.middlewares.uppercase(), controller.search.index3);
 
   router.get(/^\/package\/([\w-.]+\/[\w-.]+)$/, controller.package.detail);
   router.post('/form', controller.form.post);
