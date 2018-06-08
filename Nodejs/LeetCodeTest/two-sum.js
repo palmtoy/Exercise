@@ -26,3 +26,9 @@ var twoSum = function(nums, target) {
 let nums = [2, 7, 11, 15], target = 9;
 console.log(twoSum(nums, target));
 
+nums = [0, 4, 3, 0], target = 0;
+console.log(twoSum(nums, target));
+
+nums = [-3, 4, 3, 90], target = 0;
+console.log(twoSum(nums, target));
+
