@@ -12,4 +12,3 @@ class NewsController extends Controller {
 }
 
 module.exports = NewsController;
-
