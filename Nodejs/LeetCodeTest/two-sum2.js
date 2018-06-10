@@ -3,11 +3,10 @@ var twoSum = function(nums, target) {
 	const len = nums.length;
 	for(let i = 0; i < len; i++) {
 		let complement = target - nums[i];
-		let idx = nums.lastIndexOf(complement);
-		if(idx !== -1 && idx != i) {
-			return [i, idx];
+		if(tmpMap[complement] !== undefined) {
+			return [tmpMap[complement], i];
 		}
-		tmpMap[i] = nums[i];
+		tmpMap[nums[i]] = i;
 	}    
 };
 
