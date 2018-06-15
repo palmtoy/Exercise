@@ -15,6 +15,7 @@ class PollingPrint extends Subscription {
   async subscribe() {
     // console.log(new Date() + ' ~ Hi baby!');
     this.ctx.logger.info(new Date() + ' ~ Hi baby!');
+
     this.ctx.service.bookInfo.addOneBook();
   }
 }
