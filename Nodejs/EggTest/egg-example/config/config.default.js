@@ -44,5 +44,9 @@ module.exports = appInfo => {
     },
   };
 
+  config.mongoose = {
+    url: 'mongodb://localhost/test',
+  };
+
   return config;
 };

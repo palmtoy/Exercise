@@ -7,7 +7,7 @@ class PollingPrint extends Subscription {
   static get schedule() {
     return {
       type: 'worker', // 随机某个 worker 执行
-      interval: '3s', // 3s 间隔
+      interval: '5s',
     };
   }
 
@@ -15,6 +15,7 @@ class PollingPrint extends Subscription {
   async subscribe() {
     // console.log(new Date() + ' ~ Hi baby!');
     this.ctx.logger.info(new Date() + ' ~ Hi baby!');
+    this.ctx.service.bookInfo.addOneBook();
   }
 }
 
