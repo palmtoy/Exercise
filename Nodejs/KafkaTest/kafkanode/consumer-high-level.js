@@ -20,8 +20,7 @@ highLevelConsumer.on('error', function (err) {
 
 process.on('SIGINT', function () {
   console.log('\nbye.');
-	highLevelConsumer.close(true, function () {
-		process.exit();
-	});
+	highLevelConsumer.close(true, function () {});
+	process.exit();
 });
 

@@ -37,5 +37,16 @@ module.exports = appInfo => {
     csrf: false,
   };
 
+  config.customLogger = {
+    scheduleLogger: {
+      // consoleLevel: 'NONE',
+      // file: path.join(appInfo.root, 'logs', appInfo.name, 'egg-schedule.log'),
+    },
+  };
+
+  config.mongoose = {
+    url: 'mongodb://localhost/test',
+  };
+
   return config;
 };

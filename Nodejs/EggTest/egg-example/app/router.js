@@ -11,11 +11,14 @@ module.exports = app => {
   router.redirect('/', '/home/index', 302);
 
   router.get('/news', controller.news.list);
+
   router.post('/user/create', controller.user.create);
   router.get('/user/:id/:name', controller.user.info);
 
   router.get(/^\/package\/([\w-.]+\/[\w-.]+)$/, controller.package.detail);
   router.post('/form', controller.form.post);
+
+  router.get('/post', controller.post.list);
 
   require('./router/search')(app);
 };
