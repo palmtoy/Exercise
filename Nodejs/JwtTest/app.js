@@ -8,7 +8,7 @@ const profile = {
 	id: 186163
 };
 
-const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 60*5 });
+const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 8 * 60 * 60 }); // 8 hours
 
 console.log('Starting koa-jwt test server on http://localhost:3000/');
 console.log('');
