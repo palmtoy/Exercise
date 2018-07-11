@@ -7,8 +7,9 @@ const jwt = require('jsonwebtoken');
 const profile = {
 	id: 186163
 };
+const secretCode = 'd73b04b0e696b0945283defa3eee4538';
 
-const TOKEN = jwt.sign(profile, 'secret', { expiresIn: 8 * 60 * 60 }); // 8 hours
+const TOKEN = jwt.sign(profile, secretCode, { expiresIn: 8 * 60 * 60 }); // 8 hours
 
 console.log('Starting koa-jwt test server on http://localhost:3000/');
 console.log('');
@@ -43,7 +44,7 @@ app.use((ctx, next) => {
 });
 
 // Middleware below this line is only reached if JWT token is valid
-app.use(koajwt({ secret: 'secret' }));
+app.use(koajwt({ secret: secretCode }));
 
 app.use(ctx => {
 	if (ctx.url.match(/^\/api/)) {
