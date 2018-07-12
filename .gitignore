@@ -4,3 +4,5 @@
 *.pem
 *.pfx
 node_modules
+.vscode
+
