@@ -1,5 +1,7 @@
 "use strict";
 
+console.log('Now: ' + new Date() + '\n');
+
 // Simple & Clean
 for (let i = 1; i <= 3; i += 1) {
 	setTimeout(function() {
