@@ -7,8 +7,10 @@ module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
 
-  const conn = app.mongooseDB.base.connection;
-  autoIncrement.initialize(conn);
+  /*
+    const conn = app.mongooseDB.base.connection;
+    autoIncrement.initialize(conn);
+  */
 
   const BookInfoSchema = new Schema({
     bookId: { type: Number },

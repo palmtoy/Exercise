@@ -5,6 +5,7 @@
  */
 // app/router.js
 module.exports = app => {
+
   const { router, controller } = app;
   // router.get('/', controller.home.index);
   router.get('index', '/home/index', controller.home.index);
@@ -20,5 +21,9 @@ module.exports = app => {
 
   router.get('/post', controller.post.list);
 
+  router.get('/multiple-file', controller.multiple.show);
+  router.post('/multiple-file', controller.multiple.upload);
+
   require('./router/search')(app);
+
 };

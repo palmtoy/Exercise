@@ -7,7 +7,8 @@ class PollingPrint extends Subscription {
   static get schedule() {
     return {
       type: 'worker', // 随机某个 worker 执行
-      interval: '5s',
+      // interval: '5s',
+      interval: '60m',
     };
   }
 

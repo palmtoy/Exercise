@@ -48,5 +48,10 @@ module.exports = appInfo => {
     url: 'mongodb://localhost/test',
   };
 
+  config.multipart = {
+    fileSize: '50mb',
+    whitelist: [ '.tar' ],
+  };
+
   return config;
 };

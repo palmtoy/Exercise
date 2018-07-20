@@ -1,7 +1,7 @@
 <!-- app/view/news/list.tpl -->
 <html>
   <head>
-    <title>Egg HackerNews Clone</title>
+    <title>Egg Example</title>
     <link rel="stylesheet" href="/public/css/news.css" />
   </head>
   <body>
