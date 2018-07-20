@@ -5,7 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "mongodb": "^2.2.4",
-    "mongodb-backup": "^1.6.9"
+    "mongodb-backup": "^1.6.9",
+    "mongodb-restore": "^1.6.2"
   },
   "devDependencies": {},
   "author": "",
