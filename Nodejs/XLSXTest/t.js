@@ -1,5 +1,7 @@
-var buffer = require('fs').readFileSync('./GearConfig.xlsx');
-var content = require('xlsx').read(buffer).Sheets;
+const XLSX = require('xlsx');
+
+var workbook = XLSX.readFile('./GearConfig.xlsx');
+var content = workbook.Sheets;
 var ret = {worksheets: []};
 
 var toNumberBase10 = function(s) {
@@ -75,6 +77,7 @@ var generateAllColumnName = function(keysList, obj) {
 for(var sheetName in content) {
   var obj = {name: sheetName, data: []};
   delete content[sheetName]['!ref'];
+  delete content[sheetName]['!margins'];
 
   var keysList = Object.keys(content[sheetName]);
   keysList = generateAllColumnName(keysList, obj);

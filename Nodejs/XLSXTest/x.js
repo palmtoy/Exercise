@@ -4,7 +4,7 @@ var workbook = XLSX.readFile('./GearConfig.xlsx');
 var content = workbook.Sheets;
 var ret = {worksheets: []};
 
-var toNumberBase10 = function(s) {
+function toNumberBase10(s) {
   if(s.length === 0) {
     return 0;
   }
@@ -22,7 +22,7 @@ var toNumberBase10 = function(s) {
   return n;
 };
 
-var toNumberBase26 = function(n) {
+function toNumberBase26(n) {
   var s = '';
   while(n > 0) {
     var m = n % 26;
@@ -35,32 +35,37 @@ var toNumberBase26 = function(n) {
   return s;
 };
 
-var generateAllColumnName = function(rList, obj) {
-  var pos = rList[0].search(/\d+/);
-  var cBegin = rList[0].slice(0, pos);
-  cBegin = toNumberBase10(cBegin);
-  console.log('cBegin = ', cBegin);
-  var rBegin = parseInt(rList[0].slice(pos));
+function generateAllColumnName(keysList, obj) {
+  var maxColumn = 0;
+  var maxRow = 0;
 
-  pos = rList[1].search(/\d+/);
-  var cEnd = rList[1].slice(0, pos);
-  cEnd = toNumberBase10(cEnd);
-  console.log('cEnd = ', cEnd);
-  var rEnd = parseInt(rList[1].slice(pos));
+  keysList.forEach(function(v) {
+    var pos = v.search(/\d+/);
+    var column = v.slice(0, pos);
+    column = toNumberBase10(column);
+    var row = parseInt(v.slice(pos));
+    if(column > maxColumn) {
+      maxColumn = column;
+    }
+    if(row > maxRow) {
+      maxRow = row;
+    }
+  });
 
-  for(var i = rBegin; i <= rEnd; i++) {
+  for(var i = 0; i < maxRow; i++) {
     obj.data.push([]);
   }
 
   var cNameList = [];
-  for(var j = cBegin; j <= cEnd; j++) {
+  var cBegin = toNumberBase10('A');
+  for(var j = cBegin; j <= maxColumn; j++) {
     var cName = toNumberBase26(j);
     cNameList.push(cName);
   }
   console.log('cNameList = ', JSON.stringify(cNameList));
 
   var allColumnName = [];
-  for(var k = rBegin; k <= rEnd; k++) {
+  for(var k = 1; k <= maxRow; k++) {
     cNameList.forEach(function(cName) {
       allColumnName.push(cName + k);
     });
@@ -71,14 +76,12 @@ var generateAllColumnName = function(rList, obj) {
 
 for(var sheetName in content) {
   var obj = {name: sheetName, data: []};
-  var refStr = '!ref';
-  var rStr = content[sheetName][refStr];
-  console.log('rStr = ', rStr);
-  var rList = rStr.split(':');
-  delete content[sheetName][refStr];
+  delete content[sheetName]['!ref'];
   delete content[sheetName]['!margins'];
 
-  var keysList = generateAllColumnName(rList, obj);
+  var keysList = Object.keys(content[sheetName]);
+  keysList = generateAllColumnName(keysList, obj);
+  console.log('keysList = ', JSON.stringify(keysList));
 
   for(var i = 0; i < keysList.length; i++) {
     var key = keysList[i];
@@ -89,8 +92,7 @@ for(var sheetName in content) {
     if(!!content[sheetName][key]) {
       v = content[sheetName][key].v;
     }
-    var o = {'value': v, 'formatCode': 'General'};
-    obj.data[row-1].push(o);
+    obj.data[row-1].push(v);
   }
 
   ret.worksheets.push(obj);

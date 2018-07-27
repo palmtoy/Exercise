@@ -1,6 +1,7 @@
-var buffer = require('fs').readFileSync('./GearConfig.xlsx');
+const XLSX = require('xlsx');
 
-var content = require('xlsx').read(buffer).Sheets;
+var workbook = XLSX.readFile('./GearConfig.xlsx');
+var content = workbook.Sheets;
 console.log('content = ', JSON.stringify(content));
 
 var ret = {worksheets: []};
@@ -36,6 +37,7 @@ for(var sheetName in content) {
   var rStr = content[sheetName]['!ref']; 
   var rList = rStr.split(':');
   delete content[sheetName]['!ref'];
+  delete content[sheetName]['!margins'];
 
   var pos = rList[0].search(/\d+/);
   var rBegin = parseInt(rList[0].slice(pos));
@@ -63,4 +65,4 @@ for(var sheetName in content) {
   ret.worksheets.push(obj);
 }
 
-
+console.log(`\nret = ${JSON.stringify(ret)}`);

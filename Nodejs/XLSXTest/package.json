@@ -1,0 +1,13 @@
+{
+	"name": "xlsxtest",
+	"version": "1.0.0",
+	"main": "app.js",
+	"keywords": [
+		"xlsx-test"
+	],
+	"author": "palmtoy",
+	"license": "MIT",
+	"dependencies": {
+		"xlsx": "^0.13.3"
+	}
+}
