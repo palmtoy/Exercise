@@ -1,6 +1,6 @@
 const XLSX = require('xlsx');
 
-var workbook = XLSX.readFile('./GearConfig.xlsx');
+const workbook = XLSX.readFile('./GearConfig.xlsx');
 var sheetsData = workbook.Sheets;
 var wbSheetsInput = [];
 
@@ -11,9 +11,9 @@ function toNumberBase10(s) {
 
   s = s.toUpperCase();
 
-  var n = 0;
-  for(var i = s.length - 1, j = 1; i >= 0; i--, j *= 26){
-    var c = s.charCodeAt(i);
+  let n = 0;
+  for(let i = s.length - 1, j = 1; i >= 0; i--, j *= 26){
+    const c = s.charCodeAt(i);
     if (c < 'A'.charCodeAt(0) || c > 'Z'.charCodeAt(0)) {
       return 0;
     }
@@ -23,9 +23,9 @@ function toNumberBase10(s) {
 };
 
 function toNumberBase26(n) {
-  var s = '';
+  let s = '';
   while(n > 0) {
-    var m = n % 26;
+    let m = n % 26;
     if(m === 0) {
       m = 26;
     }
@@ -36,14 +36,14 @@ function toNumberBase26(n) {
 };
 
 function generateAllColumnName(keysList) {
-  var maxColumn = 0;
-  var maxRow = 0;
+  let maxColumn = 0;
+  let maxRow = 0;
 
   keysList.forEach(function(v) {
-    var pos = v.search(/\d+/);
-    var column = v.slice(0, pos);
+    const pos = v.search(/\d+/);
+    let column = v.slice(0, pos);
     column = toNumberBase10(column);
-    var row = parseInt(v.slice(pos));
+    const row = parseInt(v.slice(pos));
     if(column > maxColumn) {
       maxColumn = column;
     }
@@ -52,16 +52,16 @@ function generateAllColumnName(keysList) {
     }
   });
 
-  var cNameList = [];
-  var cBegin = toNumberBase10('A');
-  for(var j = cBegin; j <= maxColumn; j++) {
-    var cName = toNumberBase26(j);
+  let cNameList = [];
+  const cBegin = toNumberBase10('A');
+  for(let j = cBegin; j <= maxColumn; j++) {
+    const cName = toNumberBase26(j);
     cNameList.push(cName);
   }
   console.log('cNameList = ', JSON.stringify(cNameList));
 
-  var allColumnName = [];
-  for(var k = 1; k <= maxRow; k++) {
+  let allColumnName = [];
+  for(let k = 1; k <= maxRow; k++) {
     cNameList.forEach(function(cName) {
       allColumnName.push(cName + k);
     });
@@ -70,21 +70,21 @@ function generateAllColumnName(keysList) {
   return allColumnName;
 };
 
-for(var sheetName in sheetsData) {
-  var obj = {name: sheetName, data: {}};
+for(const sheetName in sheetsData) {
+  let obj = {name: sheetName, data: {}};
   delete sheetsData[sheetName]['!ref'];
   delete sheetsData[sheetName]['!margins'];
 
-  var keysList = Object.keys(sheetsData[sheetName]);
+  let keysList = Object.keys(sheetsData[sheetName]);
   keysList = generateAllColumnName(keysList);
   console.log('keysList = ', JSON.stringify(keysList));
 
-  for(var i = 0; i < keysList.length; i++) {
-    var key = keysList[i];
-    var pos = key.search(/\d+/);
-    var row = parseInt(key.slice(pos));
+  for(let i = 0; i < keysList.length; i++) {
+    const key = keysList[i];
+    const pos = key.search(/\d+/);
+    const row = parseInt(key.slice(pos));
 
-    var v = null;
+    let v = null;
     if(!!sheetsData[sheetName][key]) {
       v = sheetsData[sheetName][key].v;
     }
