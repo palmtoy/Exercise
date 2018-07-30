@@ -1,8 +1,8 @@
 const XLSX = require('xlsx');
 
 var workbook = XLSX.readFile('./GearConfig.xlsx');
-var sheetsData = workbook.Sheets;
-var wbSheetsInput = [];
+var content = workbook.Sheets;
+var ret = {worksheets: []};
 
 function toNumberBase10(s) {
   if(s.length === 0) {
@@ -35,7 +35,7 @@ function toNumberBase26(n) {
   return s;
 };
 
-function generateAllColumnName(keysList) {
+function generateAllColumnName(keysList, obj) {
   var maxColumn = 0;
   var maxRow = 0;
 
@@ -51,6 +51,10 @@ function generateAllColumnName(keysList) {
       maxRow = row;
     }
   });
+
+  for(var i = 0; i < maxRow; i++) {
+    obj.data.push([]);
+  }
 
   var cNameList = [];
   var cBegin = toNumberBase10('A');
@@ -70,13 +74,13 @@ function generateAllColumnName(keysList) {
   return allColumnName;
 };
 
-for(var sheetName in sheetsData) {
-  var obj = {name: sheetName, data: {}};
-  delete sheetsData[sheetName]['!ref'];
-  delete sheetsData[sheetName]['!margins'];
+for(var sheetName in content) {
+  var obj = {name: sheetName, data: []};
+  delete content[sheetName]['!ref'];
+  delete content[sheetName]['!margins'];
 
-  var keysList = Object.keys(sheetsData[sheetName]);
-  keysList = generateAllColumnName(keysList);
+  var keysList = Object.keys(content[sheetName]);
+  keysList = generateAllColumnName(keysList, obj);
   console.log('keysList = ', JSON.stringify(keysList));
 
   for(var i = 0; i < keysList.length; i++) {
@@ -84,43 +88,14 @@ for(var sheetName in sheetsData) {
     var pos = key.search(/\d+/);
     var row = parseInt(key.slice(pos));
 
-    var v = null;
-    if(!!sheetsData[sheetName][key]) {
-      v = sheetsData[sheetName][key].v;
+    var v = NaN;
+    if(!!content[sheetName][key]) {
+      v = content[sheetName][key].v;
     }
-    obj.data[row] = obj.data[row] || [];
-    obj.data[row].push(v);
+    obj.data[row-1].push(v);
   }
 
-  wbSheetsInput.push(obj);
+  ret.worksheets.push(obj);
 }
 
-console.log('wbSheetsInput = ', JSON.stringify(wbSheetsInput));
-
-/////////////////////////////////////////////////////////////////
-
-// create a new blank workbook
-let wb = XLSX.utils.book_new();
-
-wb.SheetNames = [];
-wb.Sheets = {};
-
-for(let i = 0; i < wbSheetsInput.length; i++) {
-  let tmpName = wbSheetsInput[i].name;
-  wb.SheetNames.push(tmpName);
-  wb.Sheets[tmpName] = {};
-  let maxRow = 0
-    , maxCol = 0;
-  for(const row in wbSheetsInput[i].data) {
-    maxRow = parseInt(row) > maxRow ? parseInt(row) : maxRow;
-    const tmpL = wbSheetsInput[i].data[row];
-    maxCol = tmpL.length > maxCol ? tmpL.length : maxCol;
-    for(let j = 0; j < tmpL.length; j++) {
-      const k = toNumberBase26(j+1) + row;
-      wb.Sheets[tmpName][k] = {'v': tmpL[j] || ''};
-    }
-  }
-  wb.Sheets[tmpName]['!ref'] = 'A1:' + (toNumberBase26(maxCol) + maxRow);
-
-  XLSX.writeFileAsync('./OutputGearConfig.xlsx', wb, {}, ()=>{});
-}
+console.log('ret.worksheets = ', JSON.stringify(ret.worksheets));
