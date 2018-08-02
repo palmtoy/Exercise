@@ -14,6 +14,11 @@ exports.validate = {
 };
 
 exports.mongoose = {
-  enable: true,
+  enable: false,
   package: 'egg-mongoose',
+};
+
+exports.sequelize = {
+  enable: true,
+  package: 'egg-sequelize',
 };

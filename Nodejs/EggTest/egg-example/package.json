@@ -7,11 +7,13 @@
     "egg": "^2.2.1",
     "egg-mongoose": "^2.2.1",
     "egg-scripts": "^2.5.0",
+    "egg-sequelize": "^3.1.5",
     "egg-validate": "^1.0.0",
     "egg-view-nunjucks": "^2.2.0",
     "moment": "^2.22.2",
     "mongodb-restore": "^1.6.2",
-    "mongoose-plugin-autoinc": "^1.1.9"
+    "mongoose-plugin-autoinc": "^1.1.9",
+    "mysql2": "^1.6.1"
   },
   "devDependencies": {
     "autod": "^3.0.1",
@@ -36,7 +38,10 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "migrate:new": "egg-sequelize migration:create",
+    "migrate:up": "egg-sequelize db:migrate",
+    "migrate:down": "egg-sequelize db:migrate:undo"
   },
   "ci": {
     "version": "8"

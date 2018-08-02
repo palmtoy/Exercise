@@ -53,5 +53,14 @@ module.exports = appInfo => {
     whitelist: [ '.tar' ],
   };
 
+  config.sequelize = {
+    dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+    database: 'test',
+    host: 'localhost',
+    port: '3306',
+    username: 'root',
+    password: '',
+  };
+
   return config;
 };
