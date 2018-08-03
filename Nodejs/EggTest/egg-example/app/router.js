@@ -16,6 +16,12 @@ module.exports = app => {
   router.post('/user/create', controller.user.create);
   router.get('/user/:id/:name', controller.user.info);
 
+  router.get('/usersql-users', 'userSql.users');
+  router.get('/usersql-user/:id', 'userSql.user');
+  router.post('/usersql-create', 'userSql.create');
+  router.put('/usersql-update/:id', 'userSql.update');
+  router.delete('/:id', 'userSql.del');
+
   router.get(/^\/package\/([\w-.]+\/[\w-.]+)$/, controller.package.detail);
   router.post('/form', controller.form.post);
 
