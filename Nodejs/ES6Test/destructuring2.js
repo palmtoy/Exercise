@@ -20,3 +20,10 @@ console.log(`
 encryptedData = ${encryptedData}
 `);
 
+/*
+   sessionKey = 6frf-sessionKey-SMPE
+       openId = ollw-openId-n48j
+           iv = Pr2N-iv-qHyp
+encryptedData = Ivbu-encryptedData-2IbE
+*/
+
