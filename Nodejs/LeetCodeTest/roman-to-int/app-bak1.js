@@ -20,21 +20,24 @@ var romanToInt = function (s) {
     'CM': 900,
   };
 
+  const len = s.length;
   let sum = 0;
-  for (let i = 0; i < s.length;) {
-    if (i + 1 < s.length) {
-      const tmpStr = s[i] + s[i+1];
+  for (let i = 0; i < len;) {
+    if (i + 1 < len) {
+      const tmpStr = s[i] + s[i + 1];
       if (stdTbl[tmpStr] > 0) {
         sum += stdTbl[tmpStr];
         i = i + 2;
         continue;
       }
     }
-    if (stdTbl[s[i]] > 0) {
-      sum += stdTbl[s[i]];
+    const tmpStr = s[i];
+    if (stdTbl[tmpStr] > 0) {
+      sum += stdTbl[tmpStr];
+      i = i + 1;
     }
-    ++i;
   }
+
   return sum;
 
 };
