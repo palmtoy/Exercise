@@ -12,9 +12,9 @@ describe('test/app/controller/home.test.js', () => {
     // yield ctx.service.xx();
   });
 
-  it('should GET /', () => {
+  it('should GET /home/index', () => {
     return app.httpRequest()
-      .get('/')
+      .get('/home/index')
       .expect(new Date().toLocaleString() + ' ~ Hello world!')
       .expect(200);
   });
