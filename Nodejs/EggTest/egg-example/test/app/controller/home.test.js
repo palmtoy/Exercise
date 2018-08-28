@@ -2,6 +2,9 @@
 
 const { app, assert } = require('egg-mock/bootstrap');
 
+const util = require('util');
+const setTimeoutPromise = util.promisify(setTimeout);
+
 describe('test/app/controller/home.test.js', () => {
 
   it('should assert', function* () {
@@ -12,10 +15,21 @@ describe('test/app/controller/home.test.js', () => {
     // yield ctx.service.xx();
   });
 
-  it('should GET /home/index', () => {
-    return app.httpRequest()
-      .get('/home/index')
-      .expect(new Date().toLocaleString() + ' ~ Hello world!')
-      .expect(200);
+  it('should GET /home/index', done => {
+
+    console.log(new Date());
+    setTimeoutPromise(3 * 1000, 'foobar').then(value => {
+      console.log(value);
+
+      app.httpRequest()
+        .get('/home/index')
+        .expect(new Date().toLocaleString() + ' ~ Hello world!')
+        .expect(200);
+      console.log(new Date());
+
+      done();
+    });
+
   });
+
 });
