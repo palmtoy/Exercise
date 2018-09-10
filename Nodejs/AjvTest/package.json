@@ -1,0 +1,12 @@
+{
+  "name": "ajvtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {},
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^6.5.3"
+  }
+}
