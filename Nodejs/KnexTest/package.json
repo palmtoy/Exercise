@@ -1,0 +1,12 @@
+{
+  "name": "knextest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "version.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "^0.15.2",
+    "mysql2": "^1.6.1"
+  }
+}
