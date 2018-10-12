@@ -8,13 +8,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import numpy as np
 import tensorflow as tf
 
+tf.logging.set_verbosity(tf.logging.ERROR)
+
 # 创建一个特征向量列表，该特征列表里只有一个特征向量，
 # 该特征向量为实数向量，只有一个元素的数组，且该元素名称为 x，
 # 我们还可以创建其他更加复杂的特征列表
 feature_columns = [tf.feature_column.numeric_column("x", shape=[1])]
 
 # 创建一个LinearRegressor训练器，并传入特征向量列表
-estimator = tf.estimator.LinearRegressor(feature_columns=feature_columns)
+estimator = tf.estimator.LinearRegressor(feature_columns=feature_columns, model_dir='./output')
 
 # 保存训练用的数据
 x_train = np.array([1., 2., 3., 6., 8.])
