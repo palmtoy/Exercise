@@ -1,0 +1,6 @@
+.Python
+.vscode/*
+bin/*
+include/*
+lib/*
+pip-selfcheck.json
