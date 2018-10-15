@@ -38,12 +38,7 @@ loss = tf.reduce_mean(tf.reduce_sum(tf.square(ys - prediction),
 train_step = tf.train.GradientDescentOptimizer(0.1).minimize(loss)
 
 # important step
-# tf.initialize_all_variables() no long valid from
-# 2017-03-02 if using tensorflow >= 0.12
-if int((tf.__version__).split('.')[1]) < 12 and int((tf.__version__).split('.')[0]) < 1:
-    init = tf.initialize_all_variables()
-else:
-    init = tf.global_variables_initializer()
+init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 
@@ -66,4 +61,4 @@ for i in range(1000):
         prediction_value = sess.run(prediction, feed_dict={xs: x_data})
         # plot the prediction
         lines = ax.plot(x_data, prediction_value, 'r-', lw=5)
-        plt.pause(0.1)
+        plt.pause(0.5)
