@@ -1,3 +1,7 @@
+'''
+    http://warmspringwinds.github.io/tensorflow/tf-slim/2016/12/21/tfrecords-guide/
+'''
+
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt

@@ -89,8 +89,8 @@ with tf.Session() as sess:
     # Let's read off 2 batches just for example
     for i in xrange(2):
         img, anno = sess.run([image, annotation])
+        print('\ncurrent batch: %d' % (i))
         print(img[0, :, :, :].shape)
-        print('current batch')
         
         # We selected the batch size of two
         # So we should get two image pairs in each batch
