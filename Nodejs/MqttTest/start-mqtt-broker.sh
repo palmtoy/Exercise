@@ -2,10 +2,10 @@
 
 # https://github.com/emqx/emqx/wiki/Installation
 
-pushd ./emqx
+pushd ./emqttd
 
 	# start console
-	./bin/emqx console
+	./bin/emqttd console
 
 	# # start daemon
 	# ./bin/emqttd start
