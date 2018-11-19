@@ -1,0 +1,11 @@
+{
+  "name": "javatest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "java": "^0.11.0",
+    "when": "^3.7.8"
+  }
+}
