@@ -16,14 +16,15 @@ java.newInstance("java.util.ArrayList", function(err, list2) {
 var ArrayList = java.import('java.util.ArrayList');
 var list3 = new ArrayList();
 list3.addSync('item1');
-list3.equalsSync(list1); // true
+console.log(list3.equalsSync(list1)); // true
 
-var charArray = java.newArray("char", "hello world\n".split(''));
-console.log(`\ncharArray = ${JSON.stringify(charArray)}\n`);
+var charArray = java.newArray("char", "hello world".split(''));
+console.log(`\ncharArray = ${JSON.stringify(charArray)}, ${typeof charArray}`);
+console.log(`\ncharArray[0] = ${charArray[0]}, charArray[${charArray.length}] = ${charArray[charArray.length-1]}`);
 
 var byteArray = java.newArray(
   "byte",
-  "hello world\n"
+  "hello world"
     .split('')
     .map(function(c) { return java.newByte(String.prototype.charCodeAt(c)); }));
 console.log(`\nbyteArray = ${JSON.stringify(byteArray)}\n`);
