@@ -2,7 +2,12 @@ const mqtt = require('mqtt');
 
 const targetHost = 'localhost';
 const targetPort = 1883;
-const client = mqtt.connect(`mqtt:\/\/${targetHost}:${targetPort}`);
+
+const mqttOptions = {
+    username: 'myusername',
+    password: 'mypassword',
+};
+const client = mqtt.connect(`mqtt:\/\/${targetHost}:${targetPort}`, mqttOptions);
  
 client.on('connect', function () {
 	const tmpTopic = 'mytopic';
