@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "msgpack5": "^4.2.1"
+  },
+  "name": "msgpacktest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT"
+}
