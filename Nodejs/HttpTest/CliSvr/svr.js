@@ -22,6 +22,7 @@ http.createServer(function (req, res) {
 	} else {
 		str = stringFormat(resData.DEFAULT_RES, n, now);
 	}
+	str = JSON.stringify({ retObj: str });
 
 	res.end(str);
 }).listen(8081, '127.0.0.1');
