@@ -1,0 +1,28 @@
+{
+   "version": "2.0.0",
+   "configurations": [
+      {
+         "name": "C++ Debugger",
+         "type": "cppdbg",
+         "request": "launch",
+         "targetArchitecture": "x86_64",
+         "program": "${workspaceRoot}/QuickSort-1.out",
+         "preLaunchTask": "Build-QuickSort",
+         "internalConsoleOptions": "openOnSessionStart",
+         "logging": {
+            "moduleLoad": false,
+            "programOutput": true,
+            "trace": false
+         },
+         "showDisplayString": false,
+         "args": [],
+         "stopAtEntry": false,
+         "cwd": "${workspaceRoot}",
+         "environment": [],
+         // "externalConsole": true, // set true to enable external Terminal and keyboard input
+         "osx": {
+            "MIMode": "lldb"
+         }
+      }
+   ]
+}
