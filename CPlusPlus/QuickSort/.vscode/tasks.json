@@ -6,8 +6,8 @@
       "command": "clang++",
       "args": [
         "-o",
-        "QuickSort-1.out",
-        "QuickSort-1.cpp",
+        "QuickSort.out",
+        "QuickSort.cpp",
         "-g",
         "-v"
       ],

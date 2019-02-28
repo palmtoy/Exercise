@@ -6,7 +6,7 @@
          "type": "cppdbg",
          "request": "launch",
          "targetArchitecture": "x86_64",
-         "program": "${workspaceRoot}/QuickSort-1.out",
+         "program": "${workspaceRoot}/QuickSort.out",
          "preLaunchTask": "Build-QuickSort",
          "internalConsoleOptions": "openOnSessionStart",
          "logging": {
