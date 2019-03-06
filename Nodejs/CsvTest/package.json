@@ -5,6 +5,7 @@
   "author": "palmtoy",
   "license": "MIT",
   "dependencies": {
-    "csvtojson": "^2.0.8"
+    "csvtojson": "^2.0.8",
+    "neat-csv": "^4.0.0"
   }
 }

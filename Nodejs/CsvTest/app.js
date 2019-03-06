@@ -1,6 +1,6 @@
-const csvFilePath = './psx.csv';
+const csv = require('csvtojson');
 
-const csv=require('csvtojson');
+const csvFilePath = './psx.csv';
 
 csv().fromFile(csvFilePath)
 	.then((jsonObj)=>{
