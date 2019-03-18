@@ -1,0 +1,12 @@
+{
+  "name": "admziptest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "add.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "adm-zip": "^0.4.13",
+    "request": "^2.88.0"
+  }
+}
