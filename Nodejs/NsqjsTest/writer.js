@@ -8,6 +8,12 @@ w.connect();
 
 w.on('ready', () => {
 
+	w.publish('sample_topic', {
+		foo: '5cxa15tf7e',
+		bar: '7u0a352f9c',
+		hello: 'world'
+	});
+
 	w.publish('sample_topic', 'It really tied the room together');
 
 	w.deferPublish('sample_topic', ['This message gonna arrive 3s later.'], 3000);

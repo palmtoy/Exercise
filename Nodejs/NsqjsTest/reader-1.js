@@ -1,11 +1,14 @@
 const nsq = require('nsqjs');
 const conf = require('./conf.json');
 
-const reader = new nsq.Reader('sample_topic', 'test_channel', {
+const strTopic = 'sample_topic';
+const strChannel = 'test_channel-1';
+const reader = new nsq.Reader(strTopic, strChannel, {
 	nsqdTCPAddresses: conf.nsqd.ip + ':' + conf.nsqd.port
 });
 
 reader.connect();
+console.log('Subscribing %s:%s', strTopic, strChannel);
 
 /* OK */
 reader.on('nsqd_connected', msg => {
@@ -17,7 +20,19 @@ reader.on('ready', () => {
 });
 
 reader.on('message', msg => {
-  console.log(new Date() + ' ~ Received message [%s]: %s', msg.id, msg.body.toString());
+  console.log('\n');
+  console.log(msg.body);
+
+	try {
+		const tmp = JSON.parse(msg.body.toString());
+  	console.log(tmp);
+		if (tmp.foo) {
+			console.log(new Date() + ' ~ tmp.foo = ' + tmp.foo);
+		}
+	} catch(e) {
+  	console.log(`${new Date()} ~ Received message [${msg.id}]: ${msg.body}`);
+	}
+
   msg.finish();
 });
 
