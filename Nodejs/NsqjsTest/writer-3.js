@@ -1,48 +1,85 @@
 const nsq = require('nsqjs');
 const conf = require('./conf.json');
 
-const w = new nsq.Writer(conf.nsqd.ip, conf.nsqd.port);
+class CNsqWriter {
 
-w.connect();
+	constructor() {
+		this.strTopic = 'sample_topic';
+		this.timeoutObj = null;
+	}
 
+	handleReconnect() {
+		if (this.timeoutObj) {
+			clearTimeout(this.timeoutObj);
+			this.timeoutObj = null;
+		}
+		if (this.writerObj) {
+			this.writerObj.close();
+			delete this.writerObj;
+		}
+		this.timeoutObj = setTimeout(() => {
+			console.error('\n', new Date(), ' ~ NSQ writerObj trys to reconnect ...', '\n');
+			this.go();
+		}, 3000);
+	}
 
-w.on('ready', () => {
+	pubMsg(msg) {
+		if (this.writerObj) {
+			this.writerObj.publish(this.strTopic, msg, err => {
+				if (err) {
+					console.error(`NSQ writer is NOT ready to publish msg, ${err}`);
+				}
+			});
+		}
+	}
 
-	w.publish('sample_topic', {
-		foo: '5cxa15tf7e',
-		bar: '7u0a352f9c',
-		hello: 'world'
-	});
+	go() {
+		this.writerObj = new nsq.Writer(conf.nsqd.ip, conf.nsqd.port);
 
-	w.publish('sample_topic', 'It really tied the room together');
+		this.writerObj.connect();
 
-	w.deferPublish('sample_topic', ['This message gonna arrive 3s later.'], 3000);
+		/* OK */
+		this.writerObj.on('ready', () => {
+			console.log(new Date() + ' ~ NSQ writer ready.');
+			this.writerObj.deferPublish('sample_topic', ['This message gonna arrive 2s later.'], 2000);
+		});
 
-	w.publish('sample_topic', [
-		'Uh, excuse me. Mark it zero. Next frame.', 
-		'Smokey, this is not \'Nam. This is bowling. There are rules.'
-	]);
+		/* ERROR */
+		this.writerObj.on('error', msg => {
+			console.log(new Date() + ' ~ NSQ writer error:', msg);
+			this.handleReconnect();
+		});
 
-	w.publish('sample_topic', 'Wu?',  err => {
-		if (err) { return console.error(err.message) }
-		console.log('Messages send successfully.')
-		w.close()
-	});
+		/* CLOSED */
+		this.writerObj.on('closed', () => {
+			console.log(new Date() + ' ~ NSQ writer closed.');
+		});
+	}
 
-});
+}
 
-/* OK */
-w.on('ready', () => {
-	console.log(new Date() + ' ~ NSQ writer ready.');
-});
+const nsqWriterObj = new CNsqWriter();
+nsqWriterObj.go();
 
-/* ERROR */
-w.on('error', msg => {
-	console.log(new Date() + ' ~ NSQ writer error:', msg);
-});
+setInterval(() => {
+		console.log(new Date() + ' ~ NSQ writer setInterval cb is running ...');
 
-/* CLOSED */
-w.on('closed', () => {
-	console.log(new Date() + ' ~ NSQ writer closed.');
-});
+		nsqWriterObj.pubMsg({
+			foo: '5cxa15tf7e',
+			bar: '7u0a352f9c',
+			hello: 'world'
+		});
+
+		nsqWriterObj.pubMsg('It really tied the room together');
+
+		nsqWriterObj.pubMsg([
+			'Uh, excuse me. Mark it zero. Next frame.',
+			'Smokey, this is not \'Nam. This is bowling. There are rules.'
+		]);
+
+		nsqWriterObj.pubMsg('Wu?',  err => {
+			if (err) { return console.error(err.message) }
+			console.log('Messages send successfully.')
+		});
+}, 5000);
 

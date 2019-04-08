@@ -14,7 +14,10 @@ class CNsqReader {
 			clearTimeout(this.timeoutObj);
 			this.timeoutObj = null;
 		}
-		delete this.reader;
+		if (this.reader) {
+			this.reader.close();
+			delete this.reader;
+		}
 		this.timeoutObj = setTimeout(() => {
 			console.error('\n', new Date(), ' ~ NSQ reader trys to reconnect ...', '\n');
 			this.go();
@@ -66,5 +69,4 @@ class CNsqReader {
 
 const nsqReaderObj = new CNsqReader();
 nsqReaderObj.go();
-
 
