@@ -5,8 +5,9 @@ const w = new nsq.Writer(conf.nsqd.ip, conf.nsqd.port);
 
 w.connect();
 
-
+/* OK */
 w.on('ready', () => {
+	console.log(new Date() + ' ~ NSQ writer ready.');
 
 	w.publish('sample_topic', {
 		foo: '5cxa15tf7e',
@@ -28,12 +29,6 @@ w.on('ready', () => {
 		console.log('Messages send successfully.')
 		w.close()
 	});
-
-});
-
-/* OK */
-w.on('ready', () => {
-	console.log(new Date() + ' ~ NSQ writer ready.');
 });
 
 /* ERROR */
