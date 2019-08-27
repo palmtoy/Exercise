@@ -41,6 +41,21 @@ app.get('/bye/:name', function(req, res){
 	res.send(now + ' ~ Bye, ' + userName);
 });
 
+app.get('/redos-me', (req, res) => {
+  const filePath = req.query.filePath;
+
+	let resStr = '';
+  // REDOS
+  if (filePath.match(/(\/.+)+$/)) {
+		resStr = 'valid path';
+  }
+  else {
+		resStr = 'invalid path';
+  }
+
+  res.send(resStr);
+});
+
 app.listen(port);
 myPrint('Express http server is running on', port, '...');
 
