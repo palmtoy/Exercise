@@ -29,8 +29,8 @@ util.inherits(Filter, Transform);
 Filter.prototype._transform = function (obj, enc, cb) {
 	// determine what keys to keep
 	const filteredKeys = Object.keys(obj).filter( key => {
-			// only those keys not in this list
-			return (this.filterProps.indexOf(key) === -1);
+			// only those keys in this list
+			return (this.filterProps.indexOf(key) > -1);
 		}
 	);
 
@@ -48,8 +48,8 @@ Filter.prototype._transform = function (obj, enc, cb) {
 
 
 // try it out, output to stdout
-// filter phone and email from objects ( Do NOT output. )
-const filter = new Filter([ 'phone', 'email' ]);
+// filter phone and email from objects ( Only output these items. )
+const filter = new Filter([ 'name', 'phone', 'id' ]);
 
 filter.on('readable', () => {
 	let obj;
