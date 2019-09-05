@@ -1,4 +1,26 @@
+const stream = require('stream');
+const util = require('util');
 const http = require('http');
+
+const Transform = stream.Transform;
+
+function ResHandler(options) {
+  // allow use without new
+  if (!(this instanceof ResHandler)) {
+    return new ResHandler(options);
+  }
+
+  // init Transform
+  Transform.call(this, options);
+}
+util.inherits(ResHandler, Transform);
+
+ResHandler.prototype._transform = function (chunk, enc, cb) {
+  const resChunk = new Date() + ' ~ HelloWorld ~ ' + chunk.toString().toUpperCase();
+  this.push(resChunk);
+  cb();
+};
+
 
 const port = 8080;
 
@@ -11,7 +33,8 @@ http.createServer((request, response) => {
 	});
 
 	if (request.method === 'POST' && request.url === '/echo') {
-		request.pipe(response);
+		const resHandler = new ResHandler();
+		request.pipe(resHandler).pipe(response);
 	} else {
 		response.statusCode = 404;
 		response.end(response.statusCode.toString());
