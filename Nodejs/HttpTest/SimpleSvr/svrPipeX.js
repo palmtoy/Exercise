@@ -20,6 +20,7 @@ function ResHandler(options) {
 util.inherits(ResHandler, Transform);
 
 ResHandler.prototype._transform = function (obj, enc, cb) {
+  // the original typeof obj is Buffer
   let resObj = `${new Date()} ~ HelloWorld ~ { `;
 	obj = JSON.parse(obj.toString());
 	Object.keys(obj).forEach(k => {
@@ -56,7 +57,7 @@ console.info(`HTTP is running on port ${port} ...`);
 
 /*
 
-curl -X POST -d "{\"name\":\"palmtoy\",  \"sex\":\"male\"}" http://127.0.0.1:8080/echo
+curl -X POST -d "{\"Name\":\"Palmtoy\",  \"Sex\":\"Male\", \"Nationality\": \"China\"}" http://127.0.0.1:8080/echo
 
 */
 
