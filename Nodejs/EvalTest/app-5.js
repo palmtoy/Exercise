@@ -63,3 +63,14 @@ for (var i = 1; i <= 5; i++) {
 	}, i * 2000 );
 }
 
+setTimeout( function timerX() {
+	console.log();
+	for (var k = 1; k <= 5; k++) {
+		(function(j) {
+			setTimeout( function timer() {
+				console.log( new Date().getTime() + ' => ' + j );
+			}, j * 1000 );
+		})( k );
+	}
+}, i * 2000 );
+
