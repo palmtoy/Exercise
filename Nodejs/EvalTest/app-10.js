@@ -2,8 +2,8 @@
 function foo (num) {
 	console.log( "foo: " + num );
 	// 记录 foo 被调用的次数
-	// this.count++; // NOT OK
-	foo.count++; // OK
+	// 注意，在当前的调用方式下(参见下方代码)，this 确实指向 foo
+	this.count++; // NOT OK
 }
 
 foo.count = 0;
@@ -12,7 +12,8 @@ var i;
 
 for (i = 0; i < 10; i++) {
 	if (i > 5) {
-		foo( i );
+		// 使用 call(..) 可以确保 this 指向函数对象 foo 本身
+		foo.call( foo, i );
 	}
 }
 
@@ -22,6 +23,5 @@ for (i = 0; i < 10; i++) {
 // foo: 9
 
 // foo 被调用了多少次?
-// console.log( '\ncount =', count ); // NaN (come with 'NOT OK')
 console.log( '\nfoo.count =', foo.count ); // 0 -- WTF?
 
