@@ -1,4 +1,7 @@
+#!/usr/bin/env node
+
 // $ ffmpeg -re -i ./The-Simpsons-Movie.mp4 -c copy -f flv rtmp://localhost/live/simpsons-stream
+// $ open http://127.0.0.1:8086/demo/
 
 const NodeMediaServer = require('node-media-server');
 
