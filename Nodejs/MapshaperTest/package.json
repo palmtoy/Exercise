@@ -1,0 +1,10 @@
+{
+  "name": "mapshapertest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "mapshaper": "^0.4.112"
+  }
+}

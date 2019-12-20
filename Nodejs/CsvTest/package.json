@@ -1,0 +1,11 @@
+{
+  "name": "csvtest",
+  "version": "1.0.0",
+  "description": "",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "csvtojson": "^2.0.8",
+    "neat-csv": "^4.0.0"
+  }
+}
