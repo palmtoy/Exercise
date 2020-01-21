@@ -1,0 +1,7 @@
+{
+	"apps": [{
+		"name": "report-ip-svr",
+		"script": "node ./svr.js",
+		"boot-cmd": "$ pm2 start pm2.config-svr.json"
+	}]
+}

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /*
 	 curl -v http://127.0.0.1:38086\?platform\=raspberrypi&ip\=127.0.0.1
 */

@@ -1,0 +1,7 @@
+{
+	"apps": [{
+		"name": "report-ip-cli",
+		"script": "node ./cli.js",
+		"boot-cmd": "$ pm2 start pm2.config-cli.json"
+	}]
+}
