@@ -33,6 +33,7 @@ function getMyIp() {
 
 
 function sendIp2Svr() {
+	const now = new Date();
 	const cliPlatform = os.platform();
 	const myIp = getMyIp();
 	const paramData = `/?platform=${cliPlatform}&ip=${myIp}`;
@@ -47,15 +48,15 @@ function sendIp2Svr() {
 		}
 	};
 
-	console.log(`My platform: ${cliPlatform}, My IP: ${myIp}`);
+	console.log(`${now} ~ My platform: ${cliPlatform}, My IP: ${myIp}`);
 
 	const req = http.request(options, (res) => {
-		console.log(`\nStatusCode: ${res.statusCode}`);
-		console.log(`<--------------------------------------->\n`);
+		console.log(`${now} ~ StatusCode: ${res.statusCode}`);
+		console.log(`<---------------------------------------->\n`);
 	});
 
 	req.on('error', (e) => {
-		console.error(`\nProblem with request: ${e.message}\n`);
+		console.error(`\n!!!<- ${now} ~ Problem with request: ${e.message} ->!!!\n`);
 	});
 
 	req.end();
