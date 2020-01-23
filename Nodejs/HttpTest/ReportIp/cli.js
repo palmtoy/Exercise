@@ -1,8 +1,8 @@
 const http = require('http');
 const os = require('os');
 
-// const stdInterval = 3 * 60; // 3 minutes
-const stdInterval = 3; // 3s
+const firstInterval = 1 * 60 * 1000; // 1 minutes
+const stdInterval = 3 * 60 * 1000; // 3 minutes
 
 const svrIp = '127.0.0.1';
 const svrPort = 38086;
@@ -61,7 +61,7 @@ function sendIp2Svr() {
 }
 
 
-sendIp2Svr();
+setTimeout(sendIp2Svr, firstInterval);
 
-setInterval(sendIp2Svr, stdInterval * 1000);
+setInterval(sendIp2Svr, stdInterval);
 
