@@ -1,7 +1,7 @@
 const http = require('http');
 const os = require('os');
 
-const firstInterval = 1 * 60 * 1000; // 1 minutes
+const firstInterval = 30 * 1000; // 30s
 const stdInterval = 3 * 60 * 1000; // 3 minutes
 
 const svrIp = '127.0.0.1';
