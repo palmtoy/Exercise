@@ -1,11 +1,13 @@
-const http = require('http');
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
+const https = require('https');
 const os = require('os');
 
 const firstInterval = 30 * 1000; // 30s
 const stdInterval = 3 * 60 * 1000; // 3 minutes
 
 const svrIp = '127.0.0.1';
-const svrPort = 38086;
+const svrPort = 8086;
 
 
 function getMyIp() {
@@ -34,7 +36,7 @@ function sendIp2Svr() {
 	const now = new Date();
 	const cliPlatform = os.platform();
 	const myIp = getMyIp();
-	const paramData = `/?platform=${cliPlatform}&ip=${myIp}`;
+	const paramData = `/?os_platform=${cliPlatform}&os_ip=${myIp}`;
 
 	const options = {
 		hostname: svrIp,
@@ -43,12 +45,12 @@ function sendIp2Svr() {
 		method: 'GET',
 		headers: {
 			'Content-Type': 'text/plain'
-		}
+		},
 	};
 
 	console.log(`${now} ~ My platform: ${cliPlatform}, My IP: ${myIp}`);
 
-	const req = http.request(options, (res) => {
+	const req = https.request(options, (res) => {
 		console.log(`${now} ~ StatusCode: ${res.statusCode}`);
 		console.log(`<---------------------------------------->\n`);
 	});
