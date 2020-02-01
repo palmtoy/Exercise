@@ -8,11 +8,13 @@ const stdInterval = 3 * 60 * 1000; // 3 minutes
 
 const svrIp = '127.0.0.1';
 const svrPort = 8086;
+const postfixLen = 3;
 
 
 function getMyIp() {
 	const ifaceObj = os.networkInterfaces();
 	const ifnameList = Object.keys(ifaceObj);
+	let retIp = '';
 	for (let i = 0; i < ifnameList.length; i++) {
 		const ifname = ifnameList[i];
 		const ifaceList = ifaceObj[ifname];
@@ -24,9 +26,12 @@ function getMyIp() {
 			}
 			const tmpIp = iface.address;
 			if (tmpIp && (tmpIp.startsWith('10.') || tmpIp.startsWith('192.'))) {
-				return tmpIp;
+				retIp += '[ ' + tmpIp + ' ] / ';
 			}
 		}
+	}
+	if (retIp && retIp.length > postfixLen) {
+		return retIp.substring(0, retIp.length - postfixLen);
 	}
 	return '0.0.0.0';
 }
@@ -36,7 +41,7 @@ function sendIp2Svr() {
 	const now = new Date();
 	const cliPlatform = os.platform();
 	const myIp = getMyIp();
-	const paramData = `/?os_platform=${cliPlatform}&os_ip=${myIp}`;
+	const paramData = `/?os_platform=${cliPlatform}&os_ip=${encodeURIComponent(myIp)}`;
 
 	const options = {
 		hostname: svrIp,
