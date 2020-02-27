@@ -1,0 +1,8 @@
+Backup/*
+Code4Sunflowers
+*.png
+flower_photos
+labels.txt
+model.tflite
+save
+venv
