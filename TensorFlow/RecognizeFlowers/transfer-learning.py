@@ -38,7 +38,9 @@ image_batch.shape, label_batch.shape
 
 print ('train_generator.class_indices = ', train_generator.class_indices)
 
-labels = '\n'.join(sorted(train_generator.class_indices.keys()))
+ciKeys = train_generator.class_indices.keys();
+ciLen = len(ciKeys)
+labels = '\n'.join(sorted(ciKeys))
 
 with open('labels.txt', 'w') as f:
   f.write(labels)
@@ -57,7 +59,7 @@ model = tf.keras.Sequential([
   tf.keras.layers.Conv2D(32, 3, activation='relu'),
   tf.keras.layers.Dropout(0.2),
   tf.keras.layers.GlobalAveragePooling2D(),
-  tf.keras.layers.Dense(6, activation='softmax')
+  tf.keras.layers.Dense(ciLen, activation='softmax')
 ])
 
 model.compile(optimizer=tf.keras.optimizers.Adam(), 
