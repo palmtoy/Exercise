@@ -34,7 +34,8 @@ val_generator = datagen.flow_from_directory(
 
 for image_batch, label_batch in train_generator:
   break
-image_batch.shape, label_batch.shape
+# image_batch.shape, label_batch.shape
+print ('image_batch.shape =', image_batch.shape, '//', 'label_batch.shape =', label_batch.shape)
 
 print ('train_generator.class_indices = ', train_generator.class_indices)
 
