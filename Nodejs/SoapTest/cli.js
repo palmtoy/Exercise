@@ -1,4 +1,5 @@
 const soap = require('soap');
+const fs = require('fs');
 
 const srvPort = 8000;
 
@@ -9,6 +10,7 @@ soap.createClient(url, function(err, client) {
 	if (err) throw err;
 
 	console.log(client.describe().ws.calc);
+	fs.writeFileSync('./soap-output.txt', JSON.stringify(client.describe().ws.calc));
 
 	const a = 3
 			, b = 6;
