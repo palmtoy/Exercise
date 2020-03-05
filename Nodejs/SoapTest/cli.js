@@ -9,8 +9,9 @@ soap.createClient(url, function(err, client) {
 
 	if (err) throw err;
 
-	console.log(client.describe().ws.calc);
-	fs.writeFileSync('./soap-output.txt', JSON.stringify(client.describe().ws.calc));
+	const tmpStr = JSON.stringify(client.describe().ws.calc, null, 2);
+	console.log(tmpStr);
+	fs.writeFileSync('./soap-output.txt', tmpStr);
 
 	const a = 3
 			, b = 6;
