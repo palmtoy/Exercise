@@ -7,7 +7,7 @@
       "args": [
         "-o",
         "HeapSort.out",
-        "HeapSort.cpp",
+        "HeapSort-T2.cpp",
         "-g",
         "-v"
       ],
