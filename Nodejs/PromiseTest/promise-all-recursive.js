@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-function promiseAllRecursive(values) {
+function promiseAllRecursive(promiseList) {
 	// Base case
-	if (values.length === 0) {
+	if (promiseList.length === 0) {
 		return Promise.resolve([]);
 	}
 
-	const [first, ...rest] = values;
+	const [first, ...rest] = promiseList;
 
 	// Calling Promise.resolve on the first value because it could
 	// be either a Promise or an actual value.
