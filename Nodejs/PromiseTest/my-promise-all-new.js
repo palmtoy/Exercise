@@ -1,14 +1,10 @@
 #!/usr/bin/env node
 
 function myPromiseAllNew(promiseList) {
-	if(promiseList && promiseList.length === 0) {
-		return Promise.resolve([]);
-	}
-
-	const valueList = [];
-	let completedNum = 0;
-
 	return new Promise((resolve, reject) => {
+		const valueList = [];
+		let completedNum = 0;
+
 		promiseList.forEach((promiseObj, idx) => {
 			Promise.resolve(promiseObj).then(v => {
 				valueList[idx] = v;
@@ -27,7 +23,9 @@ function myPromiseAllNew(promiseList) {
 const promise0 = 9001
 
 const promise1 = new Promise((resolve, reject) => {
-	setTimeout(resolve, 2000, 'foo');
+	setTimeout((v) => {
+		resolve(v);
+	}, 2000, 'foobar');
 });
 
 const promise2 = Promise.resolve(3);
@@ -41,4 +39,3 @@ myPromiseAllNew([promise0, promise1, promise2]).then(valueList => {
 }).catch(err => {
 	console.error(err);
 });
-
