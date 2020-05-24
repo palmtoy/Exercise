@@ -21,6 +21,7 @@ var doFibonacci = function(tmpCnt) {
   console.log('\nresList = ', resList, '\n');
 };
 
-var cnt = parseInt(process.argv[2]);
+var cnt = parseInt(process.argv[2]) || 2;
 
 doFibonacci(cnt);
+
