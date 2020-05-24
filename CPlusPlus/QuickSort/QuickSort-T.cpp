@@ -44,7 +44,8 @@ void QuickSort(int lst[], int left, int right)
 int main()
 {
     cout << "QuickSort-T is running ...\n";
-    int lst[] = {12, 45, 9, 748, 12, 56, 3, 89, 4, 48, 2};
+    // int lst[] = {12, 45, 9, 748, 12, 56, 3, 89, 4, 48, 2};
+	int lst[] = {2, 4, 6, 8, 0, 9, 7, 5, 3, 1};
     int len = sizeof(lst) / sizeof(int);
     QuickSort(lst, 0, len - 1);
     for (int i = 0; i < len; i++)

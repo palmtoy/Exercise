@@ -7,7 +7,7 @@
       "args": [
         "-o",
         "QuickSort.out",
-        "QuickSort.cpp",
+        "QuickSort-T1.cpp",
         "-g",
         "-v"
       ],
