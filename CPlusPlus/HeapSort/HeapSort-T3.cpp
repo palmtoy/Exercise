@@ -26,7 +26,7 @@ void heapSort(int lst[], int len) {
 	for (int i = len / 2 - 1; i >= 0; i--) {
 		heapBuild(lst, i, len);
 	}
-	for (int j = len -1; j > 0; j--) {
+	for (int j = len - 1; j > 0; j--) {
 		funcSwap(lst[0], lst[j]);
 		heapBuild(lst, 0, j);
 	}
