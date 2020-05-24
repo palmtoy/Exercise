@@ -22,5 +22,7 @@ var doFibonacci = function(tmpCnt) {
 };
 
 var cnt = parseInt(process.argv[2]);
+if (cnt > 0) {
+	doFibonacci(cnt);
+}
 
-doFibonacci(cnt);
