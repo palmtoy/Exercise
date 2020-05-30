@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const funcSwap = (lst, i, j) => {
 	const tmp = lst[i];
 	lst[i] = lst[j];
@@ -37,7 +39,7 @@ const quickSort = (lst, left, right) => {
 
 const lst = [ 2, 4, 6, 8, 0, 9, 7, 5, 3, 1 ];
 
-quickSort(lst, 0, lst.length);
+quickSort(lst, 0, lst.length - 1);
 
 console.log(`lst = ${lst}`);
 
