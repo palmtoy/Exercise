@@ -41,6 +41,7 @@ app.get('/bye/:name', function(req, res){
 	res.send(now + ' ~ Bye, ' + userName);
 });
 
+// curl http://localhost:8086/redos-me?filePath=../xyt.txt
 app.get('/redos-me', (req, res) => {
   const filePath = req.query.filePath;
 
