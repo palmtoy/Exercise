@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "got": "^10.7.0",
     "request": "^2.74.0"
   },
   "devDependencies": {},
