@@ -1,0 +1,10 @@
+{
+  "name": "CouchbaseTest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "couchbase": "^3.0.6"
+  }
+}
