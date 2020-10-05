@@ -5,6 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "got": "^10.7.0",
+    "knex": "^0.21.5",
+    "mysql": "^2.18.1",
     "request": "^2.74.0"
   },
   "devDependencies": {},
