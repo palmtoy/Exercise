@@ -18,7 +18,11 @@ const server = http.createServer((req, res) => {
 			resStr += `${row['id']}: ${row['name']} -> $${row['price']}<br>`;
 		}
 	})
-	.catch(err => { console.log(err); })
+	.catch(err => {
+		const now = new Date();
+		console.log('\n' + now + ` - ${now.getTime()} ↓`);
+		console.log(err);
+	})
 	.finally(() => {
 		res.end(`<html><h2>Hi sir, good to see you :-)</h2><h3>${resStr}</h3>From <b>` + os.hostname() + '</b> ~ ' + new Date() + ` ~ Timestamp:${new Date().getTime()}</html>`);
 	});
