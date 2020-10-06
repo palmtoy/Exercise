@@ -36,12 +36,12 @@ const server = http.createServer((req, res) => {
 			// This is the last reply, so all of the previous replies must have completed already
 			let redisStr = '<br>Redis ...<br>Total httpRequests: ' + totalRequests + '<br>IP count<br>';
 			Object.keys(reply).forEach(function (ip) {
-				redisStr += '    ' + ip + ': ' + reply[ip] + '<br><br>';
+				redisStr += '    ' + ip + ': ' + reply[ip] + '<br>';
 			});
 			const now = new Date();
 			let resStr = `<html><h2><font color='blue'>Hi sir, good to see you :-)</font></h2>` +
 									 `<font color='navy'>${mysqlStr}</font>` + 
-									 `<font color='red'>${redisStr}</font>` +
+									 `<font color='red'>${redisStr}</font><br>` +
 									 `From <font color='fuchsia'><b>${os.hostname()}</b></font>` +
 									 ` ~ ${now} ~ Timestamp: <font color='purple'>${now.getTime()}</font></html>`;
 
