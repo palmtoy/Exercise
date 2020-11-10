@@ -14,5 +14,5 @@ ADD . /root/workspace
 EXPOSE 3000
 
 # 设置容器进程为：node app.js，即：这个Node.js应用的启动命令
-ENTRYPOINT ["node", "app.js"]
+ENTRYPOINT ["node", "app-ioredis.js"]
 
