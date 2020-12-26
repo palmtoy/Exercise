@@ -192,3 +192,8 @@ const { 'fizz-buzz': fizzBuzz } = foo6;
 console.log(fizzBuzz); // "true"
 console.log();
 
+const foo7 = (...args) => {
+	console.log(typeof args, '~', args.length, '~', args); // object  ~  3  ~  [ 1, 2, 3 ]
+}
+foo7( 1, 2, 3 );
+
