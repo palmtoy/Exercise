@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-httpsrv-deployment
+  namespace: kube-node-lease
+  labels:
+    app: node-httpsrv-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-httpsrv-deployment
+  template:
+    metadata:
+      labels:
+        app: node-httpsrv-deployment
+    spec:
+      containers:
+      - name: node-httpsrv
+        image: node-httpsrv:v1.0.7
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-httpsrv-service
+  namespace: kube-node-lease
+  labels:
+    app: node-httpsrv-service
+    role: k8s-service
+spec:
+  selector:
+    app: node-httpsrv-deployment
+  ports:
+  - protocol: TCP
+    port: 3000
+    targetPort: 3000
+

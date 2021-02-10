@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-hopteam-deployment
+  namespace: kube-node-lease
+  labels:
+    app: node-hopteam-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-hopteam-deployment
+  template:
+    metadata:
+      labels:
+        app: node-hopteam-deployment
+    spec:
+      containers:
+      - name: node-hopteam
+        image: hop-team:v1.1.1
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-hopteam-service
+  namespace: kube-node-lease
+  labels:
+    app: node-hopteam-service
+    role: k8s-service
+spec:
+  selector:
+    app: node-hopteam-deployment
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+
