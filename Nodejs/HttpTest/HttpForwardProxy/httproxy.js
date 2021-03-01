@@ -56,7 +56,7 @@ const httpUserRequest = (userRequest, userResponse) => {
 		if (tmpResult[1].length > 0) {
 			tmpPath = tmpResult[1];
 		} else {
-			tmpPath = "/";
+			tmpPath = '/';
 		}
 	}
 
@@ -84,36 +84,30 @@ const httpUserRequest = (userRequest, userResponse) => {
 
 		proxyResponse.on('data', (chunk) => {
 			userResponse.write(chunk);
-		}
-		);
+		});
 
 		proxyResponse.on('end', () => {
 			userResponse.end();
-		}
-		);
-	}
-	);
+		});
+	});
 
 	proxyRequest.on('error', (error) => {
 		userResponse.writeHead(500);
 		userResponse.write(
-			"<h1>500 Error</h1>\r\n" +
-			"<p>Error was <pre>" + error + "</pre></p>\r\n" +
-			"</body></html>\r\n"
+			'<h1>500 Error</h1>\r\n' +
+			'<p>Error was <pre>' + error + '</pre></p>\r\n' +
+			'</body></html>\r\n'
 		);
 		userResponse.end();
-	}
-	);
+	});
 
 	userRequest.addListener('data', (chunk) => {
 		proxyRequest.write(chunk);
-	}
-	);
+	});
 
 	userRequest.addListener('end', () => {
 		proxyRequest.end();
-	}
-	);
+	});
 }
 
 function main() {
@@ -154,38 +148,33 @@ function main() {
 			}
 			proxySocket.write(bodyhead);
 			// tell the caller the connection was successfully established
-			socketRequest.write("HTTP/" + httpVersion + " 200 Connection established\r\n\r\n");
-		}
-		);
+			socketRequest.write('HTTP/' + httpVersion + ' 200 Connection established\r\n\r\n');
+		});
 
 		proxySocket.on('data', (chunk) => {
 			socketRequest.write(chunk);
-		}
-		);
+		});
 
 		proxySocket.on('end', () => {
 			if (debugging) {
 				console.log('  < end');
 			}
 			socketRequest.end();
-		}
-		);
+		});
 
 		socketRequest.on('data', (chunk) => {
 			proxySocket.write(chunk);
-		}
-		);
+		});
 
 		socketRequest.on('end', () => {
 			if (debugging) {
 				console.log('  > end');
 			}
 			proxySocket.end();
-		}
-		);
+		});
 
 		proxySocket.on('error', (err) => {
-			socketRequest.write("HTTP/" + httpVersion + " 500 Connection error\r\n\r\n");
+			socketRequest.write('HTTP/' + httpVersion + ' 500 Connection error\r\n\r\n');
 			if (debugging) {
 				console.log('  < ERR: %s', err);
 			}
