@@ -25,16 +25,16 @@ const _getMyIp = () => {
 	return '127.0.0.1';
 };
 
-function getHostPortFromString(hostString, defaultPort) {
+const getHostPortFromString = (hostString, defaultPort) => {
 	let host = hostString;
 	let port = defaultPort;
 
 	const regexHostport = /^([^:]+)(:([0-9]+))?$/;
-	const result = regexHostport.exec(hostString);
-	if (result != null) {
-		host = result[1];
-		if (result[2] != null) {
-			port = result[3];
+	const tmpResult = regexHostport.exec(hostString);
+	if (tmpResult != null) {
+		host = tmpResult[1];
+		if (tmpResult[2] != null) {
+			port = tmpResult[3];
 		}
 	}
 
@@ -42,29 +42,29 @@ function getHostPortFromString(hostString, defaultPort) {
 }
 
 // handle a HTTP proxy request
-function httpUserRequest(userRequest, userResponse) {
+const httpUserRequest = (userRequest, userResponse) => {
 	if (debugging) {
 		console.log('  > request: %s', userRequest.url);
 	}
 
-	var hostport = getHostPortFromString(userRequest.headers['host'], 80);
+	const hostPort = getHostPortFromString(userRequest.headers['host'], 80);
 
 	// have to extract the path from the requested URL
-	var path = userRequest.url;
-	var result = /^[a-zA-Z]+:\/\/[^\/]+(\/.*)?$/.exec(userRequest.url);
-	if (result) {
-		if (result[1].length > 0) {
-			path = result[1];
+	let tmpPath = userRequest.url;
+	const tmpResult = /^[a-zA-Z]+:\/\/[^\/]+(\/.*)?$/.exec(userRequest.url);
+	if (tmpResult) {
+		if (tmpResult[1].length > 0) {
+			tmpPath = tmpResult[1];
 		} else {
-			path = "/";
+			tmpPath = "/";
 		}
 	}
 
-	var options = {
-		'host': hostport[0],
-		'port': hostport[1],
+	const options = {
+		'host': hostPort[0],
+		'port': hostPort[1],
 		'method': userRequest.method,
-		'path': path,
+		'path': tmpPath,
 		'agent': userRequest.agent,
 		'auth': userRequest.auth,
 		'headers': userRequest.headers
@@ -74,80 +74,53 @@ function httpUserRequest(userRequest, userResponse) {
 		console.log('  > options: %s', JSON.stringify(options, null, 2));
 	}
 
-	var proxyRequest = http.request(
-		options,
-		function (proxyResponse) {
-			if (debugging) {
-				console.log('  > request headers: %s', JSON.stringify(options['headers'], null, 2));
-			}
-
-			if (debugging) {
-				console.log('  < response %d headers: %s', proxyResponse.statusCode, JSON.stringify(proxyResponse.headers, null, 2));
-			}
-
-			userResponse.writeHead(
-				proxyResponse.statusCode,
-				proxyResponse.headers
-			);
-
-			proxyResponse.on(
-				'data',
-				function (chunk) {
-					if (debugging) {
-						console.log('  < chunk = %d bytes', chunk.length);
-					}
-					userResponse.write(chunk);
-				}
-			);
-
-			proxyResponse.on(
-				'end',
-				function () {
-					if (debugging) {
-						console.log('  < END');
-					}
-					userResponse.end();
-				}
-			);
+	const proxyRequest = http.request(options, (proxyResponse) => {
+		if (debugging) {
+			console.log('  > request headers: %s', JSON.stringify(options['headers'], null, 2));
+			console.log('  < response %d headers: %s', proxyResponse.statusCode, JSON.stringify(proxyResponse.headers, null, 2));
 		}
-	);
 
-	proxyRequest.on(
-		'error',
-		function (error) {
-			userResponse.writeHead(500);
-			userResponse.write(
-				"<h1>500 Error</h1>\r\n" +
-				"<p>Error was <pre>" + error + "</pre></p>\r\n" +
-				"</body></html>\r\n"
-			);
+		userResponse.writeHead(proxyResponse.statusCode, proxyResponse.headers);
+
+		proxyResponse.on('data', (chunk) => {
+			userResponse.write(chunk);
+		}
+		);
+
+		proxyResponse.on('end', () => {
 			userResponse.end();
 		}
+		);
+	}
 	);
 
-	userRequest.addListener(
-		'data',
-		function (chunk) {
-			if (debugging) {
-				console.log('  > chunk = %d bytes', chunk.length);
-			}
-			proxyRequest.write(chunk);
-		}
+	proxyRequest.on('error', (error) => {
+		userResponse.writeHead(500);
+		userResponse.write(
+			"<h1>500 Error</h1>\r\n" +
+			"<p>Error was <pre>" + error + "</pre></p>\r\n" +
+			"</body></html>\r\n"
+		);
+		userResponse.end();
+	}
 	);
 
-	userRequest.addListener(
-		'end',
-		function () {
-			proxyRequest.end();
-		}
+	userRequest.addListener('data', (chunk) => {
+		proxyRequest.write(chunk);
+	}
+	);
+
+	userRequest.addListener('end', () => {
+		proxyRequest.end();
+	}
 	);
 }
 
 function main() {
-	var port = srvPort; // default port if none on command line
+	let port = srvPort; // default port if none on command line
 
 	// check for any command line arguments
-	for (var argn = 2; argn < process.argv.length; argn++) {
+	for (let argn = 2; argn < process.argv.length; argn++) {
 		if (process.argv[argn] === '-p') {
 			port = parseInt(process.argv[argn + 1]);
 			argn++;
@@ -160,106 +133,80 @@ function main() {
 		}
 	}
 
-	if (debugging) {
-		const myIp = _getMyIp();
-		console.log('Http forward proxy server is running on %s:%s ...', myIp, port);
-	}
-
 	// start HTTP server with custom request handler callback function
-	var server = http.createServer(httpUserRequest).listen(port);
+	const httpServer = http.createServer(httpUserRequest).listen(port);
 
 	// add handler for HTTPS (which issues a CONNECT to the proxy)
-	server.addListener(
-		'connect',
-		function (request, socketRequest, bodyhead) {
-			var url = request['url'];
-			var httpVersion = request['httpVersion'];
+	httpServer.addListener('connect', (request, socketRequest, bodyhead) => {
+		const url = request['url'];
+		const httpVersion = request['httpVersion'];
+		const hostPort = getHostPortFromString(url, 443);
 
-			var hostport = getHostPortFromString(url, 443);
-
-			if (debugging)
-				console.log('  = will connect to %s:%s', hostport[0], hostport[1]);
-
-			// set up TCP connection
-			var proxySocket = new net.Socket();
-			proxySocket.connect(
-				parseInt(hostport[1]), hostport[0],
-				function () {
-					if (debugging)
-						console.log('  < connected to %s/%s', hostport[0], hostport[1]);
-
-					if (debugging)
-						console.log('  > writing head of length %d', bodyhead.length);
-
-					proxySocket.write(bodyhead);
-
-					// tell the caller the connection was successfully established
-					socketRequest.write("HTTP/" + httpVersion + " 200 Connection established\r\n\r\n");
-				}
-			);
-
-			proxySocket.on(
-				'data',
-				function (chunk) {
-					if (debugging)
-						console.log('  < data length = %d', chunk.length);
-
-					socketRequest.write(chunk);
-				}
-			);
-
-			proxySocket.on(
-				'end',
-				function () {
-					if (debugging)
-						console.log('  < end');
-
-					socketRequest.end();
-				}
-			);
-
-			socketRequest.on(
-				'data',
-				function (chunk) {
-					if (debugging)
-						console.log('  > data length = %d', chunk.length);
-
-					proxySocket.write(chunk);
-				}
-			);
-
-			socketRequest.on(
-				'end',
-				function () {
-					if (debugging)
-						console.log('  > end');
-
-					proxySocket.end();
-				}
-			);
-
-			proxySocket.on(
-				'error',
-				function (err) {
-					socketRequest.write("HTTP/" + httpVersion + " 500 Connection error\r\n\r\n");
-					if (debugging) {
-						console.log('  < ERR: %s', err);
-					}
-					socketRequest.end();
-				}
-			);
-
-			socketRequest.on(
-				'error',
-				function (err) {
-					if (debugging) {
-						console.log('  > ERR: %s', err);
-					}
-					proxySocket.end();
-				}
-			);
+		if (debugging) {
+			console.log('  = will connect to %s:%s', hostPort[0], hostPort[1]);
 		}
+
+		// set up TCP connection
+		const proxySocket = new net.Socket();
+		proxySocket.connect(parseInt(hostPort[1]), hostPort[0], () => {
+			if (debugging) {
+				console.log('  < connected to %s/%s', hostPort[0], hostPort[1]);
+			}
+			proxySocket.write(bodyhead);
+			// tell the caller the connection was successfully established
+			socketRequest.write("HTTP/" + httpVersion + " 200 Connection established\r\n\r\n");
+		}
+		);
+
+		proxySocket.on('data', (chunk) => {
+			socketRequest.write(chunk);
+		}
+		);
+
+		proxySocket.on('end', () => {
+			if (debugging) {
+				console.log('  < end');
+			}
+			socketRequest.end();
+		}
+		);
+
+		socketRequest.on('data', (chunk) => {
+			proxySocket.write(chunk);
+		}
+		);
+
+		socketRequest.on('end', () => {
+			if (debugging) {
+				console.log('  > end');
+			}
+			proxySocket.end();
+		}
+		);
+
+		proxySocket.on('error', (err) => {
+			socketRequest.write("HTTP/" + httpVersion + " 500 Connection error\r\n\r\n");
+			if (debugging) {
+				console.log('  < ERR: %s', err);
+			}
+			socketRequest.end();
+		}
+		);
+
+		socketRequest.on('error', (err) => {
+			if (debugging) {
+				console.log('  > ERR: %s', err);
+			}
+			proxySocket.end();
+		}
+		);
+	}
 	); // HTTPS connect listener
+
+	if (debugging) {
+		const myIp = _getMyIp();
+		console.log('Http forward proxy server is running on %s:%s ~ %s ...', myIp, port, new Date());
+	}
 }
 
 main();
