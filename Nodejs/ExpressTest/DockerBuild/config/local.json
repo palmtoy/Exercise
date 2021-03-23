@@ -1,0 +1,8 @@
+{
+	"webPort": 3001,
+	"srvPort": 3003,
+	"webUrl": "http://localhost:",
+	"srvUrl": "http://localhost:",
+  "reqTimeout": 3000
+}
+
