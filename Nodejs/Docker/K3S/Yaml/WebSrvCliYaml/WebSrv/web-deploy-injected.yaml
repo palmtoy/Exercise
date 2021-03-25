@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-deployment
+  name: web-deployment
+  namespace: web-srv-ns
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-deployment
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: web-deployment
+    spec:
+      containers:
+      - image: lzg-express-web:v1.0.0
+        name: lzg-express-web
+      nodeSelector:
+        k3s.io/hostname: worker-node
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: web-service
+    role: k8s-service
+  name: web-service
+  namespace: web-srv-ns
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: web-deployment
+---

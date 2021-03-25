@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: srv-deployment
+  namespace: web-srv-ns
+  labels:
+    app: srv-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: srv-deployment
+  template:
+    metadata:
+      labels:
+        app: srv-deployment
+    spec:
+      containers:
+      - name: lzg-express-srv
+        image: lzg-express-srv:v1.0.0
+      nodeSelector:
+        k3s.io/hostname: worker-node
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: srv-service
+  namespace: web-srv-ns
+  labels:
+    app: srv-service
+    role: k8s-service
+spec:
+  selector:
+    app: srv-deployment
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+

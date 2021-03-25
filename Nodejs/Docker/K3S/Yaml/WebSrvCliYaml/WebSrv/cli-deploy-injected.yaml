@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: cli-deployment
+  name: cli-deployment
+  namespace: web-srv-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cli-deployment
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: cli-deployment
+    spec:
+      containers:
+      - image: lzg-express-cli:v1.0.0
+        name: lzg-express-cli
+      nodeSelector:
+        k3s.io/hostname: worker-node-cli2
+---
