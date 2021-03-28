@@ -1,0 +1,11 @@
+{
+  "name": "awssdktest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.874.0"
+  }
+}
