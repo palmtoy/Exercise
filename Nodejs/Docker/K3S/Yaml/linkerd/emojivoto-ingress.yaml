@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-  - host: emojivoto.lzg-rpi.com
+  - host: emojivoto.mt-linkerd.com
     http:
       paths:
       - path: /

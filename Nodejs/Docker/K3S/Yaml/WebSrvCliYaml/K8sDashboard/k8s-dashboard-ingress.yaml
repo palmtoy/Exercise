@@ -13,7 +13,7 @@ metadata:
 
 spec:
   rules:
-  - host: k8s.lzg-rpi.com
+  - host: k8s.mt-linkerd.com
     http:
       paths:
       - path: /
