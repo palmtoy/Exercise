@@ -1,0 +1,11 @@
+{
+	"client": "mysql2",
+	"connection": {
+		"host": "mysql-service.mysql-ns.svc.cluster.local",
+		"port": 3306,
+		"user": "root",
+		"password": "test",
+		"database": "linkerdb"
+	}
+}
+
