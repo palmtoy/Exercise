@@ -4,7 +4,7 @@ metadata:
   name: redis-service
   namespace: redis-ns
   labels:
-    app: redis-service
+    app: redis-single-node
 spec:
   type: ClusterIP
   ports:
@@ -13,7 +13,7 @@ spec:
     protocol: TCP
     targetPort: 6379
   selector:
-    app: redis-service
+    app: redis-single-node
 
 ---
 
@@ -23,13 +23,16 @@ metadata:
   name: redis-deployment
   namespace: redis-ns
   labels:
-    app: redis
+    app: redis-single-node
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: redis-single-node
   template:
     metadata:
      labels:
-       name: redis
+       app: redis-single-node
     spec:
       containers:
       - name: redis
