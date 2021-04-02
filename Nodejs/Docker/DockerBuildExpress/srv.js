@@ -3,8 +3,9 @@ const os = require('os');
 const config = require('config');
 const express = require('express');
 const bodyParser = require('body-parser');
-const dbOptions = require('./db-options');
-const knex = require('knex')(dbOptions);
+const knex = require('knex')(config.mysql);
+const Redis = require("ioredis");
+const redisCli = new Redis(config.redis);
 
 const port = config.srvPort;
 
@@ -24,6 +25,24 @@ const _getDataFromDb = async () => {
     console.error('__getDataFromDb:', { error: e });
   }
   return ret;
+};
+
+
+const _getUniqueCliIdFromRedis = async () => {
+  let uniqueId = -1;
+  try {
+    uniqueId = await new Promise((resolve, reject) => {
+      redisCli.incr('uniqueCliId', (err, tmpId) => {
+        if (err) {
+          return reject(err);
+        }
+        return resolve(tmpId);
+      });
+    });
+  } catch (e) {
+    console.error('__getUniqueIdFromRedis:', { error: e });
+  }
+  return uniqueId;
 };
 
 
@@ -59,9 +78,10 @@ if (cluster.isMaster) {
     await new Promise((resolve) => {
       setTimeout(async () => {
 				const carInfoList = await _getDataFromDb();
+        const uniqueCliId = await _getUniqueCliIdFromRedis();
         const resTime = new Date().toString();
         const srvHostname = os.hostname();
-        const resJson = { cliName, srvTime: 'bar ~ ' + resTime, carInfoList, srvHostname, pid: process.pid };
+        const resJson = { cliName, srvTime: 'bar ~ ' + resTime, carInfoList, uniqueCliId, srvHostname, pid: process.pid };
         console.log({ resJson });
         res.json(resJson);
         resolve();

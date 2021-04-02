@@ -5,5 +5,19 @@
 	"srvUrl": "http://srv-service.web-srv-ns.svc.cluster.local:",
 	"webPath": "/foo",
 	"srvPath": "/bar",
-	"reqTimeout": 61
+	"reqTimeout": 61,
+	"mysql": {
+		"client": "mysql2",
+		"connection": {
+			"host": "mysql-service.mysql-ns.svc.cluster.local",
+			"port": 3306,
+			"user": "root",
+			"password": "test",
+			"database": "linkerdb"
+		}
+	},
+	"redis": {
+		"port": 6379,
+		"host": "redis-service.redis-ns.svc.cluster.local"
+	}
 }
