@@ -1,9 +1,0 @@
-{
-	"webPort": 80,
-	"srvPort": 80,
-	"webUrl": "http://web-service.web-srv-ns.svc.cluster.local:",
-	"srvUrl": "http://srv-service.web-srv-ns.svc.cluster.local:",
-	"webPath": "/foo",
-	"srvPath": "/bar",
-  "reqTimeout": 61
-}

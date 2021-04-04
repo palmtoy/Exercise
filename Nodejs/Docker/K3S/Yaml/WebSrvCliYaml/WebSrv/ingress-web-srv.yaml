@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
   rules:
-  - host: echo.lzg-rpi.com
+  - host: echo.mt-linkerd.com
     http:
       paths:
       - path: /
