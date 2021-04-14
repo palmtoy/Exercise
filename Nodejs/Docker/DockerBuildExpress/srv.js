@@ -16,10 +16,10 @@ const _getDataFromDb = async () => {
     ret = await new Promise((resolve, reject) => {
       knex.from('automobile').select("*")
         .then(dataRows => {
-	  return resolve(dataRows);
+          return resolve(dataRows);
         })
         .catch((err) => { reject(err); })
-        .finally(() => {});
+        .finally(() => { });
     });
   } catch (e) {
     console.error('__getDataFromDb:', { error: e });
@@ -29,9 +29,9 @@ const _getDataFromDb = async () => {
 
 
 const _getUniqueCliIdFromRedis = async () => {
-  let uniqueId = -1;
+  let uniqueCliId = -1;
   try {
-    uniqueId = await new Promise((resolve, reject) => {
+    uniqueCliId = await new Promise((resolve, reject) => {
       redisCli.incr('uniqueCliId', (err, tmpId) => {
         if (err) {
           return reject(err);
@@ -40,9 +40,25 @@ const _getUniqueCliIdFromRedis = async () => {
       });
     });
   } catch (e) {
-    console.error('__getUniqueIdFromRedis:', { error: e });
+    console.error('__getUniqueCliIdFromRedis:', { error: e });
   }
-  return uniqueId;
+  console.log('__getUniqueCliIdFromRedis:', { uniqueCliId, 'typeof uniqueCliId': typeof uniqueCliId });
+  return uniqueCliId;
+};
+
+
+const _getStressTestStatusFromRedis = async () => {
+  let stressTestStatus = -1;
+  try {
+    const rdmNum = (Math.random() >= 0.5) ? 1 : 0;
+    await redisCli.set('stressTestStatus', rdmNum);
+    stressTestStatus = await redisCli.get('stressTestStatus');
+    stressTestStatus = parseInt(stressTestStatus);
+  } catch (e) {
+    console.error('__getStressTestStatusFromRedis:', { error: e });
+  }
+  console.log('__getStressTestStatusFromRedis:', { stressTestStatus, 'typeof stressTestStatus': typeof stressTestStatus });
+  return stressTestStatus;
 };
 
 
@@ -77,11 +93,12 @@ if (cluster.isMaster) {
 
     await new Promise((resolve) => {
       setTimeout(async () => {
-				const carInfoList = await _getDataFromDb();
+        const carInfoList = await _getDataFromDb();
         const uniqueCliId = await _getUniqueCliIdFromRedis();
+        const stressTestStatus = await _getStressTestStatusFromRedis();
         const resTime = new Date().toString();
         const srvHostname = os.hostname();
-        const resJson = { cliName, srvTime: 'bar ~ ' + resTime, carInfoList, uniqueCliId, srvHostname, pid: process.pid };
+        const resJson = { cliName, srvTime: 'bar ~ ' + resTime, carInfoList, uniqueCliId, stressTestStatus, srvHostname, pid: process.pid };
         console.log({ resJson });
         res.json(resJson);
         resolve();

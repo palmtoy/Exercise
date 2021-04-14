@@ -5,7 +5,7 @@
 	"srvUrl": "http://srv-service.web-srv-ns.svc.cluster.local:",
 	"webPath": "/foo",
 	"srvPath": "/bar",
-	"reqTimeout": 61,
+	"reqTimeout": 91,
 	"mysql": {
 		"client": "mysql2",
 		"connection": {

@@ -3,7 +3,7 @@
 	"srvPort": 3003,
 	"webUrl": "http://localhost:",
 	"srvUrl": "http://localhost:",
-  "reqTimeout": 1000,
+	"reqTimeout": 2000,
 	"mysql": {
 		"connection": {
 			"host": "k8s.mt-linkerd.com"
