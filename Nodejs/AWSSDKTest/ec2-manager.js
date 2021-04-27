@@ -1,8 +1,9 @@
 // ABOUT THIS NODE.JS SAMPLE: This sample is part of the SDK for JavaScript Developer Guide topic at
 // https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/ec2-example-managing-instances.html
 
-// Load the AWS SDK for Node.js
+// Load the AWS SDK for Node.js and set the credentials
 const AWS = require('aws-sdk');
+AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
 // Set the region 
 AWS.config.update({region: 'us-west-2'});
 // Create EC2 service object
