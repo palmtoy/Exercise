@@ -1,0 +1,11 @@
+{
+  "name": "rxjstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^7.2.0"
+  }
+}
