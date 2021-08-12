@@ -1,13 +1,13 @@
-
-async function foo() {
+async function foo(idx) {
 	console.log(1);
 
 	const a = await 100;
 	console.log(a);
 
+	// new Promise(resolve => {
 	await new Promise(resolve => {
 		setTimeout(() => {
-			console.log('500');
+			console.log(new Date().getTime() + ` ~ ${idx} ~ 500`);
 			resolve();
 		}, 1000);
 	});
@@ -18,29 +18,29 @@ async function foo() {
 console.log(0);
 
 (async () => {
-	await foo();
+	await foo('A');
 
 	console.log();
 
-	foo();
+	foo('Z');
 })();
 
 
 console.log(3);
 
 /*
-output ↓
+	Output ↓
 
-0
-1
-3
-100
-500
-2
+	0
+	1
+	3
+	100
+	1628762256986 ~ A ~ 500
+	2
 
-1
-100
-500
-2
+	1
+	100
+	1628762257987 ~ Z ~ 500
+	2
 */
 
