@@ -16,3 +16,7 @@ app.get('/baby', (req, res) => {
 	res.json({ msg: 'Hello baby ~ ' + new Date().toString()});
 });
 
+app.post('/json', (req, res) => {
+	res.json('Fake json ~ ' + new Date().toString());
+});
+
