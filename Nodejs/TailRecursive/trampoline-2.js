@@ -33,3 +33,5 @@ console.log(` v100000 = ${v100000}`);
 
 const v1000000 = accumulate(1000000);
 console.log(`v1000000 = ${v1000000}`);
+
+// REF: https://blog.logrocket.com/using-trampolines-to-manage-large-recursive-loops-in-javascript-d8c9db095ae3/
