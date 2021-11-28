@@ -1,0 +1,8 @@
+{
+	"apps": [{
+		"name": "rpi-ip-sns-publish",
+		"script": "node ./sns-publish.js",
+		"boot-cmd-for-tips": "$ pm2 start pm2.config-sns.json"
+	}]
+}
+

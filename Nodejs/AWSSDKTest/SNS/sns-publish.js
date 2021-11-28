@@ -15,8 +15,8 @@ AWS.config.update({region: 'us-west-2'});
 const snsObj = new AWS.SNS({apiVersion: '2010-03-31'});
 
 let G_IP_FOR_WIFI = '';
-// const pollingInterval = 30 * 1000; // 30s
-const pollingInterval = 5 * 1000;
+const pollingInterval = 30 * 1000; // 30s
+// const pollingInterval = 5 * 1000;
 
 function getLocalIp4wifi() {
 	let ip4wifi = '';
@@ -35,6 +35,9 @@ function getLocalIp4wifi() {
 
 	if (results.en0 && results.en0.length > 0) {
 		ip4wifi = results.en0[0];
+	}
+	if (!ip4wifi && results.wlan0 && results.wlan0.length > 0) {
+		ip4wifi = results.wlan0[0];
 	}
 	return ip4wifi;
 }
