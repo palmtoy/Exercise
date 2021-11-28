@@ -16,7 +16,12 @@ const snsObj = new AWS.SNS({apiVersion: '2010-03-31'});
 
 let G_IP_FOR_WIFI = '';
 const pollingInterval = 30 * 1000; // 30s
-// const pollingInterval = 5 * 1000;
+// const pollingInterval = 5 * 1000; // 5s
+
+const G_MAX_RUN_TIME = 30 * 60 * 1000; // 30m
+// const G_MAX_RUN_TIME = 2 * 60 * 1000; // 2m
+const G_START_TIME = Date.now();
+let G_END_LOG_FLAG = false;
 
 function getLocalIp4wifi() {
 	let ip4wifi = '';
@@ -44,8 +49,16 @@ function getLocalIp4wifi() {
 
 
 async function main() {
+	const now = new Date().toString();
+	const END_TIME = Date.now();
+	if (END_TIME - G_START_TIME >= G_MAX_RUN_TIME) {
+		if (!G_END_LOG_FLAG) {
+			G_END_LOG_FLAG = true;
+			console.log(`\nFunc:main is running about ${G_MAX_RUN_TIME / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
+		}
+		return;
+	}
 	try {
-		const now = new Date().toString();
 		const tmpIp4wifi = getLocalIp4wifi();
 		if (tmpIp4wifi && G_IP_FOR_WIFI === tmpIp4wifi) {
 			console.log(`Func:main is running ... tmpIp4wifi = ${tmpIp4wifi} ~ ${now}`);
