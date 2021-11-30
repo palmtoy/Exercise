@@ -56,7 +56,7 @@ async function main() {
 			G_END_LOG_FLAG = true;
 			console.log(`\nFunc:main is running about ${G_MAX_RUN_TIME / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
 		}
-		return;
+		// return;
 	}
 	try {
 		const tmpIp4wifi = getLocalIp4wifi();
