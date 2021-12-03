@@ -50,6 +50,9 @@ function getLocalIp4wifi() {
 
 async function main() {
 	const now = new Date().toString();
+	if (G_START_TIME === 0) {
+		G_START_TIME = Date.now();
+	}
 	const END_TIME = Date.now();
 	if (END_TIME - G_START_TIME >= G_MAX_RUN_TIME) {
 		if (!G_END_LOG_FLAG) {
@@ -115,11 +118,14 @@ async function main() {
 
 (
 	() => {
-		G_START_TIME = Date.now();
-
 		main();
 
 		setInterval(main, pollingInterval);
 	}
 )();
+
+
+process.on('SIGINT', () => {
+	G_START_TIME = 0;
+});
 
