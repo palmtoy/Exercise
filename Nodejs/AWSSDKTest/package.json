@@ -6,6 +6,7 @@
   "author": "palmtoy",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.874.0"
+    "aws-sdk": "^2.874.0",
+    "onoff": "^6.0.3"
   }
 }
