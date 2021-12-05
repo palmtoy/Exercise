@@ -1,0 +1,11 @@
+{
+  "name": "onofftest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "onoff": "^6.0.3"
+  }
+}
