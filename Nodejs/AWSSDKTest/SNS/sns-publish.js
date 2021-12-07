@@ -7,6 +7,7 @@
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
 const { networkInterfaces } = require('os');
+const fs = require('fs');
 // const { blinkRYGLightsOneRound } = require('./red-green-light');
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account-long-term'});
@@ -15,6 +16,11 @@ AWS.config.update({region: 'us-west-2'});
 
 const snsObj = new AWS.SNS({apiVersion: '2010-03-31'});
 
+const G_CONFIG_PATH = './config.json';
+const G_RESET_INTERVAL = 30 * 60 * 1000; // default value: 30minutes
+const G_MAX_RUN_TIME = 30 * 60 * 1000; // default value: 30minutes
+let G_START_TIME = 0;
+let G_END_LOG_FLAG = false;
 let G_IP_FOR_WIFI = '';
 const G_POLLING_INTERVAL = 30 * 1000; // 30s
 // const G_POLLING_INTERVAL = 5 * 1000; // 5s
@@ -44,8 +50,54 @@ function getLocalIp4wifi() {
 }
 
 
+async function resetGlobalVar() {
+	let configJson = {};
+	if (fs.existsSync(G_CONFIG_PATH)) {
+		configJson = require(G_CONFIG_PATH);
+	}
+	const lastTimestamp = configJson.lastTimestamp || 0;
+	const resetInterval = configJson.resetInterval || G_RESET_INTERVAL;
+	const curTimestamp = Date.now();
+	if (curTimestamp - lastTimestamp >= resetInterval) {
+		G_START_TIME = curTimestamp;
+		G_END_LOG_FLAG = false;
+		G_IP_FOR_WIFI = '';
+	}
+	return { resetInterval, maxRunTime: configJson.maxRunTime || G_MAX_RUN_TIME };
+}
+
+
+async function writeConfigFile(resetInterval, maxRunTime) {
+	const data = {
+		lastTimestamp: Date.now(),
+		resetInterval,
+		maxRunTime,
+	};
+	fs.writeFileSync(G_CONFIG_PATH, data);
+}
+
+
+async function canStopRunning(maxRunTime) {
+	const END_TIME = Date.now();
+	if (END_TIME - G_START_TIME >= maxRunTime) {
+		if (!G_END_LOG_FLAG) {
+			G_END_LOG_FLAG = true;
+			console.log(`\n${now} ~ Func:main -- ${JSON.stringify({ END_TIME, G_START_TIME, maxRunTime })}`);
+			console.log(`Func:main is running about ${maxRunTime / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
+		}
+		return true;
+	}
+	return false;
+}
+
+
 async function main() {
 	try {
+		const { resetInterval, maxRunTime } = await resetGlobalVar();
+		if (canStopRunning(maxRunTime)) {
+			return;
+		}
+		await writeConfigFile(resetInterval, maxRunTime);
 		const now = new Date().toString();
 		const tmpIp4wifi = getLocalIp4wifi();
 		if (tmpIp4wifi && G_IP_FOR_WIFI === tmpIp4wifi) {
