@@ -50,10 +50,16 @@ function getLocalIp4wifi() {
 }
 
 
+function requireUncached(module) {
+	delete require.cache[require.resolve(module)];
+	return require(module);
+}
+
+
 async function resetGlobalVar() {
 	let configJson = {};
 	if (fs.existsSync(G_CONFIG_PATH)) {
-		configJson = require(G_CONFIG_PATH);
+		configJson = requireUncached(G_CONFIG_PATH);
 	}
 	const lastTimestamp = configJson.lastTimestamp || 0;
 	const resetInterval = configJson.resetInterval || G_RESET_INTERVAL;
@@ -73,7 +79,7 @@ async function writeConfigFile(resetInterval, maxRunTime) {
 		resetInterval,
 		maxRunTime,
 	};
-	fs.writeFileSync(G_CONFIG_PATH, data);
+	fs.writeFileSync(G_CONFIG_PATH, JSON.stringify(data));
 }
 
 
@@ -82,8 +88,9 @@ async function canStopRunning(maxRunTime) {
 	if (END_TIME - G_START_TIME >= maxRunTime) {
 		if (!G_END_LOG_FLAG) {
 			G_END_LOG_FLAG = true;
-			console.log(`\n${now} ~ Func:main -- ${JSON.stringify({ END_TIME, G_START_TIME, maxRunTime })}`);
-			console.log(`Func:main is running about ${maxRunTime / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
+			const now = new Date().toString();
+			console.log(`\n${now} ~ Func:_canStopRunning -- ${JSON.stringify({ END_TIME, G_START_TIME, maxRunTime })}`);
+			console.log(`Func:_canStopRunning is running about ${maxRunTime / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
 		}
 		return true;
 	}
@@ -94,7 +101,8 @@ async function canStopRunning(maxRunTime) {
 async function main() {
 	try {
 		const { resetInterval, maxRunTime } = await resetGlobalVar();
-		if (canStopRunning(maxRunTime)) {
+		const isStop = await canStopRunning(maxRunTime);
+		if (isStop) {
 			return;
 		}
 		await writeConfigFile(resetInterval, maxRunTime);
@@ -116,7 +124,7 @@ async function main() {
 		let topicArn = '';
 		// Create promise and SNS service object
 		const resObj = await snsObj.listTopics(params4list).promise();
-		console.log(`\n_listTopicsPromise: resObj = ${JSON.stringify(resObj)}\n\n`);
+		console.log(`\n_listTopicsPromise: resObj = ${JSON.stringify(resObj)} ~ ${now}\n\n`);
 
 		if (resObj && resObj.Topics && resObj.Topics.length > 0) {
 			topicArn = resObj.Topics[0].TopicArn;
@@ -155,6 +163,8 @@ async function main() {
 
 (
 	() => {
+		G_START_TIME = Date.now();
+
 		main();
 
 		setInterval(main, G_POLLING_INTERVAL);
