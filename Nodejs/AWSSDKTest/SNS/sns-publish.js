@@ -7,7 +7,7 @@
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
 const { networkInterfaces } = require('os');
-const { blinkRYGLightsOneRound } = require('./red-green-light');
+// const { blinkRYGLightsOneRound } = require('./red-green-light');
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account-long-term'});
 // Set region
@@ -16,13 +16,8 @@ AWS.config.update({region: 'us-west-2'});
 const snsObj = new AWS.SNS({apiVersion: '2010-03-31'});
 
 let G_IP_FOR_WIFI = '';
-const pollingInterval = 30 * 1000; // 30s
-// const pollingInterval = 5 * 1000; // 5s
-
-const G_MAX_RUN_TIME = 30 * 60 * 1000; // 30m
-// const G_MAX_RUN_TIME = 2 * 60 * 1000; // 2m
-let G_START_TIME = 0;
-let G_END_LOG_FLAG = false;
+const G_POLLING_INTERVAL = 30 * 1000; // 30s
+// const G_POLLING_INTERVAL = 5 * 1000; // 5s
 
 function getLocalIp4wifi() {
 	let ip4wifi = '';
@@ -50,20 +45,8 @@ function getLocalIp4wifi() {
 
 
 async function main() {
-	const now = new Date().toString();
-	if (G_START_TIME === 0) {
-		G_START_TIME = Date.now();
-	}
-	const END_TIME = Date.now();
-	if (END_TIME - G_START_TIME >= G_MAX_RUN_TIME) {
-		if (!G_END_LOG_FLAG) {
-			G_END_LOG_FLAG = true;
-			console.log(`\n${now} ~ Func:main -- ${JSON.stringify({ END_TIME, G_START_TIME, G_MAX_RUN_TIME })}`);
-			console.log(`Func:main is running about ${G_MAX_RUN_TIME / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
-		}
-		return;
-	}
 	try {
+		const now = new Date().toString();
 		const tmpIp4wifi = getLocalIp4wifi();
 		if (tmpIp4wifi && G_IP_FOR_WIFI === tmpIp4wifi) {
 			console.log(`Func:main is running ... tmpIp4wifi = ${tmpIp4wifi} ~ ${now}`);
@@ -106,7 +89,7 @@ async function main() {
 		publishTextPromise.then(
 			async function(data) {
 				console.log(`Message ↓ \n\n${params4publish.Message}\nhas been sent to the topic ${params4publish.TopicArn}.\n\n`);
-				await blinkRYGLightsOneRound();
+				// await blinkRYGLightsOneRound();
 			}).catch(
 				function(err) {
 					console.error('\n_publishTextPromise:', err, err.stack, '\n');
@@ -122,13 +105,12 @@ async function main() {
 	() => {
 		main();
 
-		setInterval(main, pollingInterval);
+		setInterval(main, G_POLLING_INTERVAL);
 	}
 )();
 
 
 process.on('SIGINT', () => {
-	G_START_TIME = 0;
 	process.exit(0);
 });
 
