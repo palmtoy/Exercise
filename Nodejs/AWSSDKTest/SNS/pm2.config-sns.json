@@ -2,8 +2,7 @@
 	"apps": [{
 		"name": "rpi-ip-sns-publish",
 		"script": "node ./sns-publish.js",
-		"boot-cmd-for-tips": "$ pm2 start pm2.config-sns.json",
-		"start-on-system-boot": "$ crontab -e; add `@reboot cd $HOME/Exercise/AWSSDKTest/SNS && ./GO-PM2-App.sh` at the end of crontab; $ crontab -l"
+		"boot-cmd-for-tips": "$ pm2 start pm2.config-sns.json"
 	}]
 }
 
