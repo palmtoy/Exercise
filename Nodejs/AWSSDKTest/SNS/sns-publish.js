@@ -7,7 +7,6 @@
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
 const { networkInterfaces } = require('os');
-const fs = require('fs');
 // const { blinkRYGLightsOneRound } = require('./red-green-light');
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account-long-term'});
@@ -16,14 +15,14 @@ AWS.config.update({region: 'us-west-2'});
 
 const snsObj = new AWS.SNS({apiVersion: '2010-03-31'});
 
-const G_CONFIG_PATH = './config.json';
-const G_RESET_INTERVAL = 30 * 60 * 1000; // default value: 30minutes
-const G_MAX_RUN_TIME = 30 * 60 * 1000; // default value: 30minutes
-let G_START_TIME = 0;
-let G_END_LOG_FLAG = false;
 let G_IP_FOR_WIFI = '';
 const G_POLLING_INTERVAL = 30 * 1000; // 30s
 // const G_POLLING_INTERVAL = 5 * 1000; // 5s
+
+const G_MAX_RUN_TIME = 30 * 60 * 1000; // 30m
+// const G_MAX_RUN_TIME = 2 * 60 * 1000; // 2m
+let G_START_TIME = 0;
+let G_END_LOG_FLAG = false;
 
 function getLocalIp4wifi() {
 	let ip4wifi = '';
@@ -50,63 +49,18 @@ function getLocalIp4wifi() {
 }
 
 
-function requireUncached(module) {
-	delete require.cache[require.resolve(module)];
-	return require(module);
-}
-
-
-async function resetGlobalVar() {
-	let configJson = {};
-	if (fs.existsSync(G_CONFIG_PATH)) {
-		configJson = requireUncached(G_CONFIG_PATH);
-	}
-	const lastTimestamp = configJson.lastTimestamp || 0;
-	const resetInterval = configJson.resetInterval || G_RESET_INTERVAL;
-	const curTimestamp = Date.now();
-	if (curTimestamp - lastTimestamp >= resetInterval) {
-		G_START_TIME = curTimestamp;
-		G_END_LOG_FLAG = false;
-		G_IP_FOR_WIFI = '';
-	}
-	return { resetInterval, maxRunTime: configJson.maxRunTime || G_MAX_RUN_TIME };
-}
-
-
-async function writeConfigFile(resetInterval, maxRunTime) {
-	const data = {
-		lastTimestamp: Date.now(),
-		resetInterval,
-		maxRunTime,
-	};
-	fs.writeFileSync(G_CONFIG_PATH, JSON.stringify(data));
-}
-
-
-async function canStopRunning(maxRunTime) {
+async function main() {
+	const now = new Date().toString();
 	const END_TIME = Date.now();
-	if (END_TIME - G_START_TIME >= maxRunTime) {
+	if (END_TIME - G_START_TIME >= G_MAX_RUN_TIME) {
 		if (!G_END_LOG_FLAG) {
 			G_END_LOG_FLAG = true;
-			const now = new Date().toString();
-			console.log(`\n${now} ~ Func:_canStopRunning -- ${JSON.stringify({ END_TIME, G_START_TIME, maxRunTime })}`);
-			console.log(`Func:_canStopRunning is running about ${maxRunTime / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
+			console.log(`\n${now} ~ Func:main -- ${JSON.stringify({ END_TIME, G_START_TIME, G_MAX_RUN_TIME })}`);
+			console.log(`Func:main is running about ${G_MAX_RUN_TIME / 60 / 1000} minutes. Stop now. ~ ${now}\n`);
 		}
-		return true;
+		return;
 	}
-	return false;
-}
-
-
-async function main() {
 	try {
-		const { resetInterval, maxRunTime } = await resetGlobalVar();
-		const isStop = await canStopRunning(maxRunTime);
-		if (isStop) {
-			return;
-		}
-		await writeConfigFile(resetInterval, maxRunTime);
-		const now = new Date().toString();
 		const tmpIp4wifi = getLocalIp4wifi();
 		if (tmpIp4wifi && G_IP_FOR_WIFI === tmpIp4wifi) {
 			console.log(`Func:main is running ... tmpIp4wifi = ${tmpIp4wifi} ~ ${now}`);
@@ -171,8 +125,8 @@ async function main() {
 	}
 )();
 
-
 process.on('SIGINT', () => {
+	G_START_TIME = 0;
 	process.exit(0);
 });
 
