@@ -7,7 +7,7 @@
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
 const { networkInterfaces } = require('os');
-// const { blinkRYGLightsOneRound } = require('./red-green-light');
+const { blinkRYGLightsOneRound } = require('./red-green-light');
 
 AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account-long-term'});
 // Set region
@@ -103,7 +103,7 @@ async function main() {
 		publishTextPromise.then(
 			async function(data) {
 				console.log(`Message ↓ \n\n${params4publish.Message}\nhas been sent to the topic ${params4publish.TopicArn}.\n\n`);
-				// await blinkRYGLightsOneRound();
+				await blinkRYGLightsOneRound();
 			}).catch(
 				function(err) {
 					console.error('\n_publishTextPromise:', err, err.stack, '\n');

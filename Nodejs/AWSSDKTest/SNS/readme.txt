@@ -7,7 +7,7 @@ add
 `
 PATH=... ...
 
-@reboot pm2 ls && pm2 flush && cd $HOME/Exercise/AWSSDKTest/SNS && ./GO-PM2-App.sh > ./logs/crontab.log 2>&1
+@reboot cd $HOME/Exercise/AWSSDKTest/SNS && ./GO-PM2-App.sh > ./logs/crontab.log 2>&1
 `
 at the end of crontab
 
