@@ -14,3 +14,5 @@ at the end of crontab
 
 $ crontab -l
 
+$ grep CRON /var/log/syslog
+
