@@ -3,7 +3,7 @@
 
 // Load the AWS SDK for Node.js and set the credentials
 const AWS = require('aws-sdk');
-AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
+AWS.config.credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account-long-term'});
 // Set the region 
 AWS.config.update({region: 'us-west-2'});
 // Create EC2 service object
