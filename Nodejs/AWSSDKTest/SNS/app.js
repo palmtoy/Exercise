@@ -4,7 +4,9 @@
 const Gpio = require('onoff').Gpio; // Gpio class
 const { doReport } = require('./report-ip-sns');
 
-const BTN_FOR_GPIO = new Gpio(16, 'in', 'falling', {debounceTimeout: 10});
+const G_TRIGGER_EDGE = 'falling';
+// const G_TRIGGER_EDGE = 'rising';
+const BTN_FOR_GPIO = new Gpio(16, 'in', G_TRIGGER_EDGE, {debounceTimeout: 10});
 
 let G_IS_REPORTING = false;
 const G_REPORTING_INTERVAL = 30 * 1000; // 30s
