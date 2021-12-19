@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 // In RaspberryPi -- $ pinout
-const sensorObj = require("node-dht-sensor");
+const sensorObj = require('node-dht-sensor');
+const sensorPromise = require('node-dht-sensor').promises;
 
 const G_SENSOR_MODEL = 11; // DHT 的型号为 DHT11; 
 const GPIO_NUM = 20; // 信号输入接GPIO20, 即引脚38
@@ -25,10 +26,28 @@ async function collectAndPrint() {
 	});
 }
 
+
+async function collectAndPrintPromise() {
+  try {
+		const now = new Date().toString();
+    const res = await sensorPromise.read(G_SENSOR_MODEL, GPIO_NUM);
+    console.log(
+			`${now} ↓\n` +
+      `temp: ${res.temperature.toFixed(1)}°C, ` +
+        `humidity: ${res.humidity.toFixed(1)}%`
+    );
+  } catch (err) {
+    console.error("Failed to read sensor data:", err);
+		console.error(`${now} ~ _collectAndPrint: "${err.message}"\n${err.stack}\n`);
+  }
+}
+
+
 async function go() {
 	while(true) {
 		try {
-			await collectAndPrint();
+			// await collectAndPrint();
+			await collectAndPrintPromise();
 		} catch (e) {}
 		await sleep(G_COLLECT_INTERVAL);
 	}
