@@ -20,5 +20,5 @@ if __name__ == "__main__":
     main()
 
 
-# python3 prt-argv.py 3 6
+# python3 handle-argv.py 3 6
 
