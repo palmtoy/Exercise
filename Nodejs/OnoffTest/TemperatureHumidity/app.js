@@ -7,7 +7,7 @@ const { PythonShell } = require('python-shell');
 
 const G_SENSOR_MODEL = 11; // DHT 的型号为 DHT11; 
 const GPIO_NUM = 20; // 信号输入接GPIO20, 即引脚38
-const G_COLLECT_INTERVAL = 60 * 1000; // 60s
+const G_COLLECT_INTERVAL = 10 * 60 * 1000; // 10 minutes
 const G_MIN_SHOW_NUM = 2; // 显示 温度 | 湿度 最少的数字位数  
 
 async function sleep(interval) {
