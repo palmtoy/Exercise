@@ -7,8 +7,8 @@
     <a-button type="dashed">
       Dashed
     </a-button>
-    <a-button type="danger">
-      Danger
+    <a-button type="danger" @click="handleHappyClick">
+      Happy :)
     </a-button>
     <a-config-provider :auto-insert-space-in-button="false">
       <a-button type="primary">
@@ -23,3 +23,17 @@
     </a-button>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    }
+  },
+  methods: {
+    handleHappyClick() {
+      this.$emit('handleBtnHappyClick');
+    },
+  },
+};
+</script>
