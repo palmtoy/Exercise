@@ -1,0 +1,8 @@
+{
+	"apps": [{
+		"name": "show-temperature-humidity",
+		"script": "node ./app.js",
+		"boot-cmd-for-tips": "$ pm2 start pm2.config-th.json"
+	}]
+}
+
