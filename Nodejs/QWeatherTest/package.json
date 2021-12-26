@@ -1,0 +1,11 @@
+{
+  "name": "qweathertest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "python-shell": "^3.0.1"
+  }
+}

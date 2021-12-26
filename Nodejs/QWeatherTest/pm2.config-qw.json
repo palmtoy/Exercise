@@ -1,0 +1,8 @@
+{
+	"apps": [{
+		"name": "Beijing-Changping-Weather",
+		"script": "node ./app.js",
+		"boot-cmd-for-tips": "$ pm2 start pm2.config-qw.json"
+	}]
+}
+
