@@ -70,9 +70,9 @@ export default {
     },
     handleGenerateImage: function () {
       this.weatherIcon = 102;
-      HtmlToImage.toPng(this.$refs.imgWeatherIcon).then(function (dataUrl) {
+      HtmlToImage.toPng(this.$refs.imgWeatherIcon).then(dataUrl => {
         const linkObj = document.createElement("a");
-        linkObj.download = "myWeatherIcon.png";
+        linkObj.download = this.weatherIcon + ".png";
         linkObj.href = dataUrl;
         linkObj.click();
       });
@@ -80,6 +80,7 @@ export default {
   },
   mounted() {
     this.weatherIcon = 101;
+    // this.$nextTick(this.handleGenerateImage);
     // setTimeout(this.handleGenerateImage, 6000);
   },
 };
