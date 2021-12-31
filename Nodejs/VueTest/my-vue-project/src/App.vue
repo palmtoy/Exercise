@@ -3,8 +3,8 @@
     <img alt="Vue logo" src="./assets/logo.png" width="60px" />
     <hello-world msg="Welcome to My Vue.js App" />
     <img
-      ref="weatherIcon"
-      src="./assets/icons/499.svg"
+      ref="imgWeatherIcon"
+      :src="require(`@/assets/icons/${weatherIcon}.svg`)"
       alt="QWeather"
       width="32"
       height="32"
@@ -34,8 +34,7 @@ export default {
   data() {
     return {
       multiSelectItemList: [],
-      iconsPath: "./assets/icons/",
-      weatherIcon: "",
+      weatherIcon: 100,
     };
   },
   name: "App",
@@ -70,17 +69,18 @@ export default {
       );
     },
     handleGenerateImage: function () {
-      HtmlToImage.toPng(this.$refs.weatherIcon).then(function (dataUrl) {
-        console.log(`_handleGenerateImage ~ dataUrl = ${dataUrl}`);
+      this.weatherIcon = 102;
+      HtmlToImage.toPng(this.$refs.imgWeatherIcon).then(function (dataUrl) {
         const linkObj = document.createElement("a");
-        linkObj.download = "weatherIcon.png";
+        linkObj.download = "myWeatherIcon.png";
         linkObj.href = dataUrl;
         linkObj.click();
       });
     },
   },
   mounted() {
-    this.weatherIcon = this.iconsPath + "100.svg";
+    this.weatherIcon = 101;
+    // setTimeout(this.handleGenerateImage, 6000);
   },
 };
 </script>
