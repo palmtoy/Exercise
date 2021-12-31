@@ -7,7 +7,7 @@
       <a-config-provider :auto-insert-space-in-button="false">
         <a-button type="primary"> Button </a-button>
       </a-config-provider>
-      <a-button type="link"> Link </a-button>
+      <a-button type="link" @click="handleLinkClick"> GenerateImage </a-button>
     </a-space>
   </div>
 </template>
@@ -27,7 +27,10 @@ export default {
     handleEvtWithEvtBus() {
       const now = new Date().toString();
       console.log(`${now} ~ MultiButton: _handleEvtWithEvtBus is running ...`);
-      this.$root.$emit('defaultBtnEvtWithEvtBus', { now, popNum: 2 });
+      this.$root.$emit("defaultBtnEvtWithEvtBus", { now, popNum: 2 });
+    },
+    handleLinkClick() {
+      this.$emit("handleGenerateImage");
     },
   },
 };

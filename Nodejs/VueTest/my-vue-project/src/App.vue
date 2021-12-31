@@ -2,9 +2,19 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" width="60px" />
     <hello-world msg="Welcome to My Vue.js App" />
+    <img
+      ref="weatherIcon"
+      src="./assets/icons/499.svg"
+      alt="QWeather"
+      width="32"
+      height="32"
+    />
+    <br />
+    <br />
     <multi-button
       @handleBtnHappyClick="handleBtnHappyClick"
       @handleBtnPrimaryClick="handleBtnPrimaryClick"
+      @handleGenerateImage="handleGenerateImage"
     />
     <br />
     <multi-select
@@ -18,11 +28,14 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import MultiButton from "./components/MultiButton.vue";
 import MultiSelect from "./components/MultiSelect.vue";
+import * as HtmlToImage from "html-to-image";
 
 export default {
   data() {
     return {
       multiSelectItemList: [],
+      iconsPath: "./assets/icons/",
+      weatherIcon: "",
     };
   },
   name: "App",
@@ -56,6 +69,18 @@ export default {
         )}`
       );
     },
+    handleGenerateImage: function () {
+      HtmlToImage.toPng(this.$refs.weatherIcon).then(function (dataUrl) {
+        console.log(`_handleGenerateImage ~ dataUrl = ${dataUrl}`);
+        const linkObj = document.createElement("a");
+        linkObj.download = "weatherIcon.png";
+        linkObj.href = dataUrl;
+        linkObj.click();
+      });
+    },
+  },
+  mounted() {
+    this.weatherIcon = this.iconsPath + "100.svg";
   },
 };
 </script>
