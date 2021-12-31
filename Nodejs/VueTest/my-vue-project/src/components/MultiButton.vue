@@ -1,8 +1,8 @@
 <template>
   <div>
-    <a-space size='large'>
+    <a-space size="large">
       <a-button type="primary" @click="handlePrimaryClick"> Primary </a-button>
-      <a-button>Default</a-button>
+      <a-button @click="handleEvtWithEvtBus">Default</a-button>
       <a-button type="danger" @click="handleHappyClick"> Happy :) </a-button>
       <a-config-provider :auto-insert-space-in-button="false">
         <a-button type="primary"> Button </a-button>
@@ -23,6 +23,11 @@ export default {
     },
     handlePrimaryClick() {
       this.$emit("handleBtnPrimaryClick");
+    },
+    handleEvtWithEvtBus() {
+      const now = new Date().toString();
+      console.log(`${now} ~ MultiButton: _handleEvtWithEvtBus is running ...`);
+      this.$root.$emit('defaultBtnEvtWithEvtBus', { now, popNum: 2 });
     },
   },
 };

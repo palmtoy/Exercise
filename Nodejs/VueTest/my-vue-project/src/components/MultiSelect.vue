@@ -25,8 +25,10 @@ export default {
       this.$emit("handleMultiSelectChange", itemList);
     },
 
-    delItemFromSelectedField() {
-      this.selectedItemList.pop();
+    delItemFromSelectedField(popNum = 1) {
+      for (let i = 0; i < popNum; i++) {
+        this.selectedItemList.pop();
+      }
       console.log(
         `MultiSelect.vue ~ _delItemFromSelectedField: selectedItemList = ${JSON.stringify(
           this.selectedItemList
@@ -36,6 +38,10 @@ export default {
   },
   mounted() {
     this.handleChange(this.selectedItemList);
+    this.$root.$on('defaultBtnEvtWithEvtBus', (msgJson) => {
+      console.log(`MultiSelect ~`, msgJson);
+      this.delItemFromSelectedField(msgJson.popNum);
+    });
   },
 };
 </script>
