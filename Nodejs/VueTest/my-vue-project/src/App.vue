@@ -29,6 +29,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 import MultiButton from "./components/MultiButton.vue";
 import MultiSelect from "./components/MultiSelect.vue";
 import * as HtmlToImage from "html-to-image";
+const G_SVG_LIST = require("./config/svgList.json");
 
 export default {
   data() {
@@ -68,18 +69,30 @@ export default {
         )}`
       );
     },
-    handleGenerateImage: function () {
-      this.weatherIcon = 102;
-      HtmlToImage.toPng(this.$refs.imgWeatherIcon).then(dataUrl => {
-        const linkObj = document.createElement("a");
-        linkObj.download = this.weatherIcon + ".png";
-        linkObj.href = dataUrl;
-        linkObj.click();
-      });
+    handleGenerateImage: async function () {
+      console.log(`G_SVG_LIST = ${JSON.stringify(G_SVG_LIST)}`);
+      const len = G_SVG_LIST.length;
+      for (let i = 0; i < len; i++) {
+        this.weatherIcon = G_SVG_LIST[i];
+        await new Promise((resolve) => {
+          try {
+            HtmlToImage.toPng(this.$refs.imgWeatherIcon).then((dataUrl) => {
+              const linkObj = document.createElement("a");
+              linkObj.download = this.weatherIcon + ".png";
+              linkObj.href = dataUrl;
+              linkObj.click();
+              return resolve();
+            });
+          } catch (e) {
+            console.error(
+              `_handleGenerateImage error -- msg: "${e.message}"\n${e.stack}`
+            );
+          }
+        });
+      }
     },
   },
   mounted() {
-    this.weatherIcon = 101;
     // this.$nextTick(this.handleGenerateImage);
     // setTimeout(this.handleGenerateImage, 6000);
   },
