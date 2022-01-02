@@ -5,6 +5,7 @@
   "author": "palmtoy",
   "license": "MIT",
   "dependencies": {
+    "i2c-bus": "^5.2.2",
     "oled-i2c-bus": "^1.0.12",
     "png-to-lcd": "^1.1.0"
   }
