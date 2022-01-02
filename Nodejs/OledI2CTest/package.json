@@ -1,0 +1,11 @@
+{
+  "name": "oledi2ctest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "oled-i2c-bus": "^1.0.12",
+    "png-to-lcd": "^1.1.0"
+  }
+}
