@@ -29,7 +29,7 @@ async function fetchWeatherData() {
 		// const url = `/v7/weather/now`;
 		const url = `/v7/weather/3d`;
 		const reqConfig = {
-			params: { location: G_LOC_CHANGPING, key: G_QWEATHER_TOKEN.key }
+			params: { location: G_LOC_CHANGPING, lang: 'en', key: G_QWEATHER_TOKEN.key }
 		};
 		const res = await axiosObj.get(url, reqConfig);
 		if (res && res.status === CODE_OK) {
