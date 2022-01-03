@@ -1,0 +1,8 @@
+{
+	"apps": [{
+		"name": "rpi-key-switch-red-green-light",
+		"script": "node ./key-switch.js",
+		"boot-cmd-for-tips": "$ pm2 start pm2.config-switch.json"
+	}]
+}
+
