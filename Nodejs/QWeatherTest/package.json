@@ -6,6 +6,9 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.24.0",
-    "python-shell": "^3.0.1"
+    "python-shell": "^3.0.1",
+    "i2c-bus": "^5.2.2",
+    "oled-i2c-bus": "^1.0.12",
+    "oled-font-pack": "^1.0.1"
   }
 }

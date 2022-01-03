@@ -7,6 +7,7 @@
   "dependencies": {
     "i2c-bus": "^5.2.2",
     "oled-font-pack": "^1.0.1",
-    "oled-i2c-bus": "^1.0.12"
+    "oled-i2c-bus": "^1.0.12",
+    "pngjs": "^6.0.0"
   }
 }
