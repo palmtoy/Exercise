@@ -21,6 +21,15 @@
       ref="multiSelectComp"
       @handleMultiSelectChange="handleMultiSelectChange"
     />
+    <br />
+    <my-table
+      style="
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+      "
+    />
   </div>
 </template>
 
@@ -28,6 +37,7 @@
 import HelloWorld from "./components/HelloWorld.vue";
 import MultiButton from "./components/MultiButton.vue";
 import MultiSelect from "./components/MultiSelect.vue";
+import MyTable from "./components/MyTable.vue";
 import * as HtmlToImage from "html-to-image";
 const G_SVG_LIST = require("./config/svgList.json");
 
@@ -35,7 +45,7 @@ export default {
   data() {
     return {
       multiSelectItemList: [],
-      weatherIcon: 100,
+      weatherIcon: 103,
     };
   },
   name: "App",
@@ -43,6 +53,7 @@ export default {
     "hello-world": HelloWorld,
     "multi-button": MultiButton,
     "multi-select": MultiSelect,
+    "my-table": MyTable,
   },
   methods: {
     handleMultiSelectChange: function (itemList) {
