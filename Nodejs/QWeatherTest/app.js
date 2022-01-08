@@ -8,6 +8,7 @@ const G_QWEATHER_TOKEN = require(`${os.homedir()}/.ssh/qweather_token.json`);
 const G_QWEATHER_INTERVAL = 10 * 60 * 1000; // unit: minute(s)
 const G_LOC_CHANGPING = '101010700'; // Beijing, Changping
 const CODE_OK = 200;
+const G_NIGHT_HOUR = 18; // after 18:00:00, show the weather data of textNight
 
 
 const axiosObj = axios.create({
@@ -48,10 +49,11 @@ async function fetchWeatherData() {
 }
 
 function setWeatherListToOled(weatherData) {
+	const h = new Date().getHours();
 	const weatherList = [];
 	for (let i = 0; i < weatherData.length; i++) {
 		const w = weatherData[i];
-		let firstLine = w.textDay;
+		let firstLine = ( h < G_NIGHT_HOUR ? w.textDay : w.textNight ) || w.textDay;
 		switch(i) {
 			case 0:
 				firstLine = 'Today ' + firstLine;
