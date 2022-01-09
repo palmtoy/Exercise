@@ -8,6 +8,7 @@
   "dependencies": {
     "node-dht-sensor": "^0.4.3",
     "onoff": "^6.0.3",
+    "pigpio": "^3.3.1",
     "python-shell": "^3.0.1"
   }
 }
