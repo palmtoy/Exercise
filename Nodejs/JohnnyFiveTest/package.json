@@ -1,0 +1,13 @@
+{
+  "name": "johnnyfivetest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "johnny-five": "^2.1.0",
+    "pigpio": "^1.3.0",
+    "raspi-io": "^11.0.0"
+  }
+}
