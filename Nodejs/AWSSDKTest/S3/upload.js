@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const path = require('path');
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
 AWS.config.credentials = new AWS.SharedIniFileCredentials({ profile: 'personal-account-long-term' });
@@ -53,7 +52,7 @@ async function uploadFile(bucketName, filePath) {
       return reject(e);
     });
     uploadParams.Body = fileStream;
-    uploadParams.Key = path.basename(filePath);
+    uploadParams.Key = filePath;
     console.table({ Key: uploadParams.Key, Bucket: uploadParams.Bucket });
 
     // call S3 to retrieve upload file to specified bucket
@@ -68,30 +67,10 @@ async function uploadFile(bucketName, filePath) {
   });
 }
 
-async function deleteObjects(bucketName, fileName) {
-  return new Promise((resolve, reject) => {
-    const params = {
-      Bucket: bucketName,
-      Delete: {
-        Objects: [{ Key: fileName }],
-        Quiet: false,
-      },
-    };
-    s3.deleteObjects(params, function (e, data) {
-      if (e) {
-        console.error(`_deleteObjects error -- msg: "${e.message}"\n${e.stack}`);
-        return reject(e);
-      } else {
-        return resolve(data);
-      }
-    });
-  });
-}
-
-function getSignedUrl(bucketName, fileName) {
+function getSignedUrl(bucketName, filePath) {
   return s3.getSignedUrl('putObject', {
     Bucket: bucketName,
-    Key: fileName,
+    Key: filePath,
     Expires: 60 * 60 * 12, // signedUrlExpireSeconds
   });
 }
@@ -111,19 +90,14 @@ function getSignedUrl(bucketName, fileName) {
   const s3objListA = await listObjects(bucketName);
   console.log(`s3objListA = ${JSON.stringify(s3objListA)}`);
 
-  const fileName = 'Napoleon.jpeg';
-
-  const filePath = `./${fileName}`;
+  const filePath = 'ref-images/Napoleon.jpeg';
   const s3UploadRet = await uploadFile(bucketName, filePath);
   console.table(s3UploadRet);
 
   const s3objListB = await listObjects(bucketName);
   console.log(`s3objListB = ${JSON.stringify(s3objListB)}`);
 
-  const s3delRes = await deleteObjects(bucketName, fileName);
-  console.log(`s3delRes = ${JSON.stringify(s3delRes)}`);
-
-  const s3presignedURL = getSignedUrl(bucketName, fileName);
+  const s3presignedURL = getSignedUrl(bucketName, filePath);
   console.log(`s3presignedURL = ${s3presignedURL}`);
-  // $ curl -v https://my-test-bucket.s3.us-east-1.amazonaws.com/Napoleon.jpeg?AWSAccessKeyId=A***Z&Expires=1632111019&Signature=z***a --upload-file ./Napoleon.jpeg
+  // $ curl -v https://my-test-bucket.s3.us-east-1.amazonaws.com/ref-images/Napoleon.jpeg?AWSAccessKeyId=A***Z&Expires=1632111019&Signature=z***a --upload-file ./ref-images/Napoleon.jpeg
 })();
