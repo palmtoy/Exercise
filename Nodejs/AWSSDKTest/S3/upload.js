@@ -11,6 +11,7 @@ AWS.config.update({ region: 'us-west-2' });
 // Create S3 service object
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
+const G_CONTENT_TYPE = 'binary';
 const CODE_OK = 200;
 
 async function listBuckets() {
@@ -45,21 +46,21 @@ async function listObjects(bucketName) {
   });
 }
 
-function getSignedUrl(bucketName, filePath, contentType) {
+function getSignedUrl(bucketName, filePath) {
   return s3.getSignedUrl('putObject', {
     Bucket: bucketName,
     Key: filePath,
     Expires: 60 * 60 * 12, // signedUrlExpireSeconds
-    ContentType: contentType,
+    ContentType: G_CONTENT_TYPE,
   });
 }
 
-async function uploadFileWithSignedUrl(url, filePath, contentType) {
+async function uploadFileWithSignedUrl(url, filePath) {
   const retJson = { isOK: false, statusText: 'failed' };
   const fileData = fs.readFileSync(filePath);
   const reqConfig = {
     headers: {
-      'Content-Type': contentType,
+      'Content-Type': G_CONTENT_TYPE,
     },
     timeout: 9 * 1000, // unit: ms
   };
@@ -91,12 +92,11 @@ async function uploadFileWithSignedUrl(url, filePath, contentType) {
   console.log(`s3objListA = ${JSON.stringify(s3objListA)}`);
 
   const filePath = 'ref-images/Napoleon.jpeg';
-  const contentType = 'image/jpeg';
-  const s3presignedURL = getSignedUrl(bucketName, filePath, contentType);
+  const s3presignedURL = getSignedUrl(bucketName, filePath);
   console.log(`s3presignedURL = ${s3presignedURL}`);
   // $ curl -v https://my-test-bucket.s3.us-east-1.amazonaws.com/ref-images/Napoleon.jpeg?AWSAccessKeyId=A***Z&Expires=1632111019&Signature=z***a --upload-file ./ref-images/Napoleon.jpeg
 
-  const s3UploadRet = await uploadFileWithSignedUrl(s3presignedURL, filePath, contentType);
+  const s3UploadRet = await uploadFileWithSignedUrl(s3presignedURL, filePath);
   if (s3UploadRet && s3UploadRet.isOK) {
     console.log(`_s3UploadRet: ${filePath} upload ${s3UploadRet.statusText}`);
   } else {
