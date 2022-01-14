@@ -11,6 +11,8 @@ AWS.config.update({ region: 'us-west-2' });
 // Create S3 service object
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
+const G_CONTENT_TYPE = 'binary';
+
 async function listBuckets() {
   return new Promise((resolve, reject) => {
     // Call S3 to list the buckets
@@ -45,11 +47,12 @@ async function deleteObjects(bucketName, fileName) {
   });
 }
 
-function getSignedUrl(bucketName, fileName) {
+function getSignedUrl(bucketName, filePath) {
   return s3.getSignedUrl('putObject', {
     Bucket: bucketName,
-    Key: fileName,
+    Key: filePath,
     Expires: 60 * 60 * 12, // signedUrlExpireSeconds
+    ContentType: G_CONTENT_TYPE,
   });
 }
 
