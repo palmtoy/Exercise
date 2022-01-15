@@ -4,9 +4,9 @@ const Raspi = require('raspi-io').RaspiIO;
 const five = require('johnny-five');
 
 const G_FORWARD_SPEED = 100;
-const G_REVERSE_SPEED = 100;
+const G_REVERSE_SPEED = 50;
 const G_RUN_TIME = 3 * 1000; // unit: ms
-const G_MAX_LOOP_NUM = 5;
+const G_MAX_LOOP_NUM = 3;
 
 const board = new five.Board({
 	io: new Raspi()
@@ -16,29 +16,28 @@ board.on('ready', () => {
 	// Create a new `motor` hardware instance.
 	const motor = new five.Motor({
 		pins: {
-			pwm: 'GPIO17',
-			dir: 'GPIO27',
+			dir: 'GPIO17',
+			pwm: 'GPIO27',
 		},
 	});
 
 	motor.on('start', () => {
-		console.log(`start: ${Date.now()}`);
+		console.log(`start: ${new Date().toString()}`);
 	});
 
 	motor.on('stop', () => {
-		console.log(`automated stop on timer: ${Date.now()}`);
+		console.log(`\nstop: ${new Date().toString()}`);
 	});
 
 	motor.on('forward', () => {
-		console.log(`forward: ${Date.now()}`);
-		// demonstrate switching to reverse after 5 seconds
+		console.log(`forward: ${new Date().toString()}`);
+		// demonstrate switching to reverse
 		board.wait(G_RUN_TIME, () => motor.reverse(G_REVERSE_SPEED));
 	});
 
 	let loopNum = 0;
 	motor.on('reverse', () => {
-		console.log(`reverse: ${Date.now()}`);
-		// demonstrate stopping after 5 seconds
+		console.log(`reverse: ${new Date().toString()}`);
 		board.wait(G_RUN_TIME, () => {
 			if (++loopNum >= G_MAX_LOOP_NUM) {
 				motor.stop();
