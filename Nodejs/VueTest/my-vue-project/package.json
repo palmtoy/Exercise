@@ -36,7 +36,9 @@
     },
     "rules": {
       "no-console": 0,
-      "no-unused-vars": 0
+      "no-unused-vars": 0,
+      "vue/no-unused-vars": 0,
+      "vue/no-parsing-error": "warn"
     }
   },
   "browserslist": [
