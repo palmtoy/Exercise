@@ -13,41 +13,74 @@ const board = new five.Board({
 });
 
 board.on('ready', () => {
-	// Create a new `motor` hardware instance.
-	const motor = new five.Motor({
+	// create 2 `motor` hardware instances
+	const motorLeft = new five.Motor({
+		pins: {
+			dir: 'GPIO9',
+			pwm: 'GPIO10',
+		},
+	});
+
+	const motorRight = new five.Motor({
 		pins: {
 			dir: 'GPIO17',
 			pwm: 'GPIO27',
 		},
 	});
 
-	motor.on('start', () => {
+	motorLeft.on('start', () => {
 		console.log(`start: ${new Date().toString()}`);
 	});
 
-	motor.on('stop', () => {
+	motorLeft.on('stop', () => {
 		console.log(`\nstop: ${new Date().toString()}`);
 	});
 
-	motor.on('forward', () => {
+	motorLeft.on('forward', () => {
 		console.log(`forward: ${new Date().toString()}`);
-		// demonstrate switching to reverse
-		board.wait(G_RUN_TIME, () => motor.reverse(G_REVERSE_SPEED));
+		board.wait(G_RUN_TIME, () => motorLeft.reverse(G_REVERSE_SPEED));
 	});
 
-	let loopNum = 0;
-	motor.on('reverse', () => {
+	motorRight.on('start', () => {
+		console.log(`start: ${new Date().toString()}`);
+	});
+
+	motorRight.on('stop', () => {
+		console.log(`\nstop: ${new Date().toString()}`);
+	});
+
+	motorRight.on('forward', () => {
+		console.log(`forward: ${new Date().toString()}`);
+		board.wait(G_RUN_TIME, () => motorRight.reverse(G_REVERSE_SPEED));
+	});
+
+	let loopNumLeft = 0;
+	motorLeft.on('reverse', () => {
 		console.log(`reverse: ${new Date().toString()}`);
 		board.wait(G_RUN_TIME, () => {
-			if (++loopNum >= G_MAX_LOOP_NUM) {
-				motor.stop();
+			if (++loopNumLeft >= G_MAX_LOOP_NUM) {
+				motorLeft.stop();
 				process.exit(0);
 			} else {
-				motor.forward(G_FORWARD_SPEED);
+				motorLeft.forward(G_FORWARD_SPEED);
 			}
 		});
 	});
 
-	motor.forward(G_FORWARD_SPEED);
+	let loopNumRight = 0;
+	motorRight.on('reverse', () => {
+		console.log(`reverse: ${new Date().toString()}`);
+		board.wait(G_RUN_TIME, () => {
+			if (++loopNumRight >= G_MAX_LOOP_NUM) {
+				motorRight.stop();
+				process.exit(0);
+			} else {
+				motorRight.forward(G_FORWARD_SPEED);
+			}
+		});
+	});
+
+	motorLeft.forward(G_FORWARD_SPEED);
+	motorRight.reverse(G_FORWARD_SPEED);
 });
 
