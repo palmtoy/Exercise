@@ -22,7 +22,7 @@ board.on('ready', async () => {
 	const servo = new five.Servo({
 		controller: 'PCA9685',
 		address: 0x40, // $ i2cdetect -y 1
-		pin: 0,
+		pin: 15,
 		invert: false,
 		// invert: true,
 		range: [0, G_MAX_DEGREE],
@@ -48,6 +48,7 @@ board.on('ready', async () => {
 		}
 		if (++loopNum >= G_MAX_LOOP_NUM) {
 			await funcServoTo(0);
+			servo.stop();
 			process.exit();	
 		}
 	}
