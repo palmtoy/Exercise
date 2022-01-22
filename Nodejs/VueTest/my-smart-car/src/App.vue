@@ -8,6 +8,7 @@
       @handleBtnBack="handleBtnBack"
       @handleBtnLeft="handleBtnLeft"
       @handleBtnRight="handleBtnRight"
+      @handleBtnStop="handleBtnStop"
     />
     <br />
   </div>
@@ -37,6 +38,9 @@ export default {
     },
     handleBtnRight: function () {
       console.log(`${new Date().toString()} ~ _handleBtnRight is running ...`);
+    },
+    handleBtnStop: function () {
+      console.log(`${new Date().toString()} ~ _handleBtnStop is running ...`);
     },   
   },
   mounted() {},
