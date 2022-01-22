@@ -21,6 +21,7 @@ board.on('ready', async () => {
 	// Initialize the servo instance
 	const servo = new five.Servo({
 		controller: 'PCA9685',
+		address: 0x40, // $ i2cdetect -y 1
 		pin: 0,
 		invert: false,
 		// invert: true,
@@ -39,10 +40,10 @@ board.on('ready', async () => {
 
 	let loopNum = 0;
 	while(true) {
-		for (let d = 0; d <= G_MAX_DEGREE; d += 15) {
+		for (let d = 0; d <= G_MAX_DEGREE; d += 30) {
 			await funcServoTo(d);
 		}
-		for (let d = G_MAX_DEGREE; d >= 0; d -= 15) {
+		for (let d = G_MAX_DEGREE; d >= 0; d -= 30) {
 			await funcServoTo(d);
 		}
 		if (++loopNum >= G_MAX_LOOP_NUM) {
