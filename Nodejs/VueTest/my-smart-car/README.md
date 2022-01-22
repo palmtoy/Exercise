@@ -1,4 +1,4 @@
-# my-smart-car
+# my-vue-project
 
 ## Project setup
 ```
