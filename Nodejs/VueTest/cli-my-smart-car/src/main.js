@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Antd from 'ant-design-vue';
+import { Button, Space } from 'ant-design-vue';
 import App from './App.vue';
 import 'ant-design-vue/dist/antd.css';
 import axios from 'axios';
@@ -7,7 +7,8 @@ import VueAxios from 'vue-axios';
 
 Vue.config.productionTip = false;
 
-Vue.use(Antd);
+Vue.use(Button);
+Vue.use(Space);
 Vue.use(VueAxios, axios);
 
 new Vue({
