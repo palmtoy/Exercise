@@ -1,0 +1,15 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "johnny-five": "^2.1.0",
+    "pigpio": "^1.3.0",
+    "raspi-io": "^11.0.0"
+  }
+}

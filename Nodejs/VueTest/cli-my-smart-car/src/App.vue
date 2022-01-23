@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/F1.jpg" width="160" height="76" />
     <CarController
       id="carController"
       msg="Welcome to Car Controller :>"
@@ -16,34 +15,61 @@
 
 <script>
 import CarController from './components/CarController.vue';
-const G_SVG_LIST = require('./config/svgList.json');
+const G_SRV_BASE_URL = 'http://192.168.0.116:9527/';
 
 export default {
   data() {
-    return {};
+    return {
+			isMotorReady: false,
+		};
   },
-  name: 'App',
+
+  name: 'Car-Controller',
+
   components: {
     CarController,
   },
   methods: {
     handleBtnForward: function () {
       console.log(`${new Date().toString()} ~ _handleBtnForward is running ...`);
+			const url = G_SRV_BASE_URL + 'carGoForward';
+			this.$http.post(url).then(res => {
+				console.log(`${new Date().toString()} ~ _handleBtnForward: ${res.data}`)
+			});
     },
+
     handleBtnBack: function () {
       console.log(`${new Date().toString()} ~ _handleBtnBack is running ...`);
+			const url = G_SRV_BASE_URL + 'carGoBack';
+			this.$http.post(url).then(res => {
+				console.log(`${new Date().toString()} ~ _handleBtnBack: ${res.data}`)
+			});
     },
+
     handleBtnLeft: function () {
       console.log(`${new Date().toString()} ~ _handleBtnLeft is running ...`);
+			const url = G_SRV_BASE_URL + 'carTurnLeft';
+			this.$http.post(url).then(res => {
+				console.log(`${new Date().toString()} ~ _handleBtnLeft: ${res.data}`)
+			});
     },
+
     handleBtnRight: function () {
       console.log(`${new Date().toString()} ~ _handleBtnRight is running ...`);
+			const url = G_SRV_BASE_URL + 'carTurnRight';
+			this.$http.post(url).then(res => {
+				console.log(`${new Date().toString()} ~ _handleBtnRight: ${res.data}`)
+			});
     },
+
     handleBtnStop: function () {
       console.log(`${new Date().toString()} ~ _handleBtnStop is running ...`);
+			const url = G_SRV_BASE_URL + 'carStop';
+			this.$http.post(url).then(res => {
+				console.log(`${new Date().toString()} ~ _handleBtnStop: ${res.data}`)
+			});
     },   
   },
-  mounted() {},
 };
 </script>
 
@@ -60,3 +86,4 @@ export default {
   margin-top: 10px;
 }
 </style>
+
