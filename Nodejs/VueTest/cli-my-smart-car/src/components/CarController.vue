@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img id="img" alt="Vue logo" src="../assets/F1.jpg" width="160" height="76" />
-    <h3>{{ msg }}</h3>
+    <img alt="Vue logo" src="../assets/F1.jpg" width="160" height="76" />
+    <h3 id="h3msg">{{ msg }}</h3>
     <div id="btns">
       <a-button type="primary" icon="caret-up" size="large" @click="handleBtnForward"
         >前进</a-button
@@ -65,8 +65,8 @@ export default {
 </script>
 
 <style>
-#img {
-  margin: 60px 0 0;
+#h3msg {
+  margin: 20px 0 0;
 }
 #btns {
   margin-top: 100px;
