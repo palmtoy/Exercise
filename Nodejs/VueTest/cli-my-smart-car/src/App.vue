@@ -83,6 +83,6 @@ export default {
   margin-top: 20px;
 }
 #carController {
-  margin-top: 10px;
+  margin-top: 80px;
 }
 </style>
