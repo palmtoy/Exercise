@@ -20,8 +20,8 @@ const G_SRV_BASE_URL = 'http://192.168.0.116:9527/';
 export default {
   data() {
     return {
-			isMotorReady: false,
-		};
+      isMotorReady: false,
+    };
   },
 
   name: 'Car-Controller',
@@ -32,43 +32,43 @@ export default {
   methods: {
     handleBtnForward: function () {
       console.log(`${new Date().toString()} ~ _handleBtnForward is running ...`);
-			const url = G_SRV_BASE_URL + 'carGoForward';
-			this.$http.post(url).then(res => {
-				console.log(`${new Date().toString()} ~ _handleBtnForward: ${res.data}`)
-			});
+      const url = G_SRV_BASE_URL + 'carGoForward';
+      this.$http.post(url).then((res) => {
+        console.log(`${new Date().toString()} ~ _handleBtnForward: ${res.data}`);
+      });
     },
 
     handleBtnBack: function () {
       console.log(`${new Date().toString()} ~ _handleBtnBack is running ...`);
-			const url = G_SRV_BASE_URL + 'carGoBack';
-			this.$http.post(url).then(res => {
-				console.log(`${new Date().toString()} ~ _handleBtnBack: ${res.data}`)
-			});
+      const url = G_SRV_BASE_URL + 'carGoBack';
+      this.$http.post(url).then((res) => {
+        console.log(`${new Date().toString()} ~ _handleBtnBack: ${res.data}`);
+      });
     },
 
     handleBtnLeft: function () {
       console.log(`${new Date().toString()} ~ _handleBtnLeft is running ...`);
-			const url = G_SRV_BASE_URL + 'carTurnLeft';
-			this.$http.post(url).then(res => {
-				console.log(`${new Date().toString()} ~ _handleBtnLeft: ${res.data}`)
-			});
+      const url = G_SRV_BASE_URL + 'carTurnLeft';
+      this.$http.post(url).then((res) => {
+        console.log(`${new Date().toString()} ~ _handleBtnLeft: ${res.data}`);
+      });
     },
 
     handleBtnRight: function () {
       console.log(`${new Date().toString()} ~ _handleBtnRight is running ...`);
-			const url = G_SRV_BASE_URL + 'carTurnRight';
-			this.$http.post(url).then(res => {
-				console.log(`${new Date().toString()} ~ _handleBtnRight: ${res.data}`)
-			});
+      const url = G_SRV_BASE_URL + 'carTurnRight';
+      this.$http.post(url).then((res) => {
+        console.log(`${new Date().toString()} ~ _handleBtnRight: ${res.data}`);
+      });
     },
 
     handleBtnStop: function () {
       console.log(`${new Date().toString()} ~ _handleBtnStop is running ...`);
-			const url = G_SRV_BASE_URL + 'carStop';
-			this.$http.post(url).then(res => {
-				console.log(`${new Date().toString()} ~ _handleBtnStop: ${res.data}`)
-			});
-    },   
+      const url = G_SRV_BASE_URL + 'carStop';
+      this.$http.post(url).then((res) => {
+        console.log(`${new Date().toString()} ~ _handleBtnStop: ${res.data}`);
+      });
+    },
   },
 };
 </script>
@@ -86,4 +86,3 @@ export default {
   margin-top: 10px;
 }
 </style>
-

@@ -59,7 +59,7 @@ export default {
     },
     handleBtnStop() {
       this.$emit('handleBtnStop');
-    }
+    },
   },
 };
 </script>
@@ -72,4 +72,3 @@ export default {
   margin-top: 100px;
 }
 </style>
-
