@@ -81,6 +81,6 @@ board.on('ready', () => {
 	});
 
 	motorLeft.forward(G_FORWARD_SPEED);
-	motorRight.reverse(G_FORWARD_SPEED);
+	motorRight.forward(G_FORWARD_SPEED);
 });
 
