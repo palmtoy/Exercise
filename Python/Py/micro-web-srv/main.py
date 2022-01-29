@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from MicroWebSrv2  import *
 from time          import sleep
 
