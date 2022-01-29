@@ -62,11 +62,6 @@ def RequestTestPost(microWebSrv2, request) :
 
 print()
 
-# Loads the PyhtmlTemplate module globally and configure it,
-pyhtmlMod = MicroWebSrv2.LoadModule('PyhtmlTemplate')
-pyhtmlMod.ShowDebug = True
-pyhtmlMod.SetGlobalVar('TestVar', 12345)
-
 # Instanciates the MicroWebSrv2 class,
 mws2 = MicroWebSrv2()
 
@@ -90,4 +85,3 @@ print('Bye')
 print()
 
 # ============================================================================
-
