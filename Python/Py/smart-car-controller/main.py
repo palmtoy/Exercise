@@ -10,15 +10,15 @@ from machine import Pin, PWM
 
 gc.collect()
 
-ledLight = Pin(2, Pin.OUT)
+ledLight = Pin(2, Pin.OUT) # GPIO2 ( D4 )
 frequency = 15000
-enable = PWM(Pin(13), frequency)
-pin1 = Pin(5, Pin.OUT)
-pin2 = Pin(4, Pin.OUT)
+enable = PWM(Pin(4), frequency) # GPIO4 ( D2 )
+pin1 = Pin(5, Pin.OUT) # GPIO5 ( D1 )
+pin2 = Pin(14, Pin.OUT) # GPIO14 ( D5 )
 dc_motor = DCMotor(pin1, pin2, enable)
 
-forwardSpeed = 50
-backwardSpeed = 30
+forwardSpeed = 30
+backwardSpeed = 15
 
 def web_page():
     html = """
