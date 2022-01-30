@@ -15,10 +15,14 @@ frequency = 15000
 enable = PWM(Pin(4), frequency) # GPIO4 ( D2 )
 pin1 = Pin(5, Pin.OUT) # GPIO5 ( D1 )
 pin2 = Pin(14, Pin.OUT) # GPIO14 ( D5 )
-dc_motor = DCMotor(pin1, pin2, enable)
+dcMotorA = DCMotor(pin1, pin2, enable)
 
-forwardSpeed = 30
-backwardSpeed = 15
+pin3 = Pin(12, Pin.OUT) # GPIO12 ( D6 )
+pin4 = Pin(13, Pin.OUT) # GPIO13 ( D7 )
+dcMotorB = DCMotor(pin3, pin4, enable)
+
+forwardSpeed = 90
+backwardSpeed = 70
 
 def web_page():
     html = """
@@ -147,23 +151,28 @@ while True:
         if car_forward == cmdIdx:
             print('cmd: car_forward')
             ledLight.off()
-            dc_motor.forward(forwardSpeed)
+            dcMotorA.forward(forwardSpeed)
+            dcMotorB.forward(forwardSpeed)
         elif car_backward == cmdIdx:
             print('cmd: car_backward')
             ledLight.off()
-            dc_motor.backward(backwardSpeed)
+            dcMotorA.backward(backwardSpeed)
+            dcMotorB.backward(backwardSpeed)
         elif car_left == cmdIdx:
             print('cmd: car_left')
             ledLight.off()
-            dc_motor.forward(forwardSpeed)
+            dcMotorA.forward(backwardSpeed)
+            dcMotorB.backward(backwardSpeed)
         elif car_right == cmdIdx:
             print('cmd: car_right ')
             ledLight.off()
-            dc_motor.backward(backwardSpeed)
+            dcMotorA.backward(backwardSpeed)
+            dcMotorB.forward(backwardSpeed)
         elif car_stop == cmdIdx:
             print('cmd: car_stop')
             ledLight.on()
-            dc_motor.stop()
+            dcMotorA.stop()
+            dcMotorB.stop()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
