@@ -1,16 +1,24 @@
-# -*- coding: utf-8 -*-
-
 try:
   import usocket as socket
 except:
   import socket
 
-from machine import Pin
 import gc
+
+from dcmotor import DCMotor
+from machine import Pin, PWM
 
 gc.collect()
 
 ledLight = Pin(2, Pin.OUT)
+frequency = 15000
+enable = PWM(Pin(13), frequency)
+pin1 = Pin(5, Pin.OUT)
+pin2 = Pin(4, Pin.OUT)
+dc_motor = DCMotor(pin1, pin2, enable)
+
+forwardSpeed = 50
+backwardSpeed = 30
 
 def web_page():
     html = """
@@ -139,18 +147,23 @@ while True:
         if car_forward == cmdIdx:
             print('cmd: car_forward')
             ledLight.off()
-        if car_backward == cmdIdx:
+            dc_motor.forward(forwardSpeed)
+        elif car_backward == cmdIdx:
             print('cmd: car_backward')
-            ledLight.on()
-        if car_left == cmdIdx:
+            ledLight.off()
+            dc_motor.backward(backwardSpeed)
+        elif car_left == cmdIdx:
             print('cmd: car_left')
             ledLight.off()
-        if car_right == cmdIdx:
+            dc_motor.forward(forwardSpeed)
+        elif car_right == cmdIdx:
             print('cmd: car_right ')
             ledLight.off()
-        if car_stop == cmdIdx:
+            dc_motor.backward(backwardSpeed)
+        elif car_stop == cmdIdx:
             print('cmd: car_stop')
             ledLight.on()
+            dc_motor.stop()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
