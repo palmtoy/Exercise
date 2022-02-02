@@ -5,9 +5,10 @@ import time
 
 pin_servo = 26 # GPIO26
 
+# Use GPIO numbers not pin numbers [ BCM : Broadcom SOC ( System on Chip ) channel ]
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_servo, GPIO.OUT)
-pwm_servo = GPIO.PWM(pin_servo, 50)  # frequency: 50Hz 
+pwm_servo = GPIO.PWM(pin_servo, 50)  # frequency: 50Hz
 pwm_servo.start(0)
 
 
