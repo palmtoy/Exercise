@@ -32,15 +32,21 @@ while(1):
     x = input()
     if x == 'f':
         print('Run forward with low speed ...')
+        if pwmValue != None:
+            pwmValue.ChangeDutyCycle(0)
         pwmValue = None
+        GPIO.output(in1, GPIO.LOW)
+        GPIO.output(in2, GPIO.LOW)
         pwmValue = GPIO.PWM(in1, pwmFrequency)
         pwmValue.start(0)
         pwmValue.ChangeDutyCycle(lowSpeed)
-        GPIO.output(in2, GPIO.LOW)
     elif x == 'b':
         print('Run backward with low speed ...')
-        GPIO.output(in1, GPIO.LOW)
+        if pwmValue != None:
+            pwmValue.ChangeDutyCycle(0)
         pwmValue = None
+        GPIO.output(in1, GPIO.LOW)
+        GPIO.output(in2, GPIO.LOW)
         pwmValue = GPIO.PWM(in2, pwmFrequency)
         pwmValue.start(0)
         pwmValue.ChangeDutyCycle(lowSpeed)
