@@ -3,11 +3,15 @@
 
 from dcmotor import DCMotor
 
+G_LOW_SPEED = 25
+G_MEDIUM_SPEED = 50
+G_HIGH_SPEED = 100
+
 dcMotorA = DCMotor(9, 10)  # GPIO9, GPIO10
 
 def printCmdTips():
     print('\nPlease enter the following cmd to continue ↓')
-    print('f: Run forward, b: Run backward, l: low speed, m: medium speed, h: high speed, s: stop\n')
+    print('f: Run forward, b: Run backward, h: High speed, s: Stop\n')
 
 def go():
     printCmdTips()
@@ -15,17 +19,13 @@ def go():
         x = input()
         try:
             if x == 'f':
-                dcMotorA.runForward()
+                dcMotorA.runForward(G_MEDIUM_SPEED)
             elif x == 'b':
-                dcMotorA.runBackward()
+                dcMotorA.runBackward(G_LOW_SPEED)
             elif x == 's':
                 dcMotorA.stop()
-            elif x == 'l':
-                dcMotorA.setLowSpeed()
-            elif x == 'm':
-                dcMotorA.setMediumSpeed()
             elif x == 'h':
-                dcMotorA.setHighSpeed()
+                dcMotorA.runForward(G_HIGH_SPEED)
             else:
                 printCmdTips()
         except Exception as e:
