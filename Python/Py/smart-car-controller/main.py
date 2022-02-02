@@ -21,7 +21,7 @@ pin3 = Pin(12, Pin.OUT) # GPIO12 ( D6 )
 pin4 = Pin(13, Pin.OUT) # GPIO13 ( D7 )
 dcMotorB = DCMotor(pin3, pin4, enable)
 
-forwardSpeed = 90
+forwardSpeed = 95
 backwardSpeed = 70
 
 def web_page():
@@ -161,13 +161,13 @@ while True:
         elif car_left == cmdIdx:
             print('cmd: car_left')
             ledLight.off()
-            dcMotorA.forward(backwardSpeed)
-            dcMotorB.backward(backwardSpeed)
+            dcMotorA.backward(backwardSpeed)
+            dcMotorB.forward(backwardSpeed)
         elif car_right == cmdIdx:
             print('cmd: car_right ')
             ledLight.off()
-            dcMotorA.backward(backwardSpeed)
-            dcMotorB.forward(backwardSpeed)
+            dcMotorA.forward(backwardSpeed)
+            dcMotorB.backward(backwardSpeed)
         elif car_stop == cmdIdx:
             print('cmd: car_stop')
             ledLight.on()
