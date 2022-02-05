@@ -12,7 +12,7 @@ class DCMotor:
   def __init__(self, pin1, pin2):
     self.pin1 = pin1
     self.pin2 = pin2
-    self.pwmFrequency = 50  # unit: Hz
+    self.pwmFrequency = 500  # unit: Hz
     GPIO.setup(self.pin1, GPIO.OUT)
     GPIO.setup(self.pin2, GPIO.OUT)
     self.pwmValue = None
