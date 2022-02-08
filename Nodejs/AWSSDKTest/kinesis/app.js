@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const os = require('os');
 const fs = require('fs');
 // Load the AWS SDK for Node.js
 const AWS = require('aws-sdk');
@@ -123,7 +124,7 @@ async function getRecords(params) {
 	retObj = await listTagsForStream(ltParams);
   console.log(`\n_listTagsForStream retObj = ${JSON.stringify(retObj)}`);
 
-	const data = `${new Date().toISOString()} foo.js:101 INFO bar ~ ${JSON.stringify({ Hello: 'World' })}`;
+	const data = `${os.hostname()} ${process.pid} ${new Date().toISOString()} foo.js:101 INFO bar ~ ${JSON.stringify({ Hello: 'World' })}`;
 	const pParams = {
 		Data: data,
 		PartitionKey: 'AWS-Cost-Srv',
