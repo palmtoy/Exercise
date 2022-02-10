@@ -3,13 +3,13 @@ try:
 except:
   import socket
 
-from machine import Pin
+from machine import Pin, Signal
 import gc
 
 gc.collect()
 
-ledLight = Pin(2, Pin.OUT)
-led_state = "OFF"
+ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
+ledState = 'OFF'
 
 def web_page():
     html = """
@@ -49,7 +49,7 @@ def web_page():
     <br/>
     <br/>
     <h1>ESP MicroPython Web Server</h1>
-    <h2>LED state: <strong>""" + led_state + """</strong></h2>
+    <h2>LED state: <strong>""" + ledState + """</strong></h2>
     <p>
         <a href=\"?led_2_on\"><button class="buttonOn">LED ON</button></a>
     </p>
@@ -80,12 +80,12 @@ while True:
         led_off = request.find('/?led_2_off')
         if led_on == 6:
             print('LED ON -> GPIO2')
-            led_state = "ON"
-            ledLight.off()
+            ledState = 'ON'
+            ledLight.on()
         if led_off == 6:
             print('LED OFF -> GPIO2')
-            led_state = "OFF"
-            ledLight.on()
+            ledState = 'OFF'
+            ledLight.off()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
