@@ -1,31 +1,32 @@
 class DCMotor:
-  def __init__(self, pin1, pin2, enable_pin, min_duty=350, max_duty=1023):
+  def __init__(self, pin1, pin2, enablePin, minDuty=350, maxDuty=1023):
     self.pin1 = pin1
     self.pin2 = pin2
-    self.enable_pin = enable_pin
-    self.min_duty = min_duty
-    self.max_duty = max_duty
+    self.enablePin = enablePin
+    self.minDuty = minDuty
+    self.maxDuty = maxDuty
 
   def forward(self, speed):
     self.speed = speed
-    self.enable_pin.duty(self.duty_cycle(self.speed))
+    self.enablePin.duty(self.calcDutyCycle(self.speed))
     self.pin1.value(1)
     self.pin2.value(0)
     
   def backward(self, speed):
     self.speed = speed
-    self.enable_pin.duty(self.duty_cycle(self.speed))
+    self.enablePin.duty(self.calcDutyCycle(self.speed))
     self.pin1.value(0)
     self.pin2.value(1)
 
   def stop(self):
-    self.enable_pin.duty(0)
+    self.enablePin.duty(0)
     self.pin1.value(0)
     self.pin2.value(0)
     
-  def duty_cycle(self, speed):
+  def calcDutyCycle(self, speed):
+    dc = 0
     if self.speed <= 0 or self.speed > 100:
-      duty_cycle = 0
+      dc = 0
     else:
-      duty_cycle = int(self.min_duty + (self.max_duty - self.min_duty) * ((self.speed - 1) / (100 - 1)))
-      return duty_cycle
+      dc = int(self.minDuty + (self.maxDuty - self.minDuty) * ((self.speed - 1) / (100 - 1)))
+    return dc

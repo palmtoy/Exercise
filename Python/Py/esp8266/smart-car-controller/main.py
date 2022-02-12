@@ -6,20 +6,20 @@ except:
 import gc
 
 from dcmotor import DCMotor
-from machine import Pin, PWM
+from machine import Pin, Signal, PWM
 
 gc.collect()
 
-ledLight = Pin(2, Pin.OUT) # GPIO2 ( D4 )
-frequency = 15000
-enable = PWM(Pin(4), frequency) # GPIO4 ( D2 )
+ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2 ( D4 )
+pwmFrequency = 500
+enablePin = PWM(Pin(4), pwmFrequency) # GPIO4 ( D2 )
 pin1 = Pin(5, Pin.OUT) # GPIO5 ( D1 )
 pin2 = Pin(14, Pin.OUT) # GPIO14 ( D5 )
-dcMotorA = DCMotor(pin1, pin2, enable)
+dcMotorA = DCMotor(pin1, pin2, enablePin)
 
 pin3 = Pin(12, Pin.OUT) # GPIO12 ( D6 )
 pin4 = Pin(13, Pin.OUT) # GPIO13 ( D7 )
-dcMotorB = DCMotor(pin3, pin4, enable)
+dcMotorB = DCMotor(pin3, pin4, enablePin)
 
 forwardSpeed = 95
 backwardSpeed = 70
@@ -150,27 +150,27 @@ while True:
         cmdIdx = 6
         if car_forward == cmdIdx:
             print('cmd: car_forward')
-            ledLight.off()
+            ledLight.on()
             dcMotorA.forward(forwardSpeed)
             dcMotorB.forward(forwardSpeed)
         elif car_backward == cmdIdx:
             print('cmd: car_backward')
-            ledLight.off()
+            ledLight.on()
             dcMotorA.backward(backwardSpeed)
             dcMotorB.backward(backwardSpeed)
         elif car_left == cmdIdx:
             print('cmd: car_left')
-            ledLight.off()
+            ledLight.on()
             dcMotorA.backward(backwardSpeed)
             dcMotorB.forward(backwardSpeed)
         elif car_right == cmdIdx:
             print('cmd: car_right ')
-            ledLight.off()
+            ledLight.on()
             dcMotorA.forward(backwardSpeed)
             dcMotorB.backward(backwardSpeed)
         elif car_stop == cmdIdx:
             print('cmd: car_stop')
-            ledLight.on()
+            ledLight.off()
             dcMotorA.stop()
             dcMotorB.stop()
         response = web_page()

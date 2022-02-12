@@ -1,13 +1,17 @@
-import machine
+from machine import Pin, Signal
 import time
 
 
 # 指明 GPIO2 管脚
-pin = machine.Pin(2, machine.Pin.OUT)
+pinObj = Pin(2, Pin.OUT)
+led = Signal(pinObj, invert=True)
 
 # 循环执行
 while True:
-  time.sleep(1)   # 等待 x 秒
-  pin.off()       # 切换 LED 状
-  time.sleep(1)   # 等待 y 秒
-  pin.on()        # 控制 LED 状态
+  # pinObj.off()  # 点亮 LED
+  led.on()
+  time.sleep(1)  # 等待 x 秒
+  # pinObj.on()  # 熄灭 LED
+  led.off()
+  time.sleep(1)  # 等待 x 秒
+
