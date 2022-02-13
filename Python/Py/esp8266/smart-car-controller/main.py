@@ -11,6 +11,7 @@ from machine import Pin, Signal, PWM
 gc.collect()
 
 ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2 ( D4 )
+ledLight.on()
 pwmFrequency = 500
 enablePin = PWM(Pin(4), pwmFrequency) # GPIO4 ( D2 )
 pin1 = Pin(5, Pin.OUT) # GPIO5 ( D1 )
@@ -21,8 +22,8 @@ pin3 = Pin(12, Pin.OUT) # GPIO12 ( D6 )
 pin4 = Pin(13, Pin.OUT) # GPIO13 ( D7 )
 dcMotorB = DCMotor(pin3, pin4, enablePin)
 
-forwardSpeed = 95
-backwardSpeed = 70
+forwardSpeed = 100
+backwardSpeed = 80
 
 def web_page():
     html = """
@@ -173,11 +174,11 @@ while True:
             ledLight.off()
             dcMotorA.stop()
             dcMotorB.stop()
-        response = web_page()
+        resHtml = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
         conn.send('Connection: closed.\n\n')
-        conn.sendall(response)
+        conn.sendall(resHtml)
         conn.close()
     except OSError as e:
         conn.close()
