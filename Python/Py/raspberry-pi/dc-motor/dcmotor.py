@@ -33,7 +33,7 @@ class DCMotor:
     GPIO.output(self.pin1, GPIO.LOW)
     GPIO.output(self.pin2, GPIO.LOW)
     sleep(0.1)
-    self.pwmValue = GPIO.PWM(self.pin1, self.pwmFrequency)
+    self.pwmValue = GPIO.PWM(self.pin2, self.pwmFrequency)
     self.pwmValue.start(0)
     self.pwmValue.ChangeDutyCycle(pSpeed)
 
@@ -47,7 +47,7 @@ class DCMotor:
     GPIO.output(self.pin1, GPIO.LOW)
     GPIO.output(self.pin2, GPIO.LOW)
     sleep(0.1)
-    self.pwmValue = GPIO.PWM(self.pin2, self.pwmFrequency)
+    self.pwmValue = GPIO.PWM(self.pin1, self.pwmFrequency)
     self.pwmValue.start(0)
     self.pwmValue.ChangeDutyCycle(pSpeed)
 
