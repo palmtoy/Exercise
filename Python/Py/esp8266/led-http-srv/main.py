@@ -8,7 +8,8 @@ import gc
 
 gc.collect()
 
-ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
+# ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
+ledLight = Signal(Pin(2, Pin.OUT), invert=False) # GPIO2
 ledState = 'OFF'
 
 def web_page():
@@ -95,3 +96,4 @@ while True:
     except OSError as e:
         conn.close()
         print('Connection closed.')
+

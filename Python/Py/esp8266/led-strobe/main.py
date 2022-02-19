@@ -4,7 +4,8 @@ import time
 
 # 指明 GPIO2 管脚
 pinObj = Pin(2, Pin.OUT)
-led = Signal(pinObj, invert=True)
+# led = Signal(pinObj, invert=True)
+led = Signal(pinObj, invert=False)
 
 # 循环执行
 while True:
