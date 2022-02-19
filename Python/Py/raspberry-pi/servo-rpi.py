@@ -8,7 +8,7 @@ pin_servo = 26 # GPIO26
 # Use GPIO numbers not pin numbers [ BCM : Broadcom SOC ( System on Chip ) channel ]
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_servo, GPIO.OUT)
-pwm_servo = GPIO.PWM(pin_servo, 50)  # frequency: 50Hz
+pwm_servo = GPIO.PWM(pin_servo, 100)  # frequency, unit: Hz
 pwm_servo.start(0)
 
 
@@ -20,8 +20,8 @@ def destroy():
 # 输入( 0 ～ 180 )度即可
 # 不要超过180度
 def setDirection(angle):
-    # 0 = 停止转动; 2 = 0度; 7 = 90度; 12 = 180度
-    duty = 2 + (angle / 18)
+    # 0 = 停止转动; 4 = 0度; 14 = 90度; 24 = 180度
+    duty = 4 + (angle / 9)
     pwm_servo.ChangeDutyCycle(duty)
     # 消除抖动
     time.sleep(0.3)
