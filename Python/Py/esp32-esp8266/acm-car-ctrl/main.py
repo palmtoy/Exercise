@@ -6,6 +6,7 @@ import gc
 from time import sleep
 from machine import Pin, Signal
 from dcmotor import DCMotor
+from servo import CServo
 
 G_GC_THRESHOLD = 102000 # unit: byte
 
@@ -99,6 +100,10 @@ def getWebPage():
     <h1>Ackerman Car Controller :></h1>
     <br/>
     <p>
+        <a href=\"?servo_test\"><button class="btnForward">ServoTest</button></a>
+    </p>
+    <br/>
+    <p>
         <a href=\"?car_forward\"><button class="btnForward">Forward</button></a>
     </p>
     <br/>
@@ -125,6 +130,7 @@ def main():
     dcMotorA = DCMotor(4, 5) # GPIO4 ( D4 ), GPIO5 ( D5 )
     sleep(0.1)
     dcMotorA.stop()
+    servoB = CServo(15) # GPIO15 ( D15 )
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind(('', 80))
@@ -145,6 +151,7 @@ def main():
             speed_up = request.find('/?speed_up')
             slow_down = request.find('/?slow_down')
             car_stop = request.find('/?car_stop')
+            servo_test = request.find('/?servo_test')
             cmdIdx = 6
             if car_forward == cmdIdx:
                 print('cmd: car_forward')
@@ -166,6 +173,15 @@ def main():
                 print('cmd: car_stop')
                 ledLight.off()
                 dcMotorA.stop()
+            elif servo_test == cmdIdx:
+                print('cmd: servo_test')
+                ledLight.off()
+                for angle in range(0, 91, 1):
+                    servoB.setDirection(angle)
+                    sleep(1)
+                for angle in range(90, -1, -1):
+                    servoB.setDirection(angle)
+                    sleep(1)
             resHtml = getWebPage()
             conn.send('HTTP/1.1 200 OK\n')
             conn.send('Content-Type: text/html\n')
