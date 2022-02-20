@@ -44,6 +44,26 @@ def getWebPage():
             margin: 4px 2px;
             cursor: pointer;
         }
+        .btnSpeedUp {
+            background-color: orange;
+            color: black;
+            padding: 30px 67px;
+            text-align: center;
+            display: inline-block;
+            font-size: 40px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .btnSlowDown {
+            background-color: green;
+            color: black;
+            padding: 30px 53px;
+            text-align: center;
+            display: inline-block;
+            font-size: 40px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
         .btnStop {
             background-color: red;
             color: black;
@@ -83,7 +103,9 @@ def getWebPage():
     </p>
     <br/>
     <p>
+        <a href=\"?speed_up\"><button class="btnSpeedUp">SpeedUp</button></a>
         <a href=\"?car_stop\"><button class="btnStop">Stop</button></a>
+        <a href=\"?slow_down\"><button class="btnSlowDown">SlowDown</button></a>
     </p>
     <br/>
     <p>
@@ -120,6 +142,8 @@ def main():
             print('GET Rquest Content = %s' % request)
             car_forward = request.find('/?car_forward')
             car_backward = request.find('/?car_backward')
+            speed_up = request.find('/?speed_up')
+            slow_down = request.find('/?slow_down')
             car_stop = request.find('/?car_stop')
             cmdIdx = 6
             if car_forward == cmdIdx:
@@ -130,6 +154,14 @@ def main():
                 print('cmd: car_backward')
                 ledLight.on()
                 dcMotorA.backward(G_BACKWARD_SPEED)
+            elif speed_up == cmdIdx:
+                print('cmd: speed_up')
+                ledLight.on()
+                dcMotorA.speedUp()
+            elif slow_down == cmdIdx:
+                print('cmd: slow_down')
+                ledLight.on()
+                dcMotorA.slowDown()
             elif car_stop == cmdIdx:
                 print('cmd: car_stop')
                 ledLight.off()
