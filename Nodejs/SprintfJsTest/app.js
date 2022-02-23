@@ -13,3 +13,13 @@ console.log(`pt ~ A ~ vRet => ${vRet}`);
 sRet = sprintf('%s %s some %s', 'I', 'want', 'apples.');
 console.log(`\npt ~ B ~ sRet => ${sRet}`);
 
+
+let paramList = ['The last 3 letters of the english alphabet are: x, y, z.'];
+vRet = vsprintf(paramList[0], paramList.slice(1));
+console.log(`\npt ~ C ~ vRet => ${vRet}###`);
+
+
+paramList = ['The last 4 letters of the english alphabet are: %s, x, y, z.', 'w'];
+vRet = vsprintf(paramList[0], paramList.slice(1));
+console.log(`\npt ~ D ~ vRet => ${vRet}###`);
+
