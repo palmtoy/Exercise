@@ -23,3 +23,16 @@ paramList = ['The last 4 letters of the english alphabet are: %s, x, y, z.', 'w'
 vRet = vsprintf(paramList[0], paramList.slice(1));
 console.log(`\npt ~ D ~ vRet => ${vRet}###`);
 
+
+paramList = ['The string is "%s", the object is %o, the number is %d.', 'foo ~ bar', JSON.stringify({ hi: 'baby' }), 999, ' -- Hello World', ` ~ ${new Date()}`];
+let firstParma = paramList[0];
+firstParma = firstParma.replace(/%o/g, '%s');
+firstParma = firstParma.replace(/%d/g, '%s');
+const cnt = (firstParma.match(/%s/g) || []).length;
+postfixList = paramList.slice(1);
+for(let i = 0; i < postfixList.length - cnt; i++) {
+	firstParma += '%s';
+}
+vRet = vsprintf(firstParma, postfixList);
+console.log(`\npt ~ F ~ vRet => ${vRet}###`);
+
