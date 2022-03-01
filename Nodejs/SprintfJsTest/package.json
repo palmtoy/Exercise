@@ -1,0 +1,11 @@
+{
+  "name": "sprintfjstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "sprintf-js": "^1.1.2"
+  }
+}
