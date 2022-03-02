@@ -10,7 +10,7 @@ from servo import CServo
 
 G_GC_THRESHOLD = 102000 # unit: byte
 
-G_FORWARD_SPEED = 100
+G_FORWARD_SPEED = 30
 G_BACKWARD_SPEED = 10
 
 
@@ -25,20 +25,30 @@ def getWebPage():
             margin: 0px auto;
             text-align: center;
         }
-        .btnForward {
-            background-color: cyan;
+        .btnTurnLeft {
+            background-color: #5882FA;
             color: black;
-            padding: 30px 80px;
+            padding: 30px 78px;
             text-align: center;
             display: inline-block;
             font-size: 40px;
             margin: 4px 2px;
             cursor: pointer;
         }
-        .btnBack {
+        .btnForward {
             background-color: cyan;
             color: black;
-            padding: 30px 65px;
+            padding: 30px 76px;
+            text-align: center;
+            display: inline-block;
+            font-size: 40px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .btnTurnRight {
+            background-color: #5882FA;
+            color: black;
+            padding: 30px 60px;
             text-align: center;
             display: inline-block;
             font-size: 40px;
@@ -55,6 +65,16 @@ def getWebPage():
             margin: 4px 2px;
             cursor: pointer;
         }
+        .btnStop {
+            background-color: red;
+            color: black;
+            padding: 30px 110px;
+            text-align: center;
+            display: inline-block;
+            font-size: 40px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
         .btnSlowDown {
             background-color: green;
             color: black;
@@ -65,10 +85,10 @@ def getWebPage():
             margin: 4px 2px;
             cursor: pointer;
         }
-        .btnStop {
-            background-color: red;
+        .btnBack {
+            background-color: cyan;
             color: black;
-            padding: 30px 110px;
+            padding: 30px 64px;
             text-align: center;
             display: inline-block;
             font-size: 40px;
@@ -100,11 +120,9 @@ def getWebPage():
     <h1>Ackerman Car Controller :></h1>
     <br/>
     <p>
-        <a href=\"?servo_test\"><button class="btnForward">ServoTest</button></a>
-    </p>
-    <br/>
-    <p>
+        <a href=\"?turn_left\"><button class="btnTurnLeft">TurnLeft</button></a>
         <a href=\"?car_forward\"><button class="btnForward">Forward</button></a>
+        <a href=\"?turn_right\"><button class="btnTurnRight">TurnRight</button></a>
     </p>
     <br/>
     <p>
@@ -117,7 +135,8 @@ def getWebPage():
         <a href=\"?car_backward\"><button class="btnBack">Backward</button></a>
     </p>
 </body>
-</html>"""
+</html>
+"""
     return html
 
 
@@ -146,42 +165,42 @@ def main():
             conn.settimeout(None)
             request = str(request)
             print('GET Rquest Content = %s' % request)
+            turn_left = request.find('/?turn_left')
             car_forward = request.find('/?car_forward')
-            car_backward = request.find('/?car_backward')
+            turn_right = request.find('/?turn_right')
             speed_up = request.find('/?speed_up')
-            slow_down = request.find('/?slow_down')
             car_stop = request.find('/?car_stop')
-            servo_test = request.find('/?servo_test')
+            slow_down = request.find('/?slow_down')
+            car_backward = request.find('/?car_backward')
             cmdIdx = 6
-            if car_forward == cmdIdx:
+            if turn_left == cmdIdx:
+                print('cmd: turn_left')
+                ledLight.on()
+                servoB.turnLeft()
+            elif car_forward == cmdIdx:
                 print('cmd: car_forward')
                 ledLight.on()
                 dcMotorA.forward(G_FORWARD_SPEED)
-            elif car_backward == cmdIdx:
-                print('cmd: car_backward')
+            elif turn_right == cmdIdx:
+                print('cmd: turn_left')
                 ledLight.on()
-                dcMotorA.backward(G_BACKWARD_SPEED)
+                servoB.turnRight()
             elif speed_up == cmdIdx:
                 print('cmd: speed_up')
                 ledLight.on()
                 dcMotorA.speedUp()
-            elif slow_down == cmdIdx:
-                print('cmd: slow_down')
-                ledLight.on()
-                dcMotorA.slowDown()
             elif car_stop == cmdIdx:
                 print('cmd: car_stop')
                 ledLight.off()
                 dcMotorA.stop()
-            elif servo_test == cmdIdx:
-                print('cmd: servo_test')
-                ledLight.off()
-                for angle in range(0, 91, 1):
-                    servoB.setDirection(angle)
-                    sleep(1)
-                for angle in range(90, -1, -1):
-                    servoB.setDirection(angle)
-                    sleep(1)
+            elif slow_down == cmdIdx:
+                print('cmd: slow_down')
+                ledLight.on()
+                dcMotorA.slowDown()
+            elif car_backward == cmdIdx:
+                print('cmd: car_backward')
+                ledLight.on()
+                dcMotorA.backward(G_BACKWARD_SPEED)
             resHtml = getWebPage()
             conn.send('HTTP/1.1 200 OK\n')
             conn.send('Content-Type: text/html\n')
@@ -190,7 +209,7 @@ def main():
             conn.close()
         except OSError as e:
             conn.close()
-            print('Connection closed.')
+            print('Connection closed. OSError =', e)
 
 
 if __name__ == '__main__':
