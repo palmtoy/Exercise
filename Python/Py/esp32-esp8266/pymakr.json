@@ -1,5 +1,6 @@
 {
 	"address": "/dev/cu.SLAB_USBtoUART",
+	# "address": "/dev/cu.wchusbserial1410",
 	"username": "***",
 	"password": "***",
 	"sync_folder": "",
