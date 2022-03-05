@@ -1,4 +1,4 @@
-<!--index.wxml-->
+<!--smartcar.wxml-->
 <view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
@@ -20,18 +20,14 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <button bindtap="bindCarForward" size="mini" class="btnFw">Forward</button>
   <view>
-      <button bindtap="bindTurnLeft" size="mini" class="btnL">Left</button>
-      <button bindtap="bindCarForward" size="mini" class="btnFw">Forward</button>
-      <button bindtap="bindTurnRight" size="mini" class="btnR">Right</button>
-  </view>
-  <view>
-      <button bindtap="bindSpeedUp" size="mini" class="btnSpeedUp">SpeedUp</button>
+      <button bindtap="bindCarLeft" size="mini" class="btnL">Left</button>
       <button bindtap="bindCarStop" size="mini" class="btnStop">Stop</button>
-      <button bindtap="bindSlowDown" size="mini" class="btnSlowDown">SlowDown</button>
+      <button bindtap="bindCarRight" size="mini" class="btnR">Right</button>
   </view>
   <button bindtap="bindCarBackward" size="mini" class="btnBw">Backward</button>
-  <view class="smartCarTitle" bindtap="bindGo2SmartCar">
-    <text class="user-motto">{{smartCarTitle}}</text>
+  <view class="acmCarTitle" bindtap="bindGo2AcmCar">
+    <text class="user-motto">{{acmCarTitle}}</text>
   </view>
 </view>

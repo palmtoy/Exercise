@@ -1,12 +1,8 @@
-// index.js
-// 获取应用实例
-const app = getApp()
-
 Page({
   data: {
-    motto: 'Ackerman Car Controller :>',
-    smartCarTitle:'Smart Car Controller ->',
-    baseUrl: 'http://acmcar.local',
+    motto: 'Smart Car Controller :>',
+    acmCarTitle: 'Ackerman Car Controller ->',
+    baseUrl: 'http://192.168.0.106',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -19,41 +15,42 @@ Page({
       url: '../logs/logs'
     })
   },
-  bindGo2SmartCar() {
+  
+  bindGo2AcmCar() {
     wx.navigateTo({
-      url: '../smartcar/smartcar'
+      url: '../index/index'
     })
   },
+
   _sendWxReq(pPath) {
-    console.log(`__sendWxReq: url = ${this.data.baseUrl + '/?' + pPath}`);
+    // console.log(`__sendWxReq: url = ${this.data.baseUrl + '/?' + pPath}`);
     wx.request({
       url: this.data.baseUrl + '/?' + pPath,
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
       }
    })
   },
-  bindTurnLeft() {
-    this._sendWxReq('turn_left');
-  }, 
   bindCarForward() {
+    // console.log(`${new Date().toString()} ~ _bindCarForward is running ...`);
     this._sendWxReq('car_forward');
   },
-  bindTurnRight() {
-    this._sendWxReq('turn_right');
+  bindCarBackward() {
+    // console.log(`${new Date().toString()} ~ _bindCarBackward is running ...`);
+    this._sendWxReq('car_backward');
   },
-  bindSpeedUp() {
-    this._sendWxReq('speed_up');
+  bindCarLeft() {
+    // console.log(`${new Date().toString()} ~ _bindCarLeft is running ...`);
+    this._sendWxReq('car_left');
+  },
+  bindCarRight() {
+    // console.log(`${new Date().toString()} ~ _bindCarRight is running ...`);
+    this._sendWxReq('car_right');
   },
   bindCarStop() {
+    // console.log(`${new Date().toString()} ~ _bindCarStop is running ...`);
     this._sendWxReq('car_stop');
-  }, 
-  bindSlowDown() {
-    this._sendWxReq('slow_down');
-  },
-  bindCarBackward() {
-    this._sendWxReq('car_backward');
   },
   onLoad() {
     if (wx.getUserProfile) {

@@ -10,8 +10,8 @@ from servo import CServo
 
 G_GC_THRESHOLD = 102000 # unit: byte
 
-G_FORWARD_SPEED = 35
-G_BACKWARD_SPEED = 20
+G_FORWARD_SPEED = 60
+G_BACKWARD_SPEED = 50
 
 
 def getWebPage():

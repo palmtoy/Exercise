@@ -1,9 +1,9 @@
 from machine import Pin, PWM
 from time import sleep
 
-G_MIN_ANGLE = 12
-G_MID_ANGLE = 25
-G_MAX_ANGLE = 38
+G_MIN_ANGLE = 43
+G_MID_ANGLE = 67
+G_MAX_ANGLE = 89
 
 G_ANGLE_STEP = 2
 
@@ -13,8 +13,8 @@ class CServo:
     # self.pwmFrequency = 611 # unit: Hz
     self.pwmFrequency = 700 # unit: Hz
     self.pinPwm = PWM(Pin(pinNum), freq=self.pwmFrequency, duty=self.angle)
-    self.minDuty = 300
-    self.maxDuty = 1000
+    self.minDuty = 1
+    self.maxDuty = 1022
     self.dutyPortion = ( self.maxDuty - self.minDuty ) / G_MAX_ANGLE
     sleep(0.3)
     self.setDirection(self.angle)

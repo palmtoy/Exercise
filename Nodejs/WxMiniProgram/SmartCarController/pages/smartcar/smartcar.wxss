@@ -1,4 +1,4 @@
-/**index.wxss**/
+/**smartcar.wxss**/
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,20 +18,8 @@
   margin-top: 50px;
 }
 
-.smartCarTitle {
+.acmCarTitle {
   margin-top: 200px;
-}
-
-.btnL {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 0px;
-  margin-right: 10px;
-  background-color: #5882FA;
-  color: black;
-  height: 50px;
-  line-height: 50px !important;
-  font-size: x-large !important;
 }
 
 .btnFw {
@@ -44,40 +32,18 @@
   font-size: x-large !important;
 }
 
-.btnR {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  background-color: #5882FA;
+.btnBw {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: cyan;
   color: black;
   height: 50px;
   line-height: 50px !important;
   font-size: x-large !important;
 }
 
-.btnSpeedUp {
-  margin-left: 0px;
-  margin-right: 0px;
-  background-color: orange;
-  color: black;
-  height: 50px;
-  line-height: 50px !important;
-  font-size: x-large !important;
-}
-
-.btnStop {
-  margin-left: 10px;
-  margin-right: 10px;
-  background-color: red;
-  color: black;
-  height: 50px;
-  line-height: 50px !important;
-  font-size: x-large !important;
-}
-
-.btnSlowDown {
-  margin-left: 0px;
-  margin-right: 0px;
+.btnL {
+  margin-left: 5px;
   background-color: green;
   color: black;
   height: 50px;
@@ -85,10 +51,18 @@
   font-size: x-large !important;
 }
 
-.btnBw {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  background-color: cyan;
+.btnR {
+  background-color: green;
+  color: black;
+  height: 50px;
+  line-height: 50px !important;
+  font-size: x-large !important;
+}
+
+.btnStop {
+  margin-left: 20px;
+  margin-right: 20px;
+  background-color: red;
   color: black;
   height: 50px;
   line-height: 50px !important;
