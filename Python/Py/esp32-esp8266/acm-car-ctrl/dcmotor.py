@@ -8,7 +8,7 @@ G_STOP = 3
 G_SPEED_STEP = 10
 
 class DCMotor:
-  def __init__(self, pin1, pin2, minDuty = 256, maxDuty = 566):
+  def __init__(self, pin1, pin2, minDuty = 200, maxDuty = 800):
     self.pin1out = Pin(pin1, Pin.OUT, value = 0)
     self.pin2out = Pin(pin2, Pin.OUT, value = 0)
     self.pwmFrequency = 20000 # unit: Hz
@@ -75,5 +75,5 @@ class DCMotor:
       return dc
     elif speed > 100:
       self.speed = 100
-    dc = int(self.minDuty + (self.maxDuty - self.minDuty) * ((self.speed - 1) / (100 - 1)))
+    dc = int(self.minDuty + (self.maxDuty - self.minDuty) * (self.speed / 100))
     return dc
