@@ -7,6 +7,7 @@ Page({
     motto: 'Ackerman Car Controller :>',
     smartCarTitle:'Smart Car Controller ->',
     baseUrl: 'http://acmcar.local',
+    sliderLRValue: 50,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -34,14 +35,12 @@ Page({
       }
    })
   },
-  bindTurnLeft() {
-    this._sendWxReq('turn_left');
-  }, 
+  bindSliderLeftRight(e) {
+    this.setData({ sliderLRValue: e.detail.value });
+    this._sendWxReq(`car_direction=${this.data.sliderLRValue}`);
+  },
   bindCarForward() {
     this._sendWxReq('car_forward');
-  },
-  bindTurnRight() {
-    this._sendWxReq('turn_right');
   },
   bindSpeedUp() {
     this._sendWxReq('speed_up');

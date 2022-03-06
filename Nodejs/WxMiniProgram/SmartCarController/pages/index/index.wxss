@@ -22,33 +22,24 @@
   margin-top: 200px;
 }
 
-.btnL {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 0px;
-  margin-right: 10px;
-  background-color: #5882FA;
-  color: black;
-  height: 50px;
-  line-height: 50px !important;
-  font-size: x-large !important;
+.sliderText {
+  margin-top: 50px;
+}
+
+.sliderLeftRight {
+  margin-top: -10px;
+  margin-left: 20px;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #666;
 }
 
 .btnFw {
-  margin-top: 60px;
+  margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: -20px;
   background-color: cyan;
-  color: black;
-  height: 50px;
-  line-height: 50px !important;
-  font-size: x-large !important;
-}
-
-.btnR {
-  margin-top: 60px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  background-color: #5882FA;
   color: black;
   height: 50px;
   line-height: 50px !important;
@@ -76,7 +67,6 @@
 }
 
 .btnSlowDown {
-  margin-left: 0px;
   margin-right: 0px;
   background-color: green;
   color: black;
@@ -88,6 +78,7 @@
 .btnBw {
   margin-top: 20px;
   margin-bottom: 10px;
+  margin-left: 125px;
   background-color: cyan;
   color: black;
   height: 50px;
