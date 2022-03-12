@@ -9,6 +9,7 @@ from dcmotor import DCMotor
 from servo import CServo
 
 G_GC_THRESHOLD = 102000 # unit: byte
+G_CMD_IDX = 6
 
 G_FORWARD_SPEED = 60
 G_BACKWARD_SPEED = 50
@@ -165,6 +166,7 @@ def main():
             conn.settimeout(None)
             request = str(request)
             print('GET Rquest Content = %s' % request)
+            car_direction = request.find('/?car_direction')
             turn_left = request.find('/?turn_left')
             car_forward = request.find('/?car_forward')
             turn_right = request.find('/?turn_right')
@@ -172,32 +174,39 @@ def main():
             car_stop = request.find('/?car_stop')
             slow_down = request.find('/?slow_down')
             car_backward = request.find('/?car_backward')
-            cmdIdx = 6
-            if turn_left == cmdIdx:
+            if car_direction == G_CMD_IDX:
+                endIdx = request.find(' HTTP/')
+                subReq = request[G_CMD_IDX:endIdx]
+                startIdx = subReq.find('=') + 1
+                virtualAngle = int( subReq[startIdx:] )
+                print('cmd: car_direction, virtualAngle =', virtualAngle)
+                ledLight.on()
+                servoB.carDirection(virtualAngle)
+            elif turn_left == G_CMD_IDX:
                 print('cmd: turn_left')
                 ledLight.on()
                 servoB.turnLeft()
-            elif car_forward == cmdIdx:
+            elif car_forward == G_CMD_IDX:
                 print('cmd: car_forward')
                 ledLight.on()
                 dcMotorA.forward(G_FORWARD_SPEED)
-            elif turn_right == cmdIdx:
+            elif turn_right == G_CMD_IDX:
                 print('cmd: turn_left')
                 ledLight.on()
                 servoB.turnRight()
-            elif speed_up == cmdIdx:
+            elif speed_up == G_CMD_IDX:
                 print('cmd: speed_up')
                 ledLight.on()
                 dcMotorA.speedUp()
-            elif car_stop == cmdIdx:
+            elif car_stop == G_CMD_IDX:
                 print('cmd: car_stop')
                 ledLight.off()
                 dcMotorA.stop()
-            elif slow_down == cmdIdx:
+            elif slow_down == G_CMD_IDX:
                 print('cmd: slow_down')
                 ledLight.on()
                 dcMotorA.slowDown()
-            elif car_backward == cmdIdx:
+            elif car_backward == G_CMD_IDX:
                 print('cmd: car_backward')
                 ledLight.on()
                 dcMotorA.backward(G_BACKWARD_SPEED)

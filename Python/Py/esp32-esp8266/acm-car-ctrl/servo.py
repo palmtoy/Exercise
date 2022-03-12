@@ -5,6 +5,10 @@ G_MIN_ANGLE = 43
 G_MID_ANGLE = 67
 G_MAX_ANGLE = 89
 
+G_MIN_VIRTUAL_ANGLE = 0
+G_MID_VIRTUAL_ANGLE = 50
+G_MAX_VIRTUAL_ANGLE = 100
+
 G_ANGLE_STEP = 2
 
 class CServo:
@@ -34,6 +38,16 @@ class CServo:
     print("Angle =", self.angle, "-> Duty =", dc)
     sleep(0.3) # 消除抖动
     self.pinPwm.duty(0)
+
+  def carDirection(self, virtualAngle):
+    virtualAngle = int( virtualAngle )
+    tmpAngle = G_MIN_ANGLE
+    if (virtualAngle >= G_MID_VIRTUAL_ANGLE):
+      virtualAngle -= G_MID_VIRTUAL_ANGLE
+      tmpAngle = int( G_MID_ANGLE + ( G_MAX_ANGLE - G_MID_ANGLE ) * virtualAngle / G_MID_VIRTUAL_ANGLE )
+    else:
+      tmpAngle = int( G_MIN_ANGLE + ( G_MID_ANGLE - G_MIN_ANGLE ) * virtualAngle / G_MID_VIRTUAL_ANGLE )
+    self.setDirection(tmpAngle)
 
   def turnLeft(self):
     self.angle -= G_ANGLE_STEP
