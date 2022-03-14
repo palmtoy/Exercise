@@ -6,13 +6,13 @@ import gc
 from time import sleep
 from machine import Pin, Signal
 from dcmotor import DCMotor
-from servo import CServo
 
-G_GC_THRESHOLD = 102000 # unit: byte
+G_GC_THRESHOLD = 204800 # unit: byte, 200KiB
 G_CMD_IDX = 6
 
-G_FORWARD_SPEED = 60
-G_BACKWARD_SPEED = 50
+G_FORWARD_SPEED = 50
+G_TURN_SPEED = 39
+G_BACKWARD_SPEED = 30
 
 
 def getWebPage():
@@ -118,7 +118,7 @@ def getWebPage():
     <br/>
     <br/>
     <br/>
-    <h1>Ackerman Car Controller :></h1>
+    <h1>Mecanum Car Controller :></h1>
     <br/>
     <p>
         <a href=\"?turn_left\"><button class="btnTurnLeft">TurnLeft</button></a>
@@ -144,13 +144,25 @@ def getWebPage():
 def main():
     gc.collect()
 
-    ledLight = Signal(Pin(2, Pin.OUT), invert=False) # GPIO2 ( D2 )
+    ledLight = Signal(Pin(2, Pin.OUT), invert = False) # GPIO2 ( P2 )
     sleep(0.1)
     ledLight.on()
-    dcMotorA = DCMotor(4, 5) # GPIO4 ( D4 ), GPIO5 ( D5 )
+
+    dcMotorLT = DCMotor(15, 4) # GPIO15 ( P15 ), GPIO4 ( P4 )
     sleep(0.1)
-    dcMotorA.stop()
-    servoB = CServo(15) # GPIO15 ( D15 )
+    dcMotorLT.stop()
+
+    dcMotorLB = DCMotor(16, 17) # GPIO16 ( P16 ), GPIO17 ( P17 )
+    sleep(0.1)
+    dcMotorLB.stop()
+
+    dcMotorRT = DCMotor(5, 18) # GPIO5 ( P5 ), # GPIO18 ( P18 )
+    sleep(0.1)
+    dcMotorRT.stop()
+
+    dcMotorRB = DCMotor(19, 23) # GPIO19 ( P19 ), GPIO23 ( P23 )
+    sleep(0.1)
+    dcMotorRB.stop()
 
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.bind(('', 80))
@@ -166,7 +178,6 @@ def main():
             conn.settimeout(None)
             request = str(request)
             print('GET Rquest Content = %s' % request)
-            car_direction = request.find('/?car_direction')
             turn_left = request.find('/?turn_left')
             car_forward = request.find('/?car_forward')
             turn_right = request.find('/?turn_right')
@@ -174,42 +185,55 @@ def main():
             car_stop = request.find('/?car_stop')
             slow_down = request.find('/?slow_down')
             car_backward = request.find('/?car_backward')
-            if car_direction == G_CMD_IDX:
-                endIdx = request.find(' HTTP/')
-                subReq = request[G_CMD_IDX:endIdx]
-                startIdx = subReq.find('=') + 1
-                virtualAngle = int( subReq[startIdx:] )
-                print('cmd: car_direction, virtualAngle =', virtualAngle)
-                ledLight.on()
-                servoB.carDirection(virtualAngle)
-            elif turn_left == G_CMD_IDX:
+            if turn_left == G_CMD_IDX:
                 print('cmd: turn_left')
                 ledLight.on()
-                servoB.turnLeft()
-            elif car_forward == G_CMD_IDX:
-                print('cmd: car_forward')
-                ledLight.on()
-                dcMotorA.forward(G_FORWARD_SPEED)
+                dcMotorLT.forward(G_TURN_SPEED)
+                dcMotorLB.backward(G_TURN_SPEED)
+                dcMotorRT.forward(G_TURN_SPEED)
+                dcMotorRB.backward(G_TURN_SPEED)
             elif turn_right == G_CMD_IDX:
                 print('cmd: turn_right')
                 ledLight.on()
-                servoB.turnRight()
+                dcMotorLT.backward(G_TURN_SPEED)
+                dcMotorLB.forward(G_TURN_SPEED)
+                dcMotorRT.backward(G_TURN_SPEED)
+                dcMotorRB.forward(G_TURN_SPEED)
+            elif car_forward == G_CMD_IDX:
+                print('cmd: car_forward')
+                ledLight.on()
+                dcMotorLT.forward(G_FORWARD_SPEED)
+                dcMotorLB.forward(G_FORWARD_SPEED)
+                dcMotorRT.forward(G_FORWARD_SPEED)
+                dcMotorRB.forward(G_FORWARD_SPEED)
             elif speed_up == G_CMD_IDX:
                 print('cmd: speed_up')
                 ledLight.on()
-                dcMotorA.speedUp()
+                dcMotorLT.speedUp()
+                dcMotorLB.speedUp()
+                dcMotorRT.speedUp()
+                dcMotorRB.speedUp()
             elif car_stop == G_CMD_IDX:
                 print('cmd: car_stop')
                 ledLight.off()
-                dcMotorA.stop()
+                dcMotorLT.stop()
+                dcMotorLB.stop()
+                dcMotorRT.stop()
+                dcMotorRB.stop()
             elif slow_down == G_CMD_IDX:
                 print('cmd: slow_down')
                 ledLight.on()
-                dcMotorA.slowDown()
+                dcMotorLT.slowDown()
+                dcMotorLB.slowDown()
+                dcMotorRT.slowDown()
+                dcMotorRB.slowDown()
             elif car_backward == G_CMD_IDX:
                 print('cmd: car_backward')
                 ledLight.on()
-                dcMotorA.backward(G_BACKWARD_SPEED)
+                dcMotorLT.backward(G_BACKWARD_SPEED)
+                dcMotorLB.backward(G_BACKWARD_SPEED)
+                dcMotorRT.backward(G_BACKWARD_SPEED)
+                dcMotorRB.backward(G_BACKWARD_SPEED)
             resHtml = getWebPage()
             conn.send('HTTP/1.1 200 OK\n')
             conn.send('Content-Type: text/html\n')
