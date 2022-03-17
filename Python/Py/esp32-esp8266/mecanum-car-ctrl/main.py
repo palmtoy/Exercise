@@ -10,9 +10,9 @@ from dcmotor import DCMotor
 G_GC_THRESHOLD = 204800 # unit: byte, 200KiB
 G_CMD_IDX = 6
 
-G_FORWARD_SPEED = 50
-G_TURN_SPEED = 39
-G_BACKWARD_SPEED = 30
+G_FORWARD_SPEED = 60
+G_TURN_SPEED = 50
+G_BACKWARD_SPEED = 50
 
 
 def getWebPage():
