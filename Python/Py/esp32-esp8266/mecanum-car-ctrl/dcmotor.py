@@ -43,7 +43,7 @@ class CDcMotor:
     print('Speed = %d' % self.speed)
 
   def speedCtrl(self):
-    if self.status == G_RUN_FORWARD or self.status == G_STOP:
+    if self.status == G_RUN_FORWARD:
       self.forward(self.speed)
     elif self.status == G_RUN_BACKWARD:
       self.backward(self.speed)
