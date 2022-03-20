@@ -2,98 +2,55 @@ try:
   import usocket as socket
 except:
   import socket
-
 from machine import Pin, Signal
+from genweb import CGenWeb
 import gc
 
-gc.collect()
+G_GC_THRESHOLD = 102400 # unit: byte, 200KiB
+G_CMD_IDX = 6
 
-# ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
-ledLight = Signal(Pin(2, Pin.OUT), invert=False) # GPIO2
-ledState = 'OFF'
+def main():
+    gc.collect()
+    genWebObj = CGenWeb()
+    # ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
+    ledLight = Signal(Pin(2, Pin.OUT), invert=False) # GPIO2
+    ledLight.off()
+    ledState = False
 
-def web_page():
-    html = """
-<html>
-<head>
-    <style>
-        html {
-            font-family: Arial;
-            display: inline-block;
-            margin: 0px auto;
-            text-align: center;
-        }
-        .buttonOn {
-            background-color: red;
-            color: white;
-            padding: 80px 200px;
-            text-align: center;
-            display: inline-block;
-            font-size: 80px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-        .buttonOff {
-            background-color: black;
-            color: white;
-            padding: 80px 180px;
-            text-align: center;
-            display: inline-block;
-            font-size: 80px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-
-<body>
-    <br/>
-    <br/>
-    <h1>ESP MicroPython Web Server</h1>
-    <h2>LED state: <strong>""" + ledState + """</strong></h2>
-    <p>
-        <a href=\"?led_2_on\"><button class="buttonOn">LED ON</button></a>
-    </p>
-    <p>
-        <a href=\"?led_2_off\"><button class="buttonOff">LED OFF</button></a>
-    </p>
-</body>
-</html>"""
-    return html
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.bind(('', 80))
+    s.listen(2)
+    while True:
+        try:
+            if gc.mem_free() < G_GC_THRESHOLD:
+                gc.collect()
+            conn, addr = s.accept()
+            conn.settimeout(3.0)
+            print('Received HTTP GET connection request from %s' % str(addr))
+            request = conn.recv(1024)
+            conn.settimeout(None)
+            request = str(request)
+            print('GET Rquest Content = %s' % request)
+            switch_on = request.find('/?switch_on')
+            switch_off = request.find('/?switch_off')
+            if switch_on == G_CMD_IDX:
+                print('Switch ON -> GPIO2')
+                ledState = True
+                ledLight.on()
+            if switch_off == G_CMD_IDX:
+                print('Switch OFF -> GPIO2')
+                ledState = False
+                ledLight.off()
+            resHtml = genWebObj.getWebPage(ledState)
+            conn.send('HTTP/1.1 200 OK\n')
+            conn.send('Content-Type: text/html\n')
+            conn.send('Connection: closed.\n\n')
+            conn.sendall(resHtml)
+            conn.close()
+        except OSError as e:
+            conn.close()
+            print('Connection closed. OSError =', e)
 
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('', 80))
-s.listen(5)
-
-while True:
-    try:
-        if gc.mem_free() < 102000:
-            gc.collect()
-        conn, addr = s.accept()
-        conn.settimeout(3.0)
-        print('Received HTTP GET connection request from %s' % str(addr))
-        request = conn.recv(1024)
-        conn.settimeout(None)
-        request = str(request)
-        print('GET Rquest Content = %s' % request)
-        led_on = request.find('/?led_2_on')
-        led_off = request.find('/?led_2_off')
-        if led_on == 6:
-            print('LED ON -> GPIO2')
-            ledState = 'ON'
-            ledLight.on()
-        if led_off == 6:
-            print('LED OFF -> GPIO2')
-            ledState = 'OFF'
-            ledLight.off()
-        response = web_page()
-        conn.send('HTTP/1.1 200 OK\n')
-        conn.send('Content-Type: text/html\n')
-        conn.send('Connection: close.\n\n')
-        conn.sendall(response)
-        conn.close()
-    except OSError as e:
-        conn.close()
-        print('Connection closed.')
-
+if __name__ == '__main__':
+  main()
