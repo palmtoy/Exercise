@@ -66,7 +66,7 @@ class CGenWeb:
     <br/>
     <br/>
     <h1>ESP01 Relay Controller :> </h1>
-    <h2>Switch: <strong>""" + G_LED_DICT[self.ledState] + """</strong></h2>
+    <h2 style="color: """ + self.getSwitchStatusColor() + """ ">Switch Status: <strong>""" + G_LED_DICT[self.ledState] + """</strong></h2>
     <p>
         <a href=\"?switch_on\"><button """ + self.getSwitchOnStatus()['disabled']  + """ class="buttonOn">Switch ON</button></a>
     </p>
@@ -76,6 +76,12 @@ class CGenWeb:
 </body>
 </html>
 """
+    def getSwitchStatusColor(self):
+        if self.ledState:
+            return 'green'
+        else:
+            return 'red'
+
 
     def getSwitchOnStatus(self):
         if self.ledState:
