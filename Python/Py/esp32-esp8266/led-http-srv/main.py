@@ -6,7 +6,7 @@ from machine import Pin, Signal
 from genweb import CGenWeb
 import gc
 
-G_GC_THRESHOLD = 102400 # unit: byte, 200KiB
+G_GC_THRESHOLD = 30 * 1024 # unit: byte, 30KiB
 G_CMD_IDX = 6
 
 def main():
