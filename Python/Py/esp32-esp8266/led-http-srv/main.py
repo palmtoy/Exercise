@@ -12,10 +12,11 @@ G_CMD_IDX = 6
 def main():
     gc.collect()
     genWebObj = CGenWeb()
-    # ledLight = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2
-    ledLight = Signal(Pin(2, Pin.OUT), invert=False) # GPIO2
-    ledLight.off()
-    ledState = False
+    switchState = False
+    switchObj = Signal(Pin(0, Pin.OUT), invert=True) # GPIO0; Relay: NO ( normally open )
+    switchObj.off()
+    # ledObj = Signal(Pin(2, Pin.OUT), invert=True) # GPIO2; ESP01S
+    # ledObj.off()
 
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(('', 80))
@@ -35,13 +36,15 @@ def main():
             switch_off = request.find('/?switch_off')
             if switch_on == G_CMD_IDX:
                 print('Switch ON -> GPIO2')
-                ledState = True
-                ledLight.on()
+                switchState = True
+                switchObj.on()
+                # ledObj.on()
             if switch_off == G_CMD_IDX:
                 print('Switch OFF -> GPIO2')
-                ledState = False
-                ledLight.off()
-            resHtml = genWebObj.getWebPage(ledState)
+                switchState = False
+                switchObj.off()
+                # ledObj.off()
+            resHtml = genWebObj.getWebPage(switchState)
             conn.send('HTTP/1.1 200 OK\n')
             conn.send('Content-Type: text/html\n')
             conn.send('Connection: closed.\n\n')

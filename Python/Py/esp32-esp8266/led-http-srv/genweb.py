@@ -1,11 +1,11 @@
-G_LED_DICT = {
+G_SWITCH_DICT = {
     True: 'ON',
     False: 'OFF'
 }
 
 class CGenWeb:
     def __init__(self):
-        self.ledState = False
+        self.switchState = False
 
     def _doGenWebPage(self):
         return """
@@ -66,7 +66,7 @@ class CGenWeb:
     <br/>
     <br/>
     <h1>ESP01 Relay Controller :> </h1>
-    <h2 style="color: """ + self.getSwitchStatusColor() + """ ">Switch Status: <strong>""" + G_LED_DICT[self.ledState] + """</strong></h2>
+    <h2 style="color: """ + self.getSwitchStatusColor() + """ ">Switch Status: <strong>""" + G_SWITCH_DICT[self.switchState] + """</strong></h2>
     <p>
         <a href=\"?switch_on\"><button """ + self.getSwitchOnStatus()['disabled']  + """ class="buttonOn">Switch ON</button></a>
     </p>
@@ -77,25 +77,25 @@ class CGenWeb:
 </html>
 """
     def getSwitchStatusColor(self):
-        if self.ledState:
+        if self.switchState:
             return 'green'
         else:
             return 'red'
 
 
     def getSwitchOnStatus(self):
-        if self.ledState:
+        if self.switchState:
             return { 'color': 'gray;', 'disabled': 'disabled' }
         else:
             return { 'color': 'green;', 'disabled': '' }
 
     def getSwitchOffStatus(self):
-        if self.ledState:
+        if self.switchState:
             return { 'color': 'red;', 'disabled': '' }
         else:
             return { 'color': 'gray;', 'disabled': 'disabled' }
 
-    def getWebPage(self, ledState):
-        self.ledState = ledState
-        # print('self.ledState =', self.ledState, '; G_LED_DICT[self.ledState] =', G_LED_DICT[self.ledState])
+    def getWebPage(self, switchState):
+        self.switchState = switchState
+        # print('self.switchState =', self.switchState, '; G_SWITCH_DICT[self.switchState] =', G_SWITCH_DICT[self.switchState])
         return self._doGenWebPage()
