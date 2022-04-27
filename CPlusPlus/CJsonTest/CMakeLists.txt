@@ -1,3 +1,6 @@
+# How to build ?
+# 1: $ cmake .
+# 2: $ make
 cmake_minimum_required(VERSION 3.23.0)
 project(CJSON_TEST)
 set(LIB_SRC cJSON.c)

@@ -5,25 +5,24 @@
 #define cfgFile "conf.json"
 
 int main() {
-	cJSON* root = NULL;
 	FILE* file = NULL;
 	char* data = NULL;
 	long len = 0;
 
 	// open config file
-	if(cfgFile == NULL || (file = fopen(cfgFile, "rb")) == NULL) {
+	if (cfgFile == NULL || (file = fopen(cfgFile, "rb")) == NULL) {
 		printf("open file fail! %s", cfgFile);
 		return -1;
 	}
 
 	// get file len
-	if(fseek(file, 0, SEEK_END) != 0 || (len = ftell(file)) == 0 || fseek(file, 0, SEEK_SET) != 0) {
+	if (fseek(file, 0, SEEK_END) != 0 || (len = ftell(file)) == 0 || fseek(file, 0, SEEK_SET) != 0) {
 		printf("cfgFile len error! len: %ld", len);
 		fclose(file);
 		return -1;
 	}
 
-	if((data = (char*)malloc(len+1)) == NULL || fread(data, 1, len, file) != len) {
+	if ((data = (char*)malloc(len+1)) == NULL || fread(data, 1, len, file) != len) {
 		printf("read data fail!");
 		fclose(file);
 		return -1;
@@ -33,28 +32,33 @@ int main() {
 	fclose(file);
 
 	// json parse
-	root = cJSON_Parse(data);
-	if(root == NULL) {
+	cJSON* jRoot = cJSON_Parse(data);
+	if (jRoot == NULL) {
 		free(data);
-		printf("cJSON_Parse fail! [%s]\n", cJSON_GetErrorPtr());
+		const char *error_ptr = cJSON_GetErrorPtr();
+		if (error_ptr != NULL) {
+			printf("cJSON_Parse failed! [%s]\n", error_ptr);
+		}
 		return -1;
 	}
 
-	cJSON* name_json = cJSON_GetObjectItem(root, "name");
-	if (name_json != NULL) {
-		char *name = cJSON_Print(name_json);
-		printf("name: %s\n", name);
-		free(name);
+	cJSON* jName = cJSON_GetObjectItem(jRoot, "name");
+	if (cJSON_IsString(jName) && (jName->valuestring != NULL)) {
+		char *strName = cJSON_Print(jName);
+		printf("1 ~ name: %s\n", strName);
+		printf("2 ~ name: %s\n\n", jName->valuestring);
+		free(strName);
 	}
 
-	cJSON *hobby_json = cJSON_GetObjectItem(root, "hobby");
-	if (hobby_json != NULL) {
-		char *strHobby = cJSON_Print(hobby_json);
-		printf("strHobby: %s\n", strHobby);
+	cJSON *jHobby = cJSON_GetObjectItem(jRoot, "hobby");
+	if (cJSON_IsString(jHobby) && (jHobby->valuestring != NULL)) {
+		char *strHobby = cJSON_Print(jHobby);
+		printf("A ~ strHobby: %s\n", strHobby);
+		printf("B ~ strHobby: %s\n", jHobby->valuestring);
 		free(strHobby);
 	}
 
-	cJSON_Delete(root);
+	cJSON_Delete(jRoot);
 	free(data);
 }
 
