@@ -11,8 +11,6 @@ var resData = require('./data.json');
 var n = 0;
 
 http.createServer(function (req, res) {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-
 	var queryData = url.parse(req.url, true).query;
 	console.log(++n + ': queryData =' , JSON.stringify(queryData));
 	var now = new Date() + ' ~';
@@ -24,8 +22,9 @@ http.createServer(function (req, res) {
 	}
 	str = JSON.stringify({ retObj: str });
 
+	res.writeHead(200, {'Content-Type': 'text/plain', 'Content-Length': str.length});
 	res.end(str);
-}).listen(8081, '127.0.0.1');
+}).listen(8081);
 
 console.log('Server running at http://127.0.0.1:8081/');
 
