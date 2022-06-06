@@ -13,7 +13,7 @@ var n = 0;
 http.createServer(function (req, res) {
 	var queryData = url.parse(req.url, true).query;
 	console.log(++n + ': queryData =' , JSON.stringify(queryData));
-	var now = new Date() + ' ~';
+	var now = `${new Date()} ~ ${Date.now()} ~`;
 	var str = '';
 	if (queryData.name) {
 		str = stringFormat(resData.SPECIAL_RES, n, now, queryData.name);
