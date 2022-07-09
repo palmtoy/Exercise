@@ -1,10 +1,10 @@
 [package]
 
-name = "HelloWorld"
+name = "hello_world"
 version = "0.0.1"
 authors = [ "palmtoy<palmtoy@gmail.com>" ]
 
 [[bin]]
 
-name = "HelloWorld"
+name = "hello_world"
 
