@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker run --name esp32c3-compiler_original --rm \
+docker run --name esp32c3-compiler_classic --rm \
 	-v $HOME/Repository/Software/Programming/IDF-Rust/registry:/home/esp/.cargo/registry \
 	-v $HOME/Workspace/GitHub/Exercise/Rust/ESP-IDF-Rust/esp-idf-template:/esp-idf-template \
 	-w /esp-idf-template \
