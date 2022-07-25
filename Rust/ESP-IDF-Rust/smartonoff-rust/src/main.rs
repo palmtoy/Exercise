@@ -560,7 +560,7 @@ fn test_timer(
 
         client
             .publish(
-                "rust-esp32-std-demo",
+                "smartonoff-rust",
                 QoS::AtMostOnce,
                 false,
                 format!("Now is {:?}", now).as_bytes(),
@@ -624,7 +624,7 @@ fn test_mqtt_client() -> Result<EspMqttClient<ConnState<MessageImpl, EspError>>>
     info!("About to start MQTT client");
 
     let conf = MqttClientConfiguration {
-        client_id: Some("rust-esp32-std-demo"),
+        client_id: Some("smartonoff-rust"),
         crt_bundle_attach: Some(esp_idf_sys::esp_crt_bundle_attach),
 
         ..Default::default()
@@ -641,7 +641,7 @@ fn test_mqtt_client() -> Result<EspMqttClient<ConnState<MessageImpl, EspError>>>
     // Yet, you still need to efficiently process each message in the callback without blocking for too long.
     //
     // Note also that if you go to http://tools.emqx.io/ and then connect and send a message to topic
-    // "rust-esp32-std-demo", the client configured here should receive it.
+    // "smartonoff-rust", the client configured here should receive it.
     thread::spawn(move || {
         info!("MQTT Listening for messages");
 
@@ -655,18 +655,18 @@ fn test_mqtt_client() -> Result<EspMqttClient<ConnState<MessageImpl, EspError>>>
         info!("MQTT connection loop exit");
     });
 
-    client.subscribe("rust-esp32-std-demo", QoS::AtMostOnce)?;
+    client.subscribe("smartonoff-rust", QoS::AtMostOnce)?;
 
-    info!("Subscribed to all topics (rust-esp32-std-demo)");
+    info!("Subscribed to all topics (smartonoff-rust)");
 
     client.publish(
-        "rust-esp32-std-demo",
+        "smartonoff-rust",
         QoS::AtMostOnce,
         false,
-        "Hello from rust-esp32-std-demo!".as_bytes(),
+        "Hello from smartonoff-rust!".as_bytes(),
     )?;
 
-    info!("Published a hello message to topic \"rust-esp32-std-demo\"");
+    info!("Published a hello message to topic \"smartonoff-rust\"");
 
     Ok(client)
 }

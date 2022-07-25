@@ -1,7 +1,5 @@
 use embuild::{
-    self, bingen,
-    build::{CfgArgs, LinkArgs},
-    cargo, symgen,
+    self, build::{CfgArgs, LinkArgs},
 };
 
 fn main() -> anyhow::Result<()> {
