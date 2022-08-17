@@ -32,3 +32,7 @@ $ java -jar build/libs/demo_boot_gradle-0.0.1-SNAPSHOT.jar
 
 ### Using gradlew to run unit test
 $ ./gradlew test
+
+### Generate protobuf java code file
+$ protoc --java_out=src/main/java src/main/proto/Learning.proto
+
