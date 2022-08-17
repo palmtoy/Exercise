@@ -7,8 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
 import static org.assertj.core.api.Assertions.assertThat;
+import com.demo.demo_boot_gradle.Learning.Course;
 
 @ExtendWith(SpringExtension.class)
 // We create a `@SpringBootTest`, starting an actual server on a `RANDOM_PORT`
@@ -33,4 +33,16 @@ public class DemoBootGradleApplicationTests {
 					assertThat(greeting.getMessage()).isEqualTo("Hello, Spring!");
 				});
 	}
+
+	@Test
+	public void testDemoCourses() {
+		webTestClient
+				// Create a GET request to test an endpoint
+				.get().uri("/courses/1")
+				.accept(MediaType.APPLICATION_OCTET_STREAM)
+				.exchange()
+				// and use the dedicated DSL to test assertions against the response
+				.expectStatus().is4xxClientError();
+	}
+
 }
