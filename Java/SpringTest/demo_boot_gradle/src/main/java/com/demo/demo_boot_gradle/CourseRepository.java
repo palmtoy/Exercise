@@ -8,6 +8,14 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class CourseRepository {
   private final Map<Integer, Course> courses;
+  private Integer curId;
+
+  public Integer putNewCourse(Course c) {
+    curId++;
+    Course course = Course.newBuilder().setId(curId).setCourseName(c.getCourseName() + " ~").build();
+    this.courses.put(curId, course);
+    return curId;
+  }
 
   public Course getCourseById(int id) {
     return courses.get(id);

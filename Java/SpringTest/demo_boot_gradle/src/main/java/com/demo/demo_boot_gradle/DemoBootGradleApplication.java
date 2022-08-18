@@ -51,7 +51,7 @@ public class DemoBootGradleApplication {
 		courses.put(course1.getId(), course1);
 		courses.put(course2.getId(), course2);
 
-		return new CourseRepository(courses);
+		return new CourseRepository(courses, courses.size());
 	}
 
 	private List<Student> createTestStudents() {

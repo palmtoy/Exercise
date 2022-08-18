@@ -41,7 +41,21 @@ public class DemoBootGradleApplicationTests {
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(Course.class).value(course -> {
-					System.out.println("Response ~ course↓\n" + course);
+					System.out.println("Response ~ course ↓\n" + course);
+				});
+	}
+
+	@Test
+	public void testPostCourses() {
+		Course c = Course.newBuilder().setCourseName("Hello WebFlux").build();
+		webTestClient
+				.post().uri("/courses/save")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.bodyValue(c)
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Course.class).value(course -> {
+					System.out.println("Response ~ course ↓\n" + course);
 				});
 	}
 
