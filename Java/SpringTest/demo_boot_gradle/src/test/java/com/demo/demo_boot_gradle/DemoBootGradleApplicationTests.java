@@ -37,12 +37,12 @@ public class DemoBootGradleApplicationTests {
 	@Test
 	public void testDemoCourses() {
 		webTestClient
-				// Create a GET request to test an endpoint
 				.get().uri("/courses/1")
-				.accept(MediaType.APPLICATION_OCTET_STREAM)
 				.exchange()
-				// and use the dedicated DSL to test assertions against the response
-				.expectStatus().is4xxClientError();
+				.expectStatus().isOk()
+				.expectBody(Course.class).value(course -> {
+					System.out.println("Response ~ course↓\n" + course);
+				});
 	}
 
 }
