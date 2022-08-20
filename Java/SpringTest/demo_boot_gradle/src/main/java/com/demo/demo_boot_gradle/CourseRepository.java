@@ -12,12 +12,17 @@ public class CourseRepository {
 
   public Integer putNewCourse(Course c) {
     curId++;
-    Course course = Course.newBuilder().setId(curId).setCourseName(c.getCourseName() + " ~").build();
+    Course course = Course.newBuilder().setId(curId).setCourseName(curId.toString() + " ~ " + c.getCourseName()).build();
     this.courses.put(curId, course);
     return curId;
   }
 
   public Course getCourseById(int id) {
-    return courses.get(id);
+    Course c = courses.get(id);
+    if (c != null) {
+      return c;
+    } else {
+      return courses.get(1);
+    }
   }
 }

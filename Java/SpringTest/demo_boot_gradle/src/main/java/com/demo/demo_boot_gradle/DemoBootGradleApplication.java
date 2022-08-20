@@ -42,10 +42,10 @@ public class DemoBootGradleApplication {
 	public CourseRepository createTestCourses() {
 		Map<Integer, Course> courses = new HashMap<>();
 
-		Course course1 = Course.newBuilder().setId(1).setCourseName("REST with Spring").addAllStudent(createTestStudents())
+		Course course1 = Course.newBuilder().setId(1).setCourseName("1 ~ REST with Spring").addAllStudent(createTestStudents())
 				.build();
 
-		Course course2 = Course.newBuilder().setId(2).setCourseName("Learn Spring Security")
+		Course course2 = Course.newBuilder().setId(2).setCourseName("2 ~ Learn Spring Security")
 				.addAllStudent(new ArrayList<>()).build();
 
 		courses.put(course1.getId(), course1);
