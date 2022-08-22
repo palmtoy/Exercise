@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.config.EnableWebFlux;
 import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
+import reactor.core.scheduler.Scheduler;
+import reactor.core.scheduler.Schedulers;
 
 import com.demo.demo_boot_gradle.Learning.Course;
 import com.demo.demo_boot_gradle.Learning.Student;
@@ -19,6 +23,7 @@ import com.demo.demo_boot_gradle.Learning.Student.PhoneType;
 import com.demo.demo_boot_gradle.Learning.Student.PhoneNumber;
 
 @SpringBootApplication
+@EnableWebFlux
 public class DemoBootGradleApplication {
 
 	public static void main(String[] args) {
@@ -26,6 +31,11 @@ public class DemoBootGradleApplication {
 		GreetingClient greetingClient = context.getBean(GreetingClient.class);
 		// block for the content here or the JVM might exit before the message is logged
 		System.out.println(">> message = " + greetingClient.getMessage().block());
+	}
+
+	@Bean
+	public Scheduler ioScheduler() {
+			return Schedulers.fromExecutor(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
 	}
 
 	@Bean
