@@ -14,6 +14,757 @@ public final class Learning {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface MyProtoMsgOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:MyProtoMsg)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 status_code = 1;</code>
+     * @return The statusCode.
+     */
+    int getStatusCode();
+
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     * @return Whether the data field is set.
+     */
+    boolean hasData();
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     * @return The data.
+     */
+    com.google.protobuf.Any getData();
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     */
+    com.google.protobuf.AnyOrBuilder getDataOrBuilder();
+  }
+  /**
+   * Protobuf type {@code MyProtoMsg}
+   */
+  public static final class MyProtoMsg extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:MyProtoMsg)
+      MyProtoMsgOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use MyProtoMsg.newBuilder() to construct.
+    private MyProtoMsg(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private MyProtoMsg() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new MyProtoMsg();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private MyProtoMsg(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+
+              statusCode_ = input.readInt32();
+              break;
+            }
+            case 18: {
+              com.google.protobuf.Any.Builder subBuilder = null;
+              if (data_ != null) {
+                subBuilder = data_.toBuilder();
+              }
+              data_ = input.readMessage(com.google.protobuf.Any.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(data_);
+                data_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.demo.demo_boot_gradle.Learning.internal_static_MyProtoMsg_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.demo.demo_boot_gradle.Learning.internal_static_MyProtoMsg_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.demo.demo_boot_gradle.Learning.MyProtoMsg.class, com.demo.demo_boot_gradle.Learning.MyProtoMsg.Builder.class);
+    }
+
+    public static final int STATUS_CODE_FIELD_NUMBER = 1;
+    private int statusCode_;
+    /**
+     * <code>int32 status_code = 1;</code>
+     * @return The statusCode.
+     */
+    @java.lang.Override
+    public int getStatusCode() {
+      return statusCode_;
+    }
+
+    public static final int DATA_FIELD_NUMBER = 2;
+    private com.google.protobuf.Any data_;
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     * @return Whether the data field is set.
+     */
+    @java.lang.Override
+    public boolean hasData() {
+      return data_ != null;
+    }
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     * @return The data.
+     */
+    @java.lang.Override
+    public com.google.protobuf.Any getData() {
+      return data_ == null ? com.google.protobuf.Any.getDefaultInstance() : data_;
+    }
+    /**
+     * <pre>
+     * req &amp; res data: `message Course`
+     * </pre>
+     *
+     * <code>.google.protobuf.Any data = 2;</code>
+     */
+    @java.lang.Override
+    public com.google.protobuf.AnyOrBuilder getDataOrBuilder() {
+      return getData();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (statusCode_ != 0) {
+        output.writeInt32(1, statusCode_);
+      }
+      if (data_ != null) {
+        output.writeMessage(2, getData());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (statusCode_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, statusCode_);
+      }
+      if (data_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getData());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof com.demo.demo_boot_gradle.Learning.MyProtoMsg)) {
+        return super.equals(obj);
+      }
+      com.demo.demo_boot_gradle.Learning.MyProtoMsg other = (com.demo.demo_boot_gradle.Learning.MyProtoMsg) obj;
+
+      if (getStatusCode()
+          != other.getStatusCode()) return false;
+      if (hasData() != other.hasData()) return false;
+      if (hasData()) {
+        if (!getData()
+            .equals(other.getData())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + STATUS_CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getStatusCode();
+      if (hasData()) {
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getData().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(com.demo.demo_boot_gradle.Learning.MyProtoMsg prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code MyProtoMsg}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:MyProtoMsg)
+        com.demo.demo_boot_gradle.Learning.MyProtoMsgOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.demo.demo_boot_gradle.Learning.internal_static_MyProtoMsg_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.demo.demo_boot_gradle.Learning.internal_static_MyProtoMsg_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.demo.demo_boot_gradle.Learning.MyProtoMsg.class, com.demo.demo_boot_gradle.Learning.MyProtoMsg.Builder.class);
+      }
+
+      // Construct using com.demo.demo_boot_gradle.Learning.MyProtoMsg.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        statusCode_ = 0;
+
+        if (dataBuilder_ == null) {
+          data_ = null;
+        } else {
+          data_ = null;
+          dataBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.demo.demo_boot_gradle.Learning.internal_static_MyProtoMsg_descriptor;
+      }
+
+      @java.lang.Override
+      public com.demo.demo_boot_gradle.Learning.MyProtoMsg getDefaultInstanceForType() {
+        return com.demo.demo_boot_gradle.Learning.MyProtoMsg.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public com.demo.demo_boot_gradle.Learning.MyProtoMsg build() {
+        com.demo.demo_boot_gradle.Learning.MyProtoMsg result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public com.demo.demo_boot_gradle.Learning.MyProtoMsg buildPartial() {
+        com.demo.demo_boot_gradle.Learning.MyProtoMsg result = new com.demo.demo_boot_gradle.Learning.MyProtoMsg(this);
+        result.statusCode_ = statusCode_;
+        if (dataBuilder_ == null) {
+          result.data_ = data_;
+        } else {
+          result.data_ = dataBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.demo.demo_boot_gradle.Learning.MyProtoMsg) {
+          return mergeFrom((com.demo.demo_boot_gradle.Learning.MyProtoMsg)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.demo.demo_boot_gradle.Learning.MyProtoMsg other) {
+        if (other == com.demo.demo_boot_gradle.Learning.MyProtoMsg.getDefaultInstance()) return this;
+        if (other.getStatusCode() != 0) {
+          setStatusCode(other.getStatusCode());
+        }
+        if (other.hasData()) {
+          mergeData(other.getData());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.demo.demo_boot_gradle.Learning.MyProtoMsg parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.demo.demo_boot_gradle.Learning.MyProtoMsg) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private int statusCode_ ;
+      /**
+       * <code>int32 status_code = 1;</code>
+       * @return The statusCode.
+       */
+      @java.lang.Override
+      public int getStatusCode() {
+        return statusCode_;
+      }
+      /**
+       * <code>int32 status_code = 1;</code>
+       * @param value The statusCode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setStatusCode(int value) {
+        
+        statusCode_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 status_code = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearStatusCode() {
+        
+        statusCode_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.Any data_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> dataBuilder_;
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       * @return Whether the data field is set.
+       */
+      public boolean hasData() {
+        return dataBuilder_ != null || data_ != null;
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       * @return The data.
+       */
+      public com.google.protobuf.Any getData() {
+        if (dataBuilder_ == null) {
+          return data_ == null ? com.google.protobuf.Any.getDefaultInstance() : data_;
+        } else {
+          return dataBuilder_.getMessage();
+        }
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public Builder setData(com.google.protobuf.Any value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          data_ = value;
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public Builder setData(
+          com.google.protobuf.Any.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          data_ = builderForValue.build();
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public Builder mergeData(com.google.protobuf.Any value) {
+        if (dataBuilder_ == null) {
+          if (data_ != null) {
+            data_ =
+              com.google.protobuf.Any.newBuilder(data_).mergeFrom(value).buildPartial();
+          } else {
+            data_ = value;
+          }
+          onChanged();
+        } else {
+          dataBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public Builder clearData() {
+        if (dataBuilder_ == null) {
+          data_ = null;
+          onChanged();
+        } else {
+          data_ = null;
+          dataBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public com.google.protobuf.Any.Builder getDataBuilder() {
+        
+        onChanged();
+        return getDataFieldBuilder().getBuilder();
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      public com.google.protobuf.AnyOrBuilder getDataOrBuilder() {
+        if (dataBuilder_ != null) {
+          return dataBuilder_.getMessageOrBuilder();
+        } else {
+          return data_ == null ?
+              com.google.protobuf.Any.getDefaultInstance() : data_;
+        }
+      }
+      /**
+       * <pre>
+       * req &amp; res data: `message Course`
+       * </pre>
+       *
+       * <code>.google.protobuf.Any data = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder> 
+          getDataFieldBuilder() {
+        if (dataBuilder_ == null) {
+          dataBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              com.google.protobuf.Any, com.google.protobuf.Any.Builder, com.google.protobuf.AnyOrBuilder>(
+                  getData(),
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        return dataBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:MyProtoMsg)
+    }
+
+    // @@protoc_insertion_point(class_scope:MyProtoMsg)
+    private static final com.demo.demo_boot_gradle.Learning.MyProtoMsg DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new com.demo.demo_boot_gradle.Learning.MyProtoMsg();
+    }
+
+    public static com.demo.demo_boot_gradle.Learning.MyProtoMsg getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<MyProtoMsg>
+        PARSER = new com.google.protobuf.AbstractParser<MyProtoMsg>() {
+      @java.lang.Override
+      public MyProtoMsg parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new MyProtoMsg(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<MyProtoMsg> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<MyProtoMsg> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.demo.demo_boot_gradle.Learning.MyProtoMsg getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface CourseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:Course)
       com.google.protobuf.MessageOrBuilder {
@@ -3124,6 +3875,11 @@ public final class Learning {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_MyProtoMsg_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_MyProtoMsg_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Course_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -3147,28 +3903,38 @@ public final class Learning {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016Learning.proto\"D\n\006Course\022\n\n\002id\030\001 \001(\005\022\023" +
-      "\n\013course_name\030\002 \001(\t\022\031\n\007student\030\003 \003(\0132\010.S" +
-      "tudent\"\330\001\n\007Student\022\n\n\002id\030\001 \001(\005\022\022\n\nfirst_" +
-      "name\030\002 \001(\t\022\021\n\tlast_name\030\003 \001(\t\022\r\n\005email\030\004" +
-      " \001(\t\022#\n\005phone\030\005 \003(\0132\024.Student.PhoneNumbe" +
-      "r\032?\n\013PhoneNumber\022\016\n\006number\030\001 \001(\t\022 \n\004type" +
-      "\030\002 \001(\0162\022.Student.PhoneType\"%\n\tPhoneType\022" +
-      "\n\n\006MOBILE\020\000\022\014\n\010LANDLINE\020\001B%\n\031com.demo.de" +
-      "mo_boot_gradleB\010Learningb\006proto3"
+      "\n\016Learning.proto\032\031google/protobuf/any.pr" +
+      "oto\"E\n\nMyProtoMsg\022\023\n\013status_code\030\001 \001(\005\022\"" +
+      "\n\004data\030\002 \001(\0132\024.google.protobuf.Any\"D\n\006Co" +
+      "urse\022\n\n\002id\030\001 \001(\005\022\023\n\013course_name\030\002 \001(\t\022\031\n" +
+      "\007student\030\003 \003(\0132\010.Student\"\330\001\n\007Student\022\n\n\002" +
+      "id\030\001 \001(\005\022\022\n\nfirst_name\030\002 \001(\t\022\021\n\tlast_nam" +
+      "e\030\003 \001(\t\022\r\n\005email\030\004 \001(\t\022#\n\005phone\030\005 \003(\0132\024." +
+      "Student.PhoneNumber\032?\n\013PhoneNumber\022\016\n\006nu" +
+      "mber\030\001 \001(\t\022 \n\004type\030\002 \001(\0162\022.Student.Phone" +
+      "Type\"%\n\tPhoneType\022\n\n\006MOBILE\020\000\022\014\n\010LANDLIN" +
+      "E\020\001B%\n\031com.demo.demo_boot_gradleB\010Learni" +
+      "ngb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.google.protobuf.AnyProto.getDescriptor(),
         });
-    internal_static_Course_descriptor =
+    internal_static_MyProtoMsg_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_MyProtoMsg_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_MyProtoMsg_descriptor,
+        new java.lang.String[] { "StatusCode", "Data", });
+    internal_static_Course_descriptor =
+      getDescriptor().getMessageTypes().get(1);
     internal_static_Course_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Course_descriptor,
         new java.lang.String[] { "Id", "CourseName", "Student", });
     internal_static_Student_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_Student_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Student_descriptor,
@@ -3179,6 +3945,7 @@ public final class Learning {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Student_PhoneNumber_descriptor,
         new java.lang.String[] { "Number", "Type", });
+    com.google.protobuf.AnyProto.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

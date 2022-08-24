@@ -1,7 +1,14 @@
 syntax = "proto3";
 
+import "google/protobuf/any.proto";
+
 option java_package = "com.demo.demo_boot_gradle";
 option java_outer_classname = "Learning";
+
+message MyProtoMsg {
+  int32 status_code = 1;
+  google.protobuf.Any data = 2; // req & res data: `message Course`
+}
 
 message Course {
 	int32 id = 1;

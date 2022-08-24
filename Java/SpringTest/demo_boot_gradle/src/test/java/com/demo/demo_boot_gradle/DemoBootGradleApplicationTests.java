@@ -9,6 +9,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import static org.assertj.core.api.Assertions.assertThat;
 import com.demo.demo_boot_gradle.Learning.Course;
+import com.demo.demo_boot_gradle.Learning.MyProtoMsg;
+import com.google.protobuf.Any;
 
 @ExtendWith(SpringExtension.class)
 // We create a `@SpringBootTest`, starting an actual server on a `RANDOM_PORT`
@@ -52,6 +54,22 @@ public class DemoBootGradleApplicationTests {
 				.post().uri("/courses/save")
 				.contentType(MediaType.APPLICATION_OCTET_STREAM)
 				.bodyValue(c)
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Course.class).value(course -> {
+					System.out.println("Response ~ course ↓\n" + course);
+				});
+	}
+
+	@Test
+	public void testPostCourses2() {
+		Course.Builder cBuilder = Course.newBuilder().setCourseName("Hi WebFlux");
+		MyProtoMsg.Builder msgBuilder = MyProtoMsg.newBuilder().setStatusCode(2);
+		MyProtoMsg msg = msgBuilder.setData(Any.pack(cBuilder.build())).build();
+		webTestClient
+				.post().uri("/courses/save2")
+				.contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.bodyValue(msg)
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(Course.class).value(course -> {

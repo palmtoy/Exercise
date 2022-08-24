@@ -8,6 +8,8 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.demo.demo_boot_gradle.Learning.Course;
+import com.demo.demo_boot_gradle.Learning.MyProtoMsg;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import reactor.core.publisher.Mono;
 
@@ -28,6 +30,27 @@ public class CourseHandler {
         .flatMap(msg -> {
           System.out.println("Receive a new request /courses/save, msg => " + msg);
           return Mono.just(courseRepo.putNewCourse(msg));
+        })
+        .flatMap(id -> ServerResponse.ok().bodyValue(courseRepo.getCourseById(id)));
+  }
+
+  public Mono<ServerResponse> putNewCourse2(ServerRequest request) {
+    return request.bodyToMono(MyProtoMsg.class)
+        .flatMap(msg -> {
+          System.out.println("Receive a new request /courses/save2, msg =>\n" + msg);
+          try {
+            return Mono.just(msg.getData().unpack(Course.class));
+          } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+          }
+          return null;
+        })
+        .flatMap(cObj -> {
+          if (cObj != null) {
+            return Mono.just(courseRepo.putNewCourse(cObj));
+          } else {
+            return Mono.just(-1);
+          }
         })
         .flatMap(id -> ServerResponse.ok().bodyValue(courseRepo.getCourseById(id)));
   }

@@ -21,7 +21,11 @@ public class CourseRouter {
 				.andRoute(
 						POST("/courses/save").and(accept(MediaType.APPLICATION_OCTET_STREAM))
 								.and(contentType(MediaType.APPLICATION_OCTET_STREAM)),
-						courseHandler::putNewCourse);
+						courseHandler::putNewCourse)
+				.andRoute(
+						POST("/courses/save2").and(accept(MediaType.APPLICATION_OCTET_STREAM))
+								.and(contentType(MediaType.APPLICATION_OCTET_STREAM)),
+						courseHandler::putNewCourse2);
 	}
 
 }
