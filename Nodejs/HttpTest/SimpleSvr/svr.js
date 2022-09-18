@@ -17,7 +17,7 @@ http.createServer((request, response) => {
 		});
 	} else {
 		response.statusCode = 404;
-		response.end(response.statusCode.toString());
+		response.end(response.statusCode.toString() + ' NOT FOUND\n');
 	}
 }).listen(port);
 
@@ -27,6 +27,7 @@ console.info(`HTTP is running on port ${port} ...`);
 /*
 
 curl -X POST -d "useId=5cdx87&data={name:palmtoy}" http://127.0.0.1:8080/echo
+curl -v -d "useId=5cdx87&data={name:palmtoy}" http://127.0.0.1:8080/echo
 
 */
 
