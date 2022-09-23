@@ -1,12 +1,23 @@
 use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 use chrono::format::*;
 use chrono::prelude::*;
+use std::collections::HashMap;
 
 // curl -v http://localhost:8080
 #[get("/")]
 async fn hello() -> impl Responder {
+    let _req_ret = req_httpbin().await;
     let now = get_cur_time();
     HttpResponse::Ok().body(format!("\n{} ~ {}\n\n", now, "Hello World!"))
+}
+
+async fn req_httpbin() -> Result<(), Box<dyn std::error::Error>> {
+    let resp = reqwest::get("https://httpbin.org/ip")
+        .await?
+        .json::<HashMap<String, String>>()
+        .await?;
+    println!("_req_httpbin: resp = {:#?}", resp);
+    Ok(())
 }
 
 // curl -v http://localhost:8080/echo -d '{"foo": "bar"}'
