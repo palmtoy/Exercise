@@ -34,13 +34,13 @@ async fn echo(req_body: String) -> impl Responder {
 
 async fn post_httpbin() -> Result<(), Box<dyn std::error::Error>> {
     // This will POST a body of `{"lang": "rust"}`
-    let mut map = HashMap::new();
-    map.insert("lang", "rust");
+    let mut req_map = HashMap::new();
+    req_map.insert("lang", "rust");
 
     let client = reqwest::Client::new();
     let resp = client
         .post("http://httpbin.org/post")
-        .json(&map)
+        .json(&req_map)
         .send()
         .await?;
     println!("\nfn_post_httpbin: resp = {:#?}", resp);
@@ -83,13 +83,16 @@ async fn manual_hello() -> impl Responder {
         println!("fn_manual_hello: put_ret = {:#?}", put_ret);
     }
     let now = get_cur_time();
-    HttpResponse::Ok().body(format!("\n{} ~ {}\n\n", now, "Hey, there!"))
+    let mut res_map = HashMap::new();
+    res_map.insert("ts", now.as_str());
+    res_map.insert("msg", "Hey, there!");
+    HttpResponse::Ok().body(format!("{:#?}", res_map))
 }
 
 async fn put_httpbin() -> Result<bool, Box<dyn std::error::Error>> {
-    let mut map = HashMap::new();
-    map.insert("rust", "cargo");
-    map.insert("hello", "world");
+    let mut req_map = HashMap::new();
+    req_map.insert("rust", "cargo");
+    req_map.insert("hello", "world");
     let timeout = 6; // unit: s
     let client = reqwest::Client::builder()
         // .timeout(Duration::from_millis(timeout * 1000)) // unit: ms
@@ -98,7 +101,7 @@ async fn put_httpbin() -> Result<bool, Box<dyn std::error::Error>> {
     let resp = client
         // .post("http://httpbin.org/put")
         .put("http://httpbin.org/put")
-        .json(&map)
+        .json(&req_map)
         .send()
         .await?;
     println!("\nfn_put_httpbin: resp = {:#?}", resp);
