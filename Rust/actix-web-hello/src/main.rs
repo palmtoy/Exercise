@@ -2,6 +2,7 @@ use actix_web::{get, post, web, App, HttpResponse, HttpServer, Responder};
 use chrono::format::*;
 use chrono::prelude::*;
 use std::collections::HashMap;
+use std::time::Duration;
 
 // curl -v http://localhost:8080
 #[get("/")]
@@ -58,7 +59,10 @@ async fn post_httpbin() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
     if json_body != json::JsonValue::Null {
-        println!("\nfn_post_httpbin: json_body.data = {:#?}\n", json_body["data"]);
+        println!(
+            "\nfn_post_httpbin: json_body.data = {:#?}\n",
+            json_body["data"]
+        );
     } else {
         println!("\nfn_post_httpbin: json_body is Null\n");
     }
@@ -67,8 +71,61 @@ async fn post_httpbin() -> Result<(), Box<dyn std::error::Error>> {
 
 // curl -v http://localhost:8080/hey
 async fn manual_hello() -> impl Responder {
+    let put_ret = put_httpbin().await;
+    if put_ret.is_ok() {
+        let real_ret_v = if let Ok(real_ret_v) = put_ret {
+            real_ret_v
+        } else {
+            false
+        };
+        println!("\nfn_manual_hello: real_ret_v = {}", real_ret_v);
+    } else {
+        println!("fn_manual_hello: put_ret = {:#?}", put_ret);
+    }
     let now = get_cur_time();
     HttpResponse::Ok().body(format!("\n{} ~ {}\n\n", now, "Hey, there!"))
+}
+
+async fn put_httpbin() -> Result<bool, Box<dyn std::error::Error>> {
+    let mut map = HashMap::new();
+    map.insert("rust", "cargo");
+    map.insert("hello", "world");
+    let timeout = 6; // unit: s
+    let client = reqwest::Client::builder()
+        // .timeout(Duration::from_millis(timeout * 1000)) // unit: ms
+        .timeout(Duration::from_secs(timeout)) // unit: s
+        .build()?;
+    let resp = client
+        // .post("http://httpbin.org/put")
+        .put("http://httpbin.org/put")
+        .json(&map)
+        .send()
+        .await?;
+    println!("\nfn_put_httpbin: resp = {:#?}", resp);
+    let buf = resp.bytes().await?;
+    println!("fn_put_httpbin: buf = {:#?}", buf);
+    let str_body = match String::from_utf8(buf.to_vec()) {
+        Ok(v) => v,
+        Err(e) => panic!("Invalid UTF-8 sequence: {}", e),
+    };
+    let json_body = match json::parse(str_body.as_str()) {
+        Ok(jv) => jv,
+        Err(_) => {
+            let err_msg = "\nfn_put_httpbin: Failed to parse the HTTP body to JSON!\n";
+            println!("{}", err_msg);
+            json::JsonValue::Null
+        }
+    };
+    if json_body != json::JsonValue::Null {
+        println!(
+            "\nfn_put_httpbin: json_body.data = {:#?}\n",
+            json_body["data"]
+        );
+        Ok(true)
+    } else {
+        println!("\nfn_put_httpbin: json_body is Null\n");
+        Ok(false)
+    }
 }
 
 fn get_cur_time() -> String {
