@@ -22,14 +22,49 @@ async fn req_httpbin() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-// curl -v http://localhost:8080/echo -d '{"foo": "bar"}'
+// curl -v http://localhost:8080/echo -d '{"foo": "bar", "hello": "world"}'
 #[post("/echo")]
 async fn echo(req_body: String) -> impl Responder {
+    let now = get_cur_time();
+    let json_body = match json::parse(req_body.as_str()) {
+        Ok(jv) => jv,
+        Err(_) => {
+            let err_msg = "\nfn_echo: Failed to parse the HTTP body to JSON!\n";
+            println!("{}", err_msg);
+            json::JsonValue::Null
+        }
+    };
+    if json_body != json::JsonValue::Null {
+        println!("\nfn_echo: json_body = {:?}\n", json_body);
+    } else {
+        println!("\nfn_echo: json_body is Null\n");
+        let mut res_map = HashMap::new();
+        res_map.insert("ts", now.as_str());
+        res_map.insert("ret_code", "-1");
+        return HttpResponse::Ok().body(format!("{:#?}", res_map));
+    }
     let _post_ret = post_httpbin().await;
     println!("\nfn_echo: _post_ret.is_ok = {}", _post_ret.is_ok());
     println!("fn_echo: _post_ret = {:#?}", _post_ret);
-    let now = get_cur_time();
-    HttpResponse::Ok().body(format!("\n{} ~ {}\n\n", now, req_body))
+
+    let mut res_map = HashMap::new();
+    res_map.insert("ts", now.as_str());
+
+    let v_foo = if let Some(v_foo) = json_body["foo"].as_str() {
+        v_foo
+    } else {
+        ""
+    };
+    res_map.insert("msg_foo", v_foo);
+
+    let v_hello = if let Some(v_hello) = json_body["hello"].as_str() {
+        v_hello
+    } else {
+        ""
+    };
+    res_map.insert("msg_hello", v_hello);
+    res_map.insert("ret_code", "0");
+    HttpResponse::Ok().body(format!("{:#?}", res_map))
 }
 
 async fn post_httpbin() -> Result<(), Box<dyn std::error::Error>> {
