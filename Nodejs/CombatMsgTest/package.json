@@ -4,7 +4,7 @@
   "description": "CombatMsgTest",
   "main": "svr.js, cli.js",
   "dependencies": {
-    "qs": "~0.6.6"
+    "qs": "~6.9.4"
   },
   "devDependencies": {},
   "scripts": {
