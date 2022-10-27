@@ -15,11 +15,14 @@ import reactor.core.publisher.Mono;
 
 @Component
 public class CourseHandler {
-  @Autowired
-  CourseRepository courseRepo;
+    final CourseRepository courseRepo;
 
-  public Mono<ServerResponse> getCourseById(ServerRequest request) {
-    Integer id = Integer.parseInt(request.pathVariable("id"));
+    public CourseHandler(CourseRepository courseRepo) {
+        this.courseRepo = courseRepo;
+    }
+
+    public Mono<ServerResponse> getCourseById(ServerRequest request) {
+    int id = Integer.parseInt(request.pathVariable("id"));
     System.out.println("Receive a new request /courses/" + id);
     return ServerResponse.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
         .body(BodyInserters.fromValue(courseRepo.getCourseById(id)));
@@ -43,7 +46,7 @@ public class CourseHandler {
           } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
           }
-          return null;
+          return Mono.empty();
         })
         .flatMap(cObj -> {
           if (cObj != null) {

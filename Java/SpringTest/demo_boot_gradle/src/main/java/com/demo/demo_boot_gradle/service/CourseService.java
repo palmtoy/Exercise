@@ -12,7 +12,7 @@ import com.couchbase.client.java.ReactiveCollection;
 
 @AllArgsConstructor
 @Service
-public class CourseService<T> {
+public class CourseService {
     private CourseDao courseDao;
     private ReactiveCouchbaseTemplate reactiveCouchbaseTemplate;
 
