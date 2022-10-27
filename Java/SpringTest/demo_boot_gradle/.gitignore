@@ -6,6 +6,7 @@ build/
 gradle/*
 gradlew
 gradlew.bat
+application.yml
 
 ### STS ###
 .apt_generated
@@ -37,3 +38,4 @@ out/
 
 ### VS Code ###
 .vscode/
+
