@@ -63,12 +63,11 @@ public class CourseHandler {
   }
 
   public Mono<ServerResponse> deleteCourseById(ServerRequest request) {
-      int id = Integer.parseInt(request.pathVariable("id"));
+      var id = request.pathVariable("id");
       System.out.println("Receive a new request delete /courses/" + id);
       return courseRepo.deleteCourseById(id)
-          .flatMap(v ->
-              ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                  .body(BodyInserters.fromValue(new Greeting("Course(id=" + id + ") deleted."))));
+              .flatMap(cId -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                      .body(BodyInserters.fromValue(new Greeting("Course(id = " + cId + ") deleted."))));
   }
 
 }

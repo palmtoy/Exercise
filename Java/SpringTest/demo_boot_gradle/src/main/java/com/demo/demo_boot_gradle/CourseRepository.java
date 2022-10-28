@@ -51,7 +51,7 @@ public class CourseRepository {
         }));
   }
 
-  public Mono<Void> deleteCourseById(int id) {
-    return courseService.deleteCourseById(Integer.toString(id));
+  public Mono<String> deleteCourseById(String id) {
+    return courseService.deleteCourseById(id);
   }
 }

@@ -85,12 +85,7 @@ public class DemoBootGradleApplicationTests {
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(Greeting.class).value(greeting -> {
-					System.out.println("Response ~ del course3 ↓");
-					if (greeting != null) {
-						System.out.println(greeting.getMessage() + "\n");
-					} else {
-						System.out.println("greeting is null.\n");
-					}
+					System.out.println("Response ~ del course3 ↓\n" + greeting.getMessage() + "\n");
 				});
 	}
 

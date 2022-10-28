@@ -40,11 +40,13 @@ public class CourseService {
         return courseDao.save(course);
     }
 
-    public Mono<Void> deleteCourseById(String id) {
+    public Mono<String> deleteCourseById(String id) {
         return courseDao.deleteById(id)
+            // .flatMap(v -> Mono.just(id)) /* the flatMap is never called since no value is emitted */
+            .then(Mono.just(id))
             .onErrorResume(DataRetrievalFailureException.class, error -> {
                 System.out.println("CourseService deleteCourseById trigger DataRetrievalFailureException, id: " + id + ", message: " + error.getMessage());
-                return Mono.empty();
+                return Mono.just(Integer.toString(-1));
             });
     }
 }
