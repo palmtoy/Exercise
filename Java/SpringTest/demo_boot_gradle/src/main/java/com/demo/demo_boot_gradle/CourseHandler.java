@@ -1,6 +1,5 @@
 package com.demo.demo_boot_gradle;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -22,16 +21,18 @@ public class CourseHandler {
     }
 
     public Mono<ServerResponse> getCourseById(ServerRequest request) {
-    int id = Integer.parseInt(request.pathVariable("id"));
-    System.out.println("Receive a new request /courses/" + id);
-    return ServerResponse.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
-        .body(BodyInserters.fromValue(courseRepo.getCourseById(id)));
-  }
+        int id = Integer.parseInt(request.pathVariable("id"));
+        System.out.println("Receive a new request /courses/" + id);
+        return courseRepo.getCourseByIdFromDB(id)
+            .flatMap(course ->
+                ServerResponse.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(BodyInserters.fromValue(course)));
+    }
 
   public Mono<ServerResponse> putNewCourse(ServerRequest request) {
     return request.bodyToMono(Course.class)
         .flatMap(msg -> {
-          System.out.println("Receive a new request /courses/save, msg => " + msg);
+          System.out.println("Receive a new request /courses/save, msg =>\n" + msg);
           return Mono.just(courseRepo.putNewCourse(msg));
         })
         .flatMap(id -> ServerResponse.ok().bodyValue(courseRepo.getCourseById(id)));
@@ -55,7 +56,19 @@ public class CourseHandler {
             return Mono.just(-1);
           }
         })
-        .flatMap(id -> ServerResponse.ok().bodyValue(courseRepo.getCourseById(id)));
+        .flatMap(id -> courseRepo.getCourseByIdFromDB(id)
+            .flatMap(course ->
+               ServerResponse.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+               .body(BodyInserters.fromValue(course))));
+  }
+
+  public Mono<ServerResponse> deleteCourseById(ServerRequest request) {
+      int id = Integer.parseInt(request.pathVariable("id"));
+      System.out.println("Receive a new request delete /courses/" + id);
+      return courseRepo.deleteCourseById(id)
+          .flatMap(v ->
+              ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                  .body(BodyInserters.fromValue(new Greeting("Course(id=" + id + ") deleted."))));
   }
 
 }

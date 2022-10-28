@@ -6,10 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
-import static org.springframework.web.reactive.function.server.RequestPredicates.accept;
-import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
+
+import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 
 @Configuration(proxyBeanMethods = false)
 public class CourseRouter {
@@ -25,7 +23,8 @@ public class CourseRouter {
 				.andRoute(
 						POST("/courses/save2").and(accept(MediaType.APPLICATION_OCTET_STREAM))
 								.and(contentType(MediaType.APPLICATION_OCTET_STREAM)),
-						courseHandler::putNewCourse2);
+						courseHandler::putNewCourse2)
+				.andRoute(DELETE("/courses/{id}").and(accept(MediaType.APPLICATION_JSON)), courseHandler::deleteCourseById);
 	}
 
 }

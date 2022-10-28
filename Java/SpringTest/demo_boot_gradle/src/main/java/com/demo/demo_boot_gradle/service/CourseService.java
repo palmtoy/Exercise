@@ -42,9 +42,9 @@ public class CourseService {
 
     public Mono<Void> deleteCourseById(String id) {
         return courseDao.deleteById(id)
-                .onErrorResume(DataRetrievalFailureException.class, error -> {
-                    System.out.println("CourseService deleteCourseById trigger DataRetrievalFailureException, id: " + id + ", message: " + error.getMessage());
-                    return Mono.empty();
-                });
+            .onErrorResume(DataRetrievalFailureException.class, error -> {
+                System.out.println("CourseService deleteCourseById trigger DataRetrievalFailureException, id: " + id + ", message: " + error.getMessage());
+                return Mono.empty();
+            });
     }
 }

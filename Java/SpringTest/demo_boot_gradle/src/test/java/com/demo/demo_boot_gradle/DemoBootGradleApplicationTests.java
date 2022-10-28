@@ -33,17 +33,7 @@ public class DemoBootGradleApplicationTests {
 				.expectStatus().isOk()
 				.expectBody(Greeting.class).value(greeting -> {
 					assertThat(greeting.getMessage()).isEqualTo("Hello, Spring!");
-				});
-	}
-
-	@Test
-	public void testDemoCourses() {
-		webTestClient
-				.get().uri("/courses/1")
-				.exchange()
-				.expectStatus().isOk()
-				.expectBody(Course.class).value(course -> {
-					System.out.println("Response ~ course ↓\n" + course);
+					System.out.println("Response ~ get hello ↓\n" + greeting.getMessage() + "\n");
 				});
 	}
 
@@ -57,7 +47,7 @@ public class DemoBootGradleApplicationTests {
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(Course.class).value(course -> {
-					System.out.println("Response ~ course ↓\n" + course);
+					System.out.println("Response ~ post course1 ↓\n" + course);
 				});
 	}
 
@@ -73,7 +63,34 @@ public class DemoBootGradleApplicationTests {
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(Course.class).value(course -> {
-					System.out.println("Response ~ course ↓\n" + course);
+					System.out.println("Response ~ post course2 ↓\n" + course);
+				});
+	}
+
+	@Test
+	public void testDemoCourses() {
+		webTestClient
+				.get().uri("/courses/9")
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Course.class).value(course -> {
+					System.out.println("Response ~ get course9 ↓\n" + course);
+				});
+	}
+
+	@Test
+	public void testDelCourse() {
+		webTestClient
+				.delete().uri("/courses/3")
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Greeting.class).value(greeting -> {
+					System.out.println("Response ~ del course3 ↓");
+					if (greeting != null) {
+						System.out.println(greeting.getMessage() + "\n");
+					} else {
+						System.out.println("greeting is null.\n");
+					}
 				});
 	}
 

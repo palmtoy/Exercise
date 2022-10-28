@@ -9,6 +9,7 @@ import com.demo.demo_boot_gradle.model.CourseModel;
 import com.demo.demo_boot_gradle.service.CourseService;
 
 import lombok.AllArgsConstructor;
+import reactor.core.publisher.Mono;
 
 public class CourseRepository {
   private final Map<Integer, Course> courses;
@@ -34,10 +35,23 @@ public class CourseRepository {
   public Course getCourseById(int id) {
     Course c = courses.get(id);
     if (c != null) {
-      courseService.getCourseById(Integer.toString(id)).subscribe();
       return c;
     } else {
       return courses.get(1);
     }
+  }
+
+  public Mono<Course> getCourseByIdFromDB(int id) {
+    return courseService.getCourseById(Integer.toString(id))
+        .map(courseModel -> Course.newBuilder().setId(courseModel.getId()).setCourseName(courseModel.getCourseName()).build())
+        .switchIfEmpty(Mono.defer(() -> {
+          System.out.println("\nDid NOT get course model which id = " + id + "\n");
+          Course c = Course.newBuilder().setId(courses.get(1).getId()).setCourseName(courses.get(1).getCourseName()).build();
+          return Mono.just(c);
+        }));
+  }
+
+  public Mono<Void> deleteCourseById(int id) {
+    return courseService.deleteCourseById(Integer.toString(id));
   }
 }
