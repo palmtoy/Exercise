@@ -1,0 +1,9 @@
+couchbase:
+  host: 127.0.0.1
+  username: ***
+  password: ***
+  bucket: demo
+
+# exe the following cmd ↓
+# cp application.4git.yml application.yml
+# and then modify the values of username and password
