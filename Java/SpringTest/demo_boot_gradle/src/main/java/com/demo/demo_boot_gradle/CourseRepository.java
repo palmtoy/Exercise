@@ -1,14 +1,17 @@
 package com.demo.demo_boot_gradle;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import com.demo.demo_boot_gradle.model.PhoneNumModel;
+import com.demo.demo_boot_gradle.model.StudentModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.demo.demo_boot_gradle.Learning.Course;
+import com.demo.demo_boot_gradle.Learning.*;
 import com.demo.demo_boot_gradle.model.CourseModel;
 import com.demo.demo_boot_gradle.service.CourseService;
 
-import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;
 
 public class CourseRepository {
@@ -27,7 +30,20 @@ public class CourseRepository {
     Course course = Course.newBuilder().setId(curId).setCourseName(curId.toString() + " ~ " + c.getCourseName()).build();
     this.courses.put(curId, course);
 
-    CourseModel courseObj = new CourseModel(curId, c.getCourseName());
+    List<Learning.Student> studentList = c.getStudentList();
+    List<StudentModel> studentModelList = new LinkedList<>();
+    studentList.forEach(s -> {
+      List<PhoneNumModel> phoneNumModelList = new LinkedList<>();
+      List<Learning.Student.PhoneNumber> phoneList = s.getPhoneList();
+      phoneList.forEach(p -> {
+        PhoneNumModel phoneNumModel = new PhoneNumModel(p.getTypeValue(), p.getNumber());
+        phoneNumModelList.add(phoneNumModel);
+      });
+      StudentModel studentModel = new StudentModel(s.getId(), s.getFirstName(), s.getLastName(), s.getEmail(), phoneNumModelList);
+      studentModelList.add(studentModel);
+    });
+
+    CourseModel courseObj = new CourseModel(curId, c.getCourseName(), studentModelList);
     courseService.saveCourse(courseObj).subscribe();
     return curId;
   }

@@ -1,5 +1,6 @@
 package com.demo.demo_boot_gradle.model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,5 @@ public class CourseModel {
     private int id;
 
     private String courseName;
+    private List<StudentModel> studentList;
 }
