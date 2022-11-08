@@ -70,4 +70,31 @@ public class CourseHandler {
                       .body(BodyInserters.fromValue(new Greeting("Course(id = " + cId + ") deleted."))));
   }
 
+  public Mono<ServerResponse> updateCourseById(ServerRequest request) {
+     var cId = request.pathVariable("id");
+     System.out.println("Receive a new request update /courses/" + cId);
+     return request.bodyToMono(MyProtoMsg.class)
+        .flatMap(msg -> {
+          System.out.println("_updateCourseById: msg =>\n" + msg);
+          try {
+            return Mono.just(msg.getData().unpack(Course.class));
+          } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+          }
+          return Mono.empty();
+        })
+        .flatMap(cObj -> {
+          if (cObj != null) {
+            return Mono.just(courseRepo.putNewCourse(cObj));
+          } else {
+            return Mono.just(-1);
+          }
+        })
+        .flatMap(id -> courseRepo.getCourseByIdFromDB(id)
+            .flatMap(course ->
+               ServerResponse.ok().contentType(MediaType.APPLICATION_OCTET_STREAM)
+               .body(BodyInserters.fromValue(course))));
+
+  }
+
 }

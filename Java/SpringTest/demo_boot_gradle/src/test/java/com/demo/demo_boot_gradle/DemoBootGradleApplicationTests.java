@@ -89,4 +89,21 @@ public class DemoBootGradleApplicationTests {
 				});
 	}
 
+	@Test
+	public void testUpdateCourse() {
+		int cId = 6;
+		Course.Builder cBuilder = Course.newBuilder().setCourseName("Wow, Mono ~ " + cId);
+		MyProtoMsg.Builder msgBuilder = MyProtoMsg.newBuilder().setStatusCode(6);
+		MyProtoMsg msg = msgBuilder.setData(Any.pack(cBuilder.build())).build();
+		webTestClient
+				.put().uri("/courses/" + cId)
+				.contentType(MediaType.APPLICATION_OCTET_STREAM)
+				.bodyValue(msg)
+				.exchange()
+				.expectStatus().isOk()
+				.expectBody(Course.class).value(course -> {
+					System.out.println("Response ~ post course" + cId + " ↓\n" + course);
+				});
+	}
+
 }

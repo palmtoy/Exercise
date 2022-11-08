@@ -24,7 +24,8 @@ public class CourseRouter {
 						POST("/courses/save2").and(accept(MediaType.APPLICATION_OCTET_STREAM))
 								.and(contentType(MediaType.APPLICATION_OCTET_STREAM)),
 						courseHandler::putNewCourse2)
-				.andRoute(DELETE("/courses/{id}").and(accept(MediaType.APPLICATION_JSON)), courseHandler::deleteCourseById);
+				.andRoute(DELETE("/courses/{id}").and(accept(MediaType.APPLICATION_JSON)), courseHandler::deleteCourseById)
+				.andRoute(PUT("/courses/{id}").and(accept(MediaType.APPLICATION_JSON)), courseHandler::updateCourseById);
 	}
 
 }

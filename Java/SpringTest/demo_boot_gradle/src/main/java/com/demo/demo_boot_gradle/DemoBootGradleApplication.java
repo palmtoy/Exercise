@@ -1,10 +1,6 @@
 package com.demo.demo_boot_gradle;
 
-import java.util.Map;
-import java.util.List;
-import java.util.HashMap;
-import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.concurrent.Executors;
 
 import org.springframework.boot.SpringApplication;
@@ -40,7 +36,7 @@ public class DemoBootGradleApplication {
 
 	@Bean
 	RestTemplate restTemplate(ProtobufHttpMessageConverter hmc) {
-		return new RestTemplate(Arrays.asList(hmc));
+		return new RestTemplate(Collections.singletonList(hmc));
 	}
 
 	@Bean
@@ -66,10 +62,10 @@ public class DemoBootGradleApplication {
 
 	private List<Student> createTestStudents() {
 		PhoneNumber phone1 = createPhone("123456", PhoneType.MOBILE);
-		Student student1 = createStudent(1, "John", "Doe", "john.doe@mt.com", Arrays.asList(phone1));
+		Student student1 = createStudent(1, "John", "Doe", "john.doe@mt.com", List.of(phone1));
 
 		PhoneNumber phone2 = createPhone("234567", PhoneType.LANDLINE);
-		Student student2 = createStudent(2, "Richard", "Roe", "richard.roe@mt.com", Arrays.asList(phone2));
+		Student student2 = createStudent(2, "Richard", "Roe", "richard.roe@mt.com", List.of(phone2));
 
 		PhoneNumber phone3_1 = createPhone("345678", PhoneType.MOBILE);
 		PhoneNumber phone3_2 = createPhone("456789", PhoneType.LANDLINE);
