@@ -10,7 +10,7 @@
       <button-counter title="title1 : " @clicknow="clicknow">
         <h2>hi...h2</h2>
       </button-counter>
-      <button-counter title="title2 : "></button-counter>
+      <button-counter title="title2 : " @clicknow2="clicknow2"></button-counter>
     </div>
     <script type="text/javascript">
       Vue.component('button-counter', {
@@ -25,6 +25,7 @@
           clickfun: function () {
             this.count++;
             this.$emit('clicknow', this.count);
+            this.$emit('clicknow2', this.count * 2);
           },
         },
       });
@@ -33,7 +34,10 @@
         data: {},
         methods: {
           clicknow: function (e) {
-            console.log(e);
+            console.log(`_clicknow ~ e = ${e}`);
+          },
+          clicknow2: function (e) {
+            console.log(`_clicknow2 ~ e = ${e}`);
           },
         },
       });
