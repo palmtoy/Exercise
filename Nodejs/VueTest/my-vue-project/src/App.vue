@@ -11,6 +11,9 @@
     />
     <br />
     <br />
+    <MyInput v-model="searchText" style="width: 168px" @handleMyInputChange="handleMyInputChange"/>
+    <br />
+    <br />
     <multi-button
       @handleBtnHappyClick="handleBtnHappyClick"
       @handleBtnPrimaryClick="handleBtnPrimaryClick"
@@ -38,6 +41,7 @@ import HelloWorld from "./components/HelloWorld.vue";
 import MultiButton from "./components/MultiButton.vue";
 import MultiSelect from "./components/MultiSelect.vue";
 import MyTable from "./components/MyTable.vue";
+import MyInput from "./components/MyInput.vue";
 import * as HtmlToImage from "html-to-image";
 const G_SVG_LIST = require("./config/svgList.json");
 
@@ -46,6 +50,7 @@ export default {
     return {
       multiSelectItemList: [],
       weatherIcon: 103,
+      searchText: '',
     };
   },
   name: "App",
@@ -54,6 +59,7 @@ export default {
     "multi-button": MultiButton,
     "multi-select": MultiSelect,
     "my-table": MyTable,
+    MyInput,
   },
   methods: {
     handleMultiSelectChange: function (itemList) {
@@ -71,6 +77,13 @@ export default {
           this.multiSelectItemList
         )}`
       );
+    },
+    handleMyInputChange: function (evtVal) {
+      console.log(`App.vue A ~ _handleMyInputChange: searchText = ${this.searchText}`);
+      console.log(`App.vue A ~ _handleMyInputChange:     evtVal = ${evtVal}`);
+      setImmediate(() => {
+        console.log(`App.vue B ~ _handleMyInputChange: searchText = ${this.searchText}`);
+      });
     },
     handleBtnHappyClick: function () {
       this.multiSelectItemList.pop();
