@@ -20,6 +20,8 @@
 					v-bind:key="item.id"
 				></todo-item>
 			</ol>
+			<p>Original message: "{{ message }}"</p>
+			<p>Computed reversed message: "{{ reversedMessage }}"</p>
 		</div>
 
     <script type="text/javascript">
@@ -35,7 +37,15 @@
 						{ id: 0, text: '蔬菜' },
 						{ id: 1, text: '奶酪' },
 						{ id: 2, text: '酱牛肉' }
-					]
+					],
+					message: 'Hello'
+				},
+				computed: {
+					// 计算属性的 getter
+					reversedMessage: function () {
+						// `this` 指向 app7 实例
+						return this.message.split('').reverse().join('')
+					}
 				}
 			})
     </script>
