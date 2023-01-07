@@ -1,0 +1,19 @@
+#!/bin/sh
+
+tmp=/tmp/$$.jar
+
+lines=`awk '/^__JAR_FOLLOW__/ {print NR + 1; exit 0; }' $0`
+tail -n+$lines $0 > $tmp
+java -version > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  echo "No java found, please install java first ..."
+  exit 255
+fi
+
+java -jar $tmp $* 
+ret=$?
+rm $tmp
+exit $ret 
+
+__JAR_FOLLOW__
