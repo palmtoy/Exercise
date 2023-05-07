@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Vue3 Demo2</title>
+	</head>
+
+	<body>
+		<div id="app">
+			<h1>Todo List</h1>
+			<h3>{{content}}</h3>
+			<input type="text" size="50" maxlength="50" v-model="content">
+			<ul>
+				<li v-for="todoItem in todoList">{{todoItem}}</li>
+			</ul>
+		</div>
+
+		<script src="vue@next"></script>
+		<script>
+			const App = {
+				data() {
+					return {
+						content: "Play `Sekiro: Shadows Die Twice`",
+						todoList: ['Learn Vue3', 'Have a meal', 'Take a break']
+					}
+				}
+			}
+			// Start the application
+			Vue.createApp(App).mount('#app')
+		</script>
+	</body>
+
+</html>
+

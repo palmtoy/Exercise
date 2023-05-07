@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Vue3 Demo1</title>
+	</head>
+
+	<body>
+		<div id="app1">
+			<h1 @click="funcAdd">Expression # {{stateV.count}} * 2 = {{doubleV}}</h1>
+		</div>
+		<script src="vue@next"></script>
+		<script>
+			const { reactive, computed } = Vue
+			const App = {
+				setup() {
+					const stateV = reactive({
+						count: 1
+					})
+					function funcAdd() {
+						stateV.count++
+					}
+					const doubleV = computed(() => stateV.count * 2)
+					return { stateV, funcAdd, doubleV }
+				}
+			}
+			Vue.createApp(App).mount('#app1')
+		</script>
+	</body>
+
+</html>
+
