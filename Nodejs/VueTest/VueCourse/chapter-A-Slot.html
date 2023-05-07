@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Slot Demo</title>
+	</head>
+
+	<body>
+
+		<div id="app">
+			<demo_component_a>
+				<!-- 没有为插槽提供值, 则会显示其默认内容 -->
+			</demo_component_a>
+
+			</br>
+
+			<demo_component_a>
+				<h5 style="color: purple;">人生是一场旅行</h5>
+			</demo_component_a>
+
+			</br>
+
+			<demo_component_a>
+				<h5 style="color: blue;"> 我们欣赏沿途的风景</h5>
+				<p style="color: green; font-size: 16px;">会有苦涩</p>
+				<p style="color: red; font-size: 16px;">也会有快乐</p>
+			</demo_component_a>
+
+			</br>
+
+			<demo_component_b>
+				<template #s_price>
+					<p style="color: red; font-size: 18px">￥55.80</p>
+				</template>
+				<template v-slot:s_title>
+					<h5 style="color: deeppink;">《三体》</h5>
+				</template>
+				<p style="font-size: 16px">不要回答, 不要回答, 不要回答 ... ...</p>
+			</demo_component_b>
+		</div>
+
+		<script src="vue.js"></script>
+		<script>
+			var app = new Vue({
+				el: '#app',
+				components: {
+					demo_component_a: {
+						template: `
+							<div>
+								<p style="font-size: 16px">下面是单个插槽的展示 ↓</p>
+								<slot><h5 style="color: orange;"> 默认插槽内容</h5></slot>
+							</div>
+						`,
+					},
+					demo_component_b: {
+						template: `
+							<div>
+								<h5>下面是多个插槽的展示 ↓</h5>
+								<div class="title">
+									<slot name="s_title">此处显示标题</slot>
+								</div>
+								<div class="price">
+									<slot name="s_price">此处显示价格</slot>
+								</div>
+								<div class="abstract">
+									<slot>此处显示简介</slot>
+								</div>
+							</div>
+						`
+					}
+				}
+			})
+		</script>
+
+	</body>
+
+</html>
+
