@@ -1,0 +1,11 @@
+{
+  "name": "nunjuckstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "nunjucks": "^3.2.1"
+  }
+}
