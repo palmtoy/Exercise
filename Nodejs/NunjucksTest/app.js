@@ -17,9 +17,11 @@ const dataObj = {
 const str1 = nunjucks.renderString(strTemplate1, dataObj);
 console.log(`nunjucks str(1) ↓\n ${str1}`);
 
+
+// You can write comments using {# and #}. Comments are completely stripped out when rendering.
 const strTemplate2 = `
-~ 脚本: {{ scriptsName }}
-~ 应用: {{ appName }}
+~ 脚本: {{ scriptsName }}{# ~ 应用: {{ appName }} #}
+{# ~ 平台: {{ platform }} #}
 ~ 包名: {{ package }}
 `;
 const str2 = nunjucks.renderString(strTemplate2, dataObj);
