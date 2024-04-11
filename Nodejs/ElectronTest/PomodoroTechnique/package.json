@@ -1,0 +1,19 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "dragon",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.0.1"
+  },
+  "dependencies": {
+    "progressbar.js": "^1.1.0",
+    "timer.js": "^1.0.4"
+  }
+}
