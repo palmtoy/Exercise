@@ -1,17 +1,17 @@
 const { app, BrowserWindow, ipcMain, Notification } = require('electron');
 
-let mainWindow = null;
+let G_MAIN_WINDOW = null;
 
 function handleIPC() {
   ipcMain.handle('notification', async (e, { body, title, actions, closeButtonText }) => {
-    let res = await new Promise((resolve, reject) => {
+    const res = await new Promise((resolve, reject) => {
       console.log({
         title,
         body,
         actions,
         closeButtonText,
       });
-      let notification = new Notification({
+      const notification = new Notification({
         title,
         body,
         actions,
@@ -30,17 +30,17 @@ function handleIPC() {
 }
 
 function createMainWindow() {
-  mainWindow = new BrowserWindow({
-    width: 250,
-    height: 350,
+  G_MAIN_WINDOW = new BrowserWindow({
+    width: 260,
+    height: 360,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
-  mainWindow.loadFile('./index.html');
+  G_MAIN_WINDOW.loadFile('./index.html');
 
-  return mainWindow;
+  return G_MAIN_WINDOW;
 }
 
 app.whenReady().then(() => {

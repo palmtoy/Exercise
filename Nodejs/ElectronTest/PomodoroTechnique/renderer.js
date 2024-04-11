@@ -15,10 +15,10 @@ const restTime = 10; // 10秒休息
 const state = {};
 
 function render() {
-  let { remainTime: s, type } = state;
-  let maxTime = type < 2 ? workTime : restTime;
-  let ss = s % 60;
-  let mm = ((s - ss) / 60).toFixed();
+  const { remainTime: s, type } = state;
+  const maxTime = type < 2 ? workTime : restTime;
+  const ss = s % 60;
+  const mm = ((s - ss) / 60).toFixed();
   progressBar.set(1 - s / maxTime);
   progressBar.setText(`${mm.toString().padStart(2, '0')}:${ss.toString().padStart(2, '0')}`);
   if (type === 0) {
@@ -55,7 +55,7 @@ const workTimer = new Timer({
     setState({ type: 0, remainTime: 0 });
   }, // 只要是停止，都会进入到工作状态
   onend: function () {
-    let { type } = state;
+    const { type } = state;
     if (type === 1) {
       setState({ type: 2, remainTime: 0 });
       if (process.platform === 'darwin') {
@@ -101,7 +101,7 @@ switchButton.onclick = function () {
 };
 
 async function notification({ title, body, actionText, closeButtonText, onclose, onaction }) {
-  let res = await ipcRenderer.invoke('notification', {
+  const res = await ipcRenderer.invoke('notification', {
     title,
     body,
     actions: [{ text: actionText, type: 'button' }],
