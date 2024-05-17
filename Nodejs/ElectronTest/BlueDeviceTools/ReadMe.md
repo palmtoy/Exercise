@@ -1,4 +1,4 @@
-# PomodoroTechnique
+# BlueDeviceTools
 
 ## to run
 

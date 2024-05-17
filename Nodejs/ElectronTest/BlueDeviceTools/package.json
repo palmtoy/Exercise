@@ -1,7 +1,7 @@
 {
-  "name": "pomodoro",
+  "name": "bluedevicetools",
   "version": "1.0.0",
-  "description": "pomodoro",
+  "description": "bluedevicetools",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
@@ -14,8 +14,8 @@
   "author": "palmtoy",
   "license": "ISC",
   "build": {
-    "appId": "com.mt.pomodoro",
-    "productName": "Pomodoro",
+    "appId": "com.mt.bluedevicetools",
+    "productName": "BlueDeviceTools",
     "files": [
       "src/**/*",
       "package.json",
@@ -26,7 +26,7 @@
       "buildResources": "resource",
       "output": "distribute"
     },
-    "copyright": "Copyright©2024 palmtoy",
+    "copyright": "Copyright © 2024 Palmtoy",
     "mac": {
       "target": [
         "dmg"
@@ -78,8 +78,6 @@
   "dependencies": {
     "about-window": "^1.14.0",
     "electron-is-dev": "^2.0.0",
-    "electron-squirrel-startup": "^1.0.0",
-    "progressbar.js": "^1.1.0",
-    "timer.js": "^1.0.4"
+    "electron-squirrel-startup": "^1.0.0"
   }
 }

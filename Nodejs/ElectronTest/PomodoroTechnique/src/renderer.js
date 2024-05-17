@@ -1,6 +1,6 @@
+const Timer = require('timer.js');
 const { ipcRenderer } = require('electron');
 const ProgressBar = require('progressbar.js/dist/progressbar.js');
-const Timer = require('timer.js');
 
 const switchButton = document.getElementById('switch-button');
 const progressBar = new ProgressBar.Circle('#timer-container', {
@@ -10,8 +10,8 @@ const progressBar = new ProgressBar.Circle('#timer-container', {
   trailWidth: 1,
   svgStyle: null,
 });
-const workTime = 30; // 30秒工作
-const restTime = 10; // 10秒休息
+const workTime = 10; // 工作: 10秒
+const restTime = 5; // 休息: 5秒
 const state = {};
 
 function render() {
@@ -39,52 +39,52 @@ function setState(_state) {
 
 function startWork() {
   setState({ type: 1, remainTime: workTime });
-  workTimer.start(workTime);
+  workTimerObj.start(workTime);
 }
 
 function startRest() {
   setState({ type: 3, remainTime: restTime });
-  workTimer.start(restTime);
+  workTimerObj.start(restTime);
 }
 
-const workTimer = new Timer({
+const workTimerObj = new Timer({
   ontick: ms => {
     setState({ remainTime: (ms / 1000).toFixed(0) });
   }, // 每秒更新时间
   onstop: () => {
     setState({ type: 0, remainTime: 0 });
-  }, // 只要是停止，都会进入到工作状态
+  }, // 停止, 则进入到工作状态
   onend: function () {
     const { type } = state;
     if (type === 1) {
       setState({ type: 2, remainTime: 0 });
       if (process.platform === 'darwin') {
-        // 在Mac下才能使用notification
+        // 只有在 MacOS 下才能使用 notification
         notification({
-          title: '恭喜你完成任务',
-          body: '是否开始休息？',
+          title: '任务完成',
+          body: '是否休息一会儿?',
           actionText: '休息五分钟',
           closeButtonText: '继续工作',
           onaction: startRest,
           onclose: startWork,
         });
       } else {
-        // windows直接alert
-        alert('工作结束');
+        // Windows 下使用 alert
+        alert('任务完成');
       }
     } else if (type === 3) {
       setState({ type: 0, remainTime: 0 });
       if (process.platform === 'darwin') {
         notification({
-          body: '开始新的工作吧!',
           title: '休息结束',
-          closeButtonText: '继续休息',
+          body: '是否开始工作?',
           actionText: '开始工作',
+          closeButtonText: '继续休息',
           onaction: startWork,
           onclose: startRest,
         });
       } else {
-        alert('工作结束');
+        alert('休息结束');
       }
     }
   },
@@ -96,7 +96,7 @@ switchButton.onclick = function () {
   } else if (this.innerText === '开始休息') {
     startRest();
   } else {
-    workTimer.stop();
+    workTimerObj.stop();
   }
 };
 
