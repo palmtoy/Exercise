@@ -15,7 +15,7 @@ function submitForm(e) {
     headers: {},
   })
     .then(async res => {
-      filesObj.value = '';
+      filesObj.value = ''; // reset files input
       console.log(await res.json());
     })
     .catch(err => ('Error occured', err));
