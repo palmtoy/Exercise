@@ -2,8 +2,10 @@
 
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const multer = require('multer');
 const app = express();
+const host = 'http://localhost';
 const port = 3000;
 
 app.use(express.json());
@@ -19,13 +21,37 @@ const storageObj = multer.diskStorage({
     cb(null, `${tmpList[0]}-${Date.now()}.${tmpList[1]}`);
   },
 });
-const uploadObj = multer({ storage: storageObj });
+const uploadObj = multer({
+  storage: storageObj,
+  limits: {
+    fileSize: 1024 * 1024 * 25, // Max file size 25MB
+  },
+});
 
 // File Upload Endpoint
 app.post('/upload-files', uploadObj.array('files'), (req, res) => {
   console.log('req.body =', req.body);
   console.log('req.files =', req.files);
-  res.json({ message: 'Files uploaded OK' });
+  const urlList = [];
+  req.files.forEach(fileObj => {
+    urlList.push(`${host}:${port}/uploads/${fileObj.filename}`);
+  });
+  return res.status(200).json({
+    message: 'File uploaded OK',
+    data: {
+      urls: urlList.join(', '),
+    },
+  });
+});
+
+app.get('/uploads/:fileName', (req, res) => {
+  const filePath = path.join(__dirname, 'uploads', req.params.fileName);
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({
+      message: 'File not found',
+    });
+  }
+  return res.sendFile(filePath);
 });
 
 app.get('*', (req, res) => {
