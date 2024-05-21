@@ -4,19 +4,19 @@ form.addEventListener('submit', submitForm);
 
 function submitForm(e) {
   e.preventDefault();
-  const files = document.getElementById('files');
+  const filesObj = document.getElementById('files');
   const formData = new FormData();
-  for (let i = 0; i < files.files.length; i++) {
-    formData.append('files', files.files[i]);
+  for (let i = 0; i < filesObj.files.length; i++) {
+    formData.append('files', filesObj.files[i]);
   }
   fetch('http://localhost:3000/upload-files', {
     method: 'POST',
     body: formData,
     headers: {},
   })
-    .then(res => {
-      files.value = '';
-      console.log(res);
+    .then(async res => {
+      filesObj.value = '';
+      console.log(await res.json());
     })
     .catch(err => ('Error occured', err));
 }
