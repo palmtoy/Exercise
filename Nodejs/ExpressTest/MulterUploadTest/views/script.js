@@ -9,11 +9,14 @@ function submitForm(e) {
   for (let i = 0; i < files.files.length; i++) {
     formData.append('files', files.files[i]);
   }
-  fetch('http://localhost:3000/upload_files', {
+  fetch('http://localhost:3000/upload-files', {
     method: 'POST',
     body: formData,
     headers: {},
   })
-    .then(res => console.log(res))
+    .then(res => {
+      files.value = '';
+      console.log(res);
+    })
     .catch(err => ('Error occured', err));
 }

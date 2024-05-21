@@ -22,11 +22,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // File Upload Endpoint
-app.post('/upload_files', upload.array('files'), uploadFiles);
+app.post('/upload-files', upload.array('files'), uploadFiles);
 function uploadFiles(req, res) {
   console.log('req.body =', req.body);
   console.log('req.files =', req.files);
-  res.json({ message: 'Successfully uploaded files' });
+  res.json({ message: 'Files uploaded OK' });
 }
 
 app.get('*', function (req, res) {
