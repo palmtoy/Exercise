@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Multer Configuration
-const storage = multer.diskStorage({
+const storageObj = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');
   },
@@ -19,17 +19,16 @@ const storage = multer.diskStorage({
     cb(null, `${tmpList[0]}-${Date.now()}.${tmpList[1]}`);
   },
 });
-const upload = multer({ storage });
+const uploadObj = multer({ storage: storageObj });
 
 // File Upload Endpoint
-app.post('/upload-files', upload.array('files'), uploadFiles);
-function uploadFiles(req, res) {
+app.post('/upload-files', uploadObj.array('files'), (req, res) => {
   console.log('req.body =', req.body);
   console.log('req.files =', req.files);
   res.json({ message: 'Files uploaded OK' });
-}
+});
 
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
   let fileName = '/index.html';
   if (req.originalUrl.length > '/'.length) {
     fileName = req.originalUrl;
