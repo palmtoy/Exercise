@@ -3,6 +3,7 @@
 // Chrome open http://localhost:3000
 
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
@@ -10,6 +11,7 @@ const app = express();
 const host = 'http://localhost';
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
