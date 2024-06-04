@@ -47,7 +47,7 @@ function checkBlueToothDevice() {
       if (!strOut || (strOut && strOut.length < attrList.join(' = ').length)) {
         return;
       }
-      let jsonObj = {};
+      const jsonObj = {};
       const outList = strOut.split('\n');
       let deviceNum = 0;
       for (let i = 0; i < outList.length; i++) {
