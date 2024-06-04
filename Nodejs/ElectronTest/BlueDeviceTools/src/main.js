@@ -4,7 +4,7 @@ const { app, BrowserWindow, Notification, Tray, nativeImage } = require('electro
 
 let G_MAIN_WINDOW = null;
 let G_TRAY = null;
-let G_NOTIFICATION_OBJ = null;
+const G_NOTIFICATION_OBJ = {};
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
@@ -34,51 +34,56 @@ app.whenReady().then(() => {
 });
 
 function checkBlueToothDevice() {
-  const tmpCmd =
-    'ioreg -rkBatteryPercent -nAppleDeviceManagementHIDEventService | grep -e Product..= -e BatteryPercent..= -e BatteryStatusFlags..=';
+  const attrNum = 3;
+  const batteryThreshold = 10; // 电量阈值: 10%
+  const tmpCmd = 'ioreg -rkBatteryPercent -nAppleDeviceManagementHIDEventService | grep -e Product..= -e BatteryPercent..= -e BatteryStatusFlags..=';
   exec(tmpCmd, function (error, strOut) {
     if (error !== null) {
       console.error('_checkBlueToothDevice ~ exec error:', error);
     } else {
-      console.log('_checkBlueToothDevice ~', strOut);
+      // console.log('_checkBlueToothDevice ~ strOut:\n', strOut);
       strOut = strOut.trim();
-      if (!strOut || (strOut && strOut.length < 'Magic Trackpad ='.length)) {
+      if (!strOut || (strOut && strOut.length < 'Product ='.length)) {
         return;
       }
-      const tmpList = strOut.split('\n');
-      for (let i = 0; i < tmpList.length; i++) {
-        tmpList[i] = tmpList[i].replace(/=/g, ':'); // replace '=' with ':'
-      }
-      const strJson = `{${tmpList.join(',')}}`;
       let jsonObj = {};
-      try {
-        jsonObj = JSON.parse(strJson);
-      } catch (err) {
-        console.error('_checkBlueToothDevice ~ JSON.parse error:', err);
+      const attrList = strOut.split('\n');
+      let deviceNum = 0;
+      for (let i = 0; i < attrList.length; i++) {
+        deviceNum = Math.floor(i / attrNum) + 1;
+        const tmpList = attrList[i].split('=');
+        const k = tmpList[0].trim().replace(/"/g, '') + `_${deviceNum}`;
+        const v = tmpList[1].trim().replace(/"/g, '');
+        jsonObj[k] = /^\d+$/.test(v) ? parseInt(v) : v;
+      }
+      console.log('_checkBlueToothDevice ~ jsonObj =', jsonObj);
+      if (Object.keys(jsonObj).length < attrNum) {
+        // Product, BatteryPercent, BatteryStatusFlags
         return;
       }
-      if (Object.keys(jsonObj).length < 3) { // BatteryStatusFlags, BatteryPercent, Product
-        return;
-      }
-      if (jsonObj.BatteryStatusFlags === 3) { // 3: 充电状态中; 0: 非充电状态中
-        return;
-      }
-      const batteryPercent = jsonObj.BatteryPercent;
-      if (batteryPercent < 10) {
-        if (G_NOTIFICATION_OBJ) {
-          G_NOTIFICATION_OBJ.close();
+      for (let n = 1; n <= deviceNum; n++) {
+        if (jsonObj['BatteryStatusFlags' + `_${n}`] === 3) {
+          // 3: 充电状态中; 0: 非充电状态中
+          continue;
         }
-        G_NOTIFICATION_OBJ = new Notification({
-          title: `${jsonObj.Product} 电量不足!`,
-          body: `请充电 ( 当前电量: ${batteryPercent}% ).`,
-          closeButtonText: '知道了',
-        });
-        G_NOTIFICATION_OBJ.show();
+        const batteryPercent = jsonObj['BatteryPercent' + `_${n}`];
+        if (batteryPercent < batteryThreshold) {
+          if (G_NOTIFICATION_OBJ[n]) {
+            G_NOTIFICATION_OBJ[n].close();
+          }
+          G_NOTIFICATION_OBJ[n] = new Notification({
+            title: `${jsonObj['Product' + `_${n}`]} 电量不足!`,
+            body: `请充电 ( 当前电量: ${batteryPercent}% ).`,
+            closeButtonText: '知道了',
+          });
+          G_NOTIFICATION_OBJ[n].show();
+        }
       }
     }
   });
 }
 
+checkBlueToothDevice();
 setInterval(() => {
   checkBlueToothDevice();
 }, 2 * 60 * 60 * 1000); // 2 hours
