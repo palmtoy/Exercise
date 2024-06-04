@@ -34,31 +34,35 @@ app.whenReady().then(() => {
 });
 
 function checkBlueToothDevice() {
-  const attrNum = 3;
+  const attrList = ['Product', 'BatteryPercent', 'BatteryStatusFlags'];
   const batteryThreshold = 10; // 电量阈值: 10%
-  const tmpCmd = 'ioreg -rkBatteryPercent -nAppleDeviceManagementHIDEventService | grep -e Product..= -e BatteryPercent..= -e BatteryStatusFlags..=';
+  // const tmpCmd = 'ioreg -rkBatteryPercent -nAppleDeviceManagementHIDEventService | grep -e Product..= -e BatteryPercent..= -e BatteryStatusFlags..=';
+  const tmpCmd = 'ioreg -rkBatteryPercent -nAppleDeviceManagementHIDEventService';
   exec(tmpCmd, function (error, strOut) {
     if (error !== null) {
       console.error('_checkBlueToothDevice ~ exec error:', error);
     } else {
       // console.log('_checkBlueToothDevice ~ strOut:\n', strOut);
       strOut = strOut.trim();
-      if (!strOut || (strOut && strOut.length < 'Product ='.length)) {
+      if (!strOut || (strOut && strOut.length < attrList.join(' = ').length)) {
         return;
       }
       let jsonObj = {};
-      const attrList = strOut.split('\n');
+      const outList = strOut.split('\n');
       let deviceNum = 0;
-      for (let i = 0; i < attrList.length; i++) {
-        deviceNum = Math.floor(i / attrNum) + 1;
-        const tmpList = attrList[i].split('=');
-        const k = tmpList[0].trim().replace(/"/g, '') + `_${deviceNum}`;
+      for (let i = 0; i < outList.length; i++) {
+        const tmpList = outList[i].split('=');
+        let k = tmpList[0].trim().replace(/"/g, '');
+        if (!attrList.includes(k)) {
+          continue;
+        }
+        deviceNum = Math.floor(Object.keys(jsonObj).length / attrList.length) + 1;
+        k += `_${deviceNum}`;
         const v = tmpList[1].trim().replace(/"/g, '');
         jsonObj[k] = /^\d+$/.test(v) ? parseInt(v) : v;
       }
       console.log(`${new Date().toLocaleString()} ~ _checkBlueToothDevice ~ jsonObj =`, jsonObj);
-      if (Object.keys(jsonObj).length < attrNum) {
-        // Product, BatteryPercent, BatteryStatusFlags
+      if (Object.keys(jsonObj).length < attrList.length) {
         return;
       }
       for (let n = 1; n <= deviceNum; n++) {
