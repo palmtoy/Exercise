@@ -56,7 +56,7 @@ function checkBlueToothDevice() {
         const v = tmpList[1].trim().replace(/"/g, '');
         jsonObj[k] = /^\d+$/.test(v) ? parseInt(v) : v;
       }
-      console.log('_checkBlueToothDevice ~ jsonObj =', jsonObj);
+      console.log(`${new Date().toLocaleString()} ~ _checkBlueToothDevice ~ jsonObj =`, jsonObj);
       if (Object.keys(jsonObj).length < attrNum) {
         // Product, BatteryPercent, BatteryStatusFlags
         return;
