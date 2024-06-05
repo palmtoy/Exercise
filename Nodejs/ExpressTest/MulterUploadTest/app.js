@@ -9,7 +9,7 @@ const fs = require('fs');
 const multer = require('multer');
 const app = express();
 const host = 'http://localhost';
-const port = 3000;
+const port = 3003;
 
 app.use(cors());
 app.use(express.json());
