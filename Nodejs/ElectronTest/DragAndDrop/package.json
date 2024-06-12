@@ -1,0 +1,14 @@
+{
+  "name": "drag-and-drop",
+  "version": "0.0.1",
+  "description": "Drag And Drop",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "palmtoy",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^29.2.0"
+  }
+}
