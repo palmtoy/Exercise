@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Drag & Drop</title>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body>
+	<div class="container">
+		<h1>Drag out any of these links to your dekstop</h1>
+
+		<a href="drag-and-drop-1.md" id="dragout" class="dragme" draggable="true"
+			data-downloadurl="application/octet-stream:drag-and-drop-1.md:http://127.0.0.1:9999/drag-and-drop-1.md"
+		>drag-and-drop-1.md</a>
+
+		</br>
+		</br>
+		</br>
+
+		<a href="drag-and-drop-2.txt" id="dragout2" class="dragme" draggable="true"
+			data-downloadurl="application/octet-stream:drag-and-drop-2.txt:http://127.0.0.1:9999/drag-and-drop-2.txt"
+		>drag-and-drop-2.txt</a>
+	</div>
+</body>
+
+
+<script>
+  var files = [document.getElementById("dragout"), document.getElementById("dragout2")];
+  var fileDetails = [];
+
+	fileDetails[0] = files[0].getAttribute("data-downloadurl");
+	fileDetails[1] = files[1].getAttribute("data-downloadurl");
+
+  files[0].addEventListener("dragstart", function (evt) {
+    evt.dataTransfer.setData("DownloadURL", fileDetails[0]);
+  }, false);
+  files[1].addEventListener("dragstart", function (evt) {
+    evt.dataTransfer.setData("DownloadURL", fileDetails[1]);
+  }, false);
+</script>
+
+</html>
