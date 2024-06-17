@@ -19,23 +19,24 @@
 		</br>
 
 		<a href="drag-and-drop-2.txt" id="dragout2" class="dragme" draggable="true"
-			data-downloadurl="application/octet-stream:drag-and-drop-2.txt:http://127.0.0.1:9999/drag-and-drop-2.txt">drag-and-drop-2.txt</a>
+			data-downloadurl="application/octet-stream:drag-and-drop-2.txt:http://127.0.0.1:9999/drag-and-drop-2.txt" ondragstart="handleDragStart2(event);">drag-and-drop-2.txt</a>
 	</div>
 </body>
 
 <script>
-	var files = [document.getElementById("dragout"), document.getElementById("dragout2")];
-	var fileDetails = [];
+	const fileObjs = [document.getElementById("dragout"), document.getElementById("dragout2")];
+	const fileDetails = [];
 
-	fileDetails[0] = files[0].getAttribute("data-downloadurl");
-	fileDetails[1] = files[1].getAttribute("data-downloadurl");
+	fileDetails[0] = fileObjs[0].getAttribute("data-downloadurl");
+	fileDetails[1] = fileObjs[1].getAttribute("data-downloadurl");
 
-	files[0].addEventListener("dragstart", function (evt) {
+	fileObjs[0].addEventListener("dragstart", function (evt) {
 		evt.dataTransfer.setData("DownloadURL", fileDetails[0]);
 	}, false);
-	files[1].addEventListener("dragstart", function (evt) {
+
+	function handleDragStart2(evt) {
 		evt.dataTransfer.setData("DownloadURL", fileDetails[1]);
-	}, false);
+	}
 </script>
 
 </html>
