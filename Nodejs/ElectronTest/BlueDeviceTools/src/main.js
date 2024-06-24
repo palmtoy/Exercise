@@ -24,6 +24,7 @@ function createMainWindow() {
 
 app.whenReady().then(() => {
   createMainWindow();
+  /*
   const trayIcon = nativeImage.createFromDataURL(`data:image/png;base64,${strIcon}`);
   G_TRAY = new Tray(trayIcon);
   G_TRAY.setToolTip('BlueDeviceTools');
@@ -31,6 +32,7 @@ app.whenReady().then(() => {
     G_MAIN_WINDOW.show();
     G_MAIN_WINDOW.focus();
   });
+  */
 });
 
 function checkBlueToothDevice() {

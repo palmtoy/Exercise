@@ -4,10 +4,10 @@
   "description": "bluedevicetools",
   "main": "src/main.js",
   "scripts": {
-    "start": "electron .",
-    "pack:mac": "electron-builder build --mac",
-    "pack:win": "electron-builder build --win --ia32",
-    "pack:wi": "cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
+    "dev": "electron .",
+    "build:mac": "electron-builder build --mac",
+    "build:win": "electron-builder build --win --ia32",
+    "build:wi": "cross-env NPM_CONFIG_ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-builder build --win --ia32",
     "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],
