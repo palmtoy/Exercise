@@ -4,8 +4,8 @@ $quickAccessNamespace = $quickAccessFilesAndFolders.Namespace('shell:::{679f85cb
 $bPrintFlag = $false
 $quickAccessNamespace.Items() | ForEach-Object {
   $bPrintFlag = $true
-  $str = $_.Path + ', '
-  Write-Host $str -NoNewline
+  $strPath = $_.Path + ', '
+  Write-Host $strPath -NoNewline
 }
 if ($bPrintFlag) {
   Write-Host ''
