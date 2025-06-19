@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
   请求示例 ( 使用命令行 curl 测试 ):
   curl -v -X POST http://localhost:8086/billing/callback \
