@@ -6,12 +6,12 @@
     -H "appId: 8309" \
     -H "token: qbdjoyaqkasdyqcayx" \
     -H "Content-Type: application/json" \
-    -d '{"callbackString": "{\"myDeviceId\":\"6070e3-59c0zp\",\"myUseId\":\"970362031\",\"myChannel\":\"g00gle\",\"myProductId\":\"com.hello.coin999\"}"}'
+    -d '{"callbackParams": "{\"myDeviceId\":\"6070e3-59c0zp\",\"myUseId\":\"970362031\",\"myChannel\":\"g00gle\",\"myProductId\":\"com.hello.coin999\"}"}'
 */
 
 import { createServer } from 'http';
 
-const PORT = 8086;
+const PORT = 8088;
 
 const server = createServer((req, res) => {
   console.log(`\nMethod: ${req.method}, URL: ${req.url}`);
