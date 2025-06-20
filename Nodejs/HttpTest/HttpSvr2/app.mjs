@@ -2,7 +2,7 @@
 
 /*
   请求示例 ( 使用命令行 curl 测试 ):
-  curl -v -X POST http://localhost:8086/billing/callback \
+  curl -v -X POST http://localhost:8088/billing/callback \
     -H "appId: 8309" \
     -H "token: qbdjoyaqkasdyqcayx" \
     -H "Content-Type: application/json" \
