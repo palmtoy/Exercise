@@ -14,7 +14,7 @@ import { createServer } from 'http';
 const PORT = 8088;
 
 const server = createServer((req, res) => {
-  console.log(`\nMethod: ${req.method}, URL: ${req.url}`);
+  console.log(`\n${new Date().toLocaleString()} ->\nMethod: ${req.method}, URL: ${req.url}`);
   console.log('Headers:', req.headers);
   if (req.method === 'POST' && req.url === '/billing/callback') {
     // 检查请求头
