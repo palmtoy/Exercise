@@ -12,6 +12,15 @@
 import { createServer } from 'http';
 
 const PORT = 8088;
+const G_INTERVAL = 7; // units: s
+
+function sendRespose(res, statusCode, errCode, message) {
+  console.log('Message:', message, '\n');
+  setTimeout(() => {
+    res.writeHead(statusCode, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ errCode, message }));
+  }, G_INTERVAL * 1000);
+}
 
 const server = createServer((req, res) => {
   console.log(`\n${new Date().toLocaleString()} ->\nMethod: ${req.method}, URL: ${req.url}`);
@@ -21,11 +30,7 @@ const server = createServer((req, res) => {
     const token = req.headers['token'];
     // token 校验
     if (token !== 'qbdjoyaqkasdyqcayx') {
-      const message = 'Invalid token';
-      console.log('Message:', message, '\n');
-      res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ errorCode: 1, message }));
-      return;
+      return sendRespose(res, 400, 1, 'Invalid token');
     }
 
     let body = '';
@@ -38,24 +43,17 @@ const server = createServer((req, res) => {
         // 打印请求头和请求体所有字段
         console.log('Body:', data, '\n');
         // 返回响应
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(
-          JSON.stringify({
-            errorCode: 0,
-            timestamp: Date.now(),
-          }),
-        );
+        return sendRespose(res, 200, 0, new Date().toLocaleString());
       } catch (e) {
-        res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ errorCode: 2, message: 'Invalid JSON body' }));
+        sendRespose(res, 400, 2, 'Invalid JSON body');
       }
     });
   } else {
-    res.writeHead(404, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ errorCode: 404, message: 'Not found' }));
+    sendRespose(res, 404, 404, 'Not Found');
   }
 });
 
 server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT} ...`);
 });
+
