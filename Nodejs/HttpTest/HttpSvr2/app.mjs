@@ -41,7 +41,7 @@ const server = createServer((req, res) => {
       try {
         const data = JSON.parse(body);
         // 打印请求头和请求体所有字段
-        console.log('Body:', data, '\n');
+        console.log('Body:', data);
         // 返回响应
         return sendRespose(res, 200, 0, new Date().toLocaleString());
       } catch (e) {
@@ -54,6 +54,6 @@ const server = createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT} ...`);
+  console.log(`Server listening on port ${PORT} ...\n`);
 });
 
