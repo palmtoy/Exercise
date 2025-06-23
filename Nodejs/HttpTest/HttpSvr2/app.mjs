@@ -4,7 +4,7 @@
   请求示例 ( 使用命令行 curl 测试 ):
   curl -v -X POST http://localhost:8088/billing/callback \
     -H "appId: 8309" \
-    -H "token: qbdjoyaqkasdyqcayx" \
+    -H "token: qbdjoyaqkasdyqcay" \
     -H "Content-Type: application/json" \
     -d '{"callbackParams": "{\"myDeviceId\":\"6070e3-59c0zp\",\"myUseId\":\"970362031\",\"myChannel\":\"g00gle\",\"myProductId\":\"com.hello.coin999\"}"}'
 */
@@ -29,7 +29,7 @@ const server = createServer((req, res) => {
     // 检查请求头
     const token = req.headers['token'];
     // token 校验
-    if (token !== 'qbdjoyaqkasdyqcayx') {
+    if (token !== 'qbdjoyaqkasdyqcay') {
       return sendRespose(res, 400, 1, 'Invalid token');
     }
 
