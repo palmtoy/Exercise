@@ -12,10 +12,10 @@
 import { createServer } from 'http';
 
 const PORT = 8088;
-const G_INTERVAL = 7; // units: s
+const G_INTERVAL = 1; // units: s
 
-function sendRespose(res, statusCode, errCode, message) {
-  console.log('Message:', message, '\n');
+function sendResponse(res, statusCode, errCode, message) {
+  console.log('Response Message:', message, '\n');
   setTimeout(() => {
     res.writeHead(statusCode, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ errCode, message }));
@@ -30,7 +30,7 @@ const server = createServer((req, res) => {
     const token = req.headers['token'];
     // token 校验
     if (token !== 'qbdjoyaqkasdyqcay') {
-      return sendRespose(res, 400, 1, 'Invalid token');
+      return sendResponse(res, 400, 1, 'Invalid token');
     }
 
     let body = '';
@@ -43,13 +43,13 @@ const server = createServer((req, res) => {
         // 打印请求头和请求体所有字段
         console.log('Body:', data);
         // 返回响应
-        return sendRespose(res, 200, 0, new Date().toLocaleString());
+        return sendResponse(res, 200, 0, new Date().toLocaleString());
       } catch (e) {
-        sendRespose(res, 400, 2, 'Invalid JSON body');
+        sendResponse(res, 400, 2, 'Invalid JSON body');
       }
     });
   } else {
-    sendRespose(res, 404, 404, 'Not Found');
+    sendResponse(res, 404, 404, 'Not Found');
   }
 });
 
