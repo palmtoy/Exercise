@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import queue
 import threading
 import time
@@ -40,9 +41,11 @@ def consumer():
 if __name__ == '__main__':
     t_producer = threading.Thread(target=producer, daemon=True)
     t_consumer = threading.Thread(target=consumer, daemon=True)
-    t_producer.start()
-    t_consumer.start()
-    # 主线程保持运行
-    while True:
-        time.sleep(1)
-
+    try:
+        t_producer.start()
+        t_consumer.start()
+        t_producer.join()
+        t_consumer.join()
+    except KeyboardInterrupt:
+        print('\n\nKeyboardInterrupt, waiting for threads to finish ...')
+        sys.exit(0)
