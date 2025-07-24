@@ -8,6 +8,10 @@ from functools import wraps
 from pythonjsonlogger import jsonlogger
 import logging
 import flask
+import yaml
+
+
+DATA_FILE = 'data.yml'
 
 
 # Setup Flask app
@@ -45,9 +49,19 @@ def after_request(response):
     return response
 
 
+def load_data():
+    with open(DATA_FILE, 'r') as f:
+        data = yaml.safe_load(f)
+    return data
+
+def save_data(data):
+    with open(DATA_FILE, 'w') as f:
+        yaml.dump(data, f)
+
+
 @app.route('/')
 def index():
-    retMsg = "Hello World!"
+    retMsg = load_data()['hello_msg']
     app.logger.debug('Return message: %s', retMsg)
     return retMsg
 
@@ -70,10 +84,13 @@ curl -X POST http://127.0.0.1:5001/echo \
 @app.route('/echo', methods=['POST'])
 @token_required
 def echo():
-    data = request.get_json()
-    msg = data.get('msg')
-    app.logger.debug('Received data: %s', data)
-    retMsg = {'echo-msg': msg}
+    reqData = request.get_json()
+    msg = reqData.get('msg')
+    app.logger.debug('Received data: %s', reqData)
+    data = load_data()
+    data['echo_num'] += 1
+    save_data(data)
+    retMsg = {'echo-msg': msg, 'server-msg': data['echo_msg'] + f' ~ {data["echo_num"]}'}
     app.logger.debug('Return data: %s', retMsg)
     return jsonify(retMsg)
 
