@@ -1,8 +1,72 @@
-from flask import Flask
- 
+#!/usr/bin/env python3
+
+# flask run --host=0.0.0.0 --port=5001
+# ./app.py
+
+from flask import Flask, request, jsonify
+from functools import wraps
+from pythonjsonlogger import jsonlogger
+import logging
+
+
+# Setup Flask app
 app = Flask(__name__)
- 
+
+# Remove default Flask logger
+app.logger.handlers[:] = []
+# Setup logging
+logHandler = logging.StreamHandler()
+formatter = jsonlogger.JsonFormatter(
+    fmt='%(asctime)s %(levelname)s %(name)s %(message)s'
+)
+logHandler.setFormatter(formatter)
+app.logger.addHandler(logHandler)
+app.logger.setLevel(logging.DEBUG)
+
+
+# Setup Flask WSGI logger
+werkzeug_logger = logging.getLogger('werkzeug')
+werkzeug_logHandler = logging.StreamHandler()
+werkzeug_formatter = jsonlogger.JsonFormatter(
+    fmt='%(asctime)s %(levelname)s %(name)s %(message)s %(remote_addr)s %(method)s %(url)s %(status)s'
+)
+werkzeug_logHandler.setFormatter(werkzeug_formatter)
+werkzeug_logger.addHandler(werkzeug_logHandler)
+werkzeug_logger.setLevel(logging.DEBUG)
+
+
 @app.route('/')
 def index():
-    return "Hello World!"
+    retMsg = "Hello World!"
+    app.logger.debug('Return message: %s', retMsg)
+    return retMsg
 
+def token_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        token = request.headers.get('auth-token')
+        app.logger.debug('Received token: %s', token)
+        if not token or token != f'mt':
+            return jsonify({'message': 'Token is missing or invalid'}), 403
+        return f(*args, **kwargs)
+    return decorated_function
+
+'''
+curl -X POST http://127.0.0.1:5001/echo \
+  -H "auth-token: mt" \
+  -H "Content-Type: application/json" \
+  -d '{"msg": "Hello World!"}'
+'''
+@app.route('/echo', methods=['POST'])
+@token_required
+def echo():
+    data = request.get_json()
+    msg = data.get('msg')
+    app.logger.debug('Received data: %s', data)
+    retMsg = {'echo-msg': msg}
+    app.logger.debug('Return data: %s', retMsg)
+    return jsonify(retMsg)
+
+
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5001)
