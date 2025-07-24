@@ -7,6 +7,7 @@ from flask import Flask, request, jsonify
 from functools import wraps
 from pythonjsonlogger import jsonlogger
 import logging
+import flask
 
 
 # Setup Flask app
@@ -24,15 +25,24 @@ app.logger.addHandler(logHandler)
 app.logger.setLevel(logging.DEBUG)
 
 
-# Setup Flask WSGI logger
-werkzeug_logger = logging.getLogger('werkzeug')
-werkzeug_logHandler = logging.StreamHandler()
-werkzeug_formatter = jsonlogger.JsonFormatter(
-    fmt='%(asctime)s %(levelname)s %(name)s %(message)s %(remote_addr)s %(method)s %(url)s %(status)s'
-)
-werkzeug_logHandler.setFormatter(werkzeug_formatter)
-werkzeug_logger.addHandler(werkzeug_logHandler)
-werkzeug_logger.setLevel(logging.DEBUG)
+@app.before_request
+def before_request():
+    flask.g.log_status = None  # init
+
+@app.after_request
+def after_request(response):
+    flask.g.log_status = response.status_code
+    # log request info
+    app.logger.info(
+        "Request log",
+        extra={
+            "remote_addr": flask.request.remote_addr,
+            "method": flask.request.method,
+            "url": flask.request.url,
+            "status": response.status_code,
+        }
+    )
+    return response
 
 
 @app.route('/')
@@ -69,4 +79,4 @@ def echo():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(debug=True, use_reloader=False, host='0.0.0.0', port=5001)
