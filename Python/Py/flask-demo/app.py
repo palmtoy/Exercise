@@ -69,7 +69,7 @@ def token_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         token = request.headers.get('auth-token')
-        app.logger.debug('Received token: %s', token)
+        app.logger.debug('_token_required ~ Received token: %s', token)
         if not token or token != f'mt':
             return jsonify({'message': 'Token is missing or invalid'}), 403
         return f(*args, **kwargs)
@@ -86,13 +86,27 @@ curl -X POST http://127.0.0.1:5001/echo \
 def echo():
     reqData = request.get_json()
     msg = reqData.get('msg')
-    app.logger.debug('Received data: %s', reqData)
+    app.logger.debug('_echo ~ Received data: %s', reqData)
     data = load_data()
     data['echo_num'] += 1
     save_data(data)
     retMsg = {'echo-msg': msg, 'server-msg': data['echo_msg'] + f' ~ {data["echo_num"]}'}
     app.logger.debug('Return data: %s', retMsg)
     return jsonify(retMsg)
+
+
+'''
+curl -X POST http://127.0.0.1:5001/es-scale-cb \
+  -H "auth-token: mt" \
+  -H "Content-Type: application/json" \
+  -d '{"taskId": "16888"}'
+'''
+@app.route('/es-scale-cb', methods=['POST'])
+@token_required
+def es_scale_cb():
+    reqData = request.get_json()
+    app.logger.debug('_es-scale-cb ~ Received data: %s', reqData)
+    return jsonify({'message': 'OK'})
 
 
 if __name__ == '__main__':
