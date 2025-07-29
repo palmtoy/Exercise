@@ -68,7 +68,7 @@ def index():
 def token_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        token = request.headers.get('auth-token')
+        token = request.headers.get('token')
         app.logger.debug('_token_required ~ Received token: %s', token)
         if not token or token != f'mt':
             return jsonify({'message': 'Token is missing or invalid'}), 403
@@ -77,7 +77,7 @@ def token_required(f):
 
 '''
 curl -X POST http://127.0.0.1:5001/echo \
-  -H "auth-token: mt" \
+  -H "token: mt" \
   -H "Content-Type: application/json" \
   -d '{"msg": "Hello World!"}'
 '''
@@ -97,7 +97,7 @@ def echo():
 
 '''
 curl -X POST http://127.0.0.1:5001/es-scale-cb \
-  -H "auth-token: mt" \
+  -H "token: mt" \
   -H "Content-Type: application/json" \
   -d '{"taskId": "16888"}'
 '''
