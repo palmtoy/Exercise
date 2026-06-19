@@ -1,0 +1,12 @@
+{
+  "name": "gputest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "keywords": [],
+  "author": "palmtoy",
+  "license": "MIT",
+  "description": "Node.js v18.20.8",
+  "dependencies": {
+    "gpu.js": "2.16.0"
+  }
+}
