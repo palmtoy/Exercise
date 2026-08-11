@@ -1,0 +1,11 @@
+{
+  "name": "jwtest",
+  "version": "1.0.0",
+  "main": "app.js",
+  "keywords": [],
+  "author": "palmtoy",
+  "license": "MIT",
+  "dependencies": {
+    "jsonwebtoken": "9.0.3"
+  }
+}
